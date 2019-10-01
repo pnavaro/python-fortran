@@ -248,6 +248,63 @@ def bspline_cython(p, j, x):
 # +
 # %%cython
 import cython
+
+@cython.cdivision(True)
+cpdef double bspline_cython(int p, int j, double x):
+        """Return the value at x in [0,1[ of the B-spline with 
+        integer nodes of degree p with support starting at j.
+        Implemented recursively using the de Boor's recursion formula"""
+        cdef double w, w1
+        if p == 0:
+            if j == 0:
+                return 1.0
+            else:
+                return 0.0
+        else:
+            w = (x - j) / p
+            w1 = (x - j - 1) / p
+        return w * bspline_cython(p-1,j,x)+(1-w1)*bspline_cython(p-1,j+1,x)
+# -
+
+interpolation_test(bspline_cython)
+
+# +
+# %matplotlib inline
+# %config InlineBackend.figure_format = 'retina'
+import matplotlib.pyplot as plt
+import numpy as np
+
+plt.rcParams['figure.figsize'] = (11,7)
+
+# +
+from tqdm import tqdm_notebook as tqdm
+from collections import defaultdict
+
+Mrange = (2 ** np.arange(6, 11)).astype(int)
+opts = [bspline_fortran, bspline_pythran, bspline_cython, bspline_python, bspline_numba]
+
+times = defaultdict(list)
+for M in tqdm(Mrange):
+    x = np.linspace(0, 1, M, endpoint=False)
+    for opt in opts:
+        f = np.sin(x*4*np.pi)
+        cs = Advection(5, 0, 1, M, opt)
+    
+        alpha = 0.1
+        ts = %timeit -oq -n 20 cs(f, alpha)
+        times[opt.__name__].append(ts.best)
+
+# +
+for o, t in times.items():
+    plt.loglog(Mrange, t, label=o)
+    
+plt.legend(loc='lower right')
+plt.xlabel('Number of points')
+plt.ylabel('Execution Time (s)');
+
+# +
+# %%cython
+import cython
 import numpy as np
 cimport numpy as np
 from scipy.fftpack import fft, ifft
@@ -302,59 +359,28 @@ class BSplineCython:
         return np.real(ifft(fft(f) * self.eigalpha / self.eig_bspl))
 
 
+
 # -
 
-interpolation_test(BSplineCython)
-
-# +
-# %matplotlib inline
-# %config InlineBackend.figure_format = 'retina'
-import matplotlib.pyplot as plt
-import numpy as np
-
-plt.rcParams['figure.figsize'] = (11,7)
-
-# +
-from tqdm import tqdm_notebook as tqdm
-
-Mrange = (2 ** np.arange(5, 10)).astype(int)
-
-t_numpy = []
-t_fortran = []
-t_numba = []
-t_pythran = []
-t_cython = []
-
+times["cython"] = []
 for M in tqdm(Mrange):
-    x = np.linspace(0,1,M, endpoint=False)
+    x = np.linspace(0, 1, M, endpoint=False)
     f = np.sin(x*4*np.pi)
-    cs1 = BSplineNumpy(5,0,1,M)
-    cs2 = BSplineFortran(5,0,1,M)
-    cs3 = BSplineNumba(5,0,1,M)
-    cs4 = BSplinePythran(5,0,1,M)
-    cs5 = BSplineCython(5,0,1,M)
+    cs = BSplineCython(5, 0, 1, M )
     
     alpha = 0.1
-    t1 = %timeit -oq -n 2 cs1(f, alpha)
-    t2 = %timeit -oq -n 2 cs2(f, alpha)
-    t3 = %timeit -oq -n 2 cs3(f, alpha)
-    t4 = %timeit -oq -n 2 cs4(f, alpha)
-    t5 = %timeit -oq -n 2 cs5(f, alpha)
-    
-    t_numpy.append(t1.best)
-    t_fortran.append(t2.best)
-    t_numba.append(t3.best)
-    t_pythran.append(t4.best)
-    t_cython.append(t5.best)
+    ts = %timeit -oq -n 100 cs(f, alpha)
+    times["cython"].append(ts.best)
 
-plt.loglog(Mrange, t_numpy, label='numpy')
-plt.loglog(Mrange, t_fortran, label='fortran')
-plt.loglog(Mrange, t_numba, label='numba')
-plt.loglog(Mrange, t_pythran, label='pythran')
-plt.loglog(Mrange, t_cython, label='cython')
+# +
+for o, t in times.items():
+    plt.loglog(Mrange, t, label=o)
+    
 plt.legend(loc='lower right')
 plt.xlabel('Number of points')
 plt.ylabel('Execution Time (s)');
+
+
 # -
 
 # # Vlasov-Poisson equation
@@ -368,13 +394,6 @@ plt.ylabel('Execution Time (s)');
 # $$
 #
 # - [Vlasov Equation - Wikipedia](https://en.wikipedia.org/wiki/Vlasov_equation)
-
-# +
-BSpline = dict(numpy   = BSplineNumpy,
-               fortran = BSplineFortran,
-               cython  = BSplineCython,
-               numba   = BSplineNumba,
-               pythran = BSplinePythran)
 
 class VlasovPoisson:
     
@@ -393,9 +412,8 @@ class VlasovPoisson:
         
         if opt :
             # Interpolators for advection
-            BSplineClass = BSpline[opt]
-            self.cs_x = BSplineClass(p, xmin, xmax, nx)
-            self.cs_v = BSplineClass(p, vmin, vmax, nv)
+            self.cs_x = Advection(p, xmin, xmax, nx, opt)
+            self.cs_v = Advection(p, vmin, vmax, nv, opt)
             
         # Modes for Poisson equation
         self.modes = np.zeros(nx)
@@ -437,8 +455,6 @@ class VlasovPoisson:
         return nrj
 
 
-# -
-
 # # Landau Damping
 #
 # [Landau damping - Wikipedia](https://en.wikipedia.org/wiki/Landau_damping)
@@ -452,7 +468,7 @@ from time import time
 
 elapsed_time = {}
 fig, axes = plt.subplots()
-for opt in ['numpy', 'fortran', 'numba', 'cython','pythran']:
+for opt in opts:
     
     # Set grid
     nx, nv = 32, 64
@@ -474,7 +490,7 @@ for opt in ['numpy', 'fortran', 'numba', 'cython','pythran']:
     # Run simulation
     etime = time()
     nrj = sim.run(f, nstep, dt)
-    print(" {0:12s} : {1:.4f} ".format(opt, time()-etime))
+    print(" {0:12s} : {1:.4f} ".format(opt.__name__, time()-etime))
     
     # Plot energy
     axes.plot(t, nrj, label=opt)
@@ -633,7 +649,7 @@ from time import time
 elapsed_time = {}
 fig, axes = plt.subplots()
 # Set grid
-nx, nv = 256, 256
+nx, nv = 64, 64
 xmin, xmax = 0.0, 4*np.pi
 vmin, vmax = -6., 6.
 
@@ -641,12 +657,12 @@ vmin, vmax = -6., 6.
 sim = VlasovPoissonThreaded(xmin, xmax, nx, vmin, vmax, nv)
 # Initialize distribution function
 X, V = np.meshgrid(sim.x, sim.v)
-eps, kx = 0.01, 0.5
+eps, kx = 0.001, 0.5
 f = (1.0+eps*np.cos(kx*X))/np.sqrt(2.0*np.pi)* np.exp(-0.5*V*V)
 f = np.asfortranarray(f)
 # Set time domain
-nstep = 1000
-t, dt = np.linspace(0.0, 40.0, nstep, retstep=True)
+nstep = 600
+t, dt = np.linspace(0.0, 60.0, nstep, retstep=True)
 
 # Run simulation
 etime = time()
@@ -658,3 +674,5 @@ axes.plot(t, nrj, label='energy')
 
     
 plt.legend();
+# -
+
