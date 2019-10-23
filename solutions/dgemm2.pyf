@@ -1,0 +1,19 @@
+python module mylapack2 ! in 
+    interface  ! in :mylapack
+        subroutine dgemm(transa,transb,m,n,k,alpha,a,lda,b,ldb,beta,c,ldc)
+            character, optional :: transa = 'N'
+            character, optional :: transb = 'N'
+            integer, optional :: m = shape(a,0)
+            integer, optional :: n = shape(b,1)
+            integer, optional, check(shape(b,0)==k) :: k = shape(a,1)
+            double precision, optional :: alpha = 1.
+            double precision dimension(lda,*) :: a
+            integer optional,check(shape(a,0)==lda),depend(a) :: lda=shape(a,0)
+            double precision dimension(ldb,*) :: b
+            integer optional,check(shape(b,0)==ldb),depend(b) :: ldb=shape(b,0)
+            double precision, optional :: beta = 1.
+            double precision dimension(shape(a,0),shape(b,1)), intent(out) :: c
+            integer optional :: ldc=shape(a,0)
+        end subroutine dgemm
+    end interface 
+end python module mylapack2
