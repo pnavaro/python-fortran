@@ -1,0 +1,27 @@
+name: python-fortran
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.7
+  - setuptools
+  - numpy
+  - numexpr
+  - matplotlib
+  - scipy
+  - cython
+  - sympy
+  - numba
+  - seaborn
+  - h5py 
+  - lorem 
+  - fortran-magic 
+  - cython 
+  - line_profiler 
+  - memory_profiler
+  - numba
+  - tqdm
+  - tqdm
+  - imageio
+  - pillow
+  - pythran
