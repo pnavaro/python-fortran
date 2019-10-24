@@ -9,7 +9,7 @@
 #       format_version: '1.2'
 #       jupytext_version: 1.2.4
 #   kernelspec:
-#     display_name: Python 3.7
+#     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
@@ -21,13 +21,6 @@ import matplotlib.pyplot as plt
 import scipy.fftpack as sf
 import scipy.linalg as sl
 import numpy as np
-
-# %% {"slideshow": {"slide_type": "fragment"}}
-import sys
-%env FC=gfortran
-if sys.platform == "darwin":
-    %env CC=gcc-9
-# change values for your configuration
 
 # %% [markdown] {"slideshow": {"slide_type": "slide"}}
 # # f2py
@@ -65,7 +58,7 @@ Cf2py intent(out) c
 #
 
 # %% {"slideshow": {"slide_type": "fragment"}}
-!f2py -c euclidian_norm.f90 -m vect  --fcompiler=gnu95 --f90flags=-O3
+!f2py -c euclidian_norm.f90 -m vect
 
 # %% [markdown] {"slideshow": {"slide_type": "slide"}}
 # ## Use the extension module in Python
@@ -181,7 +174,7 @@ sum_f(lambda x :x**2,3) # lambda function
 #
 
 # %% {"slideshow": {"slide_type": "fragment"}}
-%%fortran --extra "-DF2PY_REPORT_ON_ARRAY_COPY=1"
+%%fortran --extra="-DF2PY_REPORT_ON_ARRAY_COPY=1"
 subroutine push( positions, velocities, dt, n)
   integer, intent(in) :: n
   real(8), intent(in) :: dt
@@ -240,13 +233,6 @@ positions # the memory is updated
 # - Generate the signature file
 
 # %% {"slideshow": {"slide_type": "fragment"}}
-%rm -f dgemm.f dgemm.pyf
-!wget http://ftp.mcs.anl.gov/pub/MINPACK-2/blas/dgemm.f
-
-# %% {"slideshow": {"slide_type": "slide"}}
-# %load dgemm.f
-
-# %% {"slideshow": {"slide_type": "fragment"}}
 !f2py -m mylapack --overwrite-signature -h dgemm.pyf dgemm.f
 
 # %% [markdown] {"slideshow": {"slide_type": "slide"}}
@@ -279,7 +265,7 @@ positions # the memory is updated
 # ```
 
 # %% {"slideshow": {"slide_type": "slide"}}
-!f2py -c dgemm.pyf -llapack
+!f2py -c dgemm.pyf -lopenblas
 
 # %% {"slideshow": {"slide_type": "slide"}}
 import numpy as np
@@ -299,13 +285,32 @@ np.all(c == a @ b) # check with numpy matrix multiplication
 # - Modify the file dgemm.pyf to set all arguments top optional and keep only the two matrices as input.
 
 # %% {"slideshow": {"slide_type": "slide"}}
-# %load solutions/fortran/dgemm2.pyf
+%%file dgemm2.pyf
+python module mylapack2 ! in 
+    interface  ! in :mylapack
+        subroutine dgemm(transa,transb,m,n,k,alpha,a,lda,b,ldb,beta,c,ldc)
+            character, optional :: transa = 'N'
+            character, optional :: transb = 'N'
+            integer, optional :: m = shape(a,0)
+            integer, optional :: n = shape(b,1)
+            integer, optional, check(shape(b,0)==k) :: k = shape(a,1)
+            double precision, optional :: alpha = 1.
+            double precision dimension(lda,*) :: a
+            integer optional,check(shape(a,0)==lda),depend(a) :: lda=shape(a,0)
+            double precision dimension(ldb,*) :: b
+            integer optional,check(shape(b,0)==ldb),depend(b) :: ldb=shape(b,0)
+            double precision, optional :: beta = 1.
+            double precision dimension(shape(a,0),shape(b,1)), intent(out) :: c
+            integer optional :: ldc=shape(a,0)
+        end subroutine dgemm
+    end interface 
+end python module mylapack2
 
 # %% [markdown] {"slideshow": {"slide_type": "slide"}}
-# # Build the pythoni module
+# # Build the python module
 
 # %% {"slideshow": {"slide_type": "fragment"}}
-!f2py -c dgemm2.pyf -llapack --f90flags=-O3
+!f2py -c dgemm2.pyf -lopenblas --f90flags=-O3
 
 # %% {"slideshow": {"slide_type": "slide"}}
 import mylapack2
@@ -375,9 +380,6 @@ f90module.test_array()
 # %% {"slideshow": {"slide_type": "fragment"}}
 import os, sys
 
-if sys.platform == 'darwin': # for mac users
-    os.environ['CC'] = 'gcc-9'
-    
 %env OMP_NUM_THREADS=4
 
 # %% {"slideshow": {"slide_type": "fragment"}}
@@ -394,8 +396,9 @@ end subroutine
 hello()
 
 # %% {"slideshow": {"slide_type": "slide"}}
-%%fortran --f90flags "-fopenmp" --extra "-L/usr/local/lib -lgomp"
+%%fortran --f90flags="-Xclang" --opt="-fopenmp"
 subroutine hello_omp( )
+  use omp_lib
   integer :: i
   !$OMP PARALLEL PRIVATE(I)
   !$OMP DO 
@@ -411,6 +414,43 @@ end subroutine
 # %% {"slideshow": {"slide_type": "fragment"}}
 %%time
 hello_omp()
+
+# %%
+%load_ext fortranmagic
+
+# %%
+%%fortran --f90flags="-Xclang" --opt="-fopenmp"
+subroutine hello_openmp()
+use omp_lib
+implicit none
+
+integer :: n
+real(8) :: x
+integer, allocatable :: seed(:)
+integer ::  nthreads, tid
+
+call omp_set_num_threads(2)
+
+!$OMP PARALLEL PRIVATE(NTHREADS, TID)
+tid = omp_get_thread_num() ! Obtain thread number
+!print *, 'Hello World from (rank,thread) = ', rank, tid
+
+! Only master thread does this
+nthreads = omp_get_num_threads()
+print *, "Thread no : ", tid, " of ", nthreads
+
+! All threads join master thread and disband
+!$OMP END PARALLEL
+
+end 
+
+
+# %%
+import os
+os.environ["OMP_NUM_THREADS"] = "4"
+
+# %%
+hello_openmp()
 
 # %% [markdown] {"slideshow": {"slide_type": "slide"}}
 # # Conclusions
