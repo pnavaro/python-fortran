@@ -1,13 +1,14 @@
 # ---
 # jupyter:
 #   jupytext:
+#     formats: ipynb,py:light
 #     text_representation:
 #       extension: .py
 #       format_name: light
 #       format_version: '1.4'
 #       jupytext_version: 1.2.4
 #   kernelspec:
-#     display_name: Python 3.7
+#     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
@@ -23,10 +24,17 @@ plt.rcParams['figure.figsize'] = (10,6)
 # %env FC=/opt/miniconda3/envs/python-fortran/bin/gfortran
 
 
+# +
+import sys
+
+if sys.platform == "darwin":
+    %env CC=gcc-9
+# -
+
 # %load_ext fortranmagic
 
 # +
-# %%fortran
+# %%fortran --f90flags "-fopenmp"  --extra "-lgomp"
 subroutine biot ( n, xp, yp, op, up, vp )
   implicit none
   integer, intent(in)  :: n
@@ -44,7 +52,7 @@ subroutine biot ( n, xp, yp, op, up, vp )
   a12   = a1*a1
   a122  = a12*a12
     
-
+  !$OMP PARALLEL DO DEFAULT(FIRSTPRIVATE) SHARED(up, vp)
   do  k = 1, n
 
     usum = 0
@@ -66,13 +74,14 @@ subroutine biot ( n, xp, yp, op, up, vp )
     up(k) = usum / dpi 
     vp(k) = vsum / dpi 
             
-  end do
+   end do
+   !$OMP END PARALLEL DO
 
 end subroutine biot
 
 # -
 
-def distrib(ray, nray = 10,nsec = 6, gauss=True, gam0 = 1.0, eps= 0):
+def distrib(ray, nray = 10, nsec = 6, gauss=True, gam0 = 1.0, eps= 0):
     
     """
         Particles distributed evenly spaced into a disc.
@@ -161,8 +170,6 @@ def distrib(ray, nray = 10,nsec = 6, gauss=True, gam0 = 1.0, eps= 0):
     return np.array(rf), np.array(zf), np.array(ds), np.array(cf)
 
 
-import seaborn as sns
-sns.set()
 r, z, s, g = distrib(1.0,nray = 40,nsec = 10)
 plt.scatter(r, z, 1e3*s, g)
 plt.axis('scaled')
@@ -197,7 +204,7 @@ print( " rotation speed gomeg = ", gomeg)
 print( " corotation period = ", tau)
 print( " --------------------------------------------- ")
 
-rf, zf , ds, gam =  distrib( r0 )
+rf, zf , ds, gam =  distrib( r0, nray = 20, nsec = 8 )
 n = 2 * rf.size
 X = np.zeros((n,2),dtype=np.float64)
 X[:,0] = np.concatenate([rf, rf])
@@ -237,218 +244,6 @@ def animate(i):
 
 ani = animation.FuncAnimation(fig, animate, frames=400,
                               interval=10, blit=True, init_func=init);
-
-
-# +
-from IPython.display import HTML
-
-HTML(ani.to_jshtml())
-# -
-
-n = xp.size
-plt.scatter(X[:,0], X[:,1], 10*np.ones(n),  op)
-plt.axis('scaled')
-plt.grid(True)
-plt.xlim(-2,2)
-plt.ylim(-2,2)
-plt.colorbar();
-
-rand = np.random.RandomState(42)
-X = rand.rand(5, 2)
-plt.scatter(X[:, 0], X[:, 1], s=100);
-
-
-def velocities (X, op, delta = 1e-6):
-
-    dpi   = 2 * np.pi
-    n = X.shape[0]
-
-    dX = X[:, np.newaxis, :] - X[np.newaxis, :, :]
-    rsq = np.sum(dX**2, axis=-1)
-
-    rsq += rsq < delta
-     
-    V[:,0] =  np.sum(dX[:,1] / rsq,axis=1) * op / dpi 
-    V[:,1] =  np.sum(-dX[:,0] / rsq,axis=1) * op / dpi 
-    return V
-
-
-dX = X[:, np.newaxis, :] - X[np.newaxis, :, :]
-dX.shape
-
-#square the coordinate differences
-sq_dX = dX ** 2
-sq_dX.shape
-
-rsq = np.sum(dX**2, axis=-1)
-rsq
-
-
-np.cross(dX,op)
-
-# +
-"""
-Animation of Elastic collisions with Gravity
-
-author: Jake Vanderplas
-email: vanderplas@astro.washington.edu
-website: http://jakevdp.github.com
-license: BSD
-Please feel free to use and modify this, but keep the above information. Thanks!
-"""
-import numpy as np
-from scipy.spatial.distance import pdist, squareform
-
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
-
-class ParticleBox:
-    """Orbits class
-    
-    init_state is an [N x 4] array, where N is the number of particles:
-       [[x1, y1, vx1, vy1],
-        [x2, y2, vx2, vy2],
-        ...               ]
-
-    bounds is the size of the box: [xmin, xmax, ymin, ymax]
-    """
-    def __init__(self,
-                 init_state = [[1, 0, 0, -1],
-                               [-0.5, 0.5, 0.5, 0.5],
-                               [-0.5, -0.5, -0.5, 0.5]],
-                 bounds = [-2, 2, -2, 2],
-                 size = 0.04,
-                 M = 0.05,
-                 G = 9.8):
-        self.init_state = np.asarray(init_state, dtype=float)
-        self.M = M * np.ones(self.init_state.shape[0])
-        self.size = size
-        self.state = self.init_state.copy()
-        self.time_elapsed = 0
-        self.bounds = bounds
-        self.G = G
-
-    def step(self, dt):
-        """step once by dt seconds"""
-        self.time_elapsed += dt
-        
-        # update positions
-        self.state[:, :2] += dt * self.state[:, 2:]
-
-        # find pairs of particles undergoing a collision
-        D = squareform(pdist(self.state[:, :2]))
-        ind1, ind2 = np.where(D < 2 * self.size)
-        unique = (ind1 < ind2)
-        ind1 = ind1[unique]
-        ind2 = ind2[unique]
-
-        # update velocities of colliding pairs
-        for i1, i2 in zip(ind1, ind2):
-            # mass
-            m1 = self.M[i1]
-            m2 = self.M[i2]
-
-            # location vector
-            r1 = self.state[i1, :2]
-            r2 = self.state[i2, :2]
-
-            # velocity vector
-            v1 = self.state[i1, 2:]
-            v2 = self.state[i2, 2:]
-
-            # relative location & velocity vectors
-            r_rel = r1 - r2
-            v_rel = v1 - v2
-
-            # momentum vector of the center of mass
-            v_cm = (m1 * v1 + m2 * v2) / (m1 + m2)
-
-            # collisions of spheres reflect v_rel over r_rel
-            rr_rel = np.dot(r_rel, r_rel)
-            vr_rel = np.dot(v_rel, r_rel)
-            v_rel = 2 * r_rel * vr_rel / rr_rel - v_rel
-
-            # assign new velocities
-            self.state[i1, 2:] = v_cm + v_rel * m2 / (m1 + m2)
-            self.state[i2, 2:] = v_cm - v_rel * m1 / (m1 + m2) 
-
-        # check for crossing boundary
-        crossed_x1 = (self.state[:, 0] < self.bounds[0] + self.size)
-        crossed_x2 = (self.state[:, 0] > self.bounds[1] - self.size)
-        crossed_y1 = (self.state[:, 1] < self.bounds[2] + self.size)
-        crossed_y2 = (self.state[:, 1] > self.bounds[3] - self.size)
-
-        self.state[crossed_x1, 0] = self.bounds[0] + self.size
-        self.state[crossed_x2, 0] = self.bounds[1] - self.size
-
-        self.state[crossed_y1, 1] = self.bounds[2] + self.size
-        self.state[crossed_y2, 1] = self.bounds[3] - self.size
-
-        self.state[crossed_x1 | crossed_x2, 2] *= -1
-        self.state[crossed_y1 | crossed_y2, 3] *= -1
-
-        # add gravity
-        self.state[:, 3] -= self.M * self.G * dt
-
-
-#------------------------------------------------------------
-# set up initial state
-np.random.seed(0)
-init_state = -0.5 + np.random.random((50, 4))
-init_state[:, :2] *= 3.9
-
-box = ParticleBox(init_state, size=0.04)
-dt = 1. / 30 # 30fps
-
-
-#------------------------------------------------------------
-# set up figure and animation
-fig = plt.figure()
-fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
-ax = fig.add_subplot(111, aspect='equal', autoscale_on=False,
-                     xlim=(-3.2, 3.2), ylim=(-2.4, 2.4))
-
-# particles holds the locations of the particles
-particles, = ax.plot([], [], 'bo', ms=6)
-
-# rect is the box edge
-rect = plt.Rectangle(box.bounds[::2],
-                     box.bounds[1] - box.bounds[0],
-                     box.bounds[3] - box.bounds[2],
-                     ec='none', lw=2, fc='none')
-ax.add_patch(rect)
-
-def init():
-    """initialize animation"""
-    global box, rect
-    particles.set_data([], [])
-    rect.set_edgecolor('none')
-    return particles, rect
-
-def animate(i):
-    """perform animation step"""
-    global box, rect, dt, ax, fig
-    box.step(dt)
-
-    ms = int(fig.dpi * 2 * box.size * fig.get_figwidth()
-             / np.diff(ax.get_xbound())[0])
-    
-    # update pieces of the animation
-    rect.set_edgecolor('k')
-    particles.set_data(box.state[:, 0], box.state[:, 1])
-    particles.set_markersize(ms)
-    return particles, rect
-
-ani = animation.FuncAnimation(fig, animate, frames=600,
-                              interval=10, blit=True, init_func=init)
-
-
-# save the animation as an mp4.  This requires ffmpeg or mencoder to be
-# installed.  The extra_args ensure that the x264 codec is used, so that
-# the video can be embedded in html5.  You may need to adjust this for
-# your system: for more information, see
-# http://matplotlib.sourceforge.net/api/animation_api.html
-ani.save('particle_box.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
 
 
 # +
