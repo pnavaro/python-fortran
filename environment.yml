@@ -20,6 +20,7 @@ dependencies:
   - imageio
   - pillow
   - pythran
+  - ipywidgets
   - pip
   - pip:
      - julia
