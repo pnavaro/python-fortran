@@ -9,7 +9,7 @@
 #       format_version: '1.4'
 #       jupytext_version: 1.2.4
 #   kernelspec:
-#     display_name: Python 3.7
+#     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
@@ -22,6 +22,16 @@
 # This is a modified version from [Loic Gouarin](https://github.com/gouarin/GTSage2014/)
 #
 # The test case is the computation of the Julia set [wikipedia](https://en.wikipedia.org/wiki/Julia_set)
+
+# +
+import os, sys
+
+if sys.platform == 'darwin':
+    os.environ['CC'] = 'gcc-9'
+    os.environ['CXX'] = 'g++-9'
+else:
+    os.environ['CC'] = 'gcc'
+    os.environ['CXX'] = 'g++'
 # -
 
 import warnings
@@ -142,9 +152,6 @@ plot_julia_set(juliaset_pythran(x, y, c, lim, maxit))
 
 # On my mac i need to change compilers install with [homebrew](https://brew.sh)
 
-%env FC=gfortran
-%env CC=gcc-9
-
 # Complex computation inside the loop are avoided on purpose. It takes time even with fortran.
 
 # +
@@ -195,7 +202,7 @@ plot_julia_set(juliaset_fortran(x, y, c, lim, maxit))
 # This is the same function from above with some openmp directives
 
 # +
-%%fortran --f90flags "-fopenmp" --opt "-O3" --extra "-L/usr/local/lib -lgomp"
+%%fortran --f90flags "-fopenmp" --opt "-O3" --extra "-lgomp"
 subroutine juliaset_fortran_omp(x, y, c, lim, maxit, julia)
 
     real(8),    intent(in)  :: x(:)
@@ -278,17 +285,6 @@ plot_julia_set(juliaset_numpy(x, y, c, lim, maxit))
 # Use `%%cython -a` to highlight the Python-C and C-Python conversions.
 #
 # Cython is not Python and not C, it is another language :-)
-
-# + {"internals": {}, "slideshow": {"slide_type": "-"}}
-import os, sys
-
-if sys.platform == 'darwin':
-    os.environ['CC'] = 'gcc-9'
-    os.environ['CXX'] = 'g++-9'
-else:
-    os.environ['CC'] = 'gcc'
-    os.environ['CXX'] = 'g++'
-
 
 # + {"internals": {}, "slideshow": {"slide_type": "-"}}
 %load_ext cython
@@ -433,9 +429,11 @@ function juliaset_julia(x :: Vector{Float64}, y :: Vector{Float64},
     return julia
 end
 
-import julia
-j = julia.Julia()
-juliaset_julia = j.include("juliaset_julia.jl")
+from julia.api import Julia
+jl = Julia(compiled_modules=False)
+
+jl = julia.Julia()
+juliaset_julia = jl.include("juliaset_julia.jl")
 
 plot_julia_set(juliaset_julia(x, y, c, lim, maxit))
 
