@@ -1,6 +1,7 @@
 # ---
 # jupyter:
 #   jupytext:
+#     formats: ipynb,py:light
 #     text_representation:
 #       extension: .py
 #       format_name: light
@@ -23,22 +24,26 @@
 # In this notebook i translate advection functions in fortran and use openmp directives.
 
 # +
+import sys
+
+if sys.platform == "darwin":
+    %env CC='gcc-9'
+
+# +
 # %matplotlib inline
 # %config InlineBackend.figure_format = 'retina'
 import matplotlib.pyplot as plt
 import numpy as np
 
 plt.rcParams['figure.figsize'] = (11,7)
+# -
 
-# +
 # %load_ext fortranmagic
-# %env CC='gcc-7'
-# %env FC='gfortran'
 
 
 
 # +
-# %%fortran --link fftw3 --f90flags "-O3 -fopenmp -march=native" --extra "-L/usr/local/lib -lgomp"
+# %%fortran --f90flags "-fopenmp" --extra "-lgomp" --link fftw3
 
 module bsl_fftw
 
@@ -186,7 +191,7 @@ axes.set_aspect('equal','datalim')
 # %timeit bsl_fftw.advection(p, deltax, alpha, 1, df)
 
 # +
-import progressbar
+from tqdm import tqdm_notebook as tqdm
 from scipy.fftpack import fft, ifft
 
 class VlasovPoisson:
@@ -228,9 +233,8 @@ class VlasovPoisson:
     def run(self, f, nstep, dt):
         self.f = f
         nrj = []
-        bar = progressbar.ProgressBar()
         self.advection_x(0.5*dt)
-        for istep in bar(range(nstep)):
+        for istep in tqdm(range(nstep)):
             rho = self.compute_rho()
             e = self.compute_e(rho)
             self.advection_v(e, dt)
@@ -246,7 +250,7 @@ from time import time
 elapsed_time = {}
 fig, axes = plt.subplots()
 # Set grid
-nx, nv = 1048, 1048
+nx, nv = 256, 256
 xmin, xmax = 0.0, 4*np.pi
 vmin, vmax = -6., 6.
 
@@ -255,7 +259,7 @@ sim = VlasovPoisson(xmin, xmax, nx, vmin, vmax, nv)
 # Initialize distribution function
 X, V = np.meshgrid(sim.x, sim.v)
 eps, kx = 0.01, 0.5
-f = (1.0+eps*np.cos(kx*X))/(2.0*np.pi)* np.exp(-0.5*V*V)
+f = (1.0+eps*np.cos(kx*X))/np.sqrt(2.0*np.pi)* np.exp(-0.5*V*V)
 f = np.asfortranarray(f)
 # Set time domain
 nstep = 1000
