@@ -3,7 +3,6 @@
 # jupyter:
 #   jupytext:
 #     comment_magics: false
-#     formats: ipynb,py:light
 #     text_representation:
 #       extension: .py
 #       format_name: light
@@ -14,6 +13,8 @@
 #     language: python
 #     name: python3
 # ---
+
+# This notebook is originally an idea of [@gouarin](https://github.com/gouarin)
 
 import sys
 if sys.platform == "darwin":
@@ -209,6 +210,7 @@ cpdef cython_grayscott(np.ndarray[double, ndim=2] U, np.ndarray[double, ndim=2] 
     return U, V
 # -
 
+U, V = init(300)
 frames = create_frames(500, cython_grayscott)
 
 interact(display_sequence, 
@@ -218,17 +220,18 @@ interact(display_sequence,
                           value=0, 
                           continuous_update=True))
 
+%load_ext fortranmagic
+
 # +
 %%fortran
 
 subroutine fortran_grayscott( U, V, Du, Dv, F, k)
 
     real(8), intent(in) :: Du, Dv, F, k
-    !f2py intent(inplace) :: U, V
     real(8) :: U(:,:)
     real(8) :: V(:,:)
     real(8), allocatable :: Lu(:,:), Lv(:,:)
-    integer :: i, c, r1, c1, r2, c2
+    integer :: n, c, r, r1, c1, r2, c2
     real(8) :: uvv
 
     n = size(U,1)
@@ -236,23 +239,63 @@ subroutine fortran_grayscott( U, V, Du, Dv, F, k)
     Lu = U(2:n-1,2:n-1)
     Lv = V(2:n-1,2:n-1)
 
-    n = np.shape(U)[0]-2
+    do c = 1, n-2
+        c1 = c + 1
+        c2 = c + 2
+        do r = 1, n-2
+            r1 = r + 1
+            r2 = r + 2 
+            Lu(r,c) = U(r1,c2) + U(r1,c) + U(r2,c1) + U(r,c1) - 4*U(r1,c1)
+            Lv(r,c) = V(r1,c2) + V(r1,c) + V(r2,c1) + V(r,c1) - 4*V(r1,c1)
+        end do
+    end do
 
-    for r in range(n):
-        r1 = r + 1
-        r2 = r + 2
-        for c in range(n):
-            c1 = c + 1
-            c2 = c + 2
-            Lu[r,c] = U[r1,c2] + U[r1,c] + U[r2,c1] + U[r,c1] - 4*U[r1,c1]
-            Lv[r,c] = V[r1,c2] + V[r1,c] + V[r2,c1] + V[r,c1] - 4*V[r1,c1]
-
-    for r in range(n):
-        r1 = r + 1
-        for c in range(n):
-            c1 = c + 1
-            uvv = bU[r1,c1]*bV[r1,c1]*bV[r1,c1]
-            U[r1,c1] += Du*Lu[r,c] - uvv + F*(1 - U[r1,c1])
-            V[r1,c1] += Dv*Lv[r,c] + uvv - (F + k)*V[r1,c1]
+    do c = 1, n-2
+        c1 = c + 1
+        do r = 1, n-2
+            r1 = r + 1     
+            uvv = U(r1,c1)*V(r1,c1)*V(r1,c1)
+            U(r1,c1) = U(r1, c1) + Du*Lu(r,c) - uvv + F*(1 - U(r1,c1))
+            V(r1,c1) = V(r1, c1) + Dv*Lv(r,c) + uvv - (F + k)*V(r1,c1)
+        end do
+    end do
 
 end subroutine fortran_grayscott
+
+# +
+U, V = init(300)
+U = np.asfortranarray(U)
+V = np.asfortranarray(V)
+def create_image():
+    global U, V
+    for t in range(40):
+        fortran_grayscott(U, V, Du, Dv, F, k)
+    V_scaled = np.uint8(255*(V-V.min()) / (V.max()-V.min()))
+    return V_scaled
+
+def create_frames(n):
+
+    return [create_image() for i in tqdm(range(n))]
+    
+frames = create_frames(500)
+# -
+
+interact(display_sequence, 
+         iframe=IntSlider(min=0,
+                          max=len(frames)-1,
+                          step=1,
+                          value=0, 
+                          continuous_update=True))
+
+U, V = init(300)
+%timeit numpy_grayscott(U, V, Du, Dv, F, k)
+
+U, V = init(300)
+%timeit cython_grayscott(U, V, Du, Dv, F, k)
+
+U, V = init(300)
+U = np.asfortranarray(U)
+V = np.asfortranarray(V)
+%timeit fortran_grayscott(U, V, Du, Dv, F, k)
+
+
