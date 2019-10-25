@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 *.mod
 Manifest.toml
+juliaset_julia.jl
