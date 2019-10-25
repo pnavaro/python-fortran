@@ -25,3 +25,5 @@ dependencies:
   - imageio
   - pillow
   - pythran
+  - pip:
+     - julia
