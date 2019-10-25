@@ -12,6 +12,7 @@ dependencies:
   - sympy
   - pandas
   - jupyter
+  - jupytext
   - fortran-magic 
   - cython 
   - numba
