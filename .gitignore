@@ -105,3 +105,10 @@ venv.bak/
 *.mod
 Manifest.toml
 juliaset_julia.jl
+cfuncts.c
+cfuncts.pyf
+dgemm.pyf
+dgemm2.pyf
+euclidian_norm.f
+euclidian_norm.f90
+movie.gif
