@@ -3,18 +3,27 @@
 # jupyter:
 #   jupytext:
 #     comment_magics: false
+#     formats: ipynb,py:light
 #     text_representation:
 #       extension: .py
-#       format_name: percent
-#       format_version: '1.2'
+#       format_name: light
+#       format_version: '1.4'
 #       jupytext_version: 1.2.4
 #   kernelspec:
-#     display_name: Python 3.7
+#     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
 
-# %% {"slideshow": {"slide_type": "slide"}}
+# +
+import os, sys
+
+if sys.platform == 'darwin':
+    os.environ['CC'] = 'gcc-9'
+    os.environ['CXX'] = 'g++-9'
+
+
+# + {"slideshow": {"slide_type": "slide"}}
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 import matplotlib.pyplot as plt
@@ -22,19 +31,19 @@ import scipy.fftpack as sf
 import scipy.linalg as sl
 import numpy as np
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # f2py
 # f2py is a part of Numpy and there are three ways to wrap Fortran with Python :
 # - Write some fortran subroutines and just run f2py to create Python modules.
 # - Insert special f2py directives inside Fortran source for complex wrapping.
 # - Write a interface file (.pyf) to wrap Fortran files without changing them. f2py automatically generate the pyf template file that can be modified. 
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # Simple Fortran subroutine to compute norm
 #    
 # ### Fortran 90/95 free format
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %%file euclidian_norm.f90
 subroutine euclidian_norm (a, b, c)
   real(8), intent(in) :: a, b
@@ -42,10 +51,10 @@ subroutine euclidian_norm (a, b, c)
   c =	sqrt (a*a+b*b) 
 end subroutine euclidian_norm
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ### Fortran 77 fixed format
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %%file euclidian_norm.f
       subroutine euclidian_norm (a, b, c)
       real*8 a,b,c
@@ -53,25 +62,25 @@ Cf2py intent(out) c
       c = sqrt (a*a+b*b) 
       end 
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # Build extension module with f2py program
 #
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 !f2py -c euclidian_norm.f90 -m vect
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ## Use the extension module in Python
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 import vect
 c = vect.euclidian_norm(3,4)
 c
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 print(vect.euclidian_norm.__doc__) # Docstring is automatically generate
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # Fortran magic 
 #
 # - Jupyter extension that help to use fortran code in an interactive session.
@@ -80,17 +89,17 @@ print(vect.euclidian_norm.__doc__) # Docstring is automatically generate
 #
 # [Documentation](http://nbviewer.jupyter.org/github/mgaitan/fortran_magic/blob/master/documentation.ipynb)
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %load_ext fortranmagic
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # F2py directives
 # - F2PY introduces also some extensions to Fortran 90/95 language specification that help designing Fortran to Python interface, make it more “Pythonic”.
 # - If editing Fortran codes is acceptable, these specific attributes can be inserted directly to Fortran source codes. Special comment lines are ignored by Fortran compilers but F2PY interprets them as normal lines.
 #
 #
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %%fortran 
 subroutine euclidian_norm(a,c,n) 
   integer :: n 
@@ -106,24 +115,24 @@ subroutine euclidian_norm(a,c,n)
   c = sqrt (sommec) 
 end subroutine euclidian_norm
 
-# %% {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}}
 a=[2,3,4]  # Python list
 type(a)
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 euclidian_norm(a)
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 a=np.arange(2,5)  # numpy array
 type(a)
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 euclidian_norm(a)
 
-# %% {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}}
 print(euclidian_norm.__doc__) # Documentation
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # F2py directives
 # - `optional`: The corresponding argument is moved to the end.
 # - `required`: This is default. Use it to disable automatic optional setting.
@@ -138,13 +147,13 @@ print(euclidian_norm.__doc__) # Documentation
 # - C expressions: `rank, shape, len, size, slen`.
 #
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # Callback
 #
 # You can call a python function inside your fortran code
 #
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %%fortran
 subroutine sum_f (f ,n, s) 
   !Compute sum(f(i), i=1,n) 
@@ -158,22 +167,22 @@ subroutine sum_f (f ,n, s)
 end subroutine sum_f
 
 
-# %% {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}}
 def fonction(i) : # python function
     return i*i
 
 sum_f(fonction,3) 
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 sum_f(lambda x :x**2,3) # lambda function
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # Fortran arrays and Numpy arrays
 #
 # Let's see how to pass numpy arrays to fortran subroutine.
 #
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %%fortran --extra="-DF2PY_REPORT_ON_ARRAY_COPY=1"
 subroutine push( positions, velocities, dt, n)
   integer, intent(in) :: n
@@ -185,24 +194,24 @@ subroutine push( positions, velocities, dt, n)
   end do
 end subroutine push
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 positions = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 velocities = [[0, 1, 2], [0, 3, 2], [0, 1, 3]]
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 import sys
 push(positions, velocities, 0.1)
 positions # memory is not updated because we used C memory storage
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # During execution, the message "created an array from object" is displayed, because a copy of is made when passing multidimensional array to fortran subroutine.
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 positions = np.array(positions, dtype='f8', order='F')
 push(positions, velocities, 0.1)
 positions # the memory is updated
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # Signature file
 #
 # This file contains descriptions of wrappers to Fortran or C functions, also called as signatures of the functions. F2PY can create initial signature file by scanning Fortran source codes and catching all relevant information needed to create wrapper functions.
@@ -227,15 +236,15 @@ positions # the memory is updated
 # ```
 #
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # Wrap lapack function dgemm  with f2py
 #
 # - Generate the signature file
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 !f2py -m mylapack --overwrite-signature -h dgemm.pyf dgemm.f
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ```fortran
 # !    -*- f90 -*-
 # ! Note: the context of this file is case sensitive.
@@ -264,10 +273,10 @@ positions # the memory is updated
 # ! See http://cens.ioc.ee/projects/f2py2e/
 # ```
 
-# %% {"slideshow": {"slide_type": "slide"}}
-!f2py -c dgemm.pyf -lopenblas
+# + {"slideshow": {"slide_type": "slide"}}
+!f2py -c dgemm.pyf -llapack -m mylapack
 
-# %% {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}}
 import numpy as np
 import mylapack
 a = np.array([[7,8],[3,4],[1,2]])
@@ -280,11 +289,11 @@ mylapack.dgemm('N','N',a.shape[0],b.shape[1],a.shape[1],1.0,a,b,1.0,c)
 print(c)
 np.all(c == a @ b) # check with numpy matrix multiplication 
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ### Exercise 
 # - Modify the file dgemm.pyf to set all arguments top optional and keep only the two matrices as input.
 
-# %% {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}}
 %%file dgemm2.pyf
 python module mylapack2 ! in 
     interface  ! in :mylapack
@@ -306,36 +315,36 @@ python module mylapack2 ! in
     end interface 
 end python module mylapack2
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # Build the python module
 
-# %% {"slideshow": {"slide_type": "fragment"}}
-!f2py -c dgemm2.pyf -lopenblas --f90flags=-O3
+# + {"slideshow": {"slide_type": "fragment"}}
+!f2py -c dgemm2.pyf  -m mylapack2 -llapack --f90flags=-O3
 
-# %% {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}}
 import mylapack2
 a = np.array([[7,8],[3,4],[1,2]])
 b = np.array([[1,2,3],[4,5,6]])
 c = mylapack2.dgemm(a,b)
 np.all( c == a @ b)
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # ## Check performance between numpy and mylapack
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 a = np.random.random((512,128))
 b = np.random.random((128,512))
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %timeit c = mylapack2.dgemm(a,b)
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %timeit c = a @ b
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # **Fortran arrays allocated in a subroutine share same memory in Python**
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %%fortran
 module f90module
    implicit none
@@ -347,14 +356,14 @@ contains
    end subroutine init
 end module f90module
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 f90module.init(10)
 len(f90module.farray)
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # **Numpy arrays allocated in Python passed to Fortran are already allocated**
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %%fortran
 module f90module
    implicit none
@@ -368,21 +377,21 @@ contains
    end subroutine test_array
 end module f90module
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 f90module.farray = np.random.rand(10).astype(np.float64)
 f90module.test_array()
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # f2py + OpenMP
 #
 #
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 import os, sys
 
 %env OMP_NUM_THREADS=4
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %%fortran 
 subroutine hello( )
   integer :: i
@@ -391,12 +400,12 @@ subroutine hello( )
   end do
 end subroutine
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %%time
 hello()
 
-# %% {"slideshow": {"slide_type": "slide"}}
-%%fortran --f90flags="-Xclang" --opt="-fopenmp"
+# + {"slideshow": {"slide_type": "slide"}}
+%%fortran --f90flags='-fopenmp' --extra='-lgomp'
 subroutine hello_omp( )
   use omp_lib
   integer :: i
@@ -408,51 +417,14 @@ subroutine hello_omp( )
   !$OMP END DO
   !$OMP END PARALLEL
 
-end subroutine
+end subroutine hello_omp
 
 
-# %% {"slideshow": {"slide_type": "fragment"}}
+# + {"slideshow": {"slide_type": "fragment"}}
 %%time
 hello_omp()
 
-# %%
-%load_ext fortranmagic
-
-# %%
-%%fortran --f90flags="-Xclang" --opt="-fopenmp"
-subroutine hello_openmp()
-use omp_lib
-implicit none
-
-integer :: n
-real(8) :: x
-integer, allocatable :: seed(:)
-integer ::  nthreads, tid
-
-call omp_set_num_threads(2)
-
-!$OMP PARALLEL PRIVATE(NTHREADS, TID)
-tid = omp_get_thread_num() ! Obtain thread number
-!print *, 'Hello World from (rank,thread) = ', rank, tid
-
-! Only master thread does this
-nthreads = omp_get_num_threads()
-print *, "Thread no : ", tid, " of ", nthreads
-
-! All threads join master thread and disband
-!$OMP END PARALLEL
-
-end 
-
-
-# %%
-import os
-os.environ["OMP_NUM_THREADS"] = "4"
-
-# %%
-hello_openmp()
-
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # Conclusions
 #
 # - Easy to use, it works with modern fortran, legacy fortran and also C.
@@ -467,7 +439,7 @@ hello_openmp()
 # - Absolutely not compatible with fortran 2003-2008 new features (classes)
 # - f2py is maintained but not really improved. Development is stopped.
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # distutils
 #
 # ## setup.py
@@ -484,13 +456,13 @@ hello_openmp()
 # ```bash
 # python3 setup.py build_ext --inplace
 # ```
+# -
 
-# %% [markdown]
 # ### Exercice: Laplace problem
 #
 # - Replace the `laplace` function by a fortran subroutine
 
-# %%
+# +
 %%time
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
@@ -534,7 +506,7 @@ plt.title("Temperature")
 plt.contourf(X, Y, T)
 plt.colorbar()
 
-# %%
+# +
 %%fortran
 subroutine laplace_fortran( T, n, residual )
 
@@ -556,7 +528,7 @@ subroutine laplace_fortran( T, n, residual )
         
 end subroutine laplace_fortran
 
-# %%
+# +
 %%time
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
@@ -591,10 +563,27 @@ plt.title("Temperature")
 plt.contourf(X, Y, T)
 plt.colorbar()
 
-# %% [markdown] {"slideshow": {"slide_type": "slide"}}
+# + {"slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
 # # References
 # - [Talk by E. Sonnendrücker](http://calcul.math.cnrs.fr/Documents/Journees/dec2006/python-fortran.pdf)
 # - [SciPy](http://www.scipy.org/F2py)
 # - [Sagemath Documentation ](http://www.sagemath.org/doc/numerical_sage/f2py.html) 
 # - Hans Petter Langtangen. *Python Scripting for Computational Science*. Springer 2004
+#
+# -
+
+# ## Add extra flags like bounds checking
+#
+# ```
+# python3 setup.py config_fc --f90flags=-fbounds-check
+# ```
+#
+# In setup.py
+#
+# ```
+# ext1 = Extension(name='_coffee_f90',
+#                  sources=files1,
+#                  extra_f90_compile_args=['-fbounds-check'],
+#                  extra_link_args=['-llapack -lgomp'])
+# ```
 #
