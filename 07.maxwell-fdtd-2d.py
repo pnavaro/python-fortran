@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.2'
-#       jupytext_version: 1.1.1
+#       jupytext_version: 1.2.4
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -53,7 +53,6 @@ import numpy as np
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.animation as animation
 from IPython.display import HTML
-
 
 plt.rcParams['figure.figsize'] = (10,6)
 
@@ -111,8 +110,9 @@ def update(i, ax, fig):
 
     global ex, ey, hz
 
-    hz = faraday( ex, ey, hz)
-    ex, ey = ampere_maxwell( hz, ex, ey)
+    for j in range(10):
+        hz = faraday( ex, ey, hz)
+        ex, ey = ampere_maxwell( hz, ex, ey)
     
     wframe = ax.plot_wireframe(x, y, hz, rstride=2, cstride=2)
     ax.set_zlim(-1, 1)
@@ -121,8 +121,8 @@ def update(i, ax, fig):
 
 # %%
 ani = animation.FuncAnimation(fig, update,
-                              frames=range(200),
-                              fargs=(ax, fig), interval=100)
+                              frames=range(100),
+                              fargs=(ax, fig), interval=20, blit=True)
 
 # %%
 %%time
