@@ -75,7 +75,7 @@ def bspline_python(p, j, x):
             w1 = (x - j - 1) / p
         return w * bspline_python(p - 1, j, x) + (1 - w1) * bspline_python(p - 1, j + 1, x)
 
-    
+
 # -
 
 class Advection:
@@ -280,8 +280,8 @@ plt.rcParams['figure.figsize'] = (11,7)
 from tqdm import tqdm_notebook as tqdm
 from collections import defaultdict
 
-Mrange = (2 ** np.arange(6, 11)).astype(int)
-opts = [bspline_fortran, bspline_pythran, bspline_cython, bspline_python, bspline_numba]
+Mrange = (2 ** np.arange(6, 12)).astype(int)
+opts = [bspline_fortran, bspline_pythran, bspline_cython, bspline_numba]
 
 times = defaultdict(list)
 for M in tqdm(Mrange):
@@ -291,7 +291,7 @@ for M in tqdm(Mrange):
         cs = Advection(5, 0, 1, M, opt)
     
         alpha = 0.1
-        ts = %timeit -oq -n 20 cs(f, alpha)
+        ts = %timeit -oq -n 100 cs(f, alpha)
         times[opt.__name__].append(ts.best)
 
 # +
@@ -675,4 +675,6 @@ axes.plot(t, nrj, label='energy')
     
 plt.legend();
 # -
+
+
 
