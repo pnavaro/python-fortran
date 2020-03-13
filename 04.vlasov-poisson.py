@@ -6,8 +6,8 @@
 #     text_representation:
 #       extension: .py
 #       format_name: light
-#       format_version: '1.4'
-#       jupytext_version: 1.2.4
+#       format_version: '1.5'
+#       jupytext_version: 1.3.4
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -277,7 +277,7 @@ import numpy as np
 plt.rcParams['figure.figsize'] = (11,7)
 
 # +
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 from collections import defaultdict
 
 Mrange = (2 ** np.arange(6, 12)).astype(int)
@@ -543,7 +543,7 @@ module bsl_fftw
         integer, intent(in)     :: axis
         real(8), intent(inout)  :: df(0:n-1,0:n-1)
               
-        !f2py optional , depend(in) :: n=shape(df,0)
+#         !f2py optional , depend(in) :: n=shape(df,0)
      
         real(8),    allocatable :: f(:)
         complex(8), allocatable :: ft(:)
@@ -628,7 +628,7 @@ end module bsl_fftw
 # %env OMP_NUM_THREADS=4
 
 # +
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 from scipy.fftpack import fft, ifft
 
 class VlasovPoissonThreaded(VlasovPoisson):
@@ -675,6 +675,4 @@ axes.plot(t, nrj, label='energy')
     
 plt.legend();
 # -
-
-
 
