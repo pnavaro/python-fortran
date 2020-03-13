@@ -187,10 +187,6 @@ mesh.get_size(geom)
 
 type(geom)
 
-
-
-mesh.get_x(geom)
-
 # # f2py with C code
 #
 # - Signature file is mandatory
