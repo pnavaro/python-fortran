@@ -1,20 +1,21 @@
 # ---
 # jupyter:
 #   jupytext:
+#     cell_metadata_json: true
 #     comment_magics: false
-#     formats: ipynb,py:light
+#     formats: py:light,docs//ipynb
 #     text_representation:
 #       extension: .py
 #       format_name: light
-#       format_version: '1.4'
-#       jupytext_version: 1.2.4
+#       format_version: '1.5'
+#       jupytext_version: 1.3.4
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
 
-# + {"internals": {"slide_helper": "subslide_end", "slide_type": "subslide"}, "slide_helper": "slide_end", "slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
+# + [markdown] {"internals": {"slide_helper": "subslide_end", "slide_type": "subslide"}, "slide_helper": "slide_end", "slideshow": {"slide_type": "slide"}}
 # # Julia Set
 #
 #
@@ -61,7 +62,7 @@ y = np.linspace(-1.6, 1.6, ny)
 c = -0.772691322542185 + 0.124281466072787j
 
 
-# + {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
+# + [markdown] {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}}
 # # Pure Python
 
 # + {"internals": {}, "slideshow": {"slide_type": "-"}}
@@ -248,7 +249,7 @@ end subroutine juliaset_fortran_omp
 
 plot_julia_set(juliaset_fortran_omp(x, y, c, lim, maxit))
 
-# + {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
+# + [markdown] {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}}
 # # Numpy
 #
 # Vectorize version with numpy. You could get some overflow warnings
@@ -277,7 +278,7 @@ def juliaset_numpy(x, y, c, lim, maxit):
 
 plot_julia_set(juliaset_numpy(x, y, c, lim, maxit))
 
-# + {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
+# + [markdown] {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}}
 # # Cython
 #
 # Install [Cython](https://cython.readthedocs.io)
@@ -358,7 +359,7 @@ def juliaset_cython_omp(double [:] x, double [:] y, double complex c, double lim
 
 plot_julia_set(juliaset_cython_omp(x, y, c, lim, maxit))
 
-# + {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}, "cell_type": "markdown"}
+# + [markdown] {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}}
 # # numba
 #
 # [Numba](https://numba.pydata.org) will accelerate the pure python function just  with

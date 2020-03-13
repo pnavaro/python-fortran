@@ -1,12 +1,12 @@
 # ---
 # jupyter:
 #   jupytext:
-#     formats: ipynb,py:light
+#     formats: py:light,docs//ipynb
 #     text_representation:
 #       extension: .py
 #       format_name: light
-#       format_version: '1.4'
-#       jupytext_version: 1.2.4
+#       format_version: '1.5'
+#       jupytext_version: 1.3.4
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -40,7 +40,7 @@ subroutine biot ( n, xp, yp, op, up, vp )
   integer, intent(in)  :: n
   real(8), intent(in)  :: xp( n ), yp( n ), op( n )
   real(8), intent(out) :: up( n ), vp( n )
-  !f2py optional , depend(a) :: n=len(xp)
+#   !f2py optional , depend(a) :: n=len(xp)
         
   integer :: k, j
   real(8) :: dpi, a1, a12, a122, r2, r22, r2a1, r2a13

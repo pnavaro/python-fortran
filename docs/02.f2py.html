@@ -13083,7 +13083,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> fortranmagic
@@ -13093,10 +13093,43 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+
+<div id="f244d970-4da7-4ca0-b181-cc5f64b4adba"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#f244d970-4da7-4ca0-b181-cc5f64b4adba');
+new Promise(function(resolve, reject) {
+	var script = document.createElement("script");
+	script.onload = resolve;
+	script.onerror = reject;
+	script.src = "https://raw.github.com/marijnh/CodeMirror/master/mode/fortran/fortran.js";
+	document.head.appendChild(script);
+}).then(() => {
+IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
+});
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">fortran</span>
@@ -13149,7 +13182,7 @@ end module particles_f90
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Particles</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -13184,7 +13217,7 @@ end module particles_f90
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">particles</span> <span class="o">=</span> <span class="n">Particles</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -13195,10 +13228,30 @@ end module particles_f90
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">particles</span><span class="o">.</span><span class="n">positions</span>
@@ -13208,10 +13261,30 @@ end module particles_f90
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">particles</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
@@ -13222,10 +13295,30 @@ end module particles_f90
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">particles</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span>
@@ -13233,6 +13326,26 @@ end module particles_f90
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.0</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13246,7 +13359,7 @@ end module particles_f90
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ParticleArray</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -13288,7 +13401,7 @@ end module particles_f90
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">particle_array</span> <span class="o">=</span> <span class="n">ParticleArray</span><span class="p">(</span><span class="n">particles</span><span class="p">)</span>
@@ -13299,10 +13412,30 @@ end module particles_f90
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">particle_array</span><span class="p">:</span>
@@ -13310,6 +13443,33 @@ end module particles_f90
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1.0
+2.0
+3.0
+4.0
+5.0
+6.0
+7.0
+8.0
+9.0
+10.0
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13323,7 +13483,7 @@ end module particles_f90
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">fortran</span>
@@ -13390,7 +13550,7 @@ end module mesh
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">geom</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -13403,7 +13563,7 @@ end module mesh
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mesh</span><span class="o">.</span><span class="n">get_size</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
@@ -13413,16 +13573,56 @@ end module mesh
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>10</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>int</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13441,7 +13641,7 @@ end module mesh
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">rm</span> -rf cfuncts*
@@ -13454,7 +13654,7 @@ end module mesh
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> cfuncts.c
@@ -13471,10 +13671,28 @@ end module mesh
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Writing cfuncts.c
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> cfuncts.pyf
@@ -13497,10 +13715,28 @@ end module mesh
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Writing cfuncts.pyf
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> FC=gfortran
@@ -13512,10 +13748,97 @@ end module mesh
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>env: FC=gfortran
+env: CC=gcc-9
+running build
+running config_cc
+unifing config_cc, config, build_clib, build_ext, build commands --compiler options
+running config_fc
+unifing config_fc, config, build_clib, build_ext, build commands --fcompiler options
+running build_src
+build_src
+building extension &#34;cfuncts&#34; sources
+creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7
+f2py options: []
+f2py: cfuncts.pyf
+Reading fortran codes...
+	Reading file &#39;cfuncts.pyf&#39; (format:free)
+Line #6 in cfuncts.pyf:&#34;            intent(c) &#34;
+	All arguments will have attribute intent(c)
+Post-processing...
+	Block: cfuncts
+			Block: push_particles
+Post-processing (stage 2)...
+Building modules...
+	Building module &#34;cfuncts&#34;...
+		Constructing wrapper function &#34;push_particles&#34;...
+		  push_particles(positions,velocities,dt,[n])
+	Wrote C/API module &#34;cfuncts&#34; to file &#34;/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/cfunctsmodule.c&#34;
+  adding &#39;/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.c&#39; to sources.
+  adding &#39;/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7&#39; to include_dirs.
+copying /usr/local/lib/python3.7/site-packages/numpy/f2py/src/fortranobject.c -&gt; /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7
+copying /usr/local/lib/python3.7/site-packages/numpy/f2py/src/fortranobject.h -&gt; /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7
+build_src: building npy-pkg config files
+running build_ext
+customize UnixCCompiler
+customize UnixCCompiler using build_ext
+building &#39;cfuncts&#39; extension
+compiling C sources
+C compiler: gcc-9 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers
+
+creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var
+creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders
+creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw
+creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn
+creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T
+creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl
+creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7
+compile options: &#39;-I/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7 -I/usr/local/lib/python3.7/site-packages/numpy/core/include -I/usr/local/include -I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/sqlite/include -I/usr/local/Cellar/python/3.7.6_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m -c&#39;
+gcc-9: cfuncts.c
+gcc-9: /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/cfunctsmodule.c
+gcc-9: /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.c
+In file included from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/ndarraytypes.h:1832</span>,
+                 from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/ndarrayobject.h:12</span>,
+                 from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/arrayobject.h:4</span>,
+                 from <span class="ansi-bold">/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.h:13</span>,
+                 from <span class="ansi-bold">/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.c:2</span>:
+<span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/npy_1_7_deprecated_api.h:17:2:</span> <span class="ansi-magenta-intense-fg ansi-bold">warning: </span>#warning &#34;Using deprecated NumPy API, disable it with &#34; &#34;#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION&#34; [<span class="ansi-magenta-intense-fg ansi-bold">-Wcpp</span>]
+   17 | #<span class="ansi-magenta-intense-fg ansi-bold">warning</span> &#34;Using deprecated NumPy API, disable it with &#34; \
+      |  <span class="ansi-magenta-intense-fg ansi-bold">^~~~~~~</span>
+In file included from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/ndarraytypes.h:1832</span>,
+                 from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/ndarrayobject.h:12</span>,
+                 from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/arrayobject.h:4</span>,
+                 from <span class="ansi-bold">/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.h:13</span>,
+                 from <span class="ansi-bold">/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/cfunctsmodule.c:16</span>:
+<span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/npy_1_7_deprecated_api.h:17:2:</span> <span class="ansi-magenta-intense-fg ansi-bold">warning: </span>#warning &#34;Using deprecated NumPy API, disable it with &#34; &#34;#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION&#34; [<span class="ansi-magenta-intense-fg ansi-bold">-Wcpp</span>]
+   17 | #<span class="ansi-magenta-intense-fg ansi-bold">warning</span> &#34;Using deprecated NumPy API, disable it with &#34; \
+      |  <span class="ansi-magenta-intense-fg ansi-bold">^~~~~~~</span>
+<span class="ansi-bold">/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/cfunctsmodule.c:102:12:</span> <span class="ansi-magenta-intense-fg ansi-bold">warning: </span>&#39;<span class="ansi-bold">f2py_size</span>&#39; defined but not used [<span class="ansi-magenta-intense-fg ansi-bold">-Wunused-function</span>]
+  102 | static int <span class="ansi-magenta-intense-fg ansi-bold">f2py_size</span>(PyArrayObject* var, ...)
+      |            <span class="ansi-magenta-intense-fg ansi-bold">^~~~~~~~~</span>
+gcc-9 -bundle -undefined dynamic_lookup -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/cfuncts.o /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/cfunctsmodule.o /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.o -L/usr/local/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/sqlite/lib -o ./cfuncts.cpython-37m-darwin.so
+Removing build directory /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -13529,7 +13852,7 @@ end module mesh
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cfuncts</span><span class="o">.</span><span class="n">push_particles</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
@@ -13539,10 +13862,42 @@ end module mesh
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>push_particles(positions,velocities,dt,[n])
+
+Wrapper for ``push_particles``.
+
+Parameters
+----------
+positions :  rank-1 array(&#39;d&#39;) with bounds (n)
+velocities : input rank-1 array(&#39;d&#39;) with bounds (n)
+dt : input float
+
+Other Parameters
+----------------
+n : input int, optional
+    Default: len(velocities)
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
@@ -13559,13 +13914,33 @@ end module mesh
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0.1, 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 8.1, 9.1])</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 

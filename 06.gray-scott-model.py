@@ -3,11 +3,12 @@
 # jupyter:
 #   jupytext:
 #     comment_magics: false
+#     formats: py:light,docs//ipynb
 #     text_representation:
 #       extension: .py
 #       format_name: light
-#       format_version: '1.4'
-#       jupytext_version: 1.2.4
+#       format_version: '1.5'
+#       jupytext_version: 1.3.4
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -118,7 +119,7 @@ F, k = 0.0545, 0.062
 
 # +
 %%time
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 from PIL import Image
 U, V = init(300)
 
@@ -297,5 +298,3 @@ U, V = init(300)
 U = np.asfortranarray(U)
 V = np.asfortranarray(V)
 %timeit fortran_grayscott(U, V, Du, Dv, F, k)
-
-

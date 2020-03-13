@@ -2,11 +2,12 @@
 # jupyter:
 #   jupytext:
 #     comment_magics: false
+#     formats: py:percent,docs//ipynb
 #     text_representation:
 #       extension: .py
 #       format_name: percent
-#       format_version: '1.2'
-#       jupytext_version: 1.2.4
+#       format_version: '1.3'
+#       jupytext_version: 1.3.4
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -232,7 +233,7 @@ end subroutine amperemaxwell_fortran
 # %%
 %%time
 
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
 ex.fill(0.0)
 ey.fill(0.0)

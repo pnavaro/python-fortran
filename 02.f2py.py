@@ -1,14 +1,14 @@
 # ---
 # jupyter:
 #   jupytext:
-#     formats: ipynb,py:light
+#     formats: py:light,docs//ipynb
 #     text_representation:
 #       extension: .py
 #       format_name: light
-#       format_version: '1.4'
-#       jupytext_version: 1.2.4
+#       format_version: '1.5'
+#       jupytext_version: 1.3.4
 #   kernelspec:
-#     display_name: Python 3.7
+#     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
@@ -109,7 +109,7 @@ class ParticleArray(object):
         for i in range(self.numberof):
             self.particles.index = i
             yield self.particles
-        
+
 
 
 particle_array = ParticleArray(particles)
@@ -117,7 +117,7 @@ particle_array[0].position
 
 for p in particle_array:
     print(p.position)
-    
+
 
 # # Fortran derived type
 
@@ -136,7 +136,7 @@ contains
 
 subroutine create(geom, xmin, xmax, nx)
 
-    !f2py integer(8), intent(out) :: geom
+#     !f2py integer(8), intent(out) :: geom
     type(geometry), pointer :: geom
     real(8), intent(in) :: xmin, xmax
     integer, intent(in) :: nx
@@ -158,7 +158,7 @@ subroutine create(geom, xmin, xmax, nx)
 end subroutine create
 
 subroutine view(geom)
-    !f2py integer(8), intent(in) :: geom
+#     !f2py integer(8), intent(in) :: geom
     type(geometry), pointer :: geom
     print*, 'nx = ', geom%nx
     print*, geom%xmin, geom%xmax
@@ -167,7 +167,7 @@ end subroutine view
 
 subroutine get_size(geom, nx)
 
-    !f2py integer(8), intent(in) :: geom
+#     !f2py integer(8), intent(in) :: geom
     type(geometry), pointer :: geom
     integer, intent(out) :: nx
     
