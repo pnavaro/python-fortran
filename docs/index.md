@@ -16,3 +16,4 @@ jupyter notebook
   - [Co-rotating vortices solved with discrete vortex method](https://pnavaro.github.io/python-fortran/05.co-rotating-vortex.html)
   - [Finite differences and the Gray-Scott model](https://pnavaro.github.io/python-fortran/06.gray-scott-model.html)
   - [Finite differences on staggered grid to solve Maxwell equations in 2D](https://pnavaro.github.io/python-fortran/07.maxwell-fdtd-2d.html)
+  - [Short example with SWIG and CTYPES](https://pnavaro.github.io/python-fortran/08.swig.html)

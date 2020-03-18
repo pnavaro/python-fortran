@@ -1,3 +1,2 @@
 all:
-	jupytext --to markdown --execute *.py
-	mv *.md docs/
+	jupytext --set-formats py,docs//ipynb 0*.py
