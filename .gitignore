@@ -111,3 +111,11 @@ dgemm.pyf
 dgemm2.pyf
 euclidian_norm.f
 euclidian_norm.f90
+setup.py
+syrac.c
+syrac.dylib
+syrac.F90
+syrac.i
+*.F90
+*.c
+syracuseC.py
