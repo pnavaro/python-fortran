@@ -13086,7 +13086,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="SWIG-and-Cython">SWIG and Cython<a class="anchor-link" href="#SWIG-and-Cython">&#182;</a></h1><p>Interfacing Fortran code through C interface</p>
+<h1 id="SWIG-and-Ctypes">SWIG and Ctypes<a class="anchor-link" href="#SWIG-and-Ctypes">&#182;</a></h1><p>Interfacing Fortran code through C interface</p>
 <h1 id="Problem:-Collatz-conjecture">Problem: Collatz conjecture<a class="anchor-link" href="#Problem:-Collatz-conjecture">&#182;</a></h1><ul>
 <li>Choose $u_0$ </li>
 <li>If $u_k$ even, $u_{k+1} \rightarrow \frac{u_k}{2}$ ;</li>
@@ -13186,7 +13186,7 @@ gcc -O3 syracuse.c
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>
-real	0m0.284s
+real	0m0.180s
 user	0m0.001s
 sys	0m0.002s
 </pre>
@@ -13242,8 +13242,8 @@ sys	0m0.002s
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 26.4 s, sys: 411 ms, total: 26.8 s
-Wall time: 27.9 s
+<pre>CPU times: user 24.4 s, sys: 344 ms, total: 24.7 s
+Wall time: 24.9 s
 </pre>
 </div>
 </div>
@@ -13370,8 +13370,8 @@ gcc -fPIC -shared -O3 <span class="se">\</span>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 625 ms, sys: 15.7 ms, total: 641 ms
-Wall time: 836 ms
+<pre>CPU times: user 635 ms, sys: 10.3 ms, total: 646 ms
+Wall time: 709 ms
 </pre>
 </div>
 </div>
@@ -13523,8 +13523,8 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 730 ms, sys: 14.6 ms, total: 745 ms
-Wall time: 756 ms
+<pre>CPU times: user 713 ms, sys: 7.77 ms, total: 720 ms
+Wall time: 721 ms
 </pre>
 </div>
 </div>
@@ -13675,8 +13675,8 @@ gcc-9 <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> 
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 599 ms, sys: 14.9 ms, total: 614 ms
-Wall time: 619 ms
+<pre>CPU times: user 529 ms, sys: 9.05 ms, total: 538 ms
+Wall time: 538 ms
 </pre>
 </div>
 </div>

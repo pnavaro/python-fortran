@@ -17,7 +17,7 @@
 #
 # I found [this reference](https://www.fortran90.org/src/best-practices.html#interfacing-with-python) with better examples.
 
-# # SWIG and Cython
+# # SWIG and Ctypes
 #  
 # Interfacing Fortran code through C interface
 #
