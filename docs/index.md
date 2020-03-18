@@ -15,4 +15,4 @@ jupyter notebook
   - [The 1D1V Vlasov-Poisson solved with Semi-Lagrangian method](https://pnavaro.github.io/python-fortran/04.vlasov-poisson.html)
   - [Co-rotating vortices solved with discrete vortex method](https://pnavaro.github.io/python-fortran/05.co-rotating-vortex.html)
   - [Finite differences and the Gray-Scott model](https://pnavaro.github.io/python-fortran/06.gray-scott-model.html)
-  - [Finite differences on staggered grid to solve Mawwell equations in 2D](https://pnavaro.github.io/python-fortran/07.maxwell-fdtd-2d.html)
+  - [Finite differences on staggered grid to solve Maxwell equations in 2D](https://pnavaro.github.io/python-fortran/07.maxwell-fdtd-2d.html)
