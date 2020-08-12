@@ -554,7 +554,6 @@ istep = 0
 while residual > 1e-5 :
     istep += 1
     residual = laplace_fortran(T, n)
-    print ((istep, residual), end="\r")
 
 print()
 print("iterations = ",istep)
