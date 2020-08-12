@@ -1,0 +1,1771 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vlasov-Poisson &#8212; My Jupyter Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-2 bd-sidebar site-navigation show single-page" id="site-navigation">
+    
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/04.vlasov-poisson.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/04.vlasov-poisson.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#semi-lagrangian-method">
+   Semi-Lagrangian method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bspline">
+   Bspline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#accelerate-with-fortran">
+   Accelerate with Fortran
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numba">
+   Numba
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="vlasov-poisson">
+<h1>Vlasov-Poisson<a class="headerlink" href="#vlasov-poisson" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook we present a multithreaded version of the Vlasov-Poisson system in 1D1D phase space.
+Equations are solved numerically using semi-lagrangian method.</p>
+<div class="section" id="semi-lagrangian-method">
+<h2>Semi-Lagrangian method<a class="headerlink" href="#semi-lagrangian-method" title="Permalink to this headline">¶</a></h2>
+<p>Let us consider an abstract scalar advection equation of the form
+<span class="math notranslate nohighlight">\($
+ \frac{\partial f}{\partial t}+ a(x, t) \cdot \nabla f = 0. 
+ $\)</span>
+The characteristic curves associated to this equation are the solutions of the ordinary differential equations
+<span class="math notranslate nohighlight">\($
+ \frac{dX}{dt} = a(X(t), t)
+ $\)</span>
+We shall denote by <span class="math notranslate nohighlight">\(X(t, x, s)\)</span> the unique solution of this equation associated to the initial condition <span class="math notranslate nohighlight">\(X(s) = x\)</span>.</p>
+<p>The classical semi-Lagrangian method is based on a backtracking of characteristics. Two steps are needed to update the distribution function <span class="math notranslate nohighlight">\(f^{n+1}\)</span> at <span class="math notranslate nohighlight">\(t^{n+1}\)</span> from its value <span class="math notranslate nohighlight">\(f^n\)</span> at time <span class="math notranslate nohighlight">\(t^n\)</span> :</p>
+<ol class="simple">
+<li><p>For each grid point <span class="math notranslate nohighlight">\(x_i\)</span> compute <span class="math notranslate nohighlight">\(X(t^n; x_i, t^{n+1})\)</span> the value of the characteristic at <span class="math notranslate nohighlight">\(t^n\)</span> which takes the value <span class="math notranslate nohighlight">\(x_i\)</span> at <span class="math notranslate nohighlight">\(t^{n+1}\)</span>.</p></li>
+<li><p>As the distribution solution of first equation verifies
+<span class="math notranslate nohighlight">\($f^{n+1}(x_i) = f^n(X(t^n; x_i, t^{n+1})),\)</span>$
+we obtain the desired value of <span class="math notranslate nohighlight">\(f^{n+1}(x_i)\)</span> by computing <span class="math notranslate nohighlight">\(f^n(X(t^n;x_i,t^{n+1})\)</span> by interpolation as <span class="math notranslate nohighlight">\(X(t^n; x_i, t^{n+1})\)</span> is in general not a grid point.</p></li>
+</ol>
+<p><em><a class="reference external" href="http://www-m16.ma.tum.de/foswiki/pub/M16/Allgemeines/NumMethVlasov/Num-Meth-Vlasov-Notes.pdf">Eric Sonnendrücker - Numerical methods for the Vlasov equations</a></em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
+    <span class="o">%</span><span class="n">env</span> <span class="n">CC</span><span class="o">=</span><span class="s1">&#39;gcc-10&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>env: CC=&#39;gcc-10&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bspline">
+<h2>Bspline<a class="headerlink" href="#bspline" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">bspline</span></code> function return the value at x in [0,1[ of the B-spline with
+integer nodes of degree p with support starting at j.
+Implemented recursively using the de Boor’s recursion formula</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/De_Boor%27s_algorithm">De Boor’s Algorithm - Wikipedia</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span> 
+
+<span class="k">def</span> <span class="nf">bspline_python</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with </span>
+<span class="sd">        integer nodes of degree p with support starting at j.</span>
+<span class="sd">        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">1.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+            <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+        <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_python</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">w1</span><span class="p">)</span> <span class="o">*</span> <span class="n">bspline_python</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Advection</span><span class="p">:</span>
+    
+    <span class="sd">&quot;&quot;&quot; Class to compute BSL advection of 1d function &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ncells</span><span class="p">,</span> <span class="n">bspline</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">p</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span>  <span class="c1"># check that p is odd</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ncells</span> <span class="o">=</span> <span class="n">ncells</span>
+        <span class="c1"># compute eigenvalues of degree p b-spline matrix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ncells</span><span class="p">)</span> <span class="o">/</span> <span class="n">ncells</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deltax</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">ncells</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bspline</span> <span class="o">=</span> <span class="n">bspline</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eig_bspl</span> <span class="o">=</span> <span class="n">bspline</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">eig_bspl</span> <span class="o">+=</span> <span class="n">bspline</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">j</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">)</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;compute the interpolating spline of degree p of odd degree </span>
+<span class="sd">        of a function f on a periodic uniform mesh, at</span>
+<span class="sd">        all points xi-alpha&quot;&quot;&quot;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncells</span><span class="p">)</span>
+        <span class="c1"># compute eigenvalues of cubic splines evaluated at displaced points</span>
+        <span class="n">ishift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="o">-</span><span class="n">alpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">deltax</span><span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="o">-</span><span class="n">ishift</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">deltax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">0.</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bspline</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">ishift</span><span class="o">+</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">)</span>
+            
+        <span class="c1"># compute interpolating spline using fft and properties of circulant matrices</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">eig_bspl</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interpolation_test</span><span class="p">(</span><span class="n">bspline</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Test to check interpolation&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">64</span>
+    <span class="n">cs</span> <span class="o">=</span> <span class="n">Advection</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span> <span class="n">bspline</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="n">cs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">alpha</span><span class="p">))</span>
+    
+
+<span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_python</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we profile the code we can see that a lot of time is spent in <code class="docutils literal notranslate"><span class="pre">bspline</span></code> calls</p>
+</div>
+<div class="section" id="accelerate-with-fortran">
+<h2>Accelerate with Fortran<a class="headerlink" href="#accelerate-with-fortran" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">fortranmagic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/javascript">new Promise(function(resolve, reject) {
+	var script = document.createElement("script");
+	script.onload = resolve;
+	script.onerror = reject;
+	script.src = "https://raw.github.com/marijnh/CodeMirror/master/mode/fortran/fortran.js";
+	document.head.appendChild(script);
+}).then(() => {
+IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
+});</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">fortran</span>
+<span class="n">recursive</span> <span class="n">function</span> <span class="n">bspline_fortran</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">result</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="n">integer</span> <span class="p">::</span> <span class="n">p</span><span class="p">,</span> <span class="n">j</span>
+    <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="p">::</span> <span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">w1</span>
+    <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="p">::</span> <span class="n">res</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">then</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">then</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="mf">1.0</span>
+            <span class="k">return</span>
+        <span class="k">else</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="k">return</span>
+        <span class="n">end</span> <span class="k">if</span>
+    <span class="k">else</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+        <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+    <span class="n">end</span> <span class="k">if</span>
+    
+    <span class="n">res</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_fortran</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w1</span><span class="p">)</span><span class="o">*</span><span class="n">bspline_fortran</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">end</span> <span class="n">function</span> <span class="n">bspline_fortran</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_fortran</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="numba">
+<h2>Numba<a class="headerlink" href="#numba" title="Permalink to this headline">¶</a></h2>
+<p>Create a optimized function of bspline python function with Numba. Call it bspline_numba.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span>  <span class="n">int32</span><span class="p">,</span> <span class="n">float64</span>
+<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span>
+
+<span class="nd">@jit</span><span class="p">(</span><span class="s2">&quot;float64(int32,int32,float64)&quot;</span><span class="p">,</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">bspline_numba</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    
+        <span class="sd">&quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with </span>
+<span class="sd">        integer nodes of degree p with support starting at j.</span>
+<span class="sd">        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">1.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="n">p</span>
+            <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">p</span>
+        <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_numba</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w1</span><span class="p">)</span><span class="o">*</span><span class="n">bspline_numba</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_numba</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pythran">
+<h1>Pythran<a class="headerlink" href="#pythran" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pythran</span>
+
+<span class="o">%</span><span class="n">load_ext</span> <span class="n">pythran</span><span class="o">.</span><span class="n">magic</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pythran</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#pythran export bspline_pythran(int,int,float64)</span>
+<span class="k">def</span> <span class="nf">bspline_pythran</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">1.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="n">p</span>
+        <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">p</span>
+    <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_pythran</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w1</span><span class="p">)</span><span class="o">*</span><span class="n">bspline_pythran</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_pythran</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="cython">
+<h2>Cython<a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">cython</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">cython</span> <span class="o">-</span><span class="n">a</span>
+<span class="k">def</span> <span class="nf">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with </span>
+<span class="sd">        integer nodes of degree p with support starting at j.</span>
+<span class="sd">        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">1.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+            <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+        <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">w1</span><span class="p">)</span> <span class="o">*</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><!DOCTYPE html>
+<!-- Generated by Cython 0.29.21 -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cython: _cython_magic_1baa0214366c7113efe817dece26564d.pyx</title>
+    <style type="text/css">
+
+body.cython { font-family: courier; font-size: 12; }
+
+.cython.tag  {  }
+.cython.line { margin: 0em }
+.cython.code { font-size: 9; color: #444444; display: none; margin: 0px 0px 0px 8px; border-left: 8px none; }
+
+.cython.line .run { background-color: #B0FFB0; }
+.cython.line .mis { background-color: #FFB0B0; }
+.cython.code.run  { border-left: 8px solid #B0FFB0; }
+.cython.code.mis  { border-left: 8px solid #FFB0B0; }
+
+.cython.code .py_c_api  { color: red; }
+.cython.code .py_macro_api  { color: #FF7000; }
+.cython.code .pyx_c_api  { color: #FF3000; }
+.cython.code .pyx_macro_api  { color: #FF7000; }
+.cython.code .refnanny  { color: #FFA000; }
+.cython.code .trace  { color: #FFA000; }
+.cython.code .error_goto  { color: #FFA000; }
+
+.cython.code .coerce  { color: #008000; border: 1px dotted #008000 }
+.cython.code .py_attr { color: #FF0000; font-weight: bold; }
+.cython.code .c_attr  { color: #0000FF; }
+.cython.code .py_call { color: #FF0000; font-weight: bold; }
+.cython.code .c_call  { color: #0000FF; }
+
+.cython.score-0 {background-color: #FFFFff;}
+.cython.score-1 {background-color: #FFFFe7;}
+.cython.score-2 {background-color: #FFFFd4;}
+.cython.score-3 {background-color: #FFFFc4;}
+.cython.score-4 {background-color: #FFFFb6;}
+.cython.score-5 {background-color: #FFFFaa;}
+.cython.score-6 {background-color: #FFFF9f;}
+.cython.score-7 {background-color: #FFFF96;}
+.cython.score-8 {background-color: #FFFF8d;}
+.cython.score-9 {background-color: #FFFF86;}
+.cython.score-10 {background-color: #FFFF7f;}
+.cython.score-11 {background-color: #FFFF79;}
+.cython.score-12 {background-color: #FFFF73;}
+.cython.score-13 {background-color: #FFFF6e;}
+.cython.score-14 {background-color: #FFFF6a;}
+.cython.score-15 {background-color: #FFFF66;}
+.cython.score-16 {background-color: #FFFF62;}
+.cython.score-17 {background-color: #FFFF5e;}
+.cython.score-18 {background-color: #FFFF5b;}
+.cython.score-19 {background-color: #FFFF57;}
+.cython.score-20 {background-color: #FFFF55;}
+.cython.score-21 {background-color: #FFFF52;}
+.cython.score-22 {background-color: #FFFF4f;}
+.cython.score-23 {background-color: #FFFF4d;}
+.cython.score-24 {background-color: #FFFF4b;}
+.cython.score-25 {background-color: #FFFF48;}
+.cython.score-26 {background-color: #FFFF46;}
+.cython.score-27 {background-color: #FFFF44;}
+.cython.score-28 {background-color: #FFFF43;}
+.cython.score-29 {background-color: #FFFF41;}
+.cython.score-30 {background-color: #FFFF3f;}
+.cython.score-31 {background-color: #FFFF3e;}
+.cython.score-32 {background-color: #FFFF3c;}
+.cython.score-33 {background-color: #FFFF3b;}
+.cython.score-34 {background-color: #FFFF39;}
+.cython.score-35 {background-color: #FFFF38;}
+.cython.score-36 {background-color: #FFFF37;}
+.cython.score-37 {background-color: #FFFF36;}
+.cython.score-38 {background-color: #FFFF35;}
+.cython.score-39 {background-color: #FFFF34;}
+.cython.score-40 {background-color: #FFFF33;}
+.cython.score-41 {background-color: #FFFF32;}
+.cython.score-42 {background-color: #FFFF31;}
+.cython.score-43 {background-color: #FFFF30;}
+.cython.score-44 {background-color: #FFFF2f;}
+.cython.score-45 {background-color: #FFFF2e;}
+.cython.score-46 {background-color: #FFFF2d;}
+.cython.score-47 {background-color: #FFFF2c;}
+.cython.score-48 {background-color: #FFFF2b;}
+.cython.score-49 {background-color: #FFFF2b;}
+.cython.score-50 {background-color: #FFFF2a;}
+.cython.score-51 {background-color: #FFFF29;}
+.cython.score-52 {background-color: #FFFF29;}
+.cython.score-53 {background-color: #FFFF28;}
+.cython.score-54 {background-color: #FFFF27;}
+.cython.score-55 {background-color: #FFFF27;}
+.cython.score-56 {background-color: #FFFF26;}
+.cython.score-57 {background-color: #FFFF26;}
+.cython.score-58 {background-color: #FFFF25;}
+.cython.score-59 {background-color: #FFFF24;}
+.cython.score-60 {background-color: #FFFF24;}
+.cython.score-61 {background-color: #FFFF23;}
+.cython.score-62 {background-color: #FFFF23;}
+.cython.score-63 {background-color: #FFFF22;}
+.cython.score-64 {background-color: #FFFF22;}
+.cython.score-65 {background-color: #FFFF22;}
+.cython.score-66 {background-color: #FFFF21;}
+.cython.score-67 {background-color: #FFFF21;}
+.cython.score-68 {background-color: #FFFF20;}
+.cython.score-69 {background-color: #FFFF20;}
+.cython.score-70 {background-color: #FFFF1f;}
+.cython.score-71 {background-color: #FFFF1f;}
+.cython.score-72 {background-color: #FFFF1f;}
+.cython.score-73 {background-color: #FFFF1e;}
+.cython.score-74 {background-color: #FFFF1e;}
+.cython.score-75 {background-color: #FFFF1e;}
+.cython.score-76 {background-color: #FFFF1d;}
+.cython.score-77 {background-color: #FFFF1d;}
+.cython.score-78 {background-color: #FFFF1c;}
+.cython.score-79 {background-color: #FFFF1c;}
+.cython.score-80 {background-color: #FFFF1c;}
+.cython.score-81 {background-color: #FFFF1c;}
+.cython.score-82 {background-color: #FFFF1b;}
+.cython.score-83 {background-color: #FFFF1b;}
+.cython.score-84 {background-color: #FFFF1b;}
+.cython.score-85 {background-color: #FFFF1a;}
+.cython.score-86 {background-color: #FFFF1a;}
+.cython.score-87 {background-color: #FFFF1a;}
+.cython.score-88 {background-color: #FFFF1a;}
+.cython.score-89 {background-color: #FFFF19;}
+.cython.score-90 {background-color: #FFFF19;}
+.cython.score-91 {background-color: #FFFF19;}
+.cython.score-92 {background-color: #FFFF19;}
+.cython.score-93 {background-color: #FFFF18;}
+.cython.score-94 {background-color: #FFFF18;}
+.cython.score-95 {background-color: #FFFF18;}
+.cython.score-96 {background-color: #FFFF18;}
+.cython.score-97 {background-color: #FFFF17;}
+.cython.score-98 {background-color: #FFFF17;}
+.cython.score-99 {background-color: #FFFF17;}
+.cython.score-100 {background-color: #FFFF17;}
+.cython.score-101 {background-color: #FFFF16;}
+.cython.score-102 {background-color: #FFFF16;}
+.cython.score-103 {background-color: #FFFF16;}
+.cython.score-104 {background-color: #FFFF16;}
+.cython.score-105 {background-color: #FFFF16;}
+.cython.score-106 {background-color: #FFFF15;}
+.cython.score-107 {background-color: #FFFF15;}
+.cython.score-108 {background-color: #FFFF15;}
+.cython.score-109 {background-color: #FFFF15;}
+.cython.score-110 {background-color: #FFFF15;}
+.cython.score-111 {background-color: #FFFF15;}
+.cython.score-112 {background-color: #FFFF14;}
+.cython.score-113 {background-color: #FFFF14;}
+.cython.score-114 {background-color: #FFFF14;}
+.cython.score-115 {background-color: #FFFF14;}
+.cython.score-116 {background-color: #FFFF14;}
+.cython.score-117 {background-color: #FFFF14;}
+.cython.score-118 {background-color: #FFFF13;}
+.cython.score-119 {background-color: #FFFF13;}
+.cython.score-120 {background-color: #FFFF13;}
+.cython.score-121 {background-color: #FFFF13;}
+.cython.score-122 {background-color: #FFFF13;}
+.cython.score-123 {background-color: #FFFF13;}
+.cython.score-124 {background-color: #FFFF13;}
+.cython.score-125 {background-color: #FFFF12;}
+.cython.score-126 {background-color: #FFFF12;}
+.cython.score-127 {background-color: #FFFF12;}
+.cython.score-128 {background-color: #FFFF12;}
+.cython.score-129 {background-color: #FFFF12;}
+.cython.score-130 {background-color: #FFFF12;}
+.cython.score-131 {background-color: #FFFF12;}
+.cython.score-132 {background-color: #FFFF11;}
+.cython.score-133 {background-color: #FFFF11;}
+.cython.score-134 {background-color: #FFFF11;}
+.cython.score-135 {background-color: #FFFF11;}
+.cython.score-136 {background-color: #FFFF11;}
+.cython.score-137 {background-color: #FFFF11;}
+.cython.score-138 {background-color: #FFFF11;}
+.cython.score-139 {background-color: #FFFF11;}
+.cython.score-140 {background-color: #FFFF11;}
+.cython.score-141 {background-color: #FFFF10;}
+.cython.score-142 {background-color: #FFFF10;}
+.cython.score-143 {background-color: #FFFF10;}
+.cython.score-144 {background-color: #FFFF10;}
+.cython.score-145 {background-color: #FFFF10;}
+.cython.score-146 {background-color: #FFFF10;}
+.cython.score-147 {background-color: #FFFF10;}
+.cython.score-148 {background-color: #FFFF10;}
+.cython.score-149 {background-color: #FFFF10;}
+.cython.score-150 {background-color: #FFFF0f;}
+.cython.score-151 {background-color: #FFFF0f;}
+.cython.score-152 {background-color: #FFFF0f;}
+.cython.score-153 {background-color: #FFFF0f;}
+.cython.score-154 {background-color: #FFFF0f;}
+.cython.score-155 {background-color: #FFFF0f;}
+.cython.score-156 {background-color: #FFFF0f;}
+.cython.score-157 {background-color: #FFFF0f;}
+.cython.score-158 {background-color: #FFFF0f;}
+.cython.score-159 {background-color: #FFFF0f;}
+.cython.score-160 {background-color: #FFFF0f;}
+.cython.score-161 {background-color: #FFFF0e;}
+.cython.score-162 {background-color: #FFFF0e;}
+.cython.score-163 {background-color: #FFFF0e;}
+.cython.score-164 {background-color: #FFFF0e;}
+.cython.score-165 {background-color: #FFFF0e;}
+.cython.score-166 {background-color: #FFFF0e;}
+.cython.score-167 {background-color: #FFFF0e;}
+.cython.score-168 {background-color: #FFFF0e;}
+.cython.score-169 {background-color: #FFFF0e;}
+.cython.score-170 {background-color: #FFFF0e;}
+.cython.score-171 {background-color: #FFFF0e;}
+.cython.score-172 {background-color: #FFFF0e;}
+.cython.score-173 {background-color: #FFFF0d;}
+.cython.score-174 {background-color: #FFFF0d;}
+.cython.score-175 {background-color: #FFFF0d;}
+.cython.score-176 {background-color: #FFFF0d;}
+.cython.score-177 {background-color: #FFFF0d;}
+.cython.score-178 {background-color: #FFFF0d;}
+.cython.score-179 {background-color: #FFFF0d;}
+.cython.score-180 {background-color: #FFFF0d;}
+.cython.score-181 {background-color: #FFFF0d;}
+.cython.score-182 {background-color: #FFFF0d;}
+.cython.score-183 {background-color: #FFFF0d;}
+.cython.score-184 {background-color: #FFFF0d;}
+.cython.score-185 {background-color: #FFFF0d;}
+.cython.score-186 {background-color: #FFFF0d;}
+.cython.score-187 {background-color: #FFFF0c;}
+.cython.score-188 {background-color: #FFFF0c;}
+.cython.score-189 {background-color: #FFFF0c;}
+.cython.score-190 {background-color: #FFFF0c;}
+.cython.score-191 {background-color: #FFFF0c;}
+.cython.score-192 {background-color: #FFFF0c;}
+.cython.score-193 {background-color: #FFFF0c;}
+.cython.score-194 {background-color: #FFFF0c;}
+.cython.score-195 {background-color: #FFFF0c;}
+.cython.score-196 {background-color: #FFFF0c;}
+.cython.score-197 {background-color: #FFFF0c;}
+.cython.score-198 {background-color: #FFFF0c;}
+.cython.score-199 {background-color: #FFFF0c;}
+.cython.score-200 {background-color: #FFFF0c;}
+.cython.score-201 {background-color: #FFFF0c;}
+.cython.score-202 {background-color: #FFFF0c;}
+.cython.score-203 {background-color: #FFFF0b;}
+.cython.score-204 {background-color: #FFFF0b;}
+.cython.score-205 {background-color: #FFFF0b;}
+.cython.score-206 {background-color: #FFFF0b;}
+.cython.score-207 {background-color: #FFFF0b;}
+.cython.score-208 {background-color: #FFFF0b;}
+.cython.score-209 {background-color: #FFFF0b;}
+.cython.score-210 {background-color: #FFFF0b;}
+.cython.score-211 {background-color: #FFFF0b;}
+.cython.score-212 {background-color: #FFFF0b;}
+.cython.score-213 {background-color: #FFFF0b;}
+.cython.score-214 {background-color: #FFFF0b;}
+.cython.score-215 {background-color: #FFFF0b;}
+.cython.score-216 {background-color: #FFFF0b;}
+.cython.score-217 {background-color: #FFFF0b;}
+.cython.score-218 {background-color: #FFFF0b;}
+.cython.score-219 {background-color: #FFFF0b;}
+.cython.score-220 {background-color: #FFFF0b;}
+.cython.score-221 {background-color: #FFFF0b;}
+.cython.score-222 {background-color: #FFFF0a;}
+.cython.score-223 {background-color: #FFFF0a;}
+.cython.score-224 {background-color: #FFFF0a;}
+.cython.score-225 {background-color: #FFFF0a;}
+.cython.score-226 {background-color: #FFFF0a;}
+.cython.score-227 {background-color: #FFFF0a;}
+.cython.score-228 {background-color: #FFFF0a;}
+.cython.score-229 {background-color: #FFFF0a;}
+.cython.score-230 {background-color: #FFFF0a;}
+.cython.score-231 {background-color: #FFFF0a;}
+.cython.score-232 {background-color: #FFFF0a;}
+.cython.score-233 {background-color: #FFFF0a;}
+.cython.score-234 {background-color: #FFFF0a;}
+.cython.score-235 {background-color: #FFFF0a;}
+.cython.score-236 {background-color: #FFFF0a;}
+.cython.score-237 {background-color: #FFFF0a;}
+.cython.score-238 {background-color: #FFFF0a;}
+.cython.score-239 {background-color: #FFFF0a;}
+.cython.score-240 {background-color: #FFFF0a;}
+.cython.score-241 {background-color: #FFFF0a;}
+.cython.score-242 {background-color: #FFFF0a;}
+.cython.score-243 {background-color: #FFFF0a;}
+.cython.score-244 {background-color: #FFFF0a;}
+.cython.score-245 {background-color: #FFFF0a;}
+.cython.score-246 {background-color: #FFFF09;}
+.cython.score-247 {background-color: #FFFF09;}
+.cython.score-248 {background-color: #FFFF09;}
+.cython.score-249 {background-color: #FFFF09;}
+.cython.score-250 {background-color: #FFFF09;}
+.cython.score-251 {background-color: #FFFF09;}
+.cython.score-252 {background-color: #FFFF09;}
+.cython.score-253 {background-color: #FFFF09;}
+.cython.score-254 {background-color: #FFFF09;}
+.cython .hll { background-color: #ffffcc }
+.cython  { background: #f8f8f8; }
+.cython .c { color: #408080; font-style: italic } /* Comment */
+.cython .err { border: 1px solid #FF0000 } /* Error */
+.cython .k { color: #008000; font-weight: bold } /* Keyword */
+.cython .o { color: #666666 } /* Operator */
+.cython .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.cython .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cython .cp { color: #BC7A00 } /* Comment.Preproc */
+.cython .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.cython .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cython .cs { color: #408080; font-style: italic } /* Comment.Special */
+.cython .gd { color: #A00000 } /* Generic.Deleted */
+.cython .ge { font-style: italic } /* Generic.Emph */
+.cython .gr { color: #FF0000 } /* Generic.Error */
+.cython .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.cython .gi { color: #00A000 } /* Generic.Inserted */
+.cython .go { color: #888888 } /* Generic.Output */
+.cython .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.cython .gs { font-weight: bold } /* Generic.Strong */
+.cython .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.cython .gt { color: #0044DD } /* Generic.Traceback */
+.cython .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.cython .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.cython .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.cython .kp { color: #008000 } /* Keyword.Pseudo */
+.cython .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.cython .kt { color: #B00040 } /* Keyword.Type */
+.cython .m { color: #666666 } /* Literal.Number */
+.cython .s { color: #BA2121 } /* Literal.String */
+.cython .na { color: #7D9029 } /* Name.Attribute */
+.cython .nb { color: #008000 } /* Name.Builtin */
+.cython .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.cython .no { color: #880000 } /* Name.Constant */
+.cython .nd { color: #AA22FF } /* Name.Decorator */
+.cython .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.cython .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.cython .nf { color: #0000FF } /* Name.Function */
+.cython .nl { color: #A0A000 } /* Name.Label */
+.cython .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.cython .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.cython .nv { color: #19177C } /* Name.Variable */
+.cython .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.cython .w { color: #bbbbbb } /* Text.Whitespace */
+.cython .mb { color: #666666 } /* Literal.Number.Bin */
+.cython .mf { color: #666666 } /* Literal.Number.Float */
+.cython .mh { color: #666666 } /* Literal.Number.Hex */
+.cython .mi { color: #666666 } /* Literal.Number.Integer */
+.cython .mo { color: #666666 } /* Literal.Number.Oct */
+.cython .sa { color: #BA2121 } /* Literal.String.Affix */
+.cython .sb { color: #BA2121 } /* Literal.String.Backtick */
+.cython .sc { color: #BA2121 } /* Literal.String.Char */
+.cython .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.cython .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.cython .s2 { color: #BA2121 } /* Literal.String.Double */
+.cython .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.cython .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.cython .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.cython .sx { color: #008000 } /* Literal.String.Other */
+.cython .sr { color: #BB6688 } /* Literal.String.Regex */
+.cython .s1 { color: #BA2121 } /* Literal.String.Single */
+.cython .ss { color: #19177C } /* Literal.String.Symbol */
+.cython .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.cython .fm { color: #0000FF } /* Name.Function.Magic */
+.cython .vc { color: #19177C } /* Name.Variable.Class */
+.cython .vg { color: #19177C } /* Name.Variable.Global */
+.cython .vi { color: #19177C } /* Name.Variable.Instance */
+.cython .vm { color: #19177C } /* Name.Variable.Magic */
+.cython .il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+</head>
+<body class="cython">
+<p><span style="border-bottom: solid 1px grey;">Generated by Cython 0.29.21</span></p>
+<p>
+    <span style="background-color: #FFFF00">Yellow lines</span> hint at Python interaction.<br />
+    Click on a line that starts with a "<code>+</code>" to see the C code that Cython generated for it.
+</p>
+<div class="cython"><pre class="cython line score-53" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">01</span>: <span class="k">def</span> <span class="nf">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span></pre>
+<pre class='cython code score-53 '>/* Python wrapper */
+static PyObject *__pyx_pw_46_cython_magic_1baa0214366c7113efe817dece26564d_1bspline_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_46_cython_magic_1baa0214366c7113efe817dece26564d_bspline_cython[] = "Return the value at x in [0,1[ of the B-spline with \n        integer nodes of degree p with support starting at j.\n        Implemented recursively using the de Boor's recursion formula";
+static PyMethodDef __pyx_mdef_46_cython_magic_1baa0214366c7113efe817dece26564d_1bspline_cython = {"bspline_cython", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_46_cython_magic_1baa0214366c7113efe817dece26564d_1bspline_cython, METH_VARARGS|METH_KEYWORDS, __pyx_doc_46_cython_magic_1baa0214366c7113efe817dece26564d_bspline_cython};
+static PyObject *__pyx_pw_46_cython_magic_1baa0214366c7113efe817dece26564d_1bspline_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_p = 0;
+  PyObject *__pyx_v_j = 0;
+  PyObject *__pyx_v_x = 0;
+  PyObject *__pyx_r = 0;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("bspline_cython (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_p,&amp;__pyx_n_s_j,&amp;__pyx_n_s_x,0};
+    PyObject* values[3] = {0,0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
+      switch (pos_args) {
+        case  3: values[2] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = <span class='py_c_api'>PyDict_Size</span>(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = <span class='pyx_c_api'>__Pyx_PyDict_GetItemStr</span>(__pyx_kwds, __pyx_n_s_p)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = <span class='pyx_c_api'>__Pyx_PyDict_GetItemStr</span>(__pyx_kwds, __pyx_n_s_j)) != 0)) kw_args--;
+        else {
+          <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("bspline_cython", 1, 3, 3, 1); <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L3_error)</span>
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = <span class='pyx_c_api'>__Pyx_PyDict_GetItemStr</span>(__pyx_kwds, __pyx_n_s_x)) != 0)) kw_args--;
+        else {
+          <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("bspline_cython", 1, 3, 3, 2); <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L3_error)</span>
+        }
+      }
+      if (unlikely(kw_args &gt; 0)) {
+        if (unlikely(<span class='pyx_c_api'>__Pyx_ParseOptionalKeywords</span>(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "bspline_cython") &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L3_error)</span>
+      }
+    } else if (<span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args) != 3) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 0);
+      values[1] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 1);
+      values[2] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 2);
+    }
+    __pyx_v_p = values[0];
+    __pyx_v_j = values[1];
+    __pyx_v_x = values[2];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("bspline_cython", 1, 3, 3, <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args)); <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L3_error)</span>
+  __pyx_L3_error:;
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("_cython_magic_1baa0214366c7113efe817dece26564d.bspline_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_46_cython_magic_1baa0214366c7113efe817dece26564d_bspline_cython(__pyx_self, __pyx_v_p, __pyx_v_j, __pyx_v_x);
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+
+  /* function exit code */
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_46_cython_magic_1baa0214366c7113efe817dece26564d_bspline_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_p, PyObject *__pyx_v_j, PyObject *__pyx_v_x) {
+  PyObject *__pyx_v_w = NULL;
+  PyObject *__pyx_v_w1 = NULL;
+  PyObject *__pyx_r = NULL;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("bspline_cython", 0);
+/* … */
+  /* function exit code */
+  __pyx_L1_error:;
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_5);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_7);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_8);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_9);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_10);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("_cython_magic_1baa0214366c7113efe817dece26564d.bspline_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_w);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_w1);
+  <span class='refnanny'>__Pyx_XGIVEREF</span>(__pyx_r);
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+/* … */
+  __pyx_tuple_ = <span class='py_c_api'>PyTuple_Pack</span>(5, __pyx_n_s_p, __pyx_n_s_j, __pyx_n_s_x, __pyx_n_s_w, __pyx_n_s_w1);<span class='error_goto'> if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 1, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple_);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple_);
+/* … */
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_46_cython_magic_1baa0214366c7113efe817dece26564d_1bspline_cython, NULL, __pyx_n_s_cython_magic_1baa0214366c7113ef);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_bspline_cython, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">02</span>:         <span class="sd">&quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">03</span>: <span class="sd">        integer nodes of degree p with support starting at j.</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">04</span>: <span class="sd">        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;</span></pre>
+<pre class="cython line score-25" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">05</span>:         <span class="k">assert</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">)</span></pre>
+<pre class='cython code score-25 '>  #ifndef CYTHON_WITHOUT_ASSERTIONS
+  if (unlikely(!Py_OptimizeFlag)) {
+    __pyx_t_1 = <span class='py_c_api'>PyObject_RichCompare</span>(__pyx_v_x, __pyx_float_0_0, Py_GE); <span class='refnanny'>__Pyx_XGOTREF</span>(__pyx_t_1);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)</span>
+    __pyx_t_2 = <span class='py_c_api'>PyObject_RichCompare</span>(__pyx_v_x, __pyx_float_1_0, Py_LE); <span class='refnanny'>__Pyx_XGOTREF</span>(__pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)</span>
+    __pyx_t_3 = <span class='py_c_api'>PyNumber_And</span>(__pyx_t_1, __pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 5, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_4 = <span class='pyx_c_api'>__Pyx_PyObject_IsTrue</span>(__pyx_t_3); if (unlikely(__pyx_t_4 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 5, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_4)) {
+      <span class='py_c_api'>PyErr_SetNone</span>(PyExc_AssertionError);
+      <span class='error_goto'>__PYX_ERR(0, 5, __pyx_L1_error)</span>
+    }
+  }
+  #endif
+</pre><pre class="cython line score-25" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">06</span>:         <span class="k">assert</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">)</span></pre>
+<pre class='cython code score-25 '>  #ifndef CYTHON_WITHOUT_ASSERTIONS
+  if (unlikely(!Py_OptimizeFlag)) {
+    __pyx_t_3 = <span class='py_c_api'>PyObject_RichCompare</span>(((PyObject *)Py_TYPE(__pyx_v_p)), ((PyObject *)(&amp;PyInt_Type)), Py_EQ); <span class='refnanny'>__Pyx_XGOTREF</span>(__pyx_t_3);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 6, __pyx_L1_error)</span>
+    __pyx_t_2 = <span class='py_c_api'>PyObject_RichCompare</span>(((PyObject *)Py_TYPE(__pyx_v_j)), ((PyObject *)(&amp;PyInt_Type)), Py_EQ); <span class='refnanny'>__Pyx_XGOTREF</span>(__pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 6, __pyx_L1_error)</span>
+    __pyx_t_1 = <span class='py_c_api'>PyNumber_And</span>(__pyx_t_3, __pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_4 = <span class='pyx_c_api'>__Pyx_PyObject_IsTrue</span>(__pyx_t_1); if (unlikely(__pyx_t_4 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 6, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+    if (unlikely(!__pyx_t_4)) {
+      <span class='py_c_api'>PyErr_SetNone</span>(PyExc_AssertionError);
+      <span class='error_goto'>__PYX_ERR(0, 6, __pyx_L1_error)</span>
+    }
+  }
+  #endif
+</pre><pre class="cython line score-5" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">07</span>:         <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mf">0</span><span class="p">:</span></pre>
+<pre class='cython code score-5 '>  __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyInt_EqObjC</span>(__pyx_v_p, __pyx_int_0, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  __pyx_t_4 = <span class='pyx_c_api'>__Pyx_PyObject_IsTrue</span>(__pyx_t_1); if (unlikely(__pyx_t_4 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 7, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  if (__pyx_t_4) {
+/* … */
+  }
+</pre><pre class="cython line score-5" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">08</span>:             <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mf">0</span><span class="p">:</span></pre>
+<pre class='cython code score-5 '>    __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyInt_EqObjC</span>(__pyx_v_j, __pyx_int_0, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    __pyx_t_4 = <span class='pyx_c_api'>__Pyx_PyObject_IsTrue</span>(__pyx_t_1); if (unlikely(__pyx_t_4 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 8, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+    if (__pyx_t_4) {
+/* … */
+    }
+</pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">09</span>:                 <span class="k">return</span> <span class="mf">1.0</span></pre>
+<pre class='cython code score-2 '>      <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
+      <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_float_1_0);
+      __pyx_r = __pyx_float_1_0;
+      goto __pyx_L0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">10</span>:             <span class="k">else</span><span class="p">:</span></pre>
+<pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">11</span>:                 <span class="k">return</span> <span class="mf">0.0</span></pre>
+<pre class='cython code score-2 '>    /*else*/ {
+      <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
+      <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_float_0_0);
+      __pyx_r = __pyx_float_0_0;
+      goto __pyx_L0;
+    }
+</pre><pre class="cython line score-0">&#xA0;<span class="">12</span>:         <span class="k">else</span><span class="p">:</span></pre>
+<pre class="cython line score-8" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">13</span>:             <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span></pre>
+<pre class='cython code score-8 '>  /*else*/ {
+    __pyx_t_1 = <span class='py_c_api'>PyNumber_Subtract</span>(__pyx_v_x, __pyx_v_j);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyNumber_Divide</span>(__pyx_t_1, __pyx_v_p);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_v_w = __pyx_t_2;
+    __pyx_t_2 = 0;
+</pre><pre class="cython line score-11" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">14</span>:             <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mf">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span></pre>
+<pre class='cython code score-11 '>    __pyx_t_2 = <span class='py_c_api'>PyNumber_Subtract</span>(__pyx_v_x, __pyx_v_j);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 14, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+    __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyInt_SubtractObjC</span>(__pyx_t_2, __pyx_int_1, 1, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyNumber_Divide</span>(__pyx_t_1, __pyx_v_p);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 14, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_v_w1 = __pyx_t_2;
+    __pyx_t_2 = 0;
+  }
+</pre><pre class="cython line score-114" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">15</span>:         <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mf">1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1</span> <span class="o">-</span> <span class="n">w1</span><span class="p">)</span> <span class="o">*</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mf">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mf">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></pre>
+<pre class='cython code score-114 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
+  <span class='pyx_c_api'>__Pyx_GetModuleGlobalName</span>(__pyx_t_1, __pyx_n_s_bspline_cython);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  __pyx_t_3 = <span class='pyx_c_api'>__Pyx_PyInt_SubtractObjC</span>(__pyx_v_p, __pyx_int_1, 1, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  __pyx_t_5 = NULL;
+  __pyx_t_6 = 0;
+  if (CYTHON_UNPACK_METHODS &amp;&amp; unlikely(<span class='py_c_api'>PyMethod_Check</span>(__pyx_t_1))) {
+    __pyx_t_5 = <span class='py_macro_api'>PyMethod_GET_SELF</span>(__pyx_t_1);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = <span class='py_macro_api'>PyMethod_GET_FUNCTION</span>(__pyx_t_1);
+      <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_5);
+      <span class='pyx_macro_api'>__Pyx_INCREF</span>(function);
+      <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_t_1, function);
+      __pyx_t_6 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (<span class='py_c_api'>PyFunction_Check</span>(__pyx_t_1)) {
+    PyObject *__pyx_temp[4] = {__pyx_t_5, __pyx_t_3, __pyx_v_j, __pyx_v_x};
+    __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyFunction_FastCall</span>(__pyx_t_1, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_5); __pyx_t_5 = 0;
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (<span class='pyx_c_api'>__Pyx_PyFastCFunction_Check</span>(__pyx_t_1)) {
+    PyObject *__pyx_temp[4] = {__pyx_t_5, __pyx_t_3, __pyx_v_j, __pyx_v_x};
+    __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyCFunction_FastCall</span>(__pyx_t_1, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_5); __pyx_t_5 = 0;
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+  } else
+  #endif
+  {
+    __pyx_t_7 = <span class='py_c_api'>PyTuple_New</span>(3+__pyx_t_6);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_7);
+    if (__pyx_t_5) {
+      <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_5); <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
+    }
+    <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_3);
+    <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_7, 0+__pyx_t_6, __pyx_t_3);
+    <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_j);
+    <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_j);
+    <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_7, 1+__pyx_t_6, __pyx_v_j);
+    <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_x);
+    <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_x);
+    <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_7, 2+__pyx_t_6, __pyx_v_x);
+    __pyx_t_3 = 0;
+    __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(__pyx_t_1, __pyx_t_7, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_7); __pyx_t_7 = 0;
+  }
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = <span class='py_c_api'>PyNumber_Multiply</span>(__pyx_v_w, __pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyInt_SubtractCObj</span>(__pyx_int_1, __pyx_v_w1, 1, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_c_api'>__Pyx_GetModuleGlobalName</span>(__pyx_t_3, __pyx_n_s_bspline_cython);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  __pyx_t_5 = <span class='pyx_c_api'>__Pyx_PyInt_SubtractObjC</span>(__pyx_v_p, __pyx_int_1, 1, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_5);
+  __pyx_t_8 = <span class='pyx_c_api'>__Pyx_PyInt_AddObjC</span>(__pyx_v_j, __pyx_int_1, 1, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_8);
+  __pyx_t_9 = NULL;
+  __pyx_t_6 = 0;
+  if (CYTHON_UNPACK_METHODS &amp;&amp; unlikely(<span class='py_c_api'>PyMethod_Check</span>(__pyx_t_3))) {
+    __pyx_t_9 = <span class='py_macro_api'>PyMethod_GET_SELF</span>(__pyx_t_3);
+    if (likely(__pyx_t_9)) {
+      PyObject* function = <span class='py_macro_api'>PyMethod_GET_FUNCTION</span>(__pyx_t_3);
+      <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_9);
+      <span class='pyx_macro_api'>__Pyx_INCREF</span>(function);
+      <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_t_3, function);
+      __pyx_t_6 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (<span class='py_c_api'>PyFunction_Check</span>(__pyx_t_3)) {
+    PyObject *__pyx_temp[4] = {__pyx_t_9, __pyx_t_5, __pyx_t_8, __pyx_v_x};
+    __pyx_t_7 = <span class='pyx_c_api'>__Pyx_PyFunction_FastCall</span>(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_9); __pyx_t_9 = 0;
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_7);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_5); __pyx_t_5 = 0;
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_8); __pyx_t_8 = 0;
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (<span class='pyx_c_api'>__Pyx_PyFastCFunction_Check</span>(__pyx_t_3)) {
+    PyObject *__pyx_temp[4] = {__pyx_t_9, __pyx_t_5, __pyx_t_8, __pyx_v_x};
+    __pyx_t_7 = <span class='pyx_c_api'>__Pyx_PyCFunction_FastCall</span>(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_9); __pyx_t_9 = 0;
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_7);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_5); __pyx_t_5 = 0;
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_8); __pyx_t_8 = 0;
+  } else
+  #endif
+  {
+    __pyx_t_10 = <span class='py_c_api'>PyTuple_New</span>(3+__pyx_t_6);<span class='error_goto'> if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_10);
+    if (__pyx_t_9) {
+      <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_9); <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_10, 0, __pyx_t_9); __pyx_t_9 = NULL;
+    }
+    <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_5);
+    <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_10, 0+__pyx_t_6, __pyx_t_5);
+    <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_8);
+    <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_10, 1+__pyx_t_6, __pyx_t_8);
+    <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_x);
+    <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_x);
+    <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_10, 2+__pyx_t_6, __pyx_v_x);
+    __pyx_t_5 = 0;
+    __pyx_t_8 = 0;
+    __pyx_t_7 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(__pyx_t_3, __pyx_t_10, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_7);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_10); __pyx_t_10 = 0;
+  }
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = <span class='py_c_api'>PyNumber_Multiply</span>(__pyx_t_2, __pyx_t_7);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = <span class='py_c_api'>PyNumber_Add</span>(__pyx_t_1, __pyx_t_3);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_7);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_r = __pyx_t_7;
+  __pyx_t_7 = 0;
+  goto __pyx_L0;
+</pre></div></body></html></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">cython</span>
+<span class="kn">import</span> <span class="nn">cython</span>
+
+<span class="nd">@cython</span><span class="o">.</span><span class="n">cdivision</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cpdef</span> <span class="n">double</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="nb">int</span> <span class="n">p</span><span class="p">,</span> <span class="nb">int</span> <span class="n">j</span><span class="p">,</span> <span class="n">double</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with </span>
+<span class="sd">        integer nodes of degree p with support starting at j.</span>
+<span class="sd">        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;</span>
+        <span class="n">cdef</span> <span class="n">double</span> <span class="n">w</span><span class="p">,</span> <span class="n">w1</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">1.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+            <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+        <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w1</span><span class="p">)</span><span class="o">*</span><span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_cython</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">Mrange</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="n">bspline_fortran</span><span class="p">,</span> <span class="n">bspline_pythran</span><span class="p">,</span> <span class="n">bspline_cython</span><span class="p">,</span> <span class="n">bspline_numba</span><span class="p">]</span>
+
+<span class="n">times</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">M</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">Mrange</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="n">cs</span> <span class="o">=</span> <span class="n">Advection</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">opt</span><span class="p">)</span>
+    
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">oq</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100</span> <span class="n">cs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="n">times</span><span class="p">[</span><span class="n">opt</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">best</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "06ed0074c5224dafa2574ef62386b2c7"}
+</script><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">o</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">Mrange</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">o</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Execution Time (s)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04.vlasov-poisson_25_0.png" src="_images/04.vlasov-poisson_25_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">cython</span>
+<span class="kn">import</span> <span class="nn">cython</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">cimport</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span>
+
+<span class="nd">@cython</span><span class="o">.</span><span class="n">cdivision</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cdef</span> <span class="n">double</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="nb">int</span> <span class="n">p</span><span class="p">,</span> <span class="nb">int</span> <span class="n">j</span><span class="p">,</span> <span class="n">double</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with </span>
+<span class="sd">        integer nodes of degree p with support starting at j.</span>
+<span class="sd">        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;</span>
+        <span class="n">cdef</span> <span class="n">double</span> <span class="n">w</span><span class="p">,</span> <span class="n">w1</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">1.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+            <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+        <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w1</span><span class="p">)</span><span class="o">*</span><span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">BSplineCython</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ncells</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ncells</span> <span class="o">=</span> <span class="n">ncells</span>
+        <span class="c1"># compute eigenvalues of degree p b-spline matrix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ncells</span><span class="p">)</span> <span class="o">/</span> <span class="n">ncells</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deltax</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">ncells</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">eig_bspl</span> <span class="o">=</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">eig_bspl</span> <span class="o">+=</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">)</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    
+    <span class="nd">@cython</span><span class="o">.</span><span class="n">boundscheck</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nd">@cython</span><span class="o">.</span><span class="n">wraparound</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="n">f</span><span class="p">,</span>  <span class="n">alpha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;compute the interpolating spline of degree p of odd degree </span>
+<span class="sd">        of a function f on a periodic uniform mesh, at</span>
+<span class="sd">        all points xi-alpha&quot;&quot;&quot;</span>
+        <span class="n">cdef</span> <span class="n">Py_ssize_t</span> <span class="n">j</span>
+        <span class="n">cdef</span> <span class="nb">int</span> <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span>
+        <span class="c1"># compute eigenvalues of cubic splines evaluated at displaced points</span>
+        <span class="n">cdef</span> <span class="nb">int</span> <span class="n">ishift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="o">-</span><span class="n">alpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">deltax</span><span class="p">)</span>
+        <span class="n">cdef</span> <span class="n">double</span> <span class="n">beta</span> <span class="o">=</span> <span class="o">-</span><span class="n">ishift</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">deltax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span> <span class="o">+=</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">ishift</span><span class="o">+</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">)</span>
+            
+        <span class="c1"># compute interpolating spline using fft and properties of circulant matrices</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">eig_bspl</span><span class="p">))</span>
+
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">times</span><span class="p">[</span><span class="s2">&quot;cython&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">M</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">Mrange</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">cs</span> <span class="o">=</span> <span class="n">BSplineCython</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span> <span class="p">)</span>
+    
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">oq</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100</span> <span class="n">cs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">times</span><span class="p">[</span><span class="s2">&quot;cython&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">best</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "24ce15a96f124f9eb94670f72ccb0514"}
+</script><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">o</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">Mrange</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">o</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Execution Time (s)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04.vlasov-poisson_28_0.png" src="_images/04.vlasov-poisson_28_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="vlasov-poisson-equation">
+<h1>Vlasov-Poisson equation<a class="headerlink" href="#vlasov-poisson-equation" title="Permalink to this headline">¶</a></h1>
+<p>We consider the dimensionless Vlasov-Poisson equation for one species
+with a neutralizing background.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\frac{\partial f}{\partial t}+ v\cdot \nabla_x f + E(t,x) \cdot \nabla_v f = 0, \\
+- \Delta \phi = 1 - \rho, E = - \nabla \phi \\
+\rho(t,x)  =  \int f(t,x,v)dv.
+\end{split}\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Vlasov_equation">Vlasov Equation - Wikipedia</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VlasovPoisson</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">nv</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        
+        <span class="c1"># Grid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nx</span> <span class="o">=</span> <span class="n">nx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nv</span> <span class="o">=</span> <span class="n">nv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">nv</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="c1"># Distribution function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nv</span><span class="p">))</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+        
+        <span class="k">if</span> <span class="n">opt</span> <span class="p">:</span>
+            <span class="c1"># Interpolators for advection</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cs_x</span> <span class="o">=</span> <span class="n">Advection</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">opt</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cs_v</span> <span class="o">=</span> <span class="n">Advection</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">nv</span><span class="p">,</span> <span class="n">opt</span><span class="p">)</span>
+            
+        <span class="c1"># Modes for Poisson equation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">[:</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">[</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">:]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">==</span> <span class="mi">0</span> <span class="c1"># avoid division by zero </span>
+        
+    <span class="k">def</span> <span class="nf">advection_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nv</span><span class="p">):</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">,:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cs_x</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">,:],</span> <span class="n">alpha</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">advection_v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">):</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cs_v</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">compute_rho</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dv</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span>  <span class="n">rho</span> <span class="o">-</span> <span class="n">rho</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            
+    <span class="k">def</span> <span class="nf">compute_e</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rho</span><span class="p">):</span>
+        <span class="c1"># compute Ex using that ik*Ex = rho</span>
+        <span class="n">rhok</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">rhok</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">nstep</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span>
+        <span class="n">nrj</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">advection_x</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">istep</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nstep</span><span class="p">)):</span>
+            <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_rho</span><span class="p">()</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_e</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">advection_v</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">advection_x</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+            <span class="n">nrj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">e</span><span class="o">*</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="p">))</span>
+                
+        <span class="k">return</span> <span class="n">nrj</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="landau-damping">
+<h1>Landau Damping<a class="headerlink" href="#landau-damping" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Landau_damping">Landau damping - Wikipedia</a></p>
+<div class="math notranslate nohighlight">
+\[
+f(x, v, t=0) = \frac{1}{\sqrt{2\pi}} (1 + \epsilon  \cdot cos(k_x \cdot x))  e^{-v^2/2}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="n">elapsed_time</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
+    
+    <span class="c1"># Set grid</span>
+    <span class="n">nx</span><span class="p">,</span> <span class="n">nv</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span>
+    <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="o">-</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span>
+    
+    <span class="c1"># Create Vlasov-Poisson simulation</span>
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">VlasovPoisson</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">nv</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
+
+    <span class="c1"># Initialize distribution function</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">eps</span><span class="p">,</span> <span class="n">kx</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">eps</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">kx</span><span class="o">*</span><span class="n">X</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">V</span><span class="o">*</span><span class="n">V</span><span class="p">)</span>
+
+    <span class="c1"># Set time domain</span>
+    <span class="n">nstep</span> <span class="o">=</span> <span class="mi">600</span>
+    <span class="n">t</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="n">nstep</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Run simulation</span>
+    <span class="n">etime</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="n">nrj</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">nstep</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; </span><span class="si">{0:12s}</span><span class="s2"> : </span><span class="si">{1:.4f}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">etime</span><span class="p">))</span>
+    
+    <span class="c1"># Plot energy</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">nrj</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
+
+    
+<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1533</span><span class="o">*</span><span class="n">t</span><span class="o">-</span><span class="mf">5.50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "7b6fc9cd20d3492889c062325cc99e3b"}
+</script><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+ bspline_fortran : 4.6614 
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "e44b6399b45644bc874252d59622d627"}
+</script><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+ bspline_pythran : 4.6797 
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "cb24f00409eb4e01baecf7b1f10f6874"}
+</script><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+ bspline_cython : 4.5388 
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "ab0ef3a863aa4abd8c999c04a5ae434f"}
+</script><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+ bspline_numba : 4.9101 
+</pre></div>
+</div>
+<img alt="_images/04.vlasov-poisson_32_8.png" src="_images/04.vlasov-poisson_32_8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran --f90flags &quot;-fopenmp&quot; --extra &quot;-lgomp&quot; --link fftw3
+
+module bsl_fftw
+
+    use, intrinsic :: iso_c_binding
+    implicit none
+    include &#39;fftw3.f03&#39;
+    
+    contains
+    
+   
+    recursive function bspline(p, j, x) result(res)
+    
+        integer :: p, j
+        real(8) :: x, w, w1
+        real(8) :: res
+     
+        if (p == 0) then
+            if (j == 0) then
+                res = 1.0
+                return
+            else
+                res = 0.0
+                return
+            end if
+        else
+            w = (x - j) / p
+            w1 = (x - j - 1) / p
+        end if
+     
+        res = w * bspline(p-1,j,x)+(1-w1)*bspline(p-1,j+1,x)
+    
+    end function bspline
+   
+    subroutine advection(p, n, delta, alpha, axis, df)
+    
+        integer, intent(in)     :: p
+        integer, intent(in)     :: n
+        real(8), intent(in)     :: delta
+        real(8), intent(in)     :: alpha(0:n-1)
+        integer, intent(in)     :: axis
+        real(8), intent(inout)  :: df(0:n-1,0:n-1)
+              
+        !f2py optional , depend(in) :: n=shape(df,0)
+     
+        real(8),    allocatable :: f(:)
+        complex(8), allocatable :: ft(:)
+        real(8),    allocatable :: eig_bspl(:)
+        real(8),    allocatable :: modes(:)
+        complex(8), allocatable :: eigalpha(:)
+        integer(8)              :: fwd
+        integer(8)              :: bwd
+     
+        integer                 :: i
+        integer                 :: j
+        integer                 :: ishift
+        real(8)                 :: beta
+        real(8)                 :: pi 
+              
+        pi = 4.0_8 * atan(1.0_8)
+    
+        allocate(modes(0:n/2))
+        allocate(eigalpha(0:n/2))
+        allocate(eig_bspl(0:n/2))
+        allocate(f(0:n-1))
+        allocate(ft(0:n/2))
+     
+        do i = 0, n/2
+           modes(i) = 2.0_8 * pi * i / n
+        end do
+      
+        call dfftw_plan_dft_r2c_1d(fwd, n, f, ft, FFTW_ESTIMATE)
+        call dfftw_plan_dft_c2r_1d(bwd, n, ft, f, FFTW_ESTIMATE)
+     
+        eig_bspl = 0.0   
+        do j = 1, (p+1)/2
+           eig_bspl = eig_bspl + bspline(p, j-(p+1)/2, 0.0_8) * 2.0 * cos(j * modes)
+        end do
+     
+        eig_bspl = eig_bspl + bspline(p, -(p+1)/2, 0.0_8)
+      
+        !$OMP PARALLEL DO DEFAULT(FIRSTPRIVATE), SHARED(df,fwd,bwd)
+        do i = 0, n-1
+     
+            ishift = floor(-alpha(i) / delta)
+            beta   = -ishift - alpha(i) / delta
+            eigalpha = (0.0_8, 0.0_8)
+          
+            do j=-(p-1)/2, (p+1)/2+1
+               eigalpha = eigalpha + bspline(p, j-(p+1)/2, beta) * exp((ishift+j) * (0.0_8,1.0_8) * modes)
+            end do     
+            
+            if (axis == 0) then
+              f = df(:,i)
+            else
+              f = df(i,:)
+            end if
+   
+            call dfftw_execute_dft_r2c(fwd, f, ft)
+            ft = ft * eigalpha / eig_bspl / n
+            call dfftw_execute_dft_c2r(bwd, ft, f)
+           
+            if (axis == 0) then
+              df(:,i) = f
+            else
+              df(i,:) = f
+            end if
+  
+        end do
+        !$OMP END PARALLEL DO     
+        
+        call dfftw_destroy_plan(fwd)
+        call dfftw_destroy_plan(bwd)
+        deallocate(modes)
+        deallocate(eigalpha)
+        deallocate(eig_bspl)
+        deallocate(f)
+        deallocate(ft)
+    
+    end subroutine advection
+
+
+end module bsl_fftw
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">OMP_NUM_THREADS</span><span class="o">=</span><span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>env: OMP_NUM_THREADS=4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span>
+
+<span class="k">class</span> <span class="nc">VlasovPoissonThreaded</span><span class="p">(</span><span class="n">VlasovPoisson</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">advection_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span>
+        <span class="n">bsl_fftw</span><span class="o">.</span><span class="n">advection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>        
+            
+    <span class="k">def</span> <span class="nf">advection_v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">e</span>
+        <span class="n">bsl_fftw</span><span class="o">.</span><span class="n">advection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dv</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
+            
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="n">elapsed_time</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1"># Set grid</span>
+<span class="n">nx</span><span class="p">,</span> <span class="n">nv</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span>
+<span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="o">-</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span>
+
+<span class="c1"># Create Vlasov-Poisson simulation</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">VlasovPoissonThreaded</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">nv</span><span class="p">)</span>
+<span class="c1"># Initialize distribution function</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">v</span><span class="p">)</span>
+<span class="n">eps</span><span class="p">,</span> <span class="n">kx</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span>
+<span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">eps</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">kx</span><span class="o">*</span><span class="n">X</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">V</span><span class="o">*</span><span class="n">V</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asfortranarray</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="c1"># Set time domain</span>
+<span class="n">nstep</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="n">nstep</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Run simulation</span>
+<span class="n">etime</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+<span class="n">nrj</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">nstep</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; elapsed time : </span><span class="si">{0:.4f}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">etime</span><span class="p">))</span>
+
+<span class="c1"># Plot energy</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">nrj</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;energy&#39;</span><span class="p">)</span>
+
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "55001991b3664e92b826d9ecce80d278"}
+</script><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+ elapsed time : 0.2908 
+</pre></div>
+</div>
+<img alt="_images/04.vlasov-poisson_36_2.png" src="_images/04.vlasov-poisson_36_2.png" />
+</div>
+</div>
+</div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"d5e1dc3eec424d378365716b57b85234": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c4d12c82dede415f93efb801889386aa": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "25dae490c8a4445591e4ea8b29b7daed": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_d5e1dc3eec424d378365716b57b85234", "max": 6.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_c4d12c82dede415f93efb801889386aa", "value": 6.0}}, "89d0d133e46a472ead890e5ef9043139": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9c17e80046224e75a4d16d092385fecf": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "40a3d0ce3b8d44f8a72b8b8fe88d6ff8": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_89d0d133e46a472ead890e5ef9043139", "placeholder": "\u200b", "style": "IPY_MODEL_9c17e80046224e75a4d16d092385fecf", "value": " 6/6 [00:03&lt;00:00,  1.65it/s]"}}, "2577e613603f4b52800dea9c9f727ef8": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "06ed0074c5224dafa2574ef62386b2c7": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_25dae490c8a4445591e4ea8b29b7daed", "IPY_MODEL_40a3d0ce3b8d44f8a72b8b8fe88d6ff8"], "layout": "IPY_MODEL_2577e613603f4b52800dea9c9f727ef8"}}, "7177708a5afa479788449aa14b443c99": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "ff4cbb11aca746f4adf69ca7ef559df7": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "b8d870554d6b4a4b93e1e25c1585c051": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_7177708a5afa479788449aa14b443c99", "max": 6.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_ff4cbb11aca746f4adf69ca7ef559df7", "value": 6.0}}, "ce5c5ad225a84ae48e6fef6cddc18ffc": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "23d77957d84b4fa88fcebf5763beca80": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "e913cdeaff8b4fc99e3739f622e704fc": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ce5c5ad225a84ae48e6fef6cddc18ffc", "placeholder": "\u200b", "style": "IPY_MODEL_23d77957d84b4fa88fcebf5763beca80", "value": " 6/6 [00:00&lt;00:00,  7.07it/s]"}}, "67a1431785dd4e86a6e75c52d1723603": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "24ce15a96f124f9eb94670f72ccb0514": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_b8d870554d6b4a4b93e1e25c1585c051", "IPY_MODEL_e913cdeaff8b4fc99e3739f622e704fc"], "layout": "IPY_MODEL_67a1431785dd4e86a6e75c52d1723603"}}, "61d7a94833044af39a95d83d289ea08d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0070583832ed4438b8ffd76eeace6d6e": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "992bbf1993f14dd0a56342b91613acb8": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_61d7a94833044af39a95d83d289ea08d", "max": 600.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_0070583832ed4438b8ffd76eeace6d6e", "value": 600.0}}, "4fc8404e055343878f5ad8b2a50679f0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "298d7035e5704e61a02ac3a4e1afe3c6": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "d2ff4a3349ba490eb6681a36c7c0a8dd": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_4fc8404e055343878f5ad8b2a50679f0", "placeholder": "\u200b", "style": "IPY_MODEL_298d7035e5704e61a02ac3a4e1afe3c6", "value": " 600/600 [00:19&lt;00:00, 31.36it/s]"}}, "ef83d156b5e740f390117822405e6d9a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7b6fc9cd20d3492889c062325cc99e3b": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_992bbf1993f14dd0a56342b91613acb8", "IPY_MODEL_d2ff4a3349ba490eb6681a36c7c0a8dd"], "layout": "IPY_MODEL_ef83d156b5e740f390117822405e6d9a"}}, "5eb6d0cccddc4b5aa1ed07dd0e270816": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "095e1c5d24cf4620a7e4bb6a02dca66d": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "c6428def6cf5493b977055e17d0ac7dc": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_5eb6d0cccddc4b5aa1ed07dd0e270816", "max": 600.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_095e1c5d24cf4620a7e4bb6a02dca66d", "value": 600.0}}, "f88f68e2d63841eb9fc271cdc2eaf8b7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "67f65485a8ef4a61ab544d73397f66c0": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "dcb5e0627b0e4c2aada6c53c4c80e975": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_f88f68e2d63841eb9fc271cdc2eaf8b7", "placeholder": "\u200b", "style": "IPY_MODEL_67f65485a8ef4a61ab544d73397f66c0", "value": " 600/600 [00:05&lt;00:00, 115.34it/s]"}}, "a10330be0d984ec4a8f92f77e9a0fb6d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e44b6399b45644bc874252d59622d627": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_c6428def6cf5493b977055e17d0ac7dc", "IPY_MODEL_dcb5e0627b0e4c2aada6c53c4c80e975"], "layout": "IPY_MODEL_a10330be0d984ec4a8f92f77e9a0fb6d"}}, "4ded5f8ff19847eda5237547776f8eec": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f5411c71d17d4f749638305710e3e3e7": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "59af642a098547f7a981399816a88cb8": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_4ded5f8ff19847eda5237547776f8eec", "max": 600.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_f5411c71d17d4f749638305710e3e3e7", "value": 600.0}}, "4b01aac76fce4268b0d0027d36fe33e5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7e1367da3c5c42a093eea400b00df4f7": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "29b91fc8859b49258d42b9cef818ec95": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_4b01aac76fce4268b0d0027d36fe33e5", "placeholder": "\u200b", "style": "IPY_MODEL_7e1367da3c5c42a093eea400b00df4f7", "value": " 600/600 [00:09&lt;00:00, 61.30it/s]"}}, "8e04d44b9ec54293bed43b2d7ed77ee0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "cb24f00409eb4e01baecf7b1f10f6874": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_59af642a098547f7a981399816a88cb8", "IPY_MODEL_29b91fc8859b49258d42b9cef818ec95"], "layout": "IPY_MODEL_8e04d44b9ec54293bed43b2d7ed77ee0"}}, "8899bbe02ab64139b38b933e08dca146": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "39a5a98e4bb44077af37738d270b4da3": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "068997cd8d5e4d4c8ed51c653638216c": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_8899bbe02ab64139b38b933e08dca146", "max": 600.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_39a5a98e4bb44077af37738d270b4da3", "value": 600.0}}, "055c6a17e814441680eaae601b6e2d0e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "61aa0bda797e4e74ace556cc083acf47": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "5101668161244cef8cfc60417927eed6": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_055c6a17e814441680eaae601b6e2d0e", "placeholder": "\u200b", "style": "IPY_MODEL_61aa0bda797e4e74ace556cc083acf47", "value": " 600/600 [00:04&lt;00:00, 122.28it/s]"}}, "a6a6c0098cc747e090c77fb7b08652b5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "ab0ef3a863aa4abd8c999c04a5ae434f": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_068997cd8d5e4d4c8ed51c653638216c", "IPY_MODEL_5101668161244cef8cfc60417927eed6"], "layout": "IPY_MODEL_a6a6c0098cc747e090c77fb7b08652b5"}}, "7772891ab22a4361ac473fb46007edc0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1073c0d6fd4c4985b1ec12bc934cce6f": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "0c587a8e3c3c4f118aa332961109ef29": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_7772891ab22a4361ac473fb46007edc0", "max": 600.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_1073c0d6fd4c4985b1ec12bc934cce6f", "value": 600.0}}, "3ead1a7c88864ec9bb311a933fe88feb": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "eff7be2b0edf4f1ba4625fa5fa82eea4": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "058f75c3cc6c4b3bab832ff8932e2960": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_3ead1a7c88864ec9bb311a933fe88feb", "placeholder": "\u200b", "style": "IPY_MODEL_eff7be2b0edf4f1ba4625fa5fa82eea4", "value": " 600/600 [00:00&lt;00:00, 2055.12it/s]"}}, "3ce9fd6b145a467e9d963334bc39e853": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "55001991b3664e92b826d9ecce80d278": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_0c587a8e3c3c4f118aa332961109ef29", "IPY_MODEL_058f75c3cc6c4b3bab832ff8932e2960"], "layout": "IPY_MODEL_3ce9fd6b145a467e9d963334bc39e853"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
