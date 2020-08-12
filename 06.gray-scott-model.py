@@ -8,18 +8,20 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.4.0
+#       jupytext_version: 1.5.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
 
+# # Gray-Scott Model
+#
 # This notebook is originally an idea of [@gouarin](https://github.com/gouarin)
 
 import sys
 if sys.platform == "darwin":
-    %env CC=gcc-9
+    %env CC=gcc-10
 
 import numpy as np
 
@@ -181,7 +183,7 @@ cpdef cython_grayscott(np.ndarray[double, ndim=2] U, np.ndarray[double, ndim=2] 
 
     cdef np.ndarray Lu = np.zeros_like(u)
     cdef np.ndarray Lv = np.zeros_like(v)
-    cdef int i, c, r1, c1, r2, c2
+    cdef Py_ssize_t i, c, r, r1, c1, r2, c2
     cdef double uvv
 
     cdef double[:, ::1] bU = U
@@ -298,3 +300,5 @@ U, V = init(300)
 U = np.asfortranarray(U)
 V = np.asfortranarray(V)
 %timeit fortran_grayscott(U, V, Du, Dv, F, k)
+
+

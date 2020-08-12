@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.4.0
+#       jupytext_version: 1.5.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -205,7 +205,7 @@ extern long syracuse(long n);
 
 # + language="bash"
 # swig -python syrac.i 
-# gcc-9 `python3-config --cflags` -fPIC \
+# ${CC} `python3-config --cflags` -fPIC \
 #   -shared -O3 -o _syracuseC.so syrac_wrap.c syrac.c `python3-config --ldflags`
 #
 #
@@ -238,10 +238,10 @@ setup( name='Syracuse',
        description = """Simple C Fortran interface example """,
        ext_modules = [module_swig],
 )
+# -
 
-# + language="bash"
-#
-# python setup.py build_ext --inplace
+import sys
+!{sys.executable} setup.py build_ext --inplace
 
 # +
 import _syracuseC

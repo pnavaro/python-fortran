@@ -8,7 +8,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.4.0
+#       jupytext_version: 1.5.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -23,17 +23,12 @@
 # This is a modified version from [Loic Gouarin](https://github.com/gouarin/GTSage2014/)
 #
 # The test case is the computation of the Julia set [wikipedia](https://en.wikipedia.org/wiki/Julia_set)
-
-# +
-import os, sys
-
-if sys.platform == 'darwin':
-    os.environ['CC'] = 'gcc-9'
-    os.environ['CXX'] = 'g++-9'
-else:
-    os.environ['CC'] = 'gcc'
-    os.environ['CXX'] = 'g++'
 # -
+
+import os, sys
+if sys.platform == 'darwin':
+    os.environ['CC'] = 'gcc-10'
+    os.environ['CXX'] = 'g++-10'
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -109,8 +104,8 @@ plot_julia_set(juliaset_python(x, y, c, lim, maxit))
 # include_dirs=/usr/local/opt/openblas/include
 # library_dirs=/usr/local/opt/openblas/lib
 # blas=openblas
-# CXX=g++-9
-# CC=gcc-9
+# CXX=g++-10
+# CC=gcc-10
 # ```
 
 %load_ext pythran.magic
@@ -410,25 +405,36 @@ plot_julia_set(juliaset_numba(x, y, c, lim, maxit))
 import julia
 julia.install()
 
+# +
 %%file juliaset_julia.jl
+import Base.Threads: @threads, @spawn
+
+function escapetime(z, c, lim, maxit)
+
+    for n = 1:maxit
+        if abs(z) > lim
+            return n-1
+        end
+        z = z*z + c
+    end
+    return maxit
+end
+
 function juliaset_julia(x :: Vector{Float64}, y :: Vector{Float64}, 
                         c :: Complex, lim , maxit )
     
     nx = length(x)
     ny = length(y)
     julia = zeros(Float64, (nx, ny))
-
-    @inbounds for i in eachindex(x), j in eachindex(y)
-        z :: ComplexF64 = x[i] + 1im * y[j] 
-        ite :: Int = 0 
-        while (abs(z) < lim && ite < maxit)
-            z = z^2 + c
-            ite += 1
+    @sync for i in eachindex(x)
+        @spawn for j in eachindex(y)
+            @inbounds z  = x[i] + 1im * y[j] 
+            @inbounds julia[j, i] = escapetime(z, c, lim, maxit)
         end
-        julia[j, i] = ite
     end
     return julia
 end
+# -
 
 from julia.api import Julia
 jl = Julia(compiled_modules=False)
@@ -441,6 +447,7 @@ plot_julia_set(juliaset_julia(x, y, c, lim, maxit))
 # ### Set number of threads used for parallel functions
 
 %env OMP_NUM_THREADS=4
+%env JULIA_OMP_THREADS=4
 
 # + {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "subslide"}}
 import pandas as pd
@@ -453,9 +460,9 @@ nx, ny = 1024, 1024 # increase mesh size
 x = np.linspace(-1.6, 1.6, nx)
 y = np.linspace(-1.6, 1.6, ny)
 
-functions = [juliaset_fortran,
+functions = [juliaset_numpy,
+             juliaset_fortran,
              juliaset_fortran_omp,
-             juliaset_numpy,
              juliaset_cython,
              juliaset_cython_omp,
              juliaset_numba,
@@ -470,6 +477,3 @@ for f in tqdm(functions):
 results = pd.DataFrame(results, index=list(map(lambda f:f.__name__[9:],functions)))
 results["speed_up"] = [results.etime["numpy"]/t for t in results.etime]
 results.sort_values(by="speed_up",axis=0)
-# -
-
-

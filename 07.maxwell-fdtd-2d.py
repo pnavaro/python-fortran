@@ -7,7 +7,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.4.0
+#       jupytext_version: 1.5.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -132,7 +132,7 @@ HTML(ani.to_html5_video())
 # %%
 %%time
 
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
 nx, ny = 512, 512
 vx, dx = np.linspace(0, 1, nx, endpoint=True, retstep=True)

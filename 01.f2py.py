@@ -9,19 +9,22 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.4.0
+#       jupytext_version: 1.5.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
 
-# +
-import os, sys
+# + [markdown] {"slideshow": {"slide_type": "slide"}}
+# # f2py
+# f2py is a part of Numpy and there are three ways to wrap Fortran with Python :
+# - Write some fortran subroutines and just run f2py to create Python modules.
+# - Insert special f2py directives inside Fortran source for complex wrapping.
+# - Write a interface file (.pyf) to wrap Fortran files without changing them. f2py automatically generate the pyf template file that can be modified. 
+# -
 
-if sys.platform == 'darwin':
-    os.environ['CC'] = 'gcc-9'
-    os.environ['CXX'] = 'g++-9'
+import os, sys
 
 
 # + {"slideshow": {"slide_type": "slide"}}
@@ -31,13 +34,6 @@ import matplotlib.pyplot as plt
 import scipy.fftpack as sf
 import scipy.linalg as sl
 import numpy as np
-
-# + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # f2py
-# f2py is a part of Numpy and there are three ways to wrap Fortran with Python :
-# - Write some fortran subroutines and just run f2py to create Python modules.
-# - Insert special f2py directives inside Fortran source for complex wrapping.
-# - Write a interface file (.pyf) to wrap Fortran files without changing them. f2py automatically generate the pyf template file that can be modified. 
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
 # # Simple Fortran subroutine to compute norm
@@ -68,7 +64,7 @@ Cf2py intent(out) c
 #
 
 # + {"slideshow": {"slide_type": "fragment"}}
-!f2py -c euclidian_norm.f90 -m vect
+!{sys.executable} -m numpy.f2py --quiet -c euclidian_norm.f90 -m vect
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
 # ## Use the extension module in Python
@@ -243,7 +239,7 @@ positions # the memory is updated
 # - Generate the signature file
 
 # + {"slideshow": {"slide_type": "fragment"}}
-!f2py -m mylapack --overwrite-signature -h dgemm.pyf dgemm.f
+!{sys.executable} -m numpy.f2py --quiet -m mylapack --overwrite-signature -h dgemm.pyf dgemm.f
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
 # ```fortran
@@ -275,7 +271,7 @@ positions # the memory is updated
 # ```
 
 # + {"slideshow": {"slide_type": "slide"}}
-!f2py -c dgemm.pyf -llapack -m mylapack
+!{sys.executable} -m numpy.f2py --quiet -c dgemm.pyf -llapack -m mylapack
 
 # + {"slideshow": {"slide_type": "slide"}}
 import numpy as np
@@ -320,7 +316,7 @@ end python module mylapack2
 # # Build the python module
 
 # + {"slideshow": {"slide_type": "fragment"}}
-!f2py -c dgemm2.pyf  -m mylapack2 -llapack --f90flags=-O3
+!{sys.executable} -m numpy.f2py --quiet -c dgemm2.pyf  -m mylapack2 -llapack --f90flags=-O3
 
 # + {"slideshow": {"slide_type": "slide"}}
 import mylapack2
@@ -391,6 +387,9 @@ f90module.test_array()
 import os, sys
 
 %env OMP_NUM_THREADS=4
+if sys.platform == "darwin":
+    os.environ["CC"] = "gcc-10"
+    os.environ["FC"] = "gfortran"
 
 # + {"slideshow": {"slide_type": "fragment"}}
 %%fortran 
@@ -588,5 +587,3 @@ plt.colorbar()
 #                  extra_link_args=['-llapack -lgomp'])
 # ```
 #
-
-

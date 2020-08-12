@@ -6,12 +6,14 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.4.0
+#       jupytext_version: 1.5.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
+
+# # Co-rotating vortices
 
 import numpy as np
 import matplotlib
@@ -21,14 +23,13 @@ plt.rcParams['figure.figsize'] = (10,6)
 
 # %matplotlib inline
 # %config InlineBackend.figure_format = 'retina'
-# %env FC=/opt/miniconda3/envs/python-fortran/bin/gfortran
 
 
 # +
 import sys
 
 if sys.platform == "darwin":
-    %env CC=gcc-9
+    %env CC=gcc-10
 # -
 
 # %load_ext fortranmagic
@@ -40,7 +41,7 @@ subroutine biot ( n, xp, yp, op, up, vp )
   integer, intent(in)  :: n
   real(8), intent(in)  :: xp( n ), yp( n ), op( n )
   real(8), intent(out) :: up( n ), vp( n )
-#   !f2py optional , depend(a) :: n=len(xp)
+  # !f2py optional , depend(a) :: n=len(xp)
         
   integer :: k, j
   real(8) :: dpi, a1, a12, a122, r2, r22, r2a1, r2a13

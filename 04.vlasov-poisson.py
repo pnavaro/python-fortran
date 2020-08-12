@@ -7,7 +7,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.4.0
+#       jupytext_version: 1.5.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -44,7 +44,7 @@
 import sys
 
 if sys.platform == "darwin":
-    %env CC='gcc-9'
+    %env CC='gcc-10'
 # -
 
 # ## Bspline
@@ -543,7 +543,7 @@ module bsl_fftw
         integer, intent(in)     :: axis
         real(8), intent(inout)  :: df(0:n-1,0:n-1)
               
-#         !f2py optional , depend(in) :: n=shape(df,0)
+        # !f2py optional , depend(in) :: n=shape(df,0)
      
         real(8),    allocatable :: f(:)
         complex(8), allocatable :: ft(:)

@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.4.0
+#       jupytext_version: 1.5.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -136,7 +136,7 @@ contains
 
 subroutine create(geom, xmin, xmax, nx)
 
-#     !f2py integer(8), intent(out) :: geom
+    # !f2py integer(8), intent(out) :: geom
     type(geometry), pointer :: geom
     real(8), intent(in) :: xmin, xmax
     integer, intent(in) :: nx
@@ -158,7 +158,7 @@ subroutine create(geom, xmin, xmax, nx)
 end subroutine create
 
 subroutine view(geom)
-#     !f2py integer(8), intent(in) :: geom
+    # !f2py integer(8), intent(in) :: geom
     type(geometry), pointer :: geom
     print*, 'nx = ', geom%nx
     print*, geom%xmin, geom%xmax
@@ -167,7 +167,7 @@ end subroutine view
 
 subroutine get_size(geom, nx)
 
-#     !f2py integer(8), intent(in) :: geom
+    # !f2py integer(8), intent(in) :: geom
     type(geometry), pointer :: geom
     integer, intent(out) :: nx
     
@@ -223,9 +223,8 @@ python module cfuncts
 end python module cfuncts
 # -
 
-# %env FC=gfortran
-# %env CC=gcc-9
-# !f2py -c cfuncts.c cfuncts.pyf -m cfuncts
+import sys
+!{sys.executable} -m numpy.f2py --quiet -c cfuncts.c cfuncts.pyf -m cfuncts
 
 import numpy as np
 import cfuncts
@@ -246,5 +245,3 @@ x
 # - Transparents E. Sonnendrucker http://calcul.math.cnrs.fr/Documents/Journees/dec2006/python-fortran.pdf
 # - Documentation Sagemath http://doc.sagemath.org/html/en/thematic_tutorials/numerical_sage/f2py.html
 # - Hans Petter Langtangen : Python Scripting for Computational Science.
-
-
