@@ -56,7 +56,7 @@ end module particles_f90
 
 # -
 
-# # The Python class
+# ## The Python class
 
 class Particles(object):
     
@@ -76,7 +76,7 @@ class Particles(object):
         return self.velocities[self.index]
 
 
-# # Access to Fortran data from Python
+# ## Access to Fortran data from Python
 
 particles = Particles(10)
 particles.velocities 
@@ -90,7 +90,7 @@ particles.index = 1
 particles.position
 
 
-# # Create an Iterator class
+# ## Create an Iterator class
 
 class ParticleArray(object):
     
@@ -111,7 +111,6 @@ class ParticleArray(object):
             yield self.particles
 
 
-
 particle_array = ParticleArray(particles)
 particle_array[0].position
 
@@ -119,7 +118,7 @@ for p in particle_array:
     print(p.position)
 
 
-# # Fortran derived type
+# ## Fortran derived type
 
 # +
 # %%fortran
@@ -187,7 +186,7 @@ mesh.get_size(geom)
 
 type(geom)
 
-# # f2py with C code
+# ## f2py with C code
 #
 # - Signature file is mandatory
 # - `intent(c)` must be used for all variables and can be set globally.
@@ -239,7 +238,7 @@ cfuncts.push_particles( x, v, dt)
 
 x
 
-# # References
+# ## References
 #  
 # - f2py documentation https://docs.scipy.org/doc/numpy/f2py/
 # - Transparents E. Sonnendrucker http://calcul.math.cnrs.fr/Documents/Journees/dec2006/python-fortran.pdf

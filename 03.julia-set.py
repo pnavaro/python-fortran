@@ -45,7 +45,7 @@ import matplotlib.cm as cm
 plt.rcParams['figure.figsize'] = (6,6)
 # -
 
-# # Initialize Mesh
+# ## Initialize Mesh
 
 # + {"internals": {"slide_helper": "subslide_end"}, "slide_helper": "slide_end", "slideshow": {"slide_type": "-"}}
 nx, ny = 512, 512 # mesh
@@ -58,7 +58,7 @@ c = -0.772691322542185 + 0.124281466072787j
 
 
 # + [markdown] {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}}
-# # Pure Python
+# ## Pure Python
 
 # + {"internals": {}, "slideshow": {"slide_type": "-"}}
 def juliaset_python(x, y, c, lim, maxit):
@@ -89,7 +89,7 @@ def plot_julia_set(julia):
 plot_julia_set(juliaset_python(x, y, c, lim, maxit))
 # -
 
-# # Pythran
+# ## Pythran
 #
 # [Pythran](https://pythran.readthedocs.io/en/latest/) is a Python-to-C++ translator
 #
@@ -139,7 +139,7 @@ def juliaset_pythran(x, y, c, lim, maxit):
 
 plot_julia_set(juliaset_pythran(x, y, c, lim, maxit))
 
-# # Fortran
+# ## Fortran
 #
 # You need [numpy](https://numpy.org) and [fortran-magic](https://github.com/mgaitan/fortran_magic)
 
@@ -245,7 +245,7 @@ end subroutine juliaset_fortran_omp
 plot_julia_set(juliaset_fortran_omp(x, y, c, lim, maxit))
 
 # + [markdown] {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}}
-# # Numpy
+# ## Numpy
 #
 # Vectorize version with numpy. You could get some overflow warnings
 
@@ -274,7 +274,7 @@ def juliaset_numpy(x, y, c, lim, maxit):
 plot_julia_set(juliaset_numpy(x, y, c, lim, maxit))
 
 # + [markdown] {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}}
-# # Cython
+# ## Cython
 #
 # Install [Cython](https://cython.readthedocs.io)
 #
@@ -355,7 +355,7 @@ def juliaset_cython_omp(double [:] x, double [:] y, double complex c, double lim
 plot_julia_set(juliaset_cython_omp(x, y, c, lim, maxit))
 
 # + [markdown] {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}}
-# # numba
+# ## numba
 #
 # [Numba](https://numba.pydata.org) will accelerate the pure python function just  with
 # the decorator `@jit`. Numba does everything for you.
@@ -386,7 +386,7 @@ def juliaset_numba(x, y, c, lim, maxit):
 plot_julia_set(juliaset_numba(x, y, c, lim, maxit))
 # -
 
-# # PyJulia
+# ## PyJulia
 #
 # [PyJulia](https://pyjulia.readthedocs.io/en/latest/#) is a python module to import
 # Julia function in your Python session. You can also run Julia code in a middle of

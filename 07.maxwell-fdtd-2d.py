@@ -248,5 +248,3 @@ for t in tqdm(range(1000)):
     amperemaxwell_fortran(ex, ey, hz, dx, dy, dt, nx, ny)
 
 
-
-# %%

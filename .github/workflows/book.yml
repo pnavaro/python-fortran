@@ -1,0 +1,48 @@
+name: convert notebooks to html and publish
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install pandoc
+      run: |
+        sudo apt-get -yq update
+        sudo apt-get install -yq pandoc texlive-xetex texlive-fonts-extra gfortran ffmpeg gfortran libopenblas-dev libfftw3-dev
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+    - name: Install SSH Client
+      uses: webfactory/ssh-agent@v0.2.0
+      with:
+        ssh-private-key: ${{ secrets.SITE_PRIV }}
+    - name: Install Julia
+      uses: julia-actions/setup-julia@v1
+      with:
+         version: 1.5.0
+    - run: julia -e '
+           using Pkg;
+           ENV["PYTHON"] = "/usr/share/miniconda3/bin/python";
+           Pkg.add("PyCall");
+           Pkg.add("REPL");
+           Pkg.build("PyCall") '
+    - name: Install Miniconda
+      uses: goanpeca/setup-miniconda@v1
+      with:
+        miniconda-version: "latest"
+    - name: Install dependencies and run nbcourse
+      shell: bash -l {0}
+      run: |
+        conda env update -f environment.yml -n base
+        conda run -n base python -m ipykernel install --user --name python3
+        conda run -n base python -m pip install jupyter-book
+        conda run -n base jupyter-book build docs
+    - name: Deploy on github
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        SSH: true
+        BRANCH: gh-pages
+        FOLDER: ./docs/_build/html

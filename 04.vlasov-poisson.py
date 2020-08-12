@@ -193,7 +193,7 @@ def bspline_numba(p, j, x):
 
 interpolation_test(bspline_numba)
 
-# # Pythran
+# ## Pythran
 
 # +
 import pythran
@@ -383,8 +383,8 @@ plt.ylabel('Execution Time (s)');
 
 # -
 
-# # Vlasov-Poisson equation
-# We consider the dimensionless Vlasov-Poisson equation for one species
+# ## Vlasov-Poisson system
+# system for one species
 # with a neutralizing background.
 #
 # $$ 
@@ -455,7 +455,7 @@ class VlasovPoisson:
         return nrj
 
 
-# # Landau Damping
+# ## Landau Damping
 #
 # [Landau damping - Wikipedia](https://en.wikipedia.org/wiki/Landau_damping)
 #
@@ -674,5 +674,3 @@ axes.plot(t, nrj, label='energy')
 
     
 plt.legend();
-# -
-

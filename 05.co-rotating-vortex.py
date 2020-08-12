@@ -251,6 +251,3 @@ ani = animation.FuncAnimation(fig, animate, frames=400,
 from IPython.display import HTML
 
 HTML(ani.to_jshtml())
-# -
-
-

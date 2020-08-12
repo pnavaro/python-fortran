@@ -13,15 +13,14 @@
 #     name: python3
 # ---
 
-# *This notebook is not finished*
-#
-# I found [this reference](https://www.fortran90.org/src/best-practices.html#interfacing-with-python) with better examples.
-
 # # SWIG and Ctypes
 #  
 # Interfacing Fortran code through C interface
+
 #
-# # Problem: Collatz conjecture
+# I found [this reference](https://www.fortran90.org/src/best-practices.html#interfacing-with-python) with good examples.
+
+# ## Problem: Collatz conjecture
 #
 #  -  Choose $u_0$ 
 #  -  If $u_k$ even, $u_{k+1} \rightarrow \frac{u_k}{2}$ ;
@@ -32,7 +31,7 @@
 #  
 # [The Collatz conjecture on Wikipedia](https://en.wikipedia.org/wiki/Collatz_conjecture)
 
-# # C program
+# ## C program
 
 # +
 # %%file syracuse.c
@@ -64,7 +63,7 @@ int main() {
 # time ./a.out
 # -
 
-# # Python program
+# ## Python program
 
 # +
 # %%time
@@ -86,13 +85,13 @@ N = 1000000
 flights = [syracuse(i) for i in range(1,N+1)]
 # -
 
-# # Performances
+# ## Performances
 #
 # - The python syntax is simpler.
 # - 100 times slower
 # - Solution : call the C function from python.
 
-# # Ctypes
+# ## Ctypes
 #
 # This is the C function we will call from python
 
@@ -132,7 +131,7 @@ syracuse = syracDLL.syracuse
 flights = [syracuse(i) for i in range(1,N+1)]
 # -
 
-# # Ctypes with Fortran module
+# ## Ctypes with Fortran module
 #
 # If you change the fortran file you have to restart the kernel
 
@@ -189,7 +188,7 @@ flights = [syrac_f90.c_syrac(i) for i in range(1,N+1)]
 #
 # http://docs.python.org/library/ctypes.html}
 
-# # SWIG
+# ## SWIG
 
 # Interface file syrac.i for C function in syrac.c
 
@@ -201,29 +200,21 @@ flights = [syrac_f90.c_syrac(i) for i in range(1,N+1)]
    extern long syracuse(long n);
 %}
 extern long syracuse(long n);
-
-
-# + language="bash"
-# swig -python syrac.i 
-# ${CC} `python3-config --cflags` -fPIC \
-#   -shared -O3 -o _syracuseC.so syrac_wrap.c syrac.c `python3-config --ldflags`
-#
-#
-
-# +
-import syracuseC
-
-syracuse = syracuseC.syracuse
-syracuse(1000)
-
-# +
-# %%time
-N=1000000
-
-flights = [syracuse(i) for i in range(1,N+1)]
 # -
 
-# Build with distutils
+
+# ### Build the python module 
+#
+# - Using command line
+#
+# ```bash
+# swig -python syrac.i
+#
+# gcc `python3-config --cflags` -fPIC \
+#   -shared -O3 -o _syracuseC.so syrac_wrap.c syrac.c `python3-config --ldflags`
+#  ```
+
+# - With distutils
 
 # +
 # %%file setup.py
@@ -233,7 +224,7 @@ from numpy.distutils.core import Extension, setup
 module_swig = Extension('_syracuseC', sources=['syrac_wrap.c', 'syrac.c'])
 
 setup( name='Syracuse',
-       version = '0.1',
+       version = '0.1.0',
        author      = "Pierre Navaro",
        description = """Simple C Fortran interface example """,
        ext_modules = [module_swig],
@@ -241,16 +232,22 @@ setup( name='Syracuse',
 # -
 
 import sys
-!{sys.executable} setup.py build_ext --inplace
+!{sys.executable} setup.py build_ext --inplace --quiet
 
 # +
 import _syracuseC
 
 syracuse = _syracuseC.syracuse
 syracuse(1000)
+
+# +
+# %%time
+N=1000000
+
+flights = [syracuse(i) for i in range(1,N+1)]
 # -
 
-# # References
+# ## References
 #
 #  - [Interfacage C-Python par Xavier Juvigny](http://calcul.math.cnrs.fr/Documents/Ecoles/2010/InterfacagePython.pdf)
 #  - [Optimizing and interfacing with Cython par Konrad Hinsen](http://calcul.math.cnrs.fr/Documents/Ecoles/2010/cours_cython.pdf)
