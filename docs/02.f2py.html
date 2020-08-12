@@ -13017,6 +13017,152 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
+<style type="text/css">
+    /* A typographically tinkered Jupyter notebook stylesheet
+ *
+ * Copyright © 2013--2015 Jiahao Chen <jiahao@mit.edu>
+ *
+ * MIT License
+ *
+ * To use, place in
+ *
+ *     ~/.jupyter/custom/custom.css
+ *
+ * and refresh the page.
+ *
+ * The Jupyter server does not need to be restarted.
+ *
+ * Based on suggestions from practicaltypography.com
+ */
+
+.rendered_html ol {
+    list-style:decimal;
+    margin: 1em 2em;
+}
+
+.autosave_status, .checkpoint_status {
+        color: #bbbbbb;
+	font-family: "Fira Sans", sans-serif;
+}
+
+.filename {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.text_cell, .text_cell_render {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-size: 18px;
+    line-height:1.4em;
+    padding-left:3em;
+    padding-right:3em;
+    max-width: 36em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+}
+
+blockquote p {
+    font-size: 17px;
+    line-height:1.2em;
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+}
+
+.code_cell {  /* Area containing both code and output */
+    font-family: "Source Code Pro", "Droid Sans Mono", Consolas, "Ubuntu Mono", "Liberation Mono", monospace;
+    background-color:#F1F0FF; /* light blue */
+    border-radius: 0.8em;
+    padding: 1em;
+}
+
+code, pre, .CodeMirror {
+    font-family: "Source Code Pro", "Droid Sans Mono", Consolas, "Ubuntu Mono", "Liberation Mono", monospace;
+    line-height:1.25em;
+    font-size: 16px;
+}
+
+.slide-header, p.slide-header
+{
+    color: #498AF3;
+    font-size: 200%;
+    font-weight:bold;
+    margin: 0px 20px 10px;
+    page-break-before: always;
+    text-align: center;
+}
+
+div.prompt {
+    font-family: "Source Code Pro", "Droid Sans Mono", Consolas, "Ubuntu Mono", "Liberation Mono", monospace;
+    font-size: 11px;
+}
+
+div.output_area pre {
+    font-family: "Source Code Pro", "Droid Sans Mono", Consolas, "Ubuntu Mono", "Liberation Mono", monospace;
+    line-height:1.25em;
+    font-size: 16px;
+    background-color: #F4F4F4;
+}
+
+div.output_error pre {
+    background-color: #ffeeee;
+}
+
+.cm-header-1, .rendered_html h1 {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-size: 24px;
+    font-variant: small-caps;
+    text-rendering: auto;
+    letter-spacing: 0.06em;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.cm-header-2, .rendered_html h2 {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-size: 21px;
+    font-weight: bold;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.cm-header-3, .rendered_html h3 {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-size: 19px;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+}
+
+.cm-header-4, .rendered_html h4, .cm-header-5, .rendered_html h5, .cm-header-6, .rendered_html h6 {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+}
+
+.rendered_html td {
+    font-variant-numeric: tabular-nums;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13105,10 +13251,10 @@ div#notebook {
 
 
 
-<div id="f244d970-4da7-4ca0-b181-cc5f64b4adba"></div>
+<div id="274c12bd-3b64-4bf2-8ec0-32dc8fb5c729"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#f244d970-4da7-4ca0-b181-cc5f64b4adba');
+var element = $('#274c12bd-3b64-4bf2-8ec0-32dc8fb5c729');
 new Promise(function(resolve, reject) {
 	var script = document.createElement("script");
 	script.onload = resolve;
@@ -13739,99 +13885,11 @@ end module mesh
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> FC=gfortran
-<span class="o">%</span><span class="k">env</span> CC=gcc-9
-<span class="o">!</span>f2py -c cfuncts.c cfuncts.pyf -m cfuncts
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m numpy.f2py --quiet -c cfuncts.c cfuncts.pyf -m cfuncts
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>env: FC=gfortran
-env: CC=gcc-9
-running build
-running config_cc
-unifing config_cc, config, build_clib, build_ext, build commands --compiler options
-running config_fc
-unifing config_fc, config, build_clib, build_ext, build commands --fcompiler options
-running build_src
-build_src
-building extension &#34;cfuncts&#34; sources
-creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7
-f2py options: []
-f2py: cfuncts.pyf
-Reading fortran codes...
-	Reading file &#39;cfuncts.pyf&#39; (format:free)
-Line #6 in cfuncts.pyf:&#34;            intent(c) &#34;
-	All arguments will have attribute intent(c)
-Post-processing...
-	Block: cfuncts
-			Block: push_particles
-Post-processing (stage 2)...
-Building modules...
-	Building module &#34;cfuncts&#34;...
-		Constructing wrapper function &#34;push_particles&#34;...
-		  push_particles(positions,velocities,dt,[n])
-	Wrote C/API module &#34;cfuncts&#34; to file &#34;/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/cfunctsmodule.c&#34;
-  adding &#39;/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.c&#39; to sources.
-  adding &#39;/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7&#39; to include_dirs.
-copying /usr/local/lib/python3.7/site-packages/numpy/f2py/src/fortranobject.c -&gt; /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7
-copying /usr/local/lib/python3.7/site-packages/numpy/f2py/src/fortranobject.h -&gt; /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7
-build_src: building npy-pkg config files
-running build_ext
-customize UnixCCompiler
-customize UnixCCompiler using build_ext
-building &#39;cfuncts&#39; extension
-compiling C sources
-C compiler: gcc-9 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers
-
-creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var
-creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders
-creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw
-creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn
-creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T
-creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl
-creating /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7
-compile options: &#39;-I/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7 -I/usr/local/lib/python3.7/site-packages/numpy/core/include -I/usr/local/include -I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/sqlite/include -I/usr/local/Cellar/python/3.7.6_1/Frameworks/Python.framework/Versions/3.7/include/python3.7m -c&#39;
-gcc-9: cfuncts.c
-gcc-9: /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/cfunctsmodule.c
-gcc-9: /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.c
-In file included from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/ndarraytypes.h:1832</span>,
-                 from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/ndarrayobject.h:12</span>,
-                 from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/arrayobject.h:4</span>,
-                 from <span class="ansi-bold">/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.h:13</span>,
-                 from <span class="ansi-bold">/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.c:2</span>:
-<span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/npy_1_7_deprecated_api.h:17:2:</span> <span class="ansi-magenta-intense-fg ansi-bold">warning: </span>#warning &#34;Using deprecated NumPy API, disable it with &#34; &#34;#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION&#34; [<span class="ansi-magenta-intense-fg ansi-bold">-Wcpp</span>]
-   17 | #<span class="ansi-magenta-intense-fg ansi-bold">warning</span> &#34;Using deprecated NumPy API, disable it with &#34; \
-      |  <span class="ansi-magenta-intense-fg ansi-bold">^~~~~~~</span>
-In file included from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/ndarraytypes.h:1832</span>,
-                 from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/ndarrayobject.h:12</span>,
-                 from <span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/arrayobject.h:4</span>,
-                 from <span class="ansi-bold">/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.h:13</span>,
-                 from <span class="ansi-bold">/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/cfunctsmodule.c:16</span>:
-<span class="ansi-bold">/usr/local/lib/python3.7/site-packages/numpy/core/include/numpy/npy_1_7_deprecated_api.h:17:2:</span> <span class="ansi-magenta-intense-fg ansi-bold">warning: </span>#warning &#34;Using deprecated NumPy API, disable it with &#34; &#34;#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION&#34; [<span class="ansi-magenta-intense-fg ansi-bold">-Wcpp</span>]
-   17 | #<span class="ansi-magenta-intense-fg ansi-bold">warning</span> &#34;Using deprecated NumPy API, disable it with &#34; \
-      |  <span class="ansi-magenta-intense-fg ansi-bold">^~~~~~~</span>
-<span class="ansi-bold">/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/cfunctsmodule.c:102:12:</span> <span class="ansi-magenta-intense-fg ansi-bold">warning: </span>&#39;<span class="ansi-bold">f2py_size</span>&#39; defined but not used [<span class="ansi-magenta-intense-fg ansi-bold">-Wunused-function</span>]
-  102 | static int <span class="ansi-magenta-intense-fg ansi-bold">f2py_size</span>(PyArrayObject* var, ...)
-      |            <span class="ansi-magenta-intense-fg ansi-bold">^~~~~~~~~</span>
-gcc-9 -bundle -undefined dynamic_lookup -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/cfuncts.o /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/cfunctsmodule.o /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl/src.macosx-10.15-x86_64-3.7/fortranobject.o -L/usr/local/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/sqlite/lib -o ./cfuncts.cpython-37m-darwin.so
-Removing build directory /var/folders/mw/nwq5qyg56fl585pb9jw81_qc0000gn/T/tmpm79uzwsl
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13957,19 +14015,6 @@ n : input int, optional
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
     </div>
   </div>

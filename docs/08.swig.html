@@ -13017,6 +13017,152 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
+<style type="text/css">
+    /* A typographically tinkered Jupyter notebook stylesheet
+ *
+ * Copyright © 2013--2015 Jiahao Chen <jiahao@mit.edu>
+ *
+ * MIT License
+ *
+ * To use, place in
+ *
+ *     ~/.jupyter/custom/custom.css
+ *
+ * and refresh the page.
+ *
+ * The Jupyter server does not need to be restarted.
+ *
+ * Based on suggestions from practicaltypography.com
+ */
+
+.rendered_html ol {
+    list-style:decimal;
+    margin: 1em 2em;
+}
+
+.autosave_status, .checkpoint_status {
+        color: #bbbbbb;
+	font-family: "Fira Sans", sans-serif;
+}
+
+.filename {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.text_cell, .text_cell_render {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-size: 18px;
+    line-height:1.4em;
+    padding-left:3em;
+    padding-right:3em;
+    max-width: 36em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+}
+
+blockquote p {
+    font-size: 17px;
+    line-height:1.2em;
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+}
+
+.code_cell {  /* Area containing both code and output */
+    font-family: "Source Code Pro", "Droid Sans Mono", Consolas, "Ubuntu Mono", "Liberation Mono", monospace;
+    background-color:#F1F0FF; /* light blue */
+    border-radius: 0.8em;
+    padding: 1em;
+}
+
+code, pre, .CodeMirror {
+    font-family: "Source Code Pro", "Droid Sans Mono", Consolas, "Ubuntu Mono", "Liberation Mono", monospace;
+    line-height:1.25em;
+    font-size: 16px;
+}
+
+.slide-header, p.slide-header
+{
+    color: #498AF3;
+    font-size: 200%;
+    font-weight:bold;
+    margin: 0px 20px 10px;
+    page-break-before: always;
+    text-align: center;
+}
+
+div.prompt {
+    font-family: "Source Code Pro", "Droid Sans Mono", Consolas, "Ubuntu Mono", "Liberation Mono", monospace;
+    font-size: 11px;
+}
+
+div.output_area pre {
+    font-family: "Source Code Pro", "Droid Sans Mono", Consolas, "Ubuntu Mono", "Liberation Mono", monospace;
+    line-height:1.25em;
+    font-size: 16px;
+    background-color: #F4F4F4;
+}
+
+div.output_error pre {
+    background-color: #ffeeee;
+}
+
+.cm-header-1, .rendered_html h1 {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-size: 24px;
+    font-variant: small-caps;
+    text-rendering: auto;
+    letter-spacing: 0.06em;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.cm-header-2, .rendered_html h2 {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-size: 21px;
+    font-weight: bold;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.cm-header-3, .rendered_html h3 {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-size: 19px;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+}
+
+.cm-header-4, .rendered_html h4, .cm-header-5, .rendered_html h5, .cm-header-6, .rendered_html h6 {
+    font-family: "Charis SIL", "Hoefler Text", Garamond, Palatino, serif;
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: contextual no-historical-ligatures common-ligatures;
+}
+
+.rendered_html td {
+    font-variant-numeric: tabular-nums;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13110,7 +13256,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> syracuse.c
@@ -13142,28 +13288,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Overwriting syracuse.c
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -13172,27 +13300,6 @@ gcc -O3 syracuse.c
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>
-real	0m0.180s
-user	0m0.001s
-sys	0m0.002s
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13206,7 +13313,7 @@ sys	0m0.002s
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
@@ -13229,25 +13336,6 @@ sys	0m0.002s
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 24.4 s, sys: 344 ms, total: 24.7 s
-Wall time: 24.9 s
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13274,7 +13362,7 @@ Wall time: 24.9 s
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> syrac.c
@@ -13298,24 +13386,6 @@ Wall time: 24.9 s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Overwriting syrac.c
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13327,7 +13397,7 @@ Wall time: 24.9 s
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -13342,7 +13412,7 @@ gcc -fPIC -shared -O3 <span class="se">\</span>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
@@ -13360,25 +13430,6 @@ gcc -fPIC -shared -O3 <span class="se">\</span>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 635 ms, sys: 10.3 ms, total: 646 ms
-Wall time: 709 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13390,7 +13441,7 @@ Wall time: 709 ms
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> syrac.F90
@@ -13426,28 +13477,10 @@ Wall time: 709 ms
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Overwriting syrac.F90
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -13462,7 +13495,7 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
@@ -13478,30 +13511,10 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[9]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>111</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
@@ -13510,25 +13523,6 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 713 ms, sys: 7.77 ms, total: 720 ms
-Wall time: 721 ms
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13563,7 +13557,7 @@ Wall time: 721 ms
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> syrac.i
@@ -13579,33 +13573,15 @@ Wall time: 721 ms
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Overwriting syrac.i
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 swig -python syrac.i 
-gcc-9 <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -fPIC <span class="se">\</span>
+<span class="si">${</span><span class="nv">CC</span><span class="si">}</span> <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -fPIC <span class="se">\</span>
   -shared -O3 -o _syracuseC.so syrac_wrap.c syrac.c <span class="sb">`</span>python3-config --ldflags<span class="sb">`</span>
 </pre></div>
 
@@ -13616,7 +13592,7 @@ gcc-9 <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">syracuseC</span>
@@ -13629,30 +13605,10 @@ gcc-9 <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> 
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[13]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>111</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
@@ -13662,25 +13618,6 @@ gcc-9 <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> 
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 529 ms, sys: 9.05 ms, total: 538 ms
-Wall time: 538 ms
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13695,7 +13632,7 @@ Wall time: 538 ms
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> setup.py
@@ -13716,67 +13653,24 @@ Wall time: 538 ms
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Overwriting setup.py
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-
-python setup.py build_ext --inplace
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">!{</span>sys.executable<span class="o">}</span> setup.py build_ext --inplace
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>running build_ext
-running build_src
-build_src
-building extension &#34;_syracuseC&#34; sources
-build_src: building npy-pkg config files
-customize UnixCCompiler
-customize UnixCCompiler using build_ext
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">_syracuseC</span>
@@ -13786,26 +13680,6 @@ customize UnixCCompiler using build_ext
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[17]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>111</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 

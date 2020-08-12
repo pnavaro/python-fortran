@@ -1,2 +1,2 @@
 all:
-	jupytext --set-formats py,docs//ipynb 0*.py
+	jupytext --set-formats py,docs//ipynb *.py
