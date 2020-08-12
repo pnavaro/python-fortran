@@ -1,10 +1,9 @@
 - file: quickstart
-  sections:
-    - file: 01.f2py
-    - file: 02.f2py
-    - file: 03.julia-set
-    - file: 04.vlasov-poisson
-    - file: 05.co-rotating-vortex
-    - file: 06.gray-scott-model
-    - file: 07.maxwell-fdtd-2d
-    - file: 08.swig
+- file: 01.f2py
+- file: 02.f2py
+- file: 03.julia-set
+- file: 04.vlasov-poisson
+- file: 05.co-rotating-vortex
+- file: 06.gray-scott-model
+- file: 07.maxwell-fdtd-2d
+- file: 08.swig
