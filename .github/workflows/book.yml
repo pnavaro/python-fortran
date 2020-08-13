@@ -11,8 +11,7 @@ jobs:
     steps:
     - name: Install apt dependencies
       run: |
-        sudo apt-get install -yq gfortran libatlas-base-dev libfftw3-dev
-        sudo apt-get install -yq libopenblas-dev liblapack-dev
+        sudo apt-get install -yq gfortran libfftw3-dev liblapack-dev
 
     - uses: actions/checkout@v2
 
