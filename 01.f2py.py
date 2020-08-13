@@ -17,8 +17,9 @@
 # ---
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # f2py
-# f2py is a part of Numpy and there are three ways to wrap Fortran with Python :
+# # F2py
+#
+# F2py is a part of Numpy and there are three ways to wrap Fortran with Python :
 # - Write some fortran subroutines and just run f2py to create Python modules.
 # - Insert special f2py directives inside Fortran source for complex wrapping.
 # - Write a interface file (.pyf) to wrap Fortran files without changing them. f2py automatically generate the pyf template file that can be modified. 
@@ -36,7 +37,7 @@ import scipy.linalg as sl
 import numpy as np
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # Simple Fortran subroutine to compute norm
+# ## Simple Fortran subroutine to compute norm
 #    
 # ### Fortran 90/95 free format
 
@@ -60,7 +61,7 @@ Cf2py intent(out) c
       end 
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # Build extension module with f2py program
+# ## Build extension module with f2py program
 #
 
 # + {"slideshow": {"slide_type": "fragment"}}
@@ -78,7 +79,7 @@ c
 print(vect.euclidian_norm.__doc__) # Docstring is automatically generate
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # Fortran magic 
+# ## Fortran magic 
 #
 # - Jupyter extension that help to use fortran code in an interactive session.
 # - It adds a %%fortran cell magic that compile and import the Fortran code in the cell, using F2py.
@@ -90,7 +91,7 @@ print(vect.euclidian_norm.__doc__) # Docstring is automatically generate
 %load_ext fortranmagic
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # F2py directives
+# ## F2py directives
 # - F2PY introduces also some extensions to Fortran 90/95 language specification that help designing Fortran to Python interface, make it more “Pythonic”.
 # - If editing Fortran codes is acceptable, these specific attributes can be inserted directly to Fortran source codes. Special comment lines are ignored by Fortran compilers but F2PY interprets them as normal lines.
 #
@@ -130,7 +131,7 @@ euclidian_norm(a)
 print(euclidian_norm.__doc__) # Documentation
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # F2py directives
+# ## directives
 # - `optional`: The corresponding argument is moved to the end.
 # - `required`: This is default. Use it to disable automatic optional setting.
 # - `intent(in | inout | out | hide)` , `intent(in)` is the default.
@@ -174,7 +175,7 @@ sum_f(fonction,3)
 sum_f(lambda x :x**2,3) # lambda function
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # Fortran arrays and Numpy arrays
+# ## Fortran arrays and Numpy arrays
 #
 # Let's see how to pass numpy arrays to fortran subroutine.
 #
@@ -209,7 +210,7 @@ push(positions, velocities, 0.1)
 positions # the memory is updated
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # Signature file
+# ## Signature file
 #
 # This file contains descriptions of wrappers to Fortran or C functions, also called as signatures of the functions. F2PY can create initial signature file by scanning Fortran source codes and catching all relevant information needed to create wrapper functions.
 #
@@ -234,7 +235,7 @@ positions # the memory is updated
 #
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # Wrap lapack function dgemm  with f2py
+# ## Wrap lapack function dgemm  with f2py
 #
 # - Generate the signature file
 
@@ -313,7 +314,7 @@ python module mylapack2 ! in
 end python module mylapack2
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # Build the python module
+# ## Build the python module
 
 # + {"slideshow": {"slide_type": "fragment"}}
 !{sys.executable} -m numpy.f2py --quiet -c dgemm2.pyf  -m mylapack2 -llapack --f90flags=-O3
@@ -379,7 +380,7 @@ f90module.farray = np.random.rand(10).astype(np.float64)
 f90module.test_array()
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # f2py + OpenMP
+# ## f2py + OpenMP
 #
 #
 
@@ -425,7 +426,7 @@ end subroutine hello_omp
 hello_omp()
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # Conclusions
+# ## Conclusions
 #
 # - Easy to use, it works with modern fortran, legacy fortran and also C.
 # - Works with common and modules and arrays dynamically allocated.
@@ -440,9 +441,9 @@ hello_omp()
 # - f2py is maintained but not really improved. Development is stopped.
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # distutils
+# ## distutils
 #
-# ## setup.py
+# - setup.py
 # ```python
 # from numpy.distutils.core import Extension, setup
 # ext1 = Extension(name = 'scalar',
@@ -563,7 +564,7 @@ plt.contourf(X, Y, T)
 plt.colorbar()
 
 # + [markdown] {"slideshow": {"slide_type": "slide"}}
-# # References
+# ## References
 # - [Talk by E. Sonnendrücker](http://calcul.math.cnrs.fr/Documents/Journees/dec2006/python-fortran.pdf)
 # - [SciPy](http://www.scipy.org/F2py)
 # - [Sagemath Documentation ](http://www.sagemath.org/doc/numerical_sage/f2py.html) 
