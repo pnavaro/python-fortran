@@ -11,7 +11,7 @@ jobs:
       run: |
         sudo apt-get install -yq pandoc texlive-xetex texlive-fonts-extra ffmpeg 
         sudo apt-get install -yq gfortran libatlas-base-dev libfftw3-dev
-        sudo apt-get install -yq python3 python3-pip 
+        sudo apt-get install -yq python3 python3-pip python3-setuptools
     - name: Checkout
       uses: actions/checkout@v2
       with:
