@@ -1,24 +1,6 @@
 name: python-fortran
 channels:
   - conda-forge
-  - defaults
 dependencies:
-  - cython
-  - fortran-magic
-  - imageio
-  - ipywidgets
-  - jupyter
-  - jupytext
-  - matplotlib
-  - numba
-  - numpy
-  - pandas
-  - pillow
-  - pip
   - pip:
-    - julia
-  - pythran
-  - scipy
-  - setuptools
-  - sympy
-  - tqdm
+    - -r requirements.txt

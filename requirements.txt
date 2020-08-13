@@ -1,0 +1,17 @@
+cython
+fortran-magic
+imageio
+ipywidgets
+julia
+jupyter
+jupytext
+matplotlib
+numba
+numpy
+pandas
+pillow
+pythran
+scipy
+seaborn
+setuptools
+tqdm
