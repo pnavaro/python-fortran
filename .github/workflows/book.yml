@@ -8,10 +8,10 @@ on:
 jobs:
   deploy-book:
     runs-on: ubuntu-latest
+    steps:
     - name: Install apt dependencies
       run: |
         sudo apt-get install -yq gfortran libatlas-base-dev libfftw3-dev
-    steps:
     - uses: actions/checkout@v2
 
     - name: Set up Python 3.7
