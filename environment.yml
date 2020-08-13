@@ -4,6 +4,7 @@ channels:
 dependencies:
   - fortran-magic
   - imageio
+  - ipykernel
   - ipywidgets
   - jupyter
   - jupytext
