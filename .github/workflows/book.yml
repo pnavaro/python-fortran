@@ -10,7 +10,7 @@ jobs:
     - name: Install pandoc
       run: |
         sudo apt-get -yq update
-        sudo apt-get install -yq pandoc texlive-xetex texlive-fonts-extra gfortran ffmpeg gfortran libopenblas-dev libfftw3-dev
+        sudo apt-get install -yq pandoc texlive-xetex g++ texlive-fonts-extra ffmpeg gfortran libopenblas-dev libfftw3-dev
     - name: Checkout
       uses: actions/checkout@v2
       with:
@@ -23,16 +23,16 @@ jobs:
       uses: julia-actions/setup-julia@v1
       with:
          version: 1.5.0
+    - name: Install Miniconda
+      uses: goanpeca/setup-miniconda@v1
+      with:
+        miniconda-version: "latest"
     - run: julia -e '
            using Pkg;
            ENV["PYTHON"] = "/usr/share/miniconda3/bin/python";
            Pkg.add("PyCall");
            Pkg.add("REPL");
            Pkg.build("PyCall") '
-    - name: Install Miniconda
-      uses: goanpeca/setup-miniconda@v1
-      with:
-        miniconda-version: "latest"
     - name: Install dependencies and run nbcourse
       shell: bash -l {0}
       run: |
