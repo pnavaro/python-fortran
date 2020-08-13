@@ -34,9 +34,9 @@ jobs:
            Pkg.add("REPL");
            Pkg.build("PyCall") '
     - name: Install jupyter-book
-       run: pip3 install --user jupyter-book
+      run: pip3 install --user jupyter-book
     - name: Build jupyter-book
-       run: jupyter-book build docs
+      run: jupyter-book build docs
     - name: Deploy on github
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
