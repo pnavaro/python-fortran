@@ -27,9 +27,6 @@ import numpy as np
 
 %config InlineBackend.figure_format = 'retina'
 
-
-# # Gray-Scott Model
-
 # The reaction-diffusion system described here involves two generic chemical species U and V, whose concentration at a given point in space is referred to by variables u and v. As the term implies, they react with each other, and they diffuse through the medium. Therefore the concentration of U and V at any given location changes with time and can differ from that at other locations.
 #
 # The overall behavior of the system is described by the following formula, two equations which describe three sources of increase and decrease for each of the two chemicals:

@@ -200,8 +200,11 @@ flights = [syrac_f90.c_syrac(i) for i in range(1,N+1)]
    extern long syracuse(long n);
 %}
 extern long syracuse(long n);
-# -
 
+
+# + language="bash"
+# swig -python syrac.i
+# -
 
 # ### Build the python module 
 #
@@ -229,9 +232,13 @@ setup( name='Syracuse',
        description = """Simple C Fortran interface example """,
        ext_modules = [module_swig],
 )
-# -
 
-import sys
+# +
+import sys, os
+
+if sys.platform == "darwin":
+    os.environ["CC"] = "gcc-10"
+    
 !{sys.executable} setup.py build_ext --inplace --quiet
 
 # +
