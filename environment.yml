@@ -3,23 +3,22 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - setuptools
-  - numpy
-  - matplotlib
-  - scipy
   - cython
-  - sympy
-  - pandas
+  - fortran-magic
+  - imageio
+  - ipywidgets
   - jupyter
   - jupytext
-  - fortran-magic 
-  - cython 
+  - matplotlib
   - numba
-  - tqdm
-  - imageio
+  - numpy
+  - pandas
   - pillow
-  - pythran
-  - ipywidgets
   - pip
   - pip:
-     - julia
+    - julia
+  - pythran
+  - scipy
+  - setuptools
+  - sympy
+  - tqdm

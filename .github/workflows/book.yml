@@ -27,23 +27,26 @@ jobs:
       uses: goanpeca/setup-miniconda@v1
       with:
         miniconda-version: "latest"
-    - run: julia -e '
+    - name: Install dependencies
+      shell: bash -l {0}
+      run: |
+        conda update -n base -c defaults conda
+        conda env create -f environment.yml
+        conda run -n python-fortran python -m ipykernel install --user --name python3
+    - name: Install PyCall
+      run: julia -e '
            using Pkg;
-           ENV["PYTHON"] = "/usr/share/miniconda3/bin/python";
+           ENV["PYTHON"] = "/usr/share/miniconda3/envs/python-fortran/bin/python";
            Pkg.add("PyCall");
            Pkg.add("REPL");
            Pkg.build("PyCall") '
     - name: Install jupyter-book
       shell: bash -l {0}
       run: |
-        conda update -n base -c defaults conda
-        conda env update -f environment.yml -n base
-        conda run -n base python -m ipykernel install --user --name python3
         conda run -n base python -m pip install jupyter-book
     - name: Build the book
       shell: bash -l {0}
-      run: |
-        conda run -n base jupyter-book build docs
+      run: conda run -n base jupyter-book build docs
     - name: Deploy on github
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
