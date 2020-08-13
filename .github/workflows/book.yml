@@ -1,45 +1,88 @@
-name: convert notebooks to html and publish
-on:
-  push:
-    branches:
-      - master
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Install pandoc
-      run: |
-        sudo apt-get install -yq pandoc texlive-xetex texlive-fonts-extra ffmpeg 
-        sudo apt-get install -yq gfortran libatlas-base-dev libfftw3-dev g++
-        sudo apt-get install -yq python3 python3-dev python3-pip python3-setuptools
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        persist-credentials: false
-    - name: Install SSH Client
-      uses: webfactory/ssh-agent@v0.2.0
-      with:
         ssh-private-key: ${{ secrets.SITE_PRIV }}
-    - name: Install Julia
-      uses: julia-actions/setup-julia@v1
-      with:
-         version: 1.5.0
-    - name: Install dependencies
-      run: pip3 install --user -r requirements.txt
-    - name: Install PyCall
-      run: julia -e '
-           using Pkg;
-           ENV["PYTHON"] = "python3";
-           Pkg.add("PyCall");
-           Pkg.add("REPL");
-           Pkg.build("PyCall") '
     - name: Install jupyter-book
-      run: pip3 install --user jupyter-book
+       run: pip3 install --user jupyter-book
     - name: Build jupyter-book
-      run: jupyter-book build docs
+       run: jupyter-book build docs
     - name: Deploy on github
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         SSH: true
         BRANCH: gh-pages
         FOLDER: ./docs/_build/html
+
+name: deploy-book
+
+# Only run this when the master branch changes
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy-book:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install pandoc
+      run: |
+        sudo apt-get install -yq pandoc texlive-xetex texlive-fonts-extra ffmpeg 
+<<<<<<< HEAD
+        sudo apt-get install -yq gfortran libatlas-base-dev libfftw3-dev g++
+        sudo apt-get install -yq python3 python3-dev python3-pip python3-setuptools
+    - name: Checkout
+      uses: actions/checkout@v2
+=======
+        sudo apt-get install -yq gfortran libatlas-base-dev libfftw3-dev
+    - uses: actions/checkout@v2
+
+    # Install dependencies
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+>>>>>>> Update book.yml
+      with:
+        python-version: 3.7
+
+    - name: Setup Miniconda
+      uses: goanpeca/setup-miniconda@v1.1.2
+      with:
+        environment-file: environment.yml
+        activate-environment: python-fortran
+        python-version: 3.7
+        auto-activate-base: false
+
+    - name: Install Julia
+      uses: julia-actions/setup-julia@v1
+      with:
+         version: 1.5.0
+
+    - name: Install PyCall
+      run: julia -e '
+           using Pkg;
+           ENV["PYTHON"] = "/usr/share/mininconda3/envs/python-fortran/bin/python";
+           Pkg.add("PyCall");
+           Pkg.add("REPL");
+           Pkg.build("PyCall") '
+<<<<<<< HEAD
+    - name: Install jupyter-book
+      run: pip3 install --user jupyter-book
+    - name: Build jupyter-book
+      run: jupyter-book build docs
+    - name: Deploy on github
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+=======
+
+    - name: Install Jupyter Book
+      shell: bash -l {0}
+      run: |
+        pip install -U --pre jupyter-book
+
+    - name: Build the book
+      shell: bash -l {0}
+      run: |
+        jupyter-book build docs
+    
+    - name: GitHub Pages action
+      uses: peaceiris/actions-gh-pages@v3.5.10
+>>>>>>> Update book.yml
+      with:
+        github_token: ${{ secrets.SITE_PRIV }}
+        publish_dir: ./docs/_build/html
