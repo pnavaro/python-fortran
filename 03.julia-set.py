@@ -122,7 +122,7 @@ def juliaset_pythran(x, y, c, lim, maxit):
     """
     juliap = np.zeros((x.size, y.size), dtype=np.int32)
 
-    #omp parallel for private(z)
+    #omp parallel for private(z, ite)
     for j in range(y.size):
         for i in range(x.size):
             z = x[i] + 1j*y[j]
@@ -447,7 +447,7 @@ plot_julia_set(juliaset_julia(x, y, c, lim, maxit))
 # ### Set number of threads used for parallel functions
 
 %env OMP_NUM_THREADS=4
-%env JULIA_OMP_THREADS=4
+%env JULIA_NUM_THREADS=4
 
 # + {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "subslide"}}
 import pandas as pd
@@ -477,3 +477,6 @@ for f in tqdm(functions):
 results = pd.DataFrame(results, index=list(map(lambda f:f.__name__[9:],functions)))
 results["speed_up"] = [results.etime["numpy"]/t for t in results.etime]
 results.sort_values(by="speed_up",axis=0)
+# -
+
+
