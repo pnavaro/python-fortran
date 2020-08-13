@@ -33,12 +33,15 @@ jobs:
            Pkg.add("PyCall");
            Pkg.add("REPL");
            Pkg.build("PyCall") '
-    - name: Install dependencies and run nbcourse
+    - name: Install jupyter-book
       shell: bash -l {0}
       run: |
         conda env update -f environment.yml -n base
         conda run -n base python -m ipykernel install --user --name python3
         conda run -n base python -m pip install jupyter-book
+    - name: Build the book
+      shell: bash -l {0}
+      run: |
         conda run -n base jupyter-book build docs
     - name: Deploy on github
       uses: JamesIves/github-pages-deploy-action@releases/v3
