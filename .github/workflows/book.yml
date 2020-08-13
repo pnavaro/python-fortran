@@ -36,6 +36,7 @@ jobs:
     - name: Install jupyter-book
       shell: bash -l {0}
       run: |
+        conda update -n base -c defaults conda
         conda env update -f environment.yml -n base
         conda run -n base python -m ipykernel install --user --name python3
         conda run -n base python -m pip install jupyter-book
