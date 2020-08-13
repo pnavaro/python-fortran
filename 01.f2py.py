@@ -498,7 +498,7 @@ istep = 0
 while residual > 1e-5 :
     istep += 1
     residual = laplace(T, n)
-    print ((istep, residual), end="\r")
+    # print ((istep, residual), end="\r")
 
 print("iterations = ",istep)
 plt.rcParams['figure.figsize'] = (10,6.67)
