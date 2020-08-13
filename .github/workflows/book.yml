@@ -31,7 +31,7 @@ jobs:
     - name: Build the book
       shell: bash -l {0}
       run: |
-        conda run -n python-fortran -m pip install -U pythran
+        conda run -n python-fortran python -m pip install -U pythran
         conda run -n python-fortran jupyter-book build docs
 
     - name: GitHub Pages action
