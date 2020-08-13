@@ -2,5 +2,22 @@ name: python-fortran
 channels:
   - conda-forge
 dependencies:
+  - fortran-magic
+  - imageio
+  - ipywidgets
+  - jupyter
+  - jupytext
+  - matplotlib
+  - numba
+  - numpy
+  - pandas
+  - pillow
+  - pythran
+  - scipy
+  - seaborn
+  - setuptools
+  - tqdm
+  - pip
   - pip:
-    - -r requirements.txt
+    - julia
+    - jupyter-book

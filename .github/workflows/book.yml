@@ -13,21 +13,26 @@ jobs:
       run: |
         sudo apt-get install -yq gfortran libatlas-base-dev libfftw3-dev
         sudo apt-get install -yq libopenblas-dev liblapack-dev
+
     - uses: actions/checkout@v2
 
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v1
+    - name: Setup Miniconda
+      uses: goanpeca/setup-miniconda@v1.1.2
       with:
-        python-version: 3.7
+        environment-file: environment.yml
+        activate-environment: python-fortran
+        python-version: 3.8
+        auto-activate-base: false
 
     - name: Install dependencies
+      shell: bash -l {0}
       run: |
-        pip install jupyter-book
-        pip install -r requirements.txt
+        conda run -n python-fortran python -m ipykernel install --user --name python3
 
     - name: Build the book
+      shell: bash -l {0}
       run: |
-        jupyter-book build docs
+        conda run -n python-fortran jupyter-book build docs
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.6.1
