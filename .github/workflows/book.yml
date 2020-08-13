@@ -9,8 +9,7 @@ jobs:
     steps:
     - name: Install pandoc
       run: |
-        sudo apt-get -yq update
-        sudo apt-get install -yq pandoc texlive-xetex texlive-fonts-extra ffmpeg gfortran libatlas-base--dev libfftw3-dev
+        sudo apt-get install -yq pandoc texlive-xetex texlive-fonts-extra ffmpeg gfortran libatlas-base-dev libfftw3-dev
     - name: Checkout
       uses: actions/checkout@v2
       with:

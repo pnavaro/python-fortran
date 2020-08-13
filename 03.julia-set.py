@@ -401,6 +401,8 @@ plot_julia_set(juliaset_numba(x, y, c, lim, maxit))
 # julia> Pkg.add("REPL")
 # julia> Pkg.build("PyCall")
 # ```
+#
+# print the value of `sys.executable` to know the python path. 
 
 import julia
 julia.install()
