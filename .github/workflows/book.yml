@@ -20,15 +20,11 @@ jobs:
       with:
         miniconda-version: "latest"
 
-    - name: Install dependencies
+    - name: Install dependencies and build the book
       shell: bash -l {0}
       run: |
         conda env create -f environment.yml -n runenv
         conda run -n runenv python -m ipykernel install --user --name python3
-
-    - name: Build the book
-      shell: bash -l {0}
-      run: |
         conda run -n runenv jupyter-book build docs
 
     - name: GitHub Pages action
