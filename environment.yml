@@ -2,6 +2,7 @@ name: python-fortran
 channels:
   - conda-forge
 dependencies:
+  - cython
   - fortran-magic
   - imageio
   - ipykernel

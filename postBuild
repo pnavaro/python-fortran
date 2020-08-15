@@ -1,0 +1,4 @@
+!#/bin/bash
+
+julia --project -e 'using Pkg; Pkg.instantiate(); ENV["PYTHON"]="/srv/conda/envs/notebook/bin/python"; Pkg.build("PyCall")'
+
