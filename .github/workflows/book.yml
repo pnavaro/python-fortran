@@ -20,10 +20,24 @@ jobs:
       with:
         miniconda-version: "latest"
 
-    - name: Install dependencies and build the book
+    - name: Install dependencies
       shell: bash -l {0}
       run: |
         conda env create -f environment.yml -n runenv
+
+    - name: Install Julia
+      uses: julia-actions/setup-julia@v1
+      with:
+        version: 1.5.0
+      - run: julia -e '
+          using Pkg; Pkg.add(["REPL", "PyCall"]);
+          ENV["PYTHON"]="/usr/share/miniconda3/envs/runenv/bin/python";
+          Pkg.build("PyCall")
+          optimize()'
+
+    - name: Install jupyterbook and build the book
+      shell: bash -l {0}
+      run: |
         conda run -n runenv python -m ipykernel install --user --name python3
         conda run -n runenv jupyter-book build notebooks
 
