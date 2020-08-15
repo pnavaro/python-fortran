@@ -29,7 +29,7 @@ jobs:
       uses: julia-actions/setup-julia@v1
       with:
         version: 1.5.0
-      - run: julia -e '
+    - run: julia -e '
           using Pkg; Pkg.add(["REPL", "PyCall"]);
           ENV["PYTHON"]="/usr/share/miniconda3/envs/runenv/bin/python";
           Pkg.build("PyCall")
