@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Install apt dependencies
       run: |
-        sudo apt-get install -yq gfortran libfftw3-dev liblapack-dev
+        sudo apt-get install -yq libfftw3-dev 
 
     - uses: actions/checkout@v2
 
@@ -20,11 +20,11 @@ jobs:
       run: |
         conda env create -f environment.yml -n runenv
 
-    - name: Install Julia
+    - name: Install Julia packages
       run: julia -e '
           using Pkg; Pkg.add(["REPL", "PyCall"]);
           ENV["PYTHON"]="/usr/share/miniconda3/envs/runenv/bin/python";
-          Pkg.build("PyCall"); optimize()'
+          Pkg.build("PyCall")'
 
     - name: Install jupyterbook and build the book
       shell: bash -l {0}
