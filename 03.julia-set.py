@@ -402,14 +402,13 @@ plot_julia_set(juliaset_numba(x, y, c, lim, maxit))
 # julia> Pkg.build("PyCall")
 # ```
 #
-# print the value of `sys.executable` to know the python path. 
+# print the value of `sys.executable` to know the python path. But the cell above could do the job.
 
 import julia
 julia.install()
 
 # +
-%%file juliaset_julia.jl
-import Base.Threads: @threads, @spawn
+%%file julia_set.jl
 
 function escapetime(z, c, lim, maxit)
 
@@ -428,8 +427,8 @@ function juliaset_julia(x :: Vector{Float64}, y :: Vector{Float64},
     nx = length(x)
     ny = length(y)
     julia = zeros(Float64, (nx, ny))
-    @sync for i in eachindex(x)
-        @spawn for j in eachindex(y)
+    Threads.@sync for i in eachindex(x)
+        Threads.@spawn for j in eachindex(y)
             @inbounds z  = x[i] + 1im * y[j] 
             @inbounds julia[j, i] = escapetime(z, c, lim, maxit)
         end
