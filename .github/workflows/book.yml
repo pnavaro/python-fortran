@@ -24,8 +24,7 @@ jobs:
       run: julia -e '
           using Pkg; Pkg.add(["REPL", "PyCall"]);
           ENV["PYTHON"]="/usr/share/miniconda3/envs/runenv/bin/python";
-          Pkg.build("PyCall")
-          optimize()'
+          Pkg.build("PyCall"); optimize()'
 
     - name: Install jupyterbook and build the book
       shell: bash -l {0}
