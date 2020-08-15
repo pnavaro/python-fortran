@@ -111,7 +111,7 @@ plot_julia_set(juliaset_python(x, y, c, lim, maxit))
 %load_ext pythran.magic
 
 # + {"slideshow": {"slide_type": "fragment"}}
-%%pythran(-fopenmp)
+%%pythran -fopenmp
 
 import numpy as np
 
