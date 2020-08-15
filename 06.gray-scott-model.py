@@ -3,7 +3,7 @@
 # jupyter:
 #   jupytext:
 #     comment_magics: false
-#     formats: py:light,docs//ipynb
+#     formats: py:light,notebooks//ipynb
 #     text_representation:
 #       extension: .py
 #       format_name: light

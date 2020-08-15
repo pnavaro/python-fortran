@@ -4,7 +4,7 @@
 #   jupytext:
 #     cell_metadata_json: true
 #     comment_magics: false
-#     formats: py:light,docs//ipynb
+#     formats: py:light,notebooks//ipynb
 #     text_representation:
 #       extension: .py
 #       format_name: light

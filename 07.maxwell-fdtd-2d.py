@@ -2,7 +2,7 @@
 # jupyter:
 #   jupytext:
 #     comment_magics: false
-#     formats: py:percent,docs//ipynb
+#     formats: py:percent,notebooks//ipynb
 #     text_representation:
 #       extension: .py
 #       format_name: percent
