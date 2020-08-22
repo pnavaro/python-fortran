@@ -4,6 +4,7 @@ all: 01.f2py.ipynb 02.f2py.ipynb 03.julia-set.ipynb 04.vlasov-poisson.ipynb 05.c
 
 .py.ipynb:
 	jupytext --set-formats py,notebooks//ipynb $<
+	jupytext --sync $<
 
 01.f2py.ipynb: 01.f2py.py
 02.f2py.ipynb: 02.f2py.py
