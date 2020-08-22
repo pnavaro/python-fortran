@@ -437,11 +437,9 @@ function juliaset_julia(x :: Vector{Float64}, y :: Vector{Float64},
 end
 # -
 
-from julia.api import Julia
+from julia import Julia
 jl = Julia(compiled_modules=False)
-
-jl = julia.Julia()
-juliaset_julia = jl.include("juliaset_julia.jl")
+juliaset_julia = jl.include("julia_set.jl")
 
 plot_julia_set(juliaset_julia(x, y, c, lim, maxit))
 
