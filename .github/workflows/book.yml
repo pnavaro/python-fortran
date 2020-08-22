@@ -16,7 +16,7 @@ jobs:
 
     - name: Install python dependencies
       run: |
-        cp .pythranrc ~/.pythranc
+        cp .pythranrc /Users/runner
         pip3 install -r requirements.txt
 
     - name: Install Julia packages
