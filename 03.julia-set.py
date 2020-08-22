@@ -23,12 +23,14 @@
 # This is a modified version from [Loic Gouarin](https://github.com/gouarin/GTSage2014/)
 #
 # The test case is the computation of the Julia set [wikipedia](https://en.wikipedia.org/wiki/Julia_set)
-# -
 
-import os, sys
+# +
+import os, sys, gc
+
 if sys.platform == 'darwin':
     os.environ['CC'] = 'gcc-10'
     os.environ['CXX'] = 'g++-10'
+# -
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -83,6 +85,7 @@ def juliaset_python(x, y, c, lim, maxit):
 def plot_julia_set(julia):
     plt.figure(figsize=(6,6))
     plt.imshow(julia, cmap = cm.Greys, vmin=vmin, vmax=vmax)
+    gc.collect()
 
 
 # + {"internals": {"slide_helper": "subslide_end"}, "slide_helper": "slide_end", "slideshow": {"slide_type": "-"}}
