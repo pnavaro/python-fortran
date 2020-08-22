@@ -6,7 +6,6 @@ ipywidgets
 julia
 jupyter
 jupyter-book
-jupytext
 matplotlib
 numba
 numpy
