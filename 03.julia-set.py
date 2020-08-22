@@ -90,8 +90,40 @@ def plot_julia_set(julia):
 
 # + {"internals": {"slide_helper": "subslide_end"}, "slide_helper": "slide_end", "slideshow": {"slide_type": "-"}}
 plot_julia_set(juliaset_python(x, y, c, lim, maxit))
-# -
 
+# + [markdown] {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}}
+# ## numba
+#
+# [Numba](https://numba.pydata.org) will accelerate the pure python function just  with
+# the decorator `@jit`. Numba does everything for you.
+
+# + {"internals": {"slide_helper": "subslide_end"}, "slide_helper": "subslide_end", "slideshow": {"slide_type": "slide"}}
+from numba import jit
+
+@jit(nopython=True, parallel=True)
+def juliaset_numba(x, y, c, lim, maxit):
+    julia = np.zeros((x.size, y.size))
+    lim2 = lim*lim
+    
+    c = complex(c)  # needed for numba
+    for j in range(y.size):
+        for i in range(x.size):
+
+            z = complex(x[i], y[j])
+            ite = 0
+            while (z.real*z.real + z.imag*z.imag) < lim2 and ite < maxit:
+                z = z*z + c
+                ite += 1
+            julia[j, i] = ite
+
+    return julia
+
+
+# + {"slideshow": {"slide_type": "slide"}}
+plot_julia_set(juliaset_numba(x, y, c, lim, maxit))
+
+
+# + [markdown] {"slideshow": {"slide_type": "slide"}}
 # ## PyJulia
 #
 # [PyJulia](https://pyjulia.readthedocs.io/en/latest/#) is a python module to import
@@ -110,6 +142,8 @@ plot_julia_set(juliaset_python(x, y, c, lim, maxit))
 #
 # print the value of `sys.executable` to know the python path. But the cell above could do the job.
 
+
+# + {"slideshow": {"slide_type": "slide"}}
 import julia
 julia.install()
 from julia.api import Julia
@@ -381,7 +415,7 @@ plot_julia_set(juliaset_cython(x, y, c, lim, maxit))
 # As f2py we can use openmp with the Cython `prange` function
 
 # + {"internals": {"slide_helper": "subslide_end"}, "slide_helper": "subslide_end", "slideshow": {"slide_type": "-"}}
-%%cython --v -f -c-fopenmp --link-args=-fopenmp
+%%cython -f -c-fopenmp --link-args=-fopenmp
 import numpy as np
 import cython
 from cython.parallel import prange
@@ -415,38 +449,6 @@ def juliaset_cython_omp(double [:] x, double [:] y, double complex c, double lim
 # -
 
 plot_julia_set(juliaset_cython_omp(x, y, c, lim, maxit))
-
-# + [markdown] {"internals": {"slide_type": "subslide"}, "slideshow": {"slide_type": "slide"}}
-# ## numba
-#
-# [Numba](https://numba.pydata.org) will accelerate the pure python function just  with
-# the decorator `@jit`. Numba does everything for you.
-
-# + {"internals": {"slide_helper": "subslide_end"}, "slide_helper": "subslide_end", "slideshow": {"slide_type": "slide"}}
-from numba import jit
-
-@jit(nopython=True, parallel=True)
-def juliaset_numba(x, y, c, lim, maxit):
-    julia = np.zeros((x.size, y.size))
-    lim2 = lim*lim
-    
-    c = complex(c)  # needed for numba
-    for j in range(y.size):
-        for i in range(x.size):
-
-            z = complex(x[i], y[j])
-            ite = 0
-            while (z.real*z.real + z.imag*z.imag) < lim2 and ite < maxit:
-                z = z*z + c
-                ite += 1
-            julia[j, i] = ite
-
-    return julia
-
-
-# + {"slideshow": {"slide_type": "slide"}}
-plot_julia_set(juliaset_numba(x, y, c, lim, maxit))
-# -
 
 # ### Set number of threads used for parallel functions
 
