@@ -15,7 +15,9 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install python dependencies
-      run: pip3 install -r requirements.txt
+      run: |
+        cp .pythranrc ~/.pythranc
+        pip3 install -r requirements.txt
 
     - name: Install Julia packages
       run: julia -e '

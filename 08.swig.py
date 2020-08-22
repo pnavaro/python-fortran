@@ -237,7 +237,7 @@ setup( name='Syracuse',
 import sys, os
 
 if sys.platform == "darwin":
-    os.environ["CC"] = "gcc-9"
+    os.environ["CC"] = "gcc-10"
     
 !{sys.executable} setup.py build_ext --inplace --quiet
 

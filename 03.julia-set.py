@@ -28,8 +28,8 @@
 import os, sys, gc
 
 if sys.platform == 'darwin':
-    os.environ['CC'] = 'gcc-9'
-    os.environ['CXX'] = 'g++-9'
+    os.environ['CC'] = 'gcc-10'
+    os.environ['CXX'] = 'g++-10'
 # -
 
 import warnings
@@ -159,15 +159,15 @@ plot_julia_set(juliaset_julia(x, y, c, lim, maxit))
 #
 # ### Configuration
 #
-# `~/.pythranrc` file on my mac (gcc is installed with hombrew and pythran with pip)
+# `~/.pythranrc` file on macos (gcc is installed with hombrew and pythran with pip)
 #
 # ```
 # [compiler]
 # include_dirs=/usr/local/opt/openblas/include
 # library_dirs=/usr/local/opt/openblas/lib
 # blas=openblas
-# CXX=g++-9
-# CC=gcc-9
+# CXX=g++-10
+# CC=gcc-10
 # ```
 
 %load_ext pythran.magic

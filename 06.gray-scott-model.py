@@ -21,7 +21,7 @@
 
 import sys
 if sys.platform == "darwin":
-    %env CC=gcc-9
+    %env CC=gcc-10
 
 import numpy as np
 
