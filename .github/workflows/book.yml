@@ -21,8 +21,8 @@ jobs:
         conda env create -f environment.yml -n runenv
 
     - name: Install Julia packages
-      run: julia -e '
-          using Pkg; Pkg.add(["REPL", "PyCall"]);
+      run: julia --project -e '
+          using Pkg; Pkg.instantiate();
           ENV["PYTHON"]="/usr/share/miniconda3/envs/runenv/bin/python";
           Pkg.build("PyCall")'
 
