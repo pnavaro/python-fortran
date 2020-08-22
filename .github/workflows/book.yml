@@ -10,7 +10,7 @@ jobs:
     runs-on: macos-latest
     steps:
     - name: Install brew dependencies
-      run: brew install fftw openblas
+      run: brew install fftw openblas swig
 
     - uses: actions/checkout@v2
 

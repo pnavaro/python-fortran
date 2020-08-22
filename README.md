@@ -18,4 +18,15 @@ jupyter notebook
   - [Finite differences on staggered grid to solve Maxwell equations in 2D](https://pnavaro.github.io/python-fortran/07.maxwell-fdtd-2d.html)
   - [Short example with SWIG and CTYPES](https://pnavaro.github.io/python-fortran/08.swig.html)
 
+Reminder: Build the Jupyter book
+
+```bash
+make
+jupyter-book build notebooks
+```
+and eventually push the book to gh-pages
+```bash
+ghp-import -n -p -f notebooks/_build/html
+```
+
 Pierre Navaro IRMAR CNRS
