@@ -7,30 +7,24 @@ on:
 
 jobs:
   deploy-book:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
-    - name: Install apt dependencies
-      run: |
-        sudo apt-get install -yq libfftw3-dev 
+    - name: Install brew dependencies
+      run: brew install fftw openblas
 
     - uses: actions/checkout@v2
 
-    - name: Install dependencies
-      shell: bash -l {0}
-      run: |
-        conda env create -f environment.yml -n runenv
+    - name: Install python dependencies
+      run: pip3 install -r requirements.txt
 
     - name: Install Julia packages
       run: julia -e '
           using Pkg; Pkg.add(["REPL", "PyCall"]);
-          ENV["PYTHON"]="/usr/share/miniconda3/envs/runenv/bin/python";
+          ENV["PYTHON"]="/usr/local/bin/python3";
           Pkg.build("PyCall")'
 
-    - name: Install jupyterbook and build the book
-      shell: bash -l {0}
-      run: |
-        conda run -n runenv python -m ipykernel install --user --name python3
-        conda run -n runenv jupyter-book build notebooks
+    - name: Build the book
+      run: jupyter-book build notebooks
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.6.1

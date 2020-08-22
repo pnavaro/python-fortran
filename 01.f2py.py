@@ -389,7 +389,7 @@ import os, sys
 
 %env OMP_NUM_THREADS=4
 if sys.platform == "darwin":
-    os.environ["CC"] = "gcc-10"
+    os.environ["CC"] = "gcc-9"
     os.environ["FC"] = "gfortran"
 
 # + {"slideshow": {"slide_type": "fragment"}}

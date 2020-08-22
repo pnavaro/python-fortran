@@ -28,8 +28,8 @@
 import os, sys, gc
 
 if sys.platform == 'darwin':
-    os.environ['CC'] = 'gcc-10'
-    os.environ['CXX'] = 'g++-10'
+    os.environ['CC'] = 'gcc-9'
+    os.environ['CXX'] = 'g++-9'
 # -
 
 import warnings
@@ -166,8 +166,8 @@ plot_julia_set(juliaset_julia(x, y, c, lim, maxit))
 # include_dirs=/usr/local/opt/openblas/include
 # library_dirs=/usr/local/opt/openblas/lib
 # blas=openblas
-# CXX=g++-10
-# CC=gcc-10
+# CXX=g++-9
+# CC=gcc-9
 # ```
 
 %load_ext pythran.magic
@@ -477,6 +477,7 @@ for f in tqdm(functions):
 
     _ = %timeit -oq -n 1 f(x, y, c, lim, maxit)
     results['etime'] += [_.best]
+    gc.collect()
     
 results = pd.DataFrame(results, index=list(map(lambda f:f.__name__[9:],functions)))
 results["speed_up"] = [results.etime["numpy"]/t for t in results.etime]

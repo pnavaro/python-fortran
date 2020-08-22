@@ -1,0 +1,6 @@
+[compiler]
+include_dirs=/usr/local/opt/openblas/include
+library_dirs=/usr/local/opt/openblas/lib
+blas=openblas
+CXX=g++-9
+CC=gcc-9
