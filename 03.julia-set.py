@@ -89,6 +89,65 @@ def plot_julia_set(julia):
 plot_julia_set(juliaset_python(x, y, c, lim, maxit))
 # -
 
+# ## PyJulia
+#
+# [PyJulia](https://pyjulia.readthedocs.io/en/latest/#) is a python module to import
+# Julia function in your Python session. You can also run Julia code in a middle of
+# a Jupyter notebook with a Python kernel.
+#
+# To use pyjulia you need to install [Julia](https://julialang.org/downloads/) and install [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) and **REPL**
+#
+# ```
+# julia> using Pkg
+# julia> ENV["PYTHON"] = "/usr/local/bin/python3.7"
+# julia> Pkg.add("PyCall")
+# julia> Pkg.add("REPL")
+# julia> Pkg.build("PyCall")
+# ```
+#
+# print the value of `sys.executable` to know the python path. But the cell above could do the job.
+
+import julia
+julia.install()
+from julia.api import Julia
+jl = Julia(compiled_modules=False)
+
+
+# +
+%%file julia_set.jl
+
+function escapetime(z, c, lim, maxit)
+
+    for n = 1:maxit
+        if abs(z) > lim
+            return n-1
+        end
+        z = z*z + c
+    end
+    return maxit
+end
+
+function juliaset_julia(x :: Vector{Float64}, y :: Vector{Float64}, 
+                        c :: Complex, lim , maxit )
+    
+    nx = length(x)
+    ny = length(y)
+    julia = zeros(Float64, (nx, ny))
+    Threads.@sync for i in eachindex(x)
+        Threads.@spawn for j in eachindex(y)
+            @inbounds z  = x[i] + 1im * y[j] 
+            @inbounds julia[j, i] = escapetime(z, c, lim, maxit)
+        end
+    end
+    return julia
+end
+# -
+
+from julia import Main
+juliaset_julia = Main.include("julia_set.jl")
+
+plot_julia_set(juliaset_julia(x, y, c, lim, maxit))
+
 # ## Pythran
 #
 # [Pythran](https://pythran.readthedocs.io/en/latest/) is a Python-to-C++ translator
@@ -385,63 +444,6 @@ def juliaset_numba(x, y, c, lim, maxit):
 # + {"slideshow": {"slide_type": "slide"}}
 plot_julia_set(juliaset_numba(x, y, c, lim, maxit))
 # -
-
-# ## PyJulia
-#
-# [PyJulia](https://pyjulia.readthedocs.io/en/latest/#) is a python module to import
-# Julia function in your Python session. You can also run Julia code in a middle of
-# a Jupyter notebook with a Python kernel.
-#
-# To use pyjulia you need to install [Julia](https://julialang.org/downloads/) and install [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) and **REPL**
-#
-# ```
-# julia> using Pkg
-# julia> ENV["PYTHON"] = "/usr/local/bin/python3.7"
-# julia> Pkg.add("PyCall")
-# julia> Pkg.add("REPL")
-# julia> Pkg.build("PyCall")
-# ```
-#
-# print the value of `sys.executable` to know the python path. But the cell above could do the job.
-
-import julia
-julia.install()
-
-# +
-%%file julia_set.jl
-
-function escapetime(z, c, lim, maxit)
-
-    for n = 1:maxit
-        if abs(z) > lim
-            return n-1
-        end
-        z = z*z + c
-    end
-    return maxit
-end
-
-function juliaset_julia(x :: Vector{Float64}, y :: Vector{Float64}, 
-                        c :: Complex, lim , maxit )
-    
-    nx = length(x)
-    ny = length(y)
-    julia = zeros(Float64, (nx, ny))
-    Threads.@sync for i in eachindex(x)
-        Threads.@spawn for j in eachindex(y)
-            @inbounds z  = x[i] + 1im * y[j] 
-            @inbounds julia[j, i] = escapetime(z, c, lim, maxit)
-        end
-    end
-    return julia
-end
-# -
-
-from julia import Julia
-jl = Julia(compiled_modules=False)
-juliaset_julia = jl.include("julia_set.jl")
-
-plot_julia_set(juliaset_julia(x, y, c, lim, maxit))
 
 # ### Set number of threads used for parallel functions
 
