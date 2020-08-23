@@ -25,7 +25,7 @@
 # The test case is the computation of the Julia set [wikipedia](https://en.wikipedia.org/wiki/Julia_set)
 
 # +
-import os, sys, gc
+import os, sys
 
 if sys.platform == 'darwin':
     os.environ['CC'] = 'gcc-10'
@@ -85,7 +85,6 @@ def juliaset_python(x, y, c, lim, maxit):
 def plot_julia_set(julia):
     plt.figure(figsize=(6,6))
     plt.imshow(julia, cmap = cm.Greys, vmin=vmin, vmax=vmax)
-    gc.collect()
 
 
 # + {"internals": {"slide_helper": "subslide_end"}, "slide_helper": "slide_end", "slideshow": {"slide_type": "-"}}
@@ -479,7 +478,6 @@ for f in tqdm(functions):
 
     _ = %timeit -oq -n 1 f(x, y, c, lim, maxit)
     results['etime'] += [_.best]
-    gc.collect()
     
 results = pd.DataFrame(results, index=list(map(lambda f:f.__name__[9:],functions)))
 results["speed_up"] = [results.etime["numpy"]/t for t in results.etime]
