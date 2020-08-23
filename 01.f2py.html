@@ -1,0 +1,1315 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>F2py &#8212; Python-Fortran notebooks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python class linked with fortran module" href="02.f2py.html" />
+    <link rel="prev" title="Python-Fortran bindings examples" href="quickstart.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Python-Fortran notebooks</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="quickstart.html">
+   Python-Fortran bindings examples
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Call Fortran from Python with f2py
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   F2py
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02.f2py.html">
+   Python class linked with fortran module
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Examples
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="03.julia-set.html">
+   Julia Set
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04.vlasov-poisson.html">
+   Vlasov-Poisson
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05.co-rotating-vortex.html">
+   Co-rotating vortices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06.gray-scott-model.html">
+   Gray-Scott Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07.maxwell-fdtd-2d.html">
+   Maxwell solver in two dimensions with FDTD scheme
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Swig and ctypes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08.swig.html">
+   SWIG and Ctypes
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/01.f2py.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-fortran-subroutine-to-compute-norm">
+   Simple Fortran subroutine to compute norm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fortran-90-95-free-format">
+     Fortran 90/95 free format
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fortran-77-fixed-format">
+     Fortran 77 fixed format
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-extension-module-with-f2py-program">
+   Build extension module with f2py program
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-the-extension-module-in-python">
+   Use the extension module in Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fortran-magic">
+   Fortran magic
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#f2py-directives">
+   F2py directives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#directives">
+   directives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#callback">
+   Callback
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fortran-arrays-and-numpy-arrays">
+   Fortran arrays and Numpy arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#signature-file">
+   Signature file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wrap-lapack-function-dgemm-with-f2py">
+   Wrap lapack function dgemm  with f2py
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-the-python-module">
+   Build the python module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#check-performance-between-numpy-and-mylapack">
+   Check performance between numpy and mylapack
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#f2py-openmp">
+   f2py + OpenMP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusions">
+   Conclusions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cons">
+   cons
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distutils">
+   distutils
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercice-laplace-problem">
+     Exercice: Laplace problem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-extra-flags-like-bounds-checking">
+   Add extra flags like bounds checking
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="f2py">
+<h1>F2py<a class="headerlink" href="#f2py" title="Permalink to this headline">¶</a></h1>
+<p>F2py is a part of Numpy and there are three ways to wrap Fortran with Python :</p>
+<ul class="simple">
+<li><p>Write some fortran subroutines and just run f2py to create Python modules.</p></li>
+<li><p>Insert special f2py directives inside Fortran source for complex wrapping.</p></li>
+<li><p>Write a interface file (.pyf) to wrap Fortran files without changing them. f2py automatically generate the pyf template file that can be modified.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.fftpack</span> <span class="k">as</span> <span class="nn">sf</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">sl</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="simple-fortran-subroutine-to-compute-norm">
+<h2>Simple Fortran subroutine to compute norm<a class="headerlink" href="#simple-fortran-subroutine-to-compute-norm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fortran-90-95-free-format">
+<h3>Fortran 90/95 free format<a class="headerlink" href="#fortran-90-95-free-format" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">euclidian_norm</span><span class="o">.</span><span class="n">f90</span>
+<span class="n">subroutine</span> <span class="n">euclidian_norm</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+  <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span> <span class="p">::</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+  <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="p">::</span> <span class="n">c</span> 
+  <span class="n">c</span> <span class="o">=</span>	<span class="n">sqrt</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> 
+<span class="n">end</span> <span class="n">subroutine</span> <span class="n">euclidian_norm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing euclidian_norm.f90
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fortran-77-fixed-format">
+<h3>Fortran 77 fixed format<a class="headerlink" href="#fortran-77-fixed-format" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">euclidian_norm</span><span class="o">.</span><span class="n">f</span>
+      <span class="n">subroutine</span> <span class="n">euclidian_norm</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+      <span class="n">real</span><span class="o">*</span><span class="mi">8</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span>
+<span class="n">Cf2py</span> <span class="n">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="n">c</span>
+      <span class="n">c</span> <span class="o">=</span> <span class="n">sqrt</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> 
+      <span class="n">end</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing euclidian_norm.f
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="build-extension-module-with-f2py-program">
+<h2>Build extension module with f2py program<a class="headerlink" href="#build-extension-module-with-f2py-program" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!{sys.executable} -m numpy.f2py --quiet -c euclidian_norm.f90 -m vect
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="use-the-extension-module-in-python">
+<h2>Use the extension module in Python<a class="headerlink" href="#use-the-extension-module-in-python" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vect</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">euclidian_norm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">euclidian_norm</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span> <span class="c1"># Docstring is automatically generate</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>c = euclidian_norm(a,b)
+
+Wrapper for ``euclidian_norm``.
+
+Parameters
+----------
+a : input float
+b : input float
+
+Returns
+-------
+c : float
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fortran-magic">
+<h2>Fortran magic<a class="headerlink" href="#fortran-magic" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Jupyter extension that help to use fortran code in an interactive session.</p></li>
+<li><p>It adds a %%fortran cell magic that compile and import the Fortran code in the cell, using F2py.</p></li>
+<li><p>The contents of the cell are written to a .f90 file in the directory IPYTHONDIR/fortran using a filename with the hash of the code. This file is then compiled. The resulting module is imported and all of its symbols are injected into the user’s namespace.</p></li>
+</ul>
+<p><a class="reference external" href="http://nbviewer.jupyter.org/github/mgaitan/fortran_magic/blob/master/documentation.ipynb">Documentation</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">fortranmagic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/javascript">new Promise(function(resolve, reject) {
+	var script = document.createElement("script");
+	script.onload = resolve;
+	script.onerror = reject;
+	script.src = "https://raw.github.com/marijnh/CodeMirror/master/mode/fortran/fortran.js";
+	document.head.appendChild(script);
+}).then(() => {
+IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
+});</script></div>
+</div>
+</div>
+<div class="section" id="f2py-directives">
+<h2>F2py directives<a class="headerlink" href="#f2py-directives" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>F2PY introduces also some extensions to Fortran 90/95 language specification that help designing Fortran to Python interface, make it more “Pythonic”.</p></li>
+<li><p>If editing Fortran codes is acceptable, these specific attributes can be inserted directly to Fortran source codes. Special comment lines are ignored by Fortran compilers but F2PY interprets them as normal lines.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran 
+subroutine euclidian_norm(a,c,n) 
+  integer :: n 
+  real(8),dimension(n),intent(in) :: a
+  !f2py optional , depend(a) :: n=len(a)
+  real(8),intent(out) :: c 
+  real(8) :: sommec 
+  integer :: i
+  sommec = 0 
+  do i=1,n
+    sommec=sommec+a( i )*a( i ) 
+  end do
+  c = sqrt (sommec) 
+end subroutine euclidian_norm
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># Python list</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">euclidian_norm</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.385164807134504
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># numpy array</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>numpy.ndarray
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">euclidian_norm</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>5.385164807134504
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">euclidian_norm</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span> <span class="c1"># Documentation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>c = euclidian_norm(a,[n])
+
+Wrapper for ``euclidian_norm``.
+
+Parameters
+----------
+a : input rank-1 array(&#39;d&#39;) with bounds (n)
+
+Other Parameters
+----------------
+n : input int, optional
+    Default: len(a)
+
+Returns
+-------
+c : float
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="directives">
+<h2>directives<a class="headerlink" href="#directives" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">optional</span></code>: The corresponding argument is moved to the end.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">required</span></code>: This is default. Use it to disable automatic optional setting.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intent(in</span> <span class="pre">|</span> <span class="pre">inout</span> <span class="pre">|</span> <span class="pre">out</span> <span class="pre">|</span> <span class="pre">hide)</span></code> , <code class="docutils literal notranslate"><span class="pre">intent(in)</span></code> is the default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intent(out)</span></code> is implicitly translated to <code class="docutils literal notranslate"><span class="pre">intent(out,hide)</span> </code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intent(copy)</span></code> and <code class="docutils literal notranslate"><span class="pre">intent(overwrite)</span></code> control changes for input arguments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check</span></code> performs some assertions, it is often automatically generated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">depend</span></code>:  f2py detects cyclic dependencies.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">allocatable,</span> <span class="pre">parameter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intent(callback),</span> <span class="pre">external</span></code>: for function as arguments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intent(c)</span></code> C-type argument , array or function.</p></li>
+<li><p>C expressions: <code class="docutils literal notranslate"><span class="pre">rank,</span> <span class="pre">shape,</span> <span class="pre">len,</span> <span class="pre">size,</span> <span class="pre">slen</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="callback">
+<h2>Callback<a class="headerlink" href="#callback" title="Permalink to this headline">¶</a></h2>
+<p>You can call a python function inside your fortran code</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran
+subroutine sum_f (f ,n, s) 
+  !Compute sum(f(i), i=1,n) 
+  external f 
+  integer, intent(in) :: n 
+  real, intent(out) :: s
+  s = 0.0 
+  do i=1,n
+    s=s+f(i)
+  end do 
+end subroutine sum_f
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fonction</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">:</span> <span class="c1"># python function</span>
+    <span class="k">return</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>
+
+<span class="n">sum_f</span><span class="p">(</span><span class="n">fonction</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>14.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sum_f</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># lambda function</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>14.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fortran-arrays-and-numpy-arrays">
+<h2>Fortran arrays and Numpy arrays<a class="headerlink" href="#fortran-arrays-and-numpy-arrays" title="Permalink to this headline">¶</a></h2>
+<p>Let’s see how to pass numpy arrays to fortran subroutine.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">fortran</span> <span class="o">--</span><span class="n">extra</span><span class="o">=</span><span class="s2">&quot;-DF2PY_REPORT_ON_ARRAY_COPY=1&quot;</span>
+<span class="n">subroutine</span> <span class="n">push</span><span class="p">(</span> <span class="n">positions</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+  <span class="n">integer</span><span class="p">,</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span> <span class="p">::</span> <span class="n">n</span>
+  <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span> <span class="p">::</span> <span class="n">dt</span>
+  <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span> <span class="p">::</span> <span class="n">velocities</span>
+  <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">::</span> <span class="n">positions</span>
+  <span class="n">do</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span>
+    <span class="n">positions</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span> <span class="o">=</span> <span class="n">positions</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">velocities</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span>
+  <span class="n">end</span> <span class="n">do</span>
+<span class="n">end</span> <span class="n">subroutine</span> <span class="n">push</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">positions</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+<span class="n">velocities</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">push</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">positions</span> <span class="c1"># memory is not updated because we used C memory storage</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>During execution, the message “created an array from object” is displayed, because a copy of is made when passing multidimensional array to fortran subroutine.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;f8&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">push</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">positions</span> <span class="c1"># the memory is updated</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0. , 0.1, 0.2],
+       [0. , 0.3, 0.2],
+       [0. , 0.1, 0.3]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="signature-file">
+<h2>Signature file<a class="headerlink" href="#signature-file" title="Permalink to this headline">¶</a></h2>
+<p>This file contains descriptions of wrappers to Fortran or C functions, also called as signatures of the functions. F2PY can create initial signature file by scanning Fortran source codes and catching all relevant information needed to create wrapper functions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f2py vector.f90 -h vector.pyf
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>vector.pyf</p></li>
+</ul>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!    -*- f90 -*-</span>
+<span class="c">! Note: the context of this file is case sensitive.</span>
+
+<span class="k">subroutine </span><span class="n">euclidian_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="c">! in vector.f90</span>
+    <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span> <span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
+    <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c</span>
+    <span class="kt">integer </span><span class="k">optional</span><span class="p">,</span><span class="n">check</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">&gt;=</span><span class="n">n</span><span class="p">),</span><span class="n">depend</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">end subroutine </span><span class="n">euclidian_norm</span>
+
+<span class="c">! This file was auto-generated with f2py (version:2).</span>
+<span class="c">! See http://cens.ioc.ee/projects/f2py2e/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wrap-lapack-function-dgemm-with-f2py">
+<h2>Wrap lapack function dgemm  with f2py<a class="headerlink" href="#wrap-lapack-function-dgemm-with-f2py" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Generate the signature file</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!{sys.executable} -m numpy.f2py --quiet -m mylapack --overwrite-signature -h dgemm.pyf dgemm.f
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>rmbadname1: Replacing &quot;max&quot; with &quot;max_bn&quot;.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!    -*- f90 -*-</span>
+<span class="c">! Note: the context of this file is case sensitive.</span>
+
+<span class="n">python</span> <span class="k">module </span><span class="n">mylapack</span> <span class="c">! in </span>
+    <span class="k">interface</span>  <span class="c">! in :mylapack</span>
+        <span class="k">subroutine </span><span class="n">dgemm</span><span class="p">(</span><span class="n">transa</span><span class="p">,</span><span class="n">transb</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">lda</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">ldb</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">ldc</span><span class="p">)</span> <span class="c">! in :mylapack:dgemm.f</span>
+            <span class="kt">character</span><span class="o">*</span><span class="mi">1</span> <span class="kd">::</span> <span class="n">transa</span>
+            <span class="kt">character</span><span class="o">*</span><span class="mi">1</span> <span class="kd">::</span> <span class="n">transb</span>
+            <span class="kt">integer</span> <span class="kd">::</span> <span class="n">m</span>
+            <span class="kt">integer</span> <span class="kd">::</span> <span class="n">n</span>
+            <span class="kt">integer</span> <span class="kd">::</span> <span class="n">k</span>
+            <span class="kt">double precision</span> <span class="kd">::</span> <span class="n">alpha</span>
+            <span class="kt">double precision </span><span class="k">dimension</span><span class="p">(</span><span class="n">lda</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
+            <span class="kt">integer</span><span class="p">,</span> <span class="k">optional</span><span class="p">,</span><span class="n">check</span><span class="p">(</span><span class="nb">shape</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="n">lda</span><span class="p">),</span><span class="n">depend</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="kd">::</span> <span class="n">lda</span><span class="o">=</span><span class="nb">shape</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+            <span class="kt">double precision </span><span class="k">dimension</span><span class="p">(</span><span class="n">ldb</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="kd">::</span> <span class="n">b</span>
+            <span class="kt">integer</span><span class="p">,</span> <span class="k">optional</span><span class="p">,</span><span class="n">check</span><span class="p">(</span><span class="nb">shape</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="n">ldb</span><span class="p">),</span><span class="n">depend</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ldb</span><span class="o">=</span><span class="nb">shape</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+            <span class="kt">double precision</span> <span class="kd">::</span> <span class="n">beta</span>
+            <span class="kt">double precision </span><span class="k">dimension</span><span class="p">(</span><span class="n">ldc</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c</span>
+            <span class="kt">integer</span><span class="p">,</span> <span class="k">optional</span><span class="p">,</span><span class="n">check</span><span class="p">(</span><span class="nb">shape</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="n">ldc</span><span class="p">),</span><span class="n">depend</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ldc</span><span class="o">=</span><span class="nb">shape</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">end subroutine </span><span class="n">dgemm</span>
+    <span class="k">end interface </span>
+<span class="k">end </span><span class="n">python</span> <span class="k">module </span><span class="n">mylapack</span>
+
+<span class="c">! This file was auto-generated with f2py (version:2).</span>
+<span class="c">! See http://cens.ioc.ee/projects/f2py2e/</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!{sys.executable} -m numpy.f2py --quiet -c dgemm.pyf -llapack -m mylapack
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">mylapack</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a=&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b=&quot;</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">mylapack</span><span class="o">.</span><span class="n">dgemm</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mf">1.0</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">a</span> <span class="o">@</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># check with numpy matrix multiplication </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a= [[7 8]
+ [3 4]
+ [1 2]]
+b= [[1 2 3]
+ [4 5 6]]
+[[39. 54. 69.]
+ [19. 26. 33.]
+ [ 9. 12. 15.]]
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Modify the file dgemm.pyf to set all arguments top optional and keep only the two matrices as input.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%file dgemm2.pyf
+python module mylapack2 ! in 
+    interface  ! in :mylapack
+        subroutine dgemm(transa,transb,m,n,k,alpha,a,lda,b,ldb,beta,c,ldc)
+            character, optional :: transa = &#39;N&#39;
+            character, optional :: transb = &#39;N&#39;
+            integer, optional :: m = shape(a,0)
+            integer, optional :: n = shape(b,1)
+            integer, optional, check(shape(b,0)==k) :: k = shape(a,1)
+            double precision, optional :: alpha = 1.
+            double precision dimension(lda,*) :: a
+            integer optional,check(shape(a,0)==lda),depend(a) :: lda=shape(a,0)
+            double precision dimension(ldb,*) :: b
+            integer optional,check(shape(b,0)==ldb),depend(b) :: ldb=shape(b,0)
+            double precision, optional :: beta = 1.
+            double precision dimension(shape(a,0),shape(b,1)), intent(out) :: c
+            integer optional :: ldc=shape(a,0)
+        end subroutine dgemm
+    end interface 
+end python module mylapack2
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing dgemm2.pyf
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="build-the-python-module">
+<h2>Build the python module<a class="headerlink" href="#build-the-python-module" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!{sys.executable} -m numpy.f2py --quiet -c dgemm2.pyf  -m mylapack2 -llapack --f90flags=-O3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mylapack2</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">mylapack2</span><span class="o">.</span><span class="n">dgemm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span> <span class="n">c</span> <span class="o">==</span> <span class="n">a</span> <span class="o">@</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="check-performance-between-numpy-and-mylapack">
+<h2>Check performance between numpy and mylapack<a class="headerlink" href="#check-performance-between-numpy-and-mylapack" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">512</span><span class="p">,</span><span class="mi">128</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">128</span><span class="p">,</span><span class="mi">512</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">c</span> <span class="o">=</span> <span class="n">mylapack2</span><span class="o">.</span><span class="n">dgemm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.22 ms ± 80.1 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>725 µs ± 5 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Fortran arrays allocated in a subroutine share same memory in Python</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran
+module f90module
+   implicit none
+   real(8), dimension(:),   allocatable :: farray
+contains
+   subroutine init( n ) !Allocation du tableau farray
+   integer, intent(in) :: n
+   allocate(farray(n))
+   end subroutine init
+end module f90module
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f90module</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">f90module</span><span class="o">.</span><span class="n">farray</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Numpy arrays allocated in Python passed to Fortran are already allocated</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">fortran</span>
+<span class="n">module</span> <span class="n">f90module</span>
+   <span class="n">implicit</span> <span class="n">none</span>
+   <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dimension</span><span class="p">(:),</span>   <span class="n">allocatable</span> <span class="p">::</span> <span class="n">farray</span>
+<span class="n">contains</span>
+   <span class="n">subroutine</span> <span class="n">test_array</span><span class="p">(</span> <span class="n">allocated_flag</span><span class="p">,</span> <span class="n">array_size</span> <span class="p">)</span>
+   <span class="n">logical</span><span class="p">,</span> <span class="n">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="p">::</span> <span class="n">allocated_flag</span>
+   <span class="n">integer</span><span class="p">,</span> <span class="n">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="p">::</span> <span class="n">array_size</span>
+   <span class="n">allocated_flag</span> <span class="o">=</span> <span class="n">allocated</span><span class="p">(</span><span class="n">farray</span><span class="p">)</span>
+   <span class="n">array_size</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">farray</span><span class="p">)</span>
+   <span class="n">end</span> <span class="n">subroutine</span> <span class="n">test_array</span>
+<span class="n">end</span> <span class="n">module</span> <span class="n">f90module</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f90module</span><span class="o">.</span><span class="n">farray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">f90module</span><span class="o">.</span><span class="n">test_array</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(1, 10)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="f2py-openmp">
+<h2>f2py + OpenMP<a class="headerlink" href="#f2py-openmp" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+
+<span class="o">%</span><span class="n">env</span> <span class="n">OMP_NUM_THREADS</span><span class="o">=</span><span class="mi">4</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gcc-10&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gfortran&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>env: OMP_NUM_THREADS=4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">fortran</span> 
+<span class="n">subroutine</span> <span class="n">hello</span><span class="p">(</span> <span class="p">)</span>
+  <span class="n">integer</span> <span class="p">::</span> <span class="n">i</span>
+  <span class="n">do</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span>
+    <span class="n">call</span> <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">end</span> <span class="n">do</span>
+<span class="n">end</span> <span class="n">subroutine</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="n">hello</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.41 ms, sys: 3.65 ms, total: 5.06 ms
+Wall time: 4.27 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran --f90flags=&#39;-fopenmp&#39; --extra=&#39;-lgomp&#39;
+subroutine hello_omp( )
+  use omp_lib
+  integer :: i
+  !$OMP PARALLEL PRIVATE(I)
+  !$OMP DO 
+  do i = 1, 4
+    call sleep(1)
+  end do
+  !$OMP END DO
+  !$OMP END PARALLEL
+
+end subroutine hello_omp
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="n">hello_omp</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 698 µs, sys: 1.41 ms, total: 2.11 ms
+Wall time: 1.07 s
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Easy to use, it works with modern fortran, legacy fortran and also C.</p></li>
+<li><p>Works with common and modules and arrays dynamically allocated.</p></li>
+<li><p>Python function callback can be very useful combined with Sympy</p></li>
+<li><p>Documentation is  automatically generated</p></li>
+<li><p>All fortran compilers are supported: GNU, Portland, Sun, Intel,…</p></li>
+<li><p>F2py is integrated in numpy library.</p></li>
+</ul>
+</div>
+<div class="section" id="cons">
+<h2>cons<a class="headerlink" href="#cons" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Derived types and fortran pointers are not well supported.</p></li>
+<li><p>Absolutely not compatible with fortran 2003-2008 new features (classes)</p></li>
+<li><p>f2py is maintained but not really improved. Development is stopped.</p></li>
+</ul>
+</div>
+<div class="section" id="distutils">
+<h2>distutils<a class="headerlink" href="#distutils" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>setup.py</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.distutils.core</span> <span class="kn">import</span> <span class="n">Extension</span><span class="p">,</span> <span class="n">setup</span>
+<span class="n">ext1</span> <span class="o">=</span> <span class="n">Extension</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;scalar&#39;</span><span class="p">,</span>
+                 <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scalar.f&#39;</span><span class="p">])</span>
+<span class="n">ext2</span> <span class="o">=</span> <span class="n">Extension</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fib2&#39;</span><span class="p">,</span>
+                 <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fib2.pyf&#39;</span><span class="p">,</span><span class="s1">&#39;fib1.f&#39;</span><span class="p">])</span>
+
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;f2py_example&#39;</span><span class="p">,</span> <span class="n">ext_modules</span> <span class="o">=</span> <span class="p">[</span><span class="n">ext1</span><span class="p">,</span><span class="n">ext2</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Compilation</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 setup.py build_ext --inplace
+</pre></div>
+</div>
+<div class="section" id="exercice-laplace-problem">
+<h3>Exercice: Laplace problem<a class="headerlink" href="#exercice-laplace-problem" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">laplace</span></code> function by a fortran subroutine</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="c1"># Boundary conditions</span>
+<span class="n">Tnorth</span><span class="p">,</span> <span class="n">Tsouth</span><span class="p">,</span> <span class="n">Twest</span><span class="p">,</span> <span class="n">Teast</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span>
+
+<span class="c1"># Set meshgrid</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mf">1.0</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+
+<span class="c1"># Set Boundary condition</span>
+<span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Tnorth</span>
+<span class="n">T</span><span class="p">[:</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Tsouth</span>
+<span class="n">T</span><span class="p">[:,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">Teast</span>
+<span class="n">T</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Twest</span>
+
+<span class="k">def</span> <span class="nf">laplace</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">T_old</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">residual</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">residual</span><span class="p">,</span><span class="nb">abs</span><span class="p">((</span><span class="n">T_old</span><span class="o">-</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">])</span><span class="o">/</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">residual</span>
+
+<span class="n">residual</span> <span class="o">=</span> <span class="mf">1.0</span>   
+<span class="n">istep</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">residual</span> <span class="o">&gt;</span> <span class="mf">1e-5</span> <span class="p">:</span>
+    <span class="n">istep</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">laplace</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="c1"># print ((istep, residual), end=&quot;\r&quot;)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;iterations = &quot;</span><span class="p">,</span><span class="n">istep</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">6.67</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Temperature&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>iterations =  2457
+CPU times: user 35.2 s, sys: 37.1 ms, total: 35.2 s
+Wall time: 35.4 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x11ccb8340&gt;
+</pre></div>
+</div>
+<img alt="_images/01.f2py_62_2.png" src="_images/01.f2py_62_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran
+subroutine laplace_fortran( T, n, residual )
+
+  real(8), intent(inout) :: T(0:n-1,0:n-1) ! Python indexing
+  integer, intent(in)    :: n
+  real(8), intent(out)   :: residual
+  real(8) :: T_old
+              
+  residual = 0.0
+  do i = 1, n-2  
+    do j = 1, n-2
+        T_old = T(i,j)
+        T(i, j) = 0.25 * (T(i+1,j) + T(i-1,j) + T(i,j+1) + T(i,j-1))
+            if (T(i,j) &gt; 0) then
+                residual=max(residual,abs((T_old-T(i,j))/T(i,j)))
+            end if
+    end do
+  end do
+        
+end subroutine laplace_fortran
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="c1"># Boundary conditions</span>
+<span class="n">Tnorth</span><span class="p">,</span> <span class="n">Tsouth</span><span class="p">,</span> <span class="n">Twest</span><span class="p">,</span> <span class="n">Teast</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span>
+
+<span class="c1"># Set meshgrid</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mf">1.0</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>  <span class="c1">## We need to declare a new order in memory</span>
+
+<span class="c1"># Set Boundary condition</span>
+<span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Tnorth</span>
+<span class="n">T</span><span class="p">[:</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Tsouth</span>
+<span class="n">T</span><span class="p">[:,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">Teast</span>
+<span class="n">T</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Twest</span>
+
+<span class="n">residual</span> <span class="o">=</span> <span class="mf">1.0</span>   
+<span class="n">istep</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">residual</span> <span class="o">&gt;</span> <span class="mf">1e-5</span> <span class="p">:</span>
+    <span class="n">istep</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">laplace_fortran</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;iterations = &quot;</span><span class="p">,</span><span class="n">istep</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">6.67</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Temperature&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+iterations =  2457
+CPU times: user 123 ms, sys: 8.31 ms, total: 131 ms
+Wall time: 128 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x11cdac310&gt;
+</pre></div>
+</div>
+<img alt="_images/01.f2py_64_2.png" src="_images/01.f2py_64_2.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://calcul.math.cnrs.fr/Documents/Journees/dec2006/python-fortran.pdf">Talk by E. Sonnendrücker</a></p></li>
+<li><p><a class="reference external" href="http://www.scipy.org/F2py">SciPy</a></p></li>
+<li><p><a class="reference external" href="http://www.sagemath.org/doc/numerical_sage/f2py.html">Sagemath Documentation </a></p></li>
+<li><p>Hans Petter Langtangen. <em>Python Scripting for Computational Science</em>. Springer 2004</p></li>
+</ul>
+</div>
+<div class="section" id="add-extra-flags-like-bounds-checking">
+<h2>Add extra flags like bounds checking<a class="headerlink" href="#add-extra-flags-like-bounds-checking" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">config_fc</span> <span class="o">--</span><span class="n">f90flags</span><span class="o">=-</span><span class="n">fbounds</span><span class="o">-</span><span class="n">check</span>
+</pre></div>
+</div>
+<p>In setup.py</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ext1</span> <span class="o">=</span> <span class="n">Extension</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_coffee_f90&#39;</span><span class="p">,</span>
+                 <span class="n">sources</span><span class="o">=</span><span class="n">files1</span><span class="p">,</span>
+                 <span class="n">extra_f90_compile_args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-fbounds-check&#39;</span><span class="p">],</span>
+                 <span class="n">extra_link_args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-llapack -lgomp&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="quickstart.html" title="previous page">Python-Fortran bindings examples</a>
+    <a class='right-next' id="next-link" href="02.f2py.html" title="next page">Python class linked with fortran module</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pierre Navaro<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

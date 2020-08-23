@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>SWIG and Ctypes &#8212; Python-Fortran notebooks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Maxwell solver in two dimensions with FDTD scheme" href="07.maxwell-fdtd-2d.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Python-Fortran notebooks</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="quickstart.html">
+   Python-Fortran bindings examples
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Call Fortran from Python with f2py
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01.f2py.html">
+   F2py
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02.f2py.html">
+   Python class linked with fortran module
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Examples
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="03.julia-set.html">
+   Julia Set
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04.vlasov-poisson.html">
+   Vlasov-Poisson
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05.co-rotating-vortex.html">
+   Co-rotating vortices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06.gray-scott-model.html">
+   Gray-Scott Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07.maxwell-fdtd-2d.html">
+   Maxwell solver in two dimensions with FDTD scheme
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Swig and ctypes
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   SWIG and Ctypes
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/08.swig.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-collatz-conjecture">
+   Problem: Collatz conjecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-program">
+   C program
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-program">
+   Python program
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#performances">
+   Performances
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ctypes">
+   Ctypes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ctypes-with-fortran-module">
+   Ctypes with Fortran module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#swig">
+   SWIG
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-the-python-module">
+     Build the python module
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="swig-and-ctypes">
+<h1>SWIG and Ctypes<a class="headerlink" href="#swig-and-ctypes" title="Permalink to this headline">¶</a></h1>
+<p>Interfacing Fortran code through C interface</p>
+<p>I found <a class="reference external" href="https://www.fortran90.org/src/best-practices.html#interfacing-with-python">this reference</a> with good examples.</p>
+<div class="section" id="problem-collatz-conjecture">
+<h2>Problem: Collatz conjecture<a class="headerlink" href="#problem-collatz-conjecture" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Choose <span class="math notranslate nohighlight">\(u_0\)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(u_k\)</span> even, <span class="math notranslate nohighlight">\(u_{k+1} \rightarrow \frac{u_k}{2}\)</span> ;</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(u_k\)</span> odd,  <span class="math notranslate nohighlight">\(u_{k+1}  \rightarrow 3 u_k+1\)</span></p></li>
+<li><p>The Collatz conjecture is: For all  <span class="math notranslate nohighlight">\(u_0&gt;0\)</span> , the process will eventually reach <span class="math notranslate nohighlight">\(u_k=1\)</span>.</p></li>
+<li><p>The programs below compute number of steps (named flight) to reach <span class="math notranslate nohighlight">\(f(u_0)\)</span> for <span class="math notranslate nohighlight">\(1\leq u_0 \leq N\)</span>, <span class="math notranslate nohighlight">\(N\)</span> given.</p></li>
+</ul>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Collatz_conjecture">The Collatz conjecture on Wikipedia</a></p>
+</div>
+<div class="section" id="c-program">
+<h2>C program<a class="headerlink" href="#c-program" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">syracuse</span><span class="o">.</span><span class="n">c</span>
+<span class="c1">#include &lt;stdlib.h&gt; </span>
+<span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="n">long</span> <span class="n">syracuse</span><span class="p">(</span><span class="n">long</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> 
+   <span class="n">long</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="n">L</span> <span class="p">;</span> 
+   <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">n</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> 
+          <span class="n">n</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span> 
+      <span class="k">else</span> 
+          <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> 
+      <span class="n">count</span><span class="o">++</span><span class="p">;</span>   
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="n">count</span> <span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">const</span> <span class="n">long</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span> 
+   <span class="n">double</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">;</span>
+   <span class="n">long</span> <span class="n">i</span> <span class="p">,</span> <span class="o">*</span><span class="n">flights</span> <span class="p">;</span>
+   <span class="n">flights</span> <span class="o">=</span> <span class="p">(</span><span class="n">long</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">sizeof</span><span class="p">(</span><span class="n">long</span><span class="p">));</span>
+   <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">flights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">syracuse</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> 
+   <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing syracuse.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+<span class="n">gcc</span> <span class="o">-</span><span class="n">O3</span> <span class="n">syracuse</span><span class="o">.</span><span class="n">c</span> 
+<span class="n">time</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="stderr docutils container">
+<pre class="stderr literal-block">
+real	0m0.067s
+user	0m0.001s
+sys	0m0.001s
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="python-program">
+<h2>Python program<a class="headerlink" href="#python-program" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span>
+
+<span class="k">def</span> <span class="nf">syracuse</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="k">for</span> <span class="n">steps</span> <span class="ow">in</span> <span class="n">count</span><span class="p">()</span> <span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="p">:</span> 
+            <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">//</span> <span class="mi">2</span>
+            
+        <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">steps</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">flights</span> <span class="o">=</span> <span class="p">[</span><span class="n">syracuse</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 22 s, sys: 82.8 ms, total: 22.1 s
+Wall time: 22.1 s
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="performances">
+<h2>Performances<a class="headerlink" href="#performances" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The python syntax is simpler.</p></li>
+<li><p>100 times slower</p></li>
+<li><p>Solution : call the C function from python.</p></li>
+</ul>
+</div>
+<div class="section" id="ctypes">
+<h2>Ctypes<a class="headerlink" href="#ctypes" title="Permalink to this headline">¶</a></h2>
+<p>This is the C function we will call from python</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">syrac</span><span class="o">.</span><span class="n">c</span>
+
+<span class="n">long</span> <span class="n">syracuse</span><span class="p">(</span><span class="n">long</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span> 
+   <span class="n">long</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="n">L</span> <span class="p">;</span> 
+   <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+   <span class="p">{</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">n</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> 
+         <span class="n">n</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span> 
+      <span class="k">else</span> 
+         <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> 
+      <span class="n">count</span><span class="o">++</span><span class="p">;</span>   
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="n">count</span> <span class="p">;</span> 
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing syrac.c
+</pre></div>
+</div>
+</div>
+</div>
+<p>Build the shared library</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+<span class="n">gcc</span> <span class="o">-</span><span class="n">fPIC</span> <span class="o">-</span><span class="n">shared</span> <span class="o">-</span><span class="n">O3</span> \
+    <span class="o">-</span><span class="n">o</span> <span class="n">syrac</span><span class="o">.</span><span class="n">so</span> <span class="n">syrac</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">syracDLL</span> <span class="o">=</span> <span class="n">CDLL</span><span class="p">(</span><span class="s2">&quot;./syrac.so&quot;</span><span class="p">)</span>
+<span class="n">syracuse</span> <span class="o">=</span> <span class="n">syracDLL</span><span class="o">.</span><span class="n">syracuse</span>
+
+<span class="n">flights</span> <span class="o">=</span> <span class="p">[</span><span class="n">syracuse</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 530 ms, sys: 5.49 ms, total: 536 ms
+Wall time: 600 ms
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ctypes-with-fortran-module">
+<h2>Ctypes with Fortran module<a class="headerlink" href="#ctypes-with-fortran-module" title="Permalink to this headline">¶</a></h2>
+<p>If you change the fortran file you have to restart the kernel</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">syrac</span><span class="o">.</span><span class="n">F90</span>
+
+<span class="n">module</span> <span class="n">syrac_f90</span>
+  <span class="n">use</span> <span class="n">iso_c_binding</span>
+  <span class="n">implicit</span> <span class="n">none</span>
+
+<span class="n">contains</span>
+
+  <span class="n">function</span> <span class="n">f_syrac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;c_syrac&#39;</span><span class="p">)</span> <span class="n">result</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    
+    <span class="n">integer</span><span class="p">(</span><span class="n">c_long</span><span class="p">)</span> <span class="p">::</span> <span class="n">f</span>
+    <span class="n">integer</span><span class="p">(</span><span class="n">c_long</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">),</span> <span class="n">value</span> <span class="p">::</span> <span class="n">n</span>
+    <span class="n">integer</span><span class="p">(</span><span class="n">c_long</span><span class="p">)</span> <span class="p">::</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="mi">0_8</span>
+    <span class="n">do</span> <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>
+       <span class="k">if</span> <span class="p">(</span><span class="n">iand</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1_8</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">then</span>
+          <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span>
+       <span class="k">else</span>
+          <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+       <span class="n">end</span> <span class="k">if</span>
+       <span class="n">f</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="mi">1_8</span>
+    <span class="n">end</span> <span class="n">do</span>
+
+  <span class="n">end</span> <span class="n">function</span> <span class="n">f_syrac</span>
+
+<span class="n">end</span> <span class="n">module</span> <span class="n">syrac_f90</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing syrac.F90
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">*.</span><span class="n">o</span> <span class="o">*.</span><span class="n">so</span> <span class="o">*.</span><span class="n">dylib</span>
+<span class="n">gfortran</span> <span class="o">-</span><span class="n">fPIC</span> <span class="o">-</span><span class="n">shared</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">o</span> <span class="n">syrac</span><span class="o">.</span><span class="n">dylib</span> <span class="n">syrac</span><span class="o">.</span><span class="n">F90</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">syrac_f90</span> <span class="o">=</span> <span class="n">CDLL</span><span class="p">(</span><span class="s1">&#39;./syrac.dylib&#39;</span><span class="p">)</span>
+
+<span class="n">syrac_f90</span><span class="o">.</span><span class="n">c_syrac</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">c_long</span>
+
+<span class="n">syrac_f90</span><span class="o">.</span><span class="n">c_syrac</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>111
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">flights</span> <span class="o">=</span> <span class="p">[</span><span class="n">syrac_f90</span><span class="o">.</span><span class="n">c_syrac</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 607 ms, sys: 6.09 ms, total: 613 ms
+Wall time: 612 ms
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Faster than pure Python</p></li>
+<li><p>We can call function from DLL windows libraries.</p></li>
+<li><p>Unfortunately you need to adapt the syntax to the operating system.</p></li>
+</ul>
+<p>http://docs.python.org/library/ctypes.html}</p>
+</div>
+<div class="section" id="swig">
+<h2>SWIG<a class="headerlink" href="#swig" title="Permalink to this headline">¶</a></h2>
+<p>Interface file syrac.i for C function in syrac.c</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">syrac</span><span class="o">.</span><span class="n">i</span>
+
+<span class="o">%</span><span class="n">module</span> <span class="n">syracuseC</span>
+<span class="o">%</span><span class="p">{</span>
+   <span class="n">extern</span> <span class="n">long</span> <span class="n">syracuse</span><span class="p">(</span><span class="n">long</span> <span class="n">n</span><span class="p">);</span>
+<span class="o">%</span><span class="p">}</span>
+<span class="n">extern</span> <span class="n">long</span> <span class="n">syracuse</span><span class="p">(</span><span class="n">long</span> <span class="n">n</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing syrac.i
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+<span class="n">swig</span> <span class="o">-</span><span class="n">python</span> <span class="n">syrac</span><span class="o">.</span><span class="n">i</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="build-the-python-module">
+<h3>Build the python module<a class="headerlink" href="#build-the-python-module" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Using command line</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>swig -python syrac.i
+
+gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -fPIC <span class="se">\</span>
+  -shared -O3 -o _syracuseC.so syrac_wrap.c syrac.c <span class="sb">`</span>python3-config --ldflags<span class="sb">`</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>With distutils</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span>
+<span class="kn">from</span> <span class="nn">numpy.distutils.core</span> <span class="kn">import</span> <span class="n">Extension</span><span class="p">,</span> <span class="n">setup</span>
+
+
+<span class="n">module_swig</span> <span class="o">=</span> <span class="n">Extension</span><span class="p">(</span><span class="s1">&#39;_syracuseC&#39;</span><span class="p">,</span> <span class="n">sources</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;syrac_wrap.c&#39;</span><span class="p">,</span> <span class="s1">&#39;syrac.c&#39;</span><span class="p">])</span>
+
+<span class="n">setup</span><span class="p">(</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Syracuse&#39;</span><span class="p">,</span>
+       <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.1.0&#39;</span><span class="p">,</span>
+       <span class="n">author</span>      <span class="o">=</span> <span class="s2">&quot;Pierre Navaro&quot;</span><span class="p">,</span>
+       <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Simple C Fortran interface example &quot;&quot;&quot;</span><span class="p">,</span>
+       <span class="n">ext_modules</span> <span class="o">=</span> <span class="p">[</span><span class="n">module_swig</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing setup.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import sys, os
+
+if sys.platform == &quot;darwin&quot;:
+    os.environ[&quot;CC&quot;] = &quot;gcc-10&quot;
+    
+!{sys.executable} setup.py build_ext --inplace --quiet
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[39mrunning build_ext[0m
+[39mrunning build_src[0m
+[39mbuild_src[0m
+[39mbuilding extension &quot;_syracuseC&quot; sources[0m
+[39mbuild_src: building npy-pkg config files[0m
+[39mcustomize UnixCCompiler[0m
+[39mcustomize UnixCCompiler using build_ext[0m
+[39mbuilding &#39;_syracuseC&#39; extension[0m
+[39mcompiling C sources[0m
+[39mC compiler: gcc-10 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers
+[0m
+[39mcompile options: &#39;-I/usr/local/lib/python3.8/site-packages/numpy/core/include -I/usr/local/include -I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/sqlite/include -I/usr/local/Cellar/python@3.8/3.8.5/Frameworks/Python.framework/Versions/3.8/include/python3.8 -c&#39;[0m
+[39mgcc-10: syrac_wrap.c[0m
+[39mgcc-10: syrac.c[0m
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[39mgcc-10 -bundle -undefined dynamic_lookup -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk build/temp.macosx-10.15-x86_64-3.8/syrac_wrap.o build/temp.macosx-10.15-x86_64-3.8/syrac.o -L/usr/local/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/sqlite/lib -o _syracuseC.cpython-38-darwin.so[0m
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">_syracuseC</span>
+
+<span class="n">syracuse</span> <span class="o">=</span> <span class="n">_syracuseC</span><span class="o">.</span><span class="n">syracuse</span>
+<span class="n">syracuse</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>111
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">1000000</span>
+
+<span class="n">flights</span> <span class="o">=</span> <span class="p">[</span><span class="n">syracuse</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 313 ms, sys: 5.03 ms, total: 318 ms
+Wall time: 317 ms
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://calcul.math.cnrs.fr/Documents/Ecoles/2010/InterfacagePython.pdf">Interfacage C-Python par Xavier Juvigny</a></p></li>
+<li><p><a class="reference external" href="http://calcul.math.cnrs.fr/Documents/Ecoles/2010/cours_cython.pdf">Optimizing and interfacing with Cython par Konrad Hinsen</a></p></li>
+<li><p>Python Scripting for Computational Science de Hans Petter Langtangen chez Springer</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="07.maxwell-fdtd-2d.html" title="previous page">Maxwell solver in two dimensions with FDTD scheme</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pierre Navaro<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

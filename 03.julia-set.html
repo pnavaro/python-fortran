@@ -1,0 +1,1025 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Julia Set &#8212; Python-Fortran notebooks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vlasov-Poisson" href="04.vlasov-poisson.html" />
+    <link rel="prev" title="Python class linked with fortran module" href="02.f2py.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Python-Fortran notebooks</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="quickstart.html">
+   Python-Fortran bindings examples
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Call Fortran from Python with f2py
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01.f2py.html">
+   F2py
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02.f2py.html">
+   Python class linked with fortran module
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Examples
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Julia Set
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04.vlasov-poisson.html">
+   Vlasov-Poisson
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05.co-rotating-vortex.html">
+   Co-rotating vortices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06.gray-scott-model.html">
+   Gray-Scott Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07.maxwell-fdtd-2d.html">
+   Maxwell solver in two dimensions with FDTD scheme
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Swig and ctypes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08.swig.html">
+   SWIG and Ctypes
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/03.julia-set.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initialize-mesh">
+   Initialize Mesh
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pure-python">
+   Pure Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numba">
+   numba
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pyjulia">
+   PyJulia
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pythran">
+   Pythran
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuration">
+     Configuration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fortran">
+   Fortran
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fortran-with-openmp">
+   Fortran with OpenMP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy">
+   Numpy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cython">
+   Cython
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-number-of-threads-used-for-parallel-functions">
+     Set number of threads used for parallel functions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="julia-set">
+<h1>Julia Set<a class="headerlink" href="#julia-set" title="Permalink to this headline">¶</a></h1>
+<p>In the notebook I present different way to accelerate python code.
+This is a modified version from <a class="reference external" href="https://github.com/gouarin/GTSage2014/">Loic Gouarin</a></p>
+<p>The test case is the computation of the Julia set <a class="reference external" href="https://en.wikipedia.org/wiki/Julia_set">wikipedia</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">gc</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">&#39;darwin&#39;</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;CC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gcc-10&#39;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;CXX&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;g++-10&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="initialize-mesh">
+<h2>Initialize Mesh<a class="headerlink" href="#initialize-mesh" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span> <span class="c1"># mesh</span>
+<span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span> <span class="o">=</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">2000</span> <span class="c1"># limits </span>
+<span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span> 
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.772691322542185</span> <span class="o">+</span> <span class="mf">0.124281466072787</span><span class="n">j</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pure-python">
+<h2>Pure Python<a class="headerlink" href="#pure-python" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">juliaset_python</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    returns Julia set</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">julia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">ite</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">lim</span> <span class="ow">and</span> <span class="n">ite</span> <span class="o">&lt;</span> <span class="n">maxit</span><span class="p">:</span>
+                <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">c</span>
+                <span class="n">ite</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">julia</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ite</span>
+
+    <span class="k">return</span> <span class="n">julia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_julia_set</span><span class="p">(</span><span class="n">julia</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">julia</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">Greys</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_julia_set</span><span class="p">(</span><span class="n">juliaset_python</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03.julia-set_10_0.png" src="_images/03.julia-set_10_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="numba">
+<h2>numba<a class="headerlink" href="#numba" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://numba.pydata.org">Numba</a> will accelerate the pure python function just  with
+the decorator <code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code>. Numba does everything for you.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">juliaset_numba</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">):</span>
+    <span class="n">julia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+    <span class="n">lim2</span> <span class="o">=</span> <span class="n">lim</span><span class="o">*</span><span class="n">lim</span>
+    
+    <span class="n">c</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>  <span class="c1"># needed for numba</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+
+            <span class="n">z</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">ite</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">real</span><span class="o">*</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">z</span><span class="o">.</span><span class="n">imag</span><span class="o">*</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">lim2</span> <span class="ow">and</span> <span class="n">ite</span> <span class="o">&lt;</span> <span class="n">maxit</span><span class="p">:</span>
+                <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">c</span>
+                <span class="n">ite</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">julia</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ite</span>
+
+    <span class="k">return</span> <span class="n">julia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_julia_set</span><span class="p">(</span><span class="n">juliaset_numba</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03.julia-set_13_0.png" src="_images/03.julia-set_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="pyjulia">
+<h2>PyJulia<a class="headerlink" href="#pyjulia" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://pyjulia.readthedocs.io/en/latest/">PyJulia</a> is a python module to import
+Julia function in your Python session. You can also run Julia code in a middle of
+a Jupyter notebook with a Python kernel.</p>
+<p>To use pyjulia you need to install <a class="reference external" href="https://julialang.org/downloads/">Julia</a> and install <a class="reference external" href="https://github.com/JuliaPy/PyCall.jl">PyCall.jl</a> and <strong>REPL</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">using</span> <span class="n">Pkg</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">ENV</span><span class="p">[</span><span class="s2">&quot;PYTHON&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/usr/local/bin/python3.7&quot;</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;PyCall&quot;</span><span class="p">)</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;REPL&quot;</span><span class="p">)</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s2">&quot;PyCall&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>print the value of <code class="docutils literal notranslate"><span class="pre">sys.executable</span></code> to know the python path. But the cell above could do the job.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">julia</span>
+<span class="n">julia</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">julia.api</span> <span class="kn">import</span> <span class="n">Julia</span>
+<span class="n">jl</span> <span class="o">=</span> <span class="n">Julia</span><span class="p">(</span><span class="n">compiled_modules</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">julia_set</span><span class="o">.</span><span class="n">jl</span>
+
+<span class="n">function</span> <span class="n">escapetime</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">maxit</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">lim</span>
+            <span class="k">return</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+        <span class="n">end</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">maxit</span>
+<span class="n">end</span>
+
+<span class="n">function</span> <span class="n">juliaset_julia</span><span class="p">(</span><span class="n">x</span> <span class="p">::</span> <span class="n">Vector</span><span class="p">{</span><span class="n">Float64</span><span class="p">},</span> <span class="n">y</span> <span class="p">::</span> <span class="n">Vector</span><span class="p">{</span><span class="n">Float64</span><span class="p">},</span> 
+                        <span class="n">c</span> <span class="p">::</span> <span class="n">Complex</span><span class="p">,</span> <span class="n">lim</span> <span class="p">,</span> <span class="n">maxit</span> <span class="p">)</span>
+    
+    <span class="n">nx</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ny</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">julia</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">Float64</span><span class="p">,</span> <span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">))</span>
+    <span class="n">Threads</span><span class="o">.</span><span class="nd">@sync</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">Threads</span><span class="o">.</span><span class="nd">@spawn</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="nd">@inbounds</span> <span class="n">z</span>  <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">im</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> 
+            <span class="nd">@inbounds</span> <span class="n">julia</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">escapetime</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">)</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="n">julia</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing julia_set.jl
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">julia</span> <span class="kn">import</span> <span class="n">Main</span>
+<span class="n">juliaset_julia</span> <span class="o">=</span> <span class="n">Main</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;julia_set.jl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_julia_set</span><span class="p">(</span><span class="n">juliaset_julia</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03.julia-set_18_0.png" src="_images/03.julia-set_18_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="pythran">
+<h2>Pythran<a class="headerlink" href="#pythran" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://pythran.readthedocs.io/en/latest/">Pythran</a> is a Python-to-C++ translator</p>
+<p>Add a comment line before your python function and it runs much faster.</p>
+<div class="section" id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">~/.pythranrc</span></code> file on macos (gcc is installed with hombrew and pythran with pip)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">compiler</span><span class="p">]</span>
+<span class="n">include_dirs</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">openblas</span><span class="o">/</span><span class="n">include</span>
+<span class="n">library_dirs</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">openblas</span><span class="o">/</span><span class="n">lib</span>
+<span class="n">blas</span><span class="o">=</span><span class="n">openblas</span>
+<span class="n">CXX</span><span class="o">=</span><span class="n">g</span><span class="o">++-</span><span class="mi">10</span>
+<span class="n">CC</span><span class="o">=</span><span class="n">gcc</span><span class="o">-</span><span class="mi">10</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">pythran</span><span class="o">.</span><span class="n">magic</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pythran</span> <span class="o">-</span><span class="n">fopenmp</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#pythran export juliaset_pythran(float64[], float64[],complex, int, int)</span>
+<span class="k">def</span> <span class="nf">juliaset_pythran</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    returns Julia set</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">juliap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+    <span class="c1">#omp parallel for private(z, ite)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">ite</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">lim</span> <span class="ow">and</span> <span class="n">ite</span> <span class="o">&lt;</span> <span class="n">maxit</span><span class="p">:</span>
+                <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">c</span>
+                <span class="n">ite</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">juliap</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ite</span>
+
+    <span class="k">return</span> <span class="n">juliap</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_julia_set</span><span class="p">(</span><span class="n">juliaset_pythran</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03.julia-set_22_0.png" src="_images/03.julia-set_22_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fortran">
+<h2>Fortran<a class="headerlink" href="#fortran" title="Permalink to this headline">¶</a></h2>
+<p>You need <a class="reference external" href="https://numpy.org">numpy</a> and <a class="reference external" href="https://github.com/mgaitan/fortran_magic">fortran-magic</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">fortranmagic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/javascript">new Promise(function(resolve, reject) {
+	var script = document.createElement("script");
+	script.onload = resolve;
+	script.onerror = reject;
+	script.src = "https://raw.github.com/marijnh/CodeMirror/master/mode/fortran/fortran.js";
+	document.head.appendChild(script);
+}).then(() => {
+IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
+});</script></div>
+</div>
+<p>On my mac i need to change compilers install with <a class="reference external" href="https://brew.sh">homebrew</a></p>
+<p>Complex computation inside the loop are avoided on purpose. It takes time even with fortran.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">fortran</span>
+<span class="n">subroutine</span> <span class="n">juliaset_fortran</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">,</span> <span class="n">julia</span><span class="p">)</span>
+
+    <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>    <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span>  <span class="p">::</span> <span class="n">x</span><span class="p">(:)</span>
+    <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>    <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span>  <span class="p">::</span> <span class="n">y</span><span class="p">(:)</span>
+    <span class="nb">complex</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span>  <span class="p">::</span> <span class="n">c</span>
+    <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>    <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span>  <span class="p">::</span> <span class="n">lim</span>
+    <span class="n">integer</span><span class="p">,</span>    <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span>  <span class="p">::</span> <span class="n">maxit</span>
+    <span class="n">integer</span><span class="p">,</span>    <span class="n">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="p">::</span> <span class="n">julia</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+    <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>    <span class="p">::</span> <span class="n">zr</span><span class="p">,</span> <span class="n">zi</span><span class="p">,</span> <span class="n">limsq</span><span class="p">,</span> <span class="n">cr</span><span class="p">,</span> <span class="n">ci</span><span class="p">,</span> <span class="n">tmp</span>
+    <span class="n">integer</span>    <span class="p">::</span> <span class="n">ite</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span>
+
+    <span class="n">nx</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ny</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">limsq</span> <span class="o">=</span> <span class="n">lim</span> <span class="o">*</span> <span class="n">lim</span>
+    <span class="n">cr</span> <span class="o">=</span> <span class="n">real</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">ci</span> <span class="o">=</span> <span class="n">imag</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+    <span class="n">do</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nx</span>
+       <span class="n">do</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ny</span>   
+            <span class="n">zr</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">zi</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">ite</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">do</span> <span class="k">while</span> <span class="p">(</span><span class="n">zr</span><span class="o">*</span><span class="n">zr</span><span class="o">+</span><span class="n">zi</span><span class="o">*</span><span class="n">zi</span> <span class="o">&lt;</span> <span class="n">limsq</span> <span class="o">.</span><span class="ow">and</span><span class="o">.</span> <span class="n">ite</span> <span class="o">&lt;</span> <span class="n">maxit</span><span class="p">)</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="n">zr</span><span class="o">*</span><span class="n">zr</span> <span class="o">-</span> <span class="n">zi</span><span class="o">*</span><span class="n">zi</span> 
+                <span class="n">zi</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">zr</span><span class="o">*</span><span class="n">zi</span> <span class="o">+</span> <span class="n">ci</span>
+                <span class="n">zr</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="n">cr</span>
+                <span class="n">ite</span> <span class="o">=</span> <span class="n">ite</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">end</span> <span class="n">do</span>
+            <span class="n">julia</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">ite</span>
+        <span class="n">end</span> <span class="n">do</span>
+    <span class="n">end</span> <span class="n">do</span>
+
+
+<span class="n">end</span> <span class="n">subroutine</span> <span class="n">juliaset_fortran</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_julia_set</span><span class="p">(</span><span class="n">juliaset_fortran</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03.julia-set_28_0.png" src="_images/03.julia-set_28_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="fortran-with-openmp">
+<h2>Fortran with OpenMP<a class="headerlink" href="#fortran-with-openmp" title="Permalink to this headline">¶</a></h2>
+<p>On Linux you don’t need to add <code class="docutils literal notranslate"><span class="pre">-L/usr/local/lib</span></code></p>
+<p>This is the same function from above with some openmp directives</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran --f90flags &quot;-fopenmp&quot; --opt &quot;-O3&quot; --extra &quot;-lgomp&quot;
+subroutine juliaset_fortran_omp(x, y, c, lim, maxit, julia)
+
+    real(8),    intent(in)  :: x(:)
+    real(8),    intent(in)  :: y(:)
+    complex(8), intent(in)  :: c
+    real(8),    intent(in)  :: lim
+    integer,    intent(in)  :: maxit
+    integer,    intent(out) :: julia(size(x),size(y))
+
+    real(8)    :: zr, zi, limsq, cr, ci, tmp
+    integer    :: ite, nx, ny
+
+    nx = size(x)
+    ny = size(y)
+    limsq = lim * lim
+    cr = real(c)
+    ci = imag(c)
+
+    !$OMP PARALLEL DEFAULT(NONE) &amp;
+    !$OMP FIRSTPRIVATE(nx,ny,x,y,c,limsq,maxit,cr,ci) &amp;
+    !$OMP PRIVATE(i,j,ite,zr,zi, tmp) &amp;
+    !$OMP SHARED(julia)
+    !$OMP DO SCHEDULE(DYNAMIC)
+    do i = 1, nx
+       do j = 1, ny   
+            zr = x(i)
+            zi = y(j)
+            ite = 0
+            do while (zr*zr+zi*zi &lt; limsq .and. ite &lt; maxit)
+                tmp = zr*zr - zi*zi 
+                zi = 2*zr*zi + ci
+                zr = tmp + cr
+                ite = ite + 1
+            end do
+            julia(j, i) = ite
+        end do
+    end do  
+    !$OMP END PARALLEL
+
+
+end subroutine juliaset_fortran_omp
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_julia_set</span><span class="p">(</span><span class="n">juliaset_fortran_omp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03.julia-set_31_0.png" src="_images/03.julia-set_31_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="numpy">
+<h2>Numpy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h2>
+<p>Vectorize version with numpy. You could get some overflow warnings</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="k">def</span> <span class="nf">juliaset_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">):</span>
+    <span class="n">julia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+    <span class="n">zx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">zy</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    
+    <span class="n">z</span> <span class="o">=</span> <span class="n">zx</span> <span class="o">+</span> <span class="n">zy</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span>
+    
+    <span class="k">for</span> <span class="n">ite</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">():</span>
+        
+        <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">c</span> 
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">julia</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">lim</span><span class="p">)</span>
+        <span class="n">julia</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">ite</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">julia</span><span class="p">)</span> <span class="ow">or</span> <span class="n">ite</span> <span class="o">&gt;</span> <span class="n">maxit</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">julia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_julia_set</span><span class="p">(</span><span class="n">juliaset_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03.julia-set_34_0.png" src="_images/03.julia-set_34_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="cython">
+<h2>Cython<a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
+<p>Install <a class="reference external" href="https://cython.readthedocs.io">Cython</a></p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">%%cython</span> <span class="pre">-a</span></code> to highlight the Python-C and C-Python conversions.</p>
+<p>Cython is not Python and not C, it is another language :-)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">cython</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">cython</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cython</span>
+
+<span class="nd">@cython</span><span class="o">.</span><span class="n">boundscheck</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="nd">@cython</span><span class="o">.</span><span class="n">wraparound</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">juliaset_cython</span><span class="p">(</span><span class="n">double</span> <span class="p">[:]</span> <span class="n">x</span><span class="p">,</span> <span class="n">double</span> <span class="p">[:]</span> <span class="n">y</span><span class="p">,</span> <span class="n">double</span> <span class="nb">complex</span> <span class="n">c</span><span class="p">,</span> <span class="n">double</span> <span class="n">lim</span><span class="p">,</span> <span class="nb">int</span> <span class="n">maxit</span><span class="p">):</span>
+    <span class="n">cdef</span><span class="p">:</span>
+        <span class="nb">int</span> <span class="p">[:,</span> <span class="p">::</span><span class="mi">1</span><span class="p">]</span> <span class="n">julia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="n">double</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">zr</span><span class="p">,</span> <span class="n">zi</span><span class="p">,</span> <span class="n">lim2</span> <span class="o">=</span> <span class="n">lim</span><span class="o">*</span><span class="n">lim</span>
+        <span class="n">double</span> <span class="n">cr</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">ci</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">imag</span>
+        <span class="nb">int</span> <span class="n">ite</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ny</span><span class="p">):</span>
+            <span class="n">zr</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+            <span class="n">zi</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">ite</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">zr</span><span class="o">*</span><span class="n">zr</span> <span class="o">+</span> <span class="n">zi</span><span class="o">*</span><span class="n">zi</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">lim2</span> <span class="ow">and</span> <span class="n">ite</span> <span class="o">&lt;</span> <span class="n">maxit</span><span class="p">:</span>
+                <span class="n">zr</span><span class="p">,</span> <span class="n">zi</span> <span class="o">=</span> <span class="n">zr</span><span class="o">*</span><span class="n">zr</span> <span class="o">-</span> <span class="n">zi</span><span class="o">*</span><span class="n">zi</span> <span class="o">+</span> <span class="n">cr</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">zr</span><span class="o">*</span><span class="n">zi</span> <span class="o">+</span> <span class="n">ci</span>
+                <span class="n">ite</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">julia</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ite</span>
+
+    <span class="k">return</span> <span class="n">julia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_julia_set</span><span class="p">(</span><span class="n">juliaset_cython</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03.julia-set_38_0.png" src="_images/03.julia-set_38_0.png" />
+</div>
+</div>
+<p>As f2py we can use openmp with the Cython <code class="docutils literal notranslate"><span class="pre">prange</span></code> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">cython</span> <span class="o">-</span><span class="n">f</span> <span class="o">-</span><span class="n">c</span><span class="o">-</span><span class="n">fopenmp</span> <span class="o">--</span><span class="n">link</span><span class="o">-</span><span class="n">args</span><span class="o">=-</span><span class="n">fopenmp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cython</span>
+<span class="kn">from</span> <span class="nn">cython.parallel</span> <span class="kn">import</span> <span class="n">prange</span>
+<span class="kn">from</span> <span class="nn">libc.stdlib</span> <span class="n">cimport</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span> 
+
+<span class="nd">@cython</span><span class="o">.</span><span class="n">boundscheck</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="nd">@cython</span><span class="o">.</span><span class="n">wraparound</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">juliaset_cython_omp</span><span class="p">(</span><span class="n">double</span> <span class="p">[:]</span> <span class="n">x</span><span class="p">,</span> <span class="n">double</span> <span class="p">[:]</span> <span class="n">y</span><span class="p">,</span> <span class="n">double</span> <span class="nb">complex</span> <span class="n">c</span><span class="p">,</span> <span class="n">double</span> <span class="n">lim</span><span class="p">,</span> <span class="nb">int</span> <span class="n">maxit</span><span class="p">):</span>
+    <span class="n">cdef</span><span class="p">:</span>
+        <span class="nb">int</span> <span class="p">[:,</span> <span class="p">::</span><span class="mi">1</span><span class="p">]</span> <span class="n">julia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="n">double</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">zr</span><span class="p">,</span> <span class="n">zi</span><span class="p">,</span> <span class="n">lim2</span> <span class="o">=</span> <span class="n">lim</span><span class="o">*</span><span class="n">lim</span>
+        <span class="n">double</span> <span class="n">cr</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">ci</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">imag</span>
+        <span class="nb">int</span>  <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">size</span>
+        <span class="nb">int</span> <span class="o">*</span><span class="n">ite</span>
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">ny</span><span class="p">,</span> <span class="n">nogil</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">schedule</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span><span class="p">):</span>
+        <span class="n">ite</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nb">int</span> <span class="o">*&gt;</span> <span class="n">malloc</span><span class="p">(</span><span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+            <span class="n">zr</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+            <span class="n">zi</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">ite</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">zr</span><span class="o">*</span><span class="n">zr</span> <span class="o">+</span> <span class="n">zi</span><span class="o">*</span><span class="n">zi</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">lim2</span> <span class="ow">and</span> <span class="n">ite</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">maxit</span><span class="p">:</span>
+                <span class="n">zr</span><span class="p">,</span> <span class="n">zi</span> <span class="o">=</span> <span class="n">zr</span><span class="o">*</span><span class="n">zr</span> <span class="o">-</span> <span class="n">zi</span><span class="o">*</span><span class="n">zi</span> <span class="o">+</span> <span class="n">cr</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">zr</span><span class="o">*</span><span class="n">zi</span> <span class="o">+</span> <span class="n">ci</span>
+                <span class="n">ite</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">julia</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ite</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">free</span><span class="p">(</span><span class="n">ite</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">julia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_julia_set</span><span class="p">(</span><span class="n">juliaset_cython_omp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03.julia-set_41_0.png" src="_images/03.julia-set_41_0.png" />
+</div>
+</div>
+<div class="section" id="set-number-of-threads-used-for-parallel-functions">
+<h3>Set number of threads used for parallel functions<a class="headerlink" href="#set-number-of-threads-used-for-parallel-functions" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">OMP_NUM_THREADS</span><span class="o">=</span><span class="mi">4</span>
+<span class="o">%</span><span class="n">env</span> <span class="n">JULIA_NUM_THREADS</span><span class="o">=</span><span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>env: OMP_NUM_THREADS=4
+env: JULIA_NUM_THREADS=4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span> <span class="c1"># increase mesh size</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+
+<span class="n">functions</span> <span class="o">=</span> <span class="p">[</span><span class="n">juliaset_numpy</span><span class="p">,</span>
+             <span class="n">juliaset_fortran</span><span class="p">,</span>
+             <span class="n">juliaset_fortran_omp</span><span class="p">,</span>
+             <span class="n">juliaset_cython</span><span class="p">,</span>
+             <span class="n">juliaset_cython_omp</span><span class="p">,</span>
+             <span class="n">juliaset_numba</span><span class="p">,</span>
+             <span class="n">juliaset_pythran</span><span class="p">,</span>
+             <span class="n">juliaset_julia</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">functions</span><span class="p">):</span>
+
+    <span class="n">_</span> <span class="o">=</span> <span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">oq</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">)</span>
+    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;etime&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="n">_</span><span class="o">.</span><span class="n">best</span><span class="p">]</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    
+<span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span><span class="n">f</span><span class="o">.</span><span class="vm">__name__</span><span class="p">[</span><span class="mi">9</span><span class="p">:],</span><span class="n">functions</span><span class="p">)))</span>
+<span class="n">results</span><span class="p">[</span><span class="s2">&quot;speed_up&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">results</span><span class="o">.</span><span class="n">etime</span><span class="p">[</span><span class="s2">&quot;numpy&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">etime</span><span class="p">]</span>
+<span class="n">results</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;speed_up&quot;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "e9614b66ccee443080b6ea253b34d02c"}
+</script><div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>etime</th>
+      <th>speed_up</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>numpy</th>
+      <td>8.472249</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>julia</th>
+      <td>0.367476</td>
+      <td>23.055243</td>
+    </tr>
+    <tr>
+      <th>numba</th>
+      <td>0.076530</td>
+      <td>110.705354</td>
+    </tr>
+    <tr>
+      <th>cython</th>
+      <td>0.059924</td>
+      <td>141.384271</td>
+    </tr>
+    <tr>
+      <th>fortran</th>
+      <td>0.059674</td>
+      <td>141.976618</td>
+    </tr>
+    <tr>
+      <th>pythran</th>
+      <td>0.043238</td>
+      <td>195.943229</td>
+    </tr>
+    <tr>
+      <th>fortran_omp</th>
+      <td>0.015587</td>
+      <td>543.547608</td>
+    </tr>
+    <tr>
+      <th>cython_omp</th>
+      <td>0.015514</td>
+      <td>546.120729</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"45bbb991448d4b62a98c01de90c7936a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "073cc6b39a20439bb475f790568dc1a7": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "dcf61c41b33f469ba2fe536803076fcc": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_45bbb991448d4b62a98c01de90c7936a", "max": 8.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_073cc6b39a20439bb475f790568dc1a7", "value": 8.0}}, "258352de7070412bad75be7db4c07ce4": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a0e74d307fa04842b4bf388e79121372": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "ae359411cbd84f60acdd36a83a71ec72": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_258352de7070412bad75be7db4c07ce4", "placeholder": "\u200b", "style": "IPY_MODEL_a0e74d307fa04842b4bf388e79121372", "value": " 8/8 [01:06&lt;00:00,  8.30s/it]"}}, "f582a79e12184a78b047f09b6b8dbe72": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e9614b66ccee443080b6ea253b34d02c": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_dcf61c41b33f469ba2fe536803076fcc", "IPY_MODEL_ae359411cbd84f60acdd36a83a71ec72"], "layout": "IPY_MODEL_f582a79e12184a78b047f09b6b8dbe72"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="02.f2py.html" title="previous page">Python class linked with fortran module</a>
+    <a class='right-next' id="next-link" href="04.vlasov-poisson.html" title="next page">Vlasov-Poisson</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pierre Navaro<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
