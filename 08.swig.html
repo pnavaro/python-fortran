@@ -24,12 +24,12 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -285,7 +285,7 @@
 <h2>C program<a class="headerlink" href="#c-program" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">syracuse</span><span class="o">.</span><span class="n">c</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> syracuse.c
 <span class="c1">#include &lt;stdlib.h&gt; </span>
 <span class="c1">#include &lt;stdio.h&gt;</span>
 <span class="n">long</span> <span class="n">syracuse</span><span class="p">(</span><span class="n">long</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> 
@@ -312,26 +312,26 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing syracuse.c
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing syracuse.c
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">gcc</span> <span class="o">-</span><span class="n">O3</span> <span class="n">syracuse</span><span class="o">.</span><span class="n">c</span> 
-<span class="n">time</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+gcc -O3 syracuse.c 
+time ./a.out
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="stderr docutils container">
-<pre class="stderr literal-block">
-real	0m0.067s
+<div class="stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real	0m0.043s
 user	0m0.001s
 sys	0m0.001s
-</pre>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -340,7 +340,7 @@ sys	0m0.001s
 <h2>Python program<a class="headerlink" href="#python-program" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span>
 
@@ -361,8 +361,8 @@ sys	0m0.001s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 21.4 s, sys: 93.8 ms, total: 21.5 s
-Wall time: 21.5 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 21.6 s, sys: 74.2 ms, total: 21.7 s
+Wall time: 21.7 s
 </pre></div>
 </div>
 </div>
@@ -381,7 +381,7 @@ Wall time: 21.5 s
 <p>This is the C function we will call from python</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">syrac</span><span class="o">.</span><span class="n">c</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> syrac.c
 
 <span class="n">long</span> <span class="n">syracuse</span><span class="p">(</span><span class="n">long</span> <span class="n">n</span><span class="p">)</span>
 <span class="p">{</span> 
@@ -400,7 +400,7 @@ Wall time: 21.5 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing syrac.c
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing syrac.c
 </pre></div>
 </div>
 </div>
@@ -408,16 +408,16 @@ Wall time: 21.5 s
 <p>Build the shared library</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">gcc</span> <span class="o">-</span><span class="n">fPIC</span> <span class="o">-</span><span class="n">shared</span> <span class="o">-</span><span class="n">O3</span> \
-    <span class="o">-</span><span class="n">o</span> <span class="n">syrac</span><span class="o">.</span><span class="n">so</span> <span class="n">syrac</span><span class="o">.</span><span class="n">c</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+gcc -fPIC -shared -O3 \
+    -o syrac.so syrac.c
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
@@ -430,8 +430,8 @@ Wall time: 21.5 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 534 ms, sys: 4.98 ms, total: 539 ms
-Wall time: 601 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 506 ms, sys: 5.48 ms, total: 511 ms
+Wall time: 548 ms
 </pre></div>
 </div>
 </div>
@@ -442,7 +442,7 @@ Wall time: 601 ms
 <p>If you change the fortran file you have to restart the kernel</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">syrac</span><span class="o">.</span><span class="n">F90</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> syrac.F90
 
 <span class="n">module</span> <span class="n">syrac_f90</span>
   <span class="n">use</span> <span class="n">iso_c_binding</span>
@@ -473,23 +473,23 @@ Wall time: 601 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing syrac.F90
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing syrac.F90
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">*.</span><span class="n">o</span> <span class="o">*.</span><span class="n">so</span> <span class="o">*.</span><span class="n">dylib</span>
-<span class="n">gfortran</span> <span class="o">-</span><span class="n">fPIC</span> <span class="o">-</span><span class="n">shared</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">o</span> <span class="n">syrac</span><span class="o">.</span><span class="n">dylib</span> <span class="n">syrac</span><span class="o">.</span><span class="n">F90</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+rm -f *.o *.so *.dylib
+gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">syrac_f90</span> <span class="o">=</span> <span class="n">CDLL</span><span class="p">(</span><span class="s1">&#39;./syrac.dylib&#39;</span><span class="p">)</span>
 
@@ -500,22 +500,22 @@ Wall time: 601 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>111
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">1000000</span>
 <span class="n">flights</span> <span class="o">=</span> <span class="p">[</span><span class="n">syrac_f90</span><span class="o">.</span><span class="n">c_syrac</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 598 ms, sys: 4.81 ms, total: 603 ms
-Wall time: 603 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 578 ms, sys: 5.48 ms, total: 583 ms
+Wall time: 583 ms
 </pre></div>
 </div>
 </div>
@@ -532,7 +532,7 @@ Wall time: 603 ms
 <p>Interface file syrac.i for C function in syrac.c</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">syrac</span><span class="o">.</span><span class="n">i</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> syrac.i
 
 <span class="o">%</span><span class="n">module</span> <span class="n">syracuseC</span>
 <span class="o">%</span><span class="p">{</span>
@@ -543,15 +543,15 @@ Wall time: 603 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing syrac.i
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing syrac.i
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">swig</span> <span class="o">-</span><span class="n">python</span> <span class="n">syrac</span><span class="o">.</span><span class="n">i</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+swig -python syrac.i
 </pre></div>
 </div>
 </div>
@@ -572,7 +572,7 @@ gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -f
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> setup.py
 <span class="kn">from</span> <span class="nn">numpy.distutils.core</span> <span class="kn">import</span> <span class="n">Extension</span><span class="p">,</span> <span class="n">setup</span>
 
 
@@ -588,49 +588,49 @@ gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing setup.py
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing setup.py
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import sys, os
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 
-if sys.platform == &quot;darwin&quot;:
-    os.environ[&quot;CC&quot;] = &quot;gcc-10&quot;
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gcc-10&quot;</span>
     
-!{sys.executable} setup.py build_ext --inplace --quiet
+<span class="o">!{</span>sys.executable<span class="o">}</span> setup.py build_ext --inplace --quiet
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[39mrunning build_ext[0m
-[39mrunning build_src[0m
-[39mbuild_src[0m
-[39mbuilding extension &quot;_syracuseC&quot; sources[0m
-[39mbuild_src: building npy-pkg config files[0m
-[39mcustomize UnixCCompiler[0m
-[39mcustomize UnixCCompiler using build_ext[0m
-[39mbuilding &#39;_syracuseC&#39; extension[0m
-[39mcompiling C sources[0m
-[39mC compiler: gcc-10 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers
-[0m
-[39mcompile options: &#39;-I/usr/local/lib/python3.8/site-packages/numpy/core/include -I/usr/local/include -I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/sqlite/include -I/usr/local/Cellar/python@3.8/3.8.5/Frameworks/Python.framework/Versions/3.8/include/python3.8 -c&#39;[0m
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running build_ext
+running build_src
+build_src
+building extension &quot;_syracuseC&quot; sources
+build_src: building npy-pkg config files
+customize UnixCCompiler
+customize UnixCCompiler using build_ext
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[39mgcc-10: syrac_wrap.c[0m
-[39mgcc-10: syrac.c[0m
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>building &#39;_syracuseC&#39; extension
+compiling C sources
+C compiler: gcc-10 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers
+
+compile options: &#39;-I/usr/local/lib/python3.8/site-packages/numpy/core/include -I/usr/local/include -I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/sqlite/include -I/usr/local/Cellar/python@3.8/3.8.5/Frameworks/Python.framework/Versions/3.8/include/python3.8 -c&#39;
+gcc-10: syrac.c
+gcc-10: syrac_wrap.c
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[39mgcc-10 -bundle -undefined dynamic_lookup -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk build/temp.macosx-10.15-x86_64-3.8/syrac_wrap.o build/temp.macosx-10.15-x86_64-3.8/syrac.o -L/usr/local/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/sqlite/lib -o _syracuseC.cpython-38-darwin.so[0m
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gcc-10 -bundle -undefined dynamic_lookup -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk build/temp.macosx-10.15-x86_64-3.8/syrac_wrap.o build/temp.macosx-10.15-x86_64-3.8/syrac.o -L/usr/local/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/sqlite/lib -o _syracuseC.cpython-38-darwin.so
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">_syracuseC</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">_syracuseC</span>
 
 <span class="n">syracuse</span> <span class="o">=</span> <span class="n">_syracuseC</span><span class="o">.</span><span class="n">syracuse</span>
 <span class="n">syracuse</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
@@ -638,14 +638,14 @@ if sys.platform == &quot;darwin&quot;:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>111
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">N</span><span class="o">=</span><span class="mi">1000000</span>
 
 <span class="n">flights</span> <span class="o">=</span> <span class="p">[</span><span class="n">syracuse</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
@@ -653,8 +653,8 @@ if sys.platform == &quot;darwin&quot;:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>CPU times: user 309 ms, sys: 4.19 ms, total: 313 ms
-Wall time: 312 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 315 ms, sys: 4.61 ms, total: 320 ms
+Wall time: 319 ms
 </pre></div>
 </div>
 </div>

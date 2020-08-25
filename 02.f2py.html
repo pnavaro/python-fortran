@@ -24,12 +24,12 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -254,7 +254,7 @@
 <h1>Python class linked with fortran module<a class="headerlink" href="#python-class-linked-with-fortran-module" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">fortranmagic</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> fortranmagic
 </pre></div>
 </div>
 </div>
@@ -271,40 +271,40 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">fortran</span>
-<span class="n">module</span> <span class="n">particles_f90</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span>
+module particles_f90
 
-    <span class="n">implicit</span> <span class="n">none</span>
+    implicit none
     
-    <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dimension</span><span class="p">(:),</span> <span class="n">allocatable</span> <span class="p">::</span> <span class="n">positions</span>
-    <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dimension</span><span class="p">(:),</span> <span class="n">allocatable</span> <span class="p">::</span> <span class="n">velocities</span>
+    real(8), dimension(:), allocatable :: positions
+    real(8), dimension(:), allocatable :: velocities
             
-<span class="n">contains</span>
-    <span class="n">subroutine</span> <span class="n">init_particles</span><span class="p">(</span> <span class="n">n</span> <span class="p">)</span>
+contains
+    subroutine init_particles( n )
     
-        <span class="n">integer</span><span class="p">,</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span> <span class="p">::</span> <span class="n">n</span>
+        integer, intent(in) :: n
                 
-        <span class="n">integer</span> <span class="p">::</span> <span class="n">i</span>
+        integer :: i
         
-        <span class="k">if</span> <span class="p">(</span><span class="o">.</span><span class="ow">not</span><span class="o">.</span> <span class="n">allocated</span><span class="p">(</span><span class="n">positions</span><span class="p">))</span> <span class="n">then</span>
-            <span class="n">allocate</span><span class="p">(</span><span class="n">positions</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-        <span class="n">end</span> <span class="k">if</span>
-        <span class="n">positions</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">.</span><span class="ow">not</span><span class="o">.</span> <span class="n">allocated</span><span class="p">(</span><span class="n">velocities</span><span class="p">))</span> <span class="n">then</span>
-            <span class="n">allocate</span><span class="p">(</span><span class="n">velocities</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-        <span class="n">end</span> <span class="k">if</span>
-        <span class="n">velocities</span> <span class="o">=</span> <span class="mf">1.0</span>
+        if (.not. allocated(positions)) then
+            allocate(positions(n))
+        end if
+        positions = [(i, i = 1, n, 1)]
+        if (.not. allocated(velocities)) then
+            allocate(velocities(n))
+        end if
+        velocities = 1.0
 
-    <span class="n">end</span> <span class="n">subroutine</span> <span class="n">init_particles</span>
+    end subroutine init_particles
  
-    <span class="n">subroutine</span> <span class="n">push_particles</span><span class="p">(</span> <span class="n">dt</span> <span class="p">)</span>
+    subroutine push_particles( dt )
         
-        <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span> <span class="p">::</span> <span class="n">dt</span>
+        real(8), intent(in) :: dt
     
-        <span class="n">positions</span> <span class="o">=</span> <span class="n">positions</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">velocities</span>
+        positions = positions + dt * velocities
         
-    <span class="n">end</span> <span class="n">subroutine</span> <span class="n">push_particles</span>
-<span class="n">end</span> <span class="n">module</span> <span class="n">particles_f90</span>
+    end subroutine push_particles
+end module particles_f90
 </pre></div>
 </div>
 </div>
@@ -313,7 +313,7 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 <h2>The Python class<a class="headerlink" href="#the-python-class" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Particles</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Particles</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span>       <span class="o">=</span> <span class="mi">0</span>
@@ -338,51 +338,51 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 <h2>Access to Fortran data from Python<a class="headerlink" href="#access-to-fortran-data-from-python" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particles</span> <span class="o">=</span> <span class="n">Particles</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">particles</span> <span class="o">=</span> <span class="n">Particles</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">particles</span><span class="o">.</span><span class="n">velocities</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particles</span><span class="o">.</span><span class="n">positions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">particles</span><span class="o">.</span><span class="n">positions</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([ 1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10.])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particles</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">particles</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">particles</span><span class="o">.</span><span class="n">position</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particles</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">particles</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">particles</span><span class="o">.</span><span class="n">position</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0
 </pre></div>
 </div>
 </div>
@@ -392,7 +392,7 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 <h2>Create an Iterator class<a class="headerlink" href="#create-an-iterator-class" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ParticleArray</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ParticleArray</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">particles</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">particles</span> <span class="o">=</span> <span class="n">particles</span>
@@ -415,26 +415,26 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particle_array</span> <span class="o">=</span> <span class="n">ParticleArray</span><span class="p">(</span><span class="n">particles</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">particle_array</span> <span class="o">=</span> <span class="n">ParticleArray</span><span class="p">(</span><span class="n">particles</span><span class="p">)</span>
 <span class="n">particle_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">position</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">particle_array</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">particle_array</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 2.0
 3.0
 4.0
@@ -453,7 +453,7 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 <h2>Fortran derived type<a class="headerlink" href="#fortran-derived-type" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span>
 module mesh
 
 implicit none
@@ -514,31 +514,31 @@ end module mesh
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geom</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geom</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span><span class="o">.</span><span class="n">get_size</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span><span class="o">.</span><span class="n">get_size</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>10
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>int
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
 </pre></div>
 </div>
 </div>
@@ -553,14 +553,14 @@ end module mesh
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">cfuncts</span><span class="o">*</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">rm</span> -rf cfuncts*
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">cfuncts</span><span class="o">.</span><span class="n">c</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> cfuncts.c
 
 <span class="n">void</span> <span class="n">push_particles</span><span class="p">(</span><span class="n">double</span><span class="o">*</span> <span class="n">positions</span><span class="p">,</span> <span class="n">double</span><span class="o">*</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">double</span> <span class="n">dt</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">){</span>
     <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
@@ -572,14 +572,14 @@ end module mesh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing cfuncts.c
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing cfuncts.c
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">cfuncts</span><span class="o">.</span><span class="n">pyf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> cfuncts.pyf
 
 <span class="n">python</span> <span class="n">module</span> <span class="n">cfuncts</span> 
     <span class="n">interface</span>
@@ -597,22 +597,22 @@ end module mesh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Writing cfuncts.pyf
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing cfuncts.pyf
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import sys
-!{sys.executable} -m numpy.f2py --quiet -c cfuncts.c cfuncts.pyf -m cfuncts
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m numpy.f2py --quiet -c cfuncts.c cfuncts.pyf -m cfuncts
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">cfuncts</span>
 </pre></div>
 </div>
@@ -620,12 +620,12 @@ end module mesh
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cfuncts</span><span class="o">.</span><span class="n">push_particles</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cfuncts</span><span class="o">.</span><span class="n">push_particles</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>push_particles(positions,velocities,dt,[n])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>push_particles(positions,velocities,dt,[n])
 
 Wrapper for ``push_particles``.
 
@@ -641,14 +641,11 @@ n : input int, optional
     Default: len(velocities)
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;d&quot;</span><span class="p">)</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;d&quot;</span><span class="p">)</span>
@@ -659,12 +656,12 @@ n : input int, optional
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0.1, 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 8.1, 9.1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.1, 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 8.1, 9.1])
 </pre></div>
 </div>
 </div>
