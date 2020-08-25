@@ -9,6 +9,11 @@ conda env create -f environment.yml
 conda activate python-fortran
 jupyter notebook
 ```
+
+You can open py files or ipynb files in notebooks directory. They are synchronized with
+jupytext.
+
+
   - [Introduction to F2PY](https://pnavaro.github.io/python-fortran/01.f2py.html)
   - [F2PY and Fortran 90 modules](https://pnavaro.github.io/python-fortran/02.f2py.html)
   - [Comparison with Cython, Numba, Pythran and PyJulia : The Julia set example](https://pnavaro.github.io/python-fortran/03.julia-set.html)
