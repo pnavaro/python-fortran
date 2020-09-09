@@ -1,6 +1,7 @@
 # Python-Fortran bindings examples
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pnavaro/python-fortran/master)
+[![binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pnavaro/python-fortran/master)
+[![jupyterbook](https://github.com/pnavaro/python-fortran/workflows/jupyter-book/badge.svg)](https://pnavaro.github.io/python-fortran)
 
 ```bash
 git clone https://github.com/pnavaro/python-fortran.git
