@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
@@ -26,10 +25,10 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -346,15 +345,15 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">scipy.fftpack</span> <span class="k">as</span> <span class="nn">sf</span>
 <span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">sl</span>
@@ -369,7 +368,7 @@
 <h3>Fortran 90/95 free format<a class="headerlink" href="#fortran-90-95-free-format" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">euclidian_norm</span><span class="o">.</span><span class="n">f90</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> euclidian_norm.f90
 <span class="n">subroutine</span> <span class="n">euclidian_norm</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
   <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span> <span class="p">::</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
   <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="p">::</span> <span class="n">c</span> 
@@ -389,7 +388,7 @@
 <h3>Fortran 77 fixed format<a class="headerlink" href="#fortran-77-fixed-format" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">euclidian_norm</span><span class="o">.</span><span class="n">f</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> euclidian_norm.f
       <span class="n">subroutine</span> <span class="n">euclidian_norm</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
       <span class="n">real</span><span class="o">*</span><span class="mi">8</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span>
 <span class="n">Cf2py</span> <span class="n">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="n">c</span>
@@ -410,7 +409,7 @@
 <h2>Build extension module with f2py program<a class="headerlink" href="#build-extension-module-with-f2py-program" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!{sys.executable} -m numpy.f2py --quiet -c euclidian_norm.f90 -m vect
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!{</span>sys.executable<span class="o">}</span> -m numpy.f2py --quiet -c euclidian_norm.f90 -m vect
 </pre></div>
 </div>
 </div>
@@ -420,7 +419,7 @@
 <h2>Use the extension module in Python<a class="headerlink" href="#use-the-extension-module-in-python" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vect</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vect</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">euclidian_norm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">c</span>
 </pre></div>
@@ -434,7 +433,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">euclidian_norm</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span> <span class="c1"># Docstring is automatically generate</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">euclidian_norm</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span> <span class="c1"># Docstring is automatically generate</span>
 </pre></div>
 </div>
 </div>
@@ -466,7 +465,7 @@ c : float
 <p><a class="reference external" href="http://nbviewer.jupyter.org/github/mgaitan/fortran_magic/blob/master/documentation.ipynb">Documentation</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">fortranmagic</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> fortranmagic
 </pre></div>
 </div>
 </div>
@@ -490,7 +489,7 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span> 
 subroutine euclidian_norm(a,c,n) 
   integer :: n 
   real(8),dimension(n),intent(in) :: a
@@ -510,7 +509,7 @@ end subroutine euclidian_norm
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># Python list</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># Python list</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -523,7 +522,7 @@ end subroutine euclidian_norm
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">euclidian_norm</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">euclidian_norm</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -535,7 +534,7 @@ end subroutine euclidian_norm
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># numpy array</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># numpy array</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -548,7 +547,7 @@ end subroutine euclidian_norm
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">euclidian_norm</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">euclidian_norm</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -560,7 +559,7 @@ end subroutine euclidian_norm
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">euclidian_norm</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span> <span class="c1"># Documentation</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">euclidian_norm</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span> <span class="c1"># Documentation</span>
 </pre></div>
 </div>
 </div>
@@ -607,7 +606,7 @@ c : float
 <p>You can call a python function inside your fortran code</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span>
 subroutine sum_f (f ,n, s) 
   !Compute sum(f(i), i=1,n) 
   external f 
@@ -624,7 +623,7 @@ end subroutine sum_f
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fonction</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">:</span> <span class="c1"># python function</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fonction</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">:</span> <span class="c1"># python function</span>
     <span class="k">return</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>
 
 <span class="n">sum_f</span><span class="p">(</span><span class="n">fonction</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> 
@@ -639,7 +638,7 @@ end subroutine sum_f
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sum_f</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># lambda function</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_f</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># lambda function</span>
 </pre></div>
 </div>
 </div>
@@ -655,23 +654,23 @@ end subroutine sum_f
 <p>Let’s see how to pass numpy arrays to fortran subroutine.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">fortran</span> <span class="o">--</span><span class="n">extra</span><span class="o">=</span><span class="s2">&quot;-DF2PY_REPORT_ON_ARRAY_COPY=1&quot;</span>
-<span class="n">subroutine</span> <span class="n">push</span><span class="p">(</span> <span class="n">positions</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-  <span class="n">integer</span><span class="p">,</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span> <span class="p">::</span> <span class="n">n</span>
-  <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span> <span class="p">::</span> <span class="n">dt</span>
-  <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="ow">in</span><span class="p">)</span> <span class="p">::</span> <span class="n">velocities</span>
-  <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">::</span> <span class="n">positions</span>
-  <span class="n">do</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span>
-    <span class="n">positions</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span> <span class="o">=</span> <span class="n">positions</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">velocities</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span>
-  <span class="n">end</span> <span class="n">do</span>
-<span class="n">end</span> <span class="n">subroutine</span> <span class="n">push</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span> --extra=&quot;-DF2PY_REPORT_ON_ARRAY_COPY=1&quot;
+subroutine push( positions, velocities, dt, n)
+  integer, intent(in) :: n
+  real(8), intent(in) :: dt
+  real(8), dimension(n,3), intent(in) :: velocities
+  real(8), dimension(n,3) :: positions
+  do i = 1, n
+    positions(i,:) = positions(i,:) + dt*velocities(i,:)
+  end do
+end subroutine push
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">positions</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">positions</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
 <span class="n">velocities</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
 </pre></div>
 </div>
@@ -679,7 +678,7 @@ end subroutine sum_f
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">push</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">positions</span> <span class="c1"># memory is not updated because we used C memory storage</span>
 </pre></div>
@@ -694,7 +693,7 @@ end subroutine sum_f
 <p>During execution, the message “created an array from object” is displayed, because a copy of is made when passing multidimensional array to fortran subroutine.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;f8&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;f8&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
 <span class="n">push</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">positions</span> <span class="c1"># the memory is updated</span>
 </pre></div>
@@ -739,7 +738,7 @@ end subroutine sum_f
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!{sys.executable} -m numpy.f2py --quiet -m mylapack --overwrite-signature -h dgemm.pyf dgemm.f
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!{</span>sys.executable<span class="o">}</span> -m numpy.f2py --quiet -m mylapack --overwrite-signature -h dgemm.pyf dgemm.f
 </pre></div>
 </div>
 </div>
@@ -778,14 +777,14 @@ end subroutine sum_f
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!{sys.executable} -m numpy.f2py --quiet -c dgemm.pyf -llapack -m mylapack
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!{</span>sys.executable<span class="o">}</span> -m numpy.f2py --quiet -c dgemm.pyf -llapack -m mylapack
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">mylapack</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
@@ -822,7 +821,7 @@ b= [[1 2 3]
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%file dgemm2.pyf
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%file dgemm2.pyf
 python module mylapack2 ! in 
     interface  ! in :mylapack
         subroutine dgemm(transa,transb,m,n,k,alpha,a,lda,b,ldb,beta,c,ldc)
@@ -857,14 +856,14 @@ end python module mylapack2
 <h2>Build the python module<a class="headerlink" href="#build-the-python-module" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!{sys.executable} -m numpy.f2py --quiet -c dgemm2.pyf  -m mylapack2 -llapack --f90flags=-O3
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!{</span>sys.executable<span class="o">}</span> -m numpy.f2py --quiet -c dgemm2.pyf  -m mylapack2 -llapack --f90flags<span class="o">=</span>-O3
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mylapack2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mylapack2</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">mylapack2</span><span class="o">.</span><span class="n">dgemm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
@@ -883,7 +882,7 @@ end python module mylapack2
 <h2>Check performance between numpy and mylapack<a class="headerlink" href="#check-performance-between-numpy-and-mylapack" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">512</span><span class="p">,</span><span class="mi">128</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">512</span><span class="p">,</span><span class="mi">128</span><span class="p">))</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">128</span><span class="p">,</span><span class="mi">512</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -891,25 +890,25 @@ end python module mylapack2
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">c</span> <span class="o">=</span> <span class="n">mylapack2</span><span class="o">.</span><span class="n">dgemm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> c = mylapack2.dgemm(a,b)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.17 ms ± 64.6 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.03 ms ± 80 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="n">b</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> c = a @ b
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.62 times longer than the fastest. This could mean that an intermediate result is being cached.
-2.38 ms ± 1.4 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 5.35 times longer than the fastest. This could mean that an intermediate result is being cached.
+2.19 ms ± 1.42 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -917,7 +916,7 @@ end python module mylapack2
 <p><strong>Fortran arrays allocated in a subroutine share same memory in Python</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span>
 module f90module
    implicit none
    real(8), dimension(:),   allocatable :: farray
@@ -933,7 +932,7 @@ end module f90module
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f90module</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f90module</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">f90module</span><span class="o">.</span><span class="n">farray</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -947,25 +946,25 @@ end module f90module
 <p><strong>Numpy arrays allocated in Python passed to Fortran are already allocated</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">fortran</span>
-<span class="n">module</span> <span class="n">f90module</span>
-   <span class="n">implicit</span> <span class="n">none</span>
-   <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dimension</span><span class="p">(:),</span>   <span class="n">allocatable</span> <span class="p">::</span> <span class="n">farray</span>
-<span class="n">contains</span>
-   <span class="n">subroutine</span> <span class="n">test_array</span><span class="p">(</span> <span class="n">allocated_flag</span><span class="p">,</span> <span class="n">array_size</span> <span class="p">)</span>
-   <span class="n">logical</span><span class="p">,</span> <span class="n">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="p">::</span> <span class="n">allocated_flag</span>
-   <span class="n">integer</span><span class="p">,</span> <span class="n">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="p">::</span> <span class="n">array_size</span>
-   <span class="n">allocated_flag</span> <span class="o">=</span> <span class="n">allocated</span><span class="p">(</span><span class="n">farray</span><span class="p">)</span>
-   <span class="n">array_size</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">farray</span><span class="p">)</span>
-   <span class="n">end</span> <span class="n">subroutine</span> <span class="n">test_array</span>
-<span class="n">end</span> <span class="n">module</span> <span class="n">f90module</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span>
+module f90module
+   implicit none
+   real(8), dimension(:),   allocatable :: farray
+contains
+   subroutine test_array( allocated_flag, array_size )
+   logical, intent(out) :: allocated_flag
+   integer, intent(out) :: array_size
+   allocated_flag = allocated(farray)
+   array_size = size(farray)
+   end subroutine test_array
+end module f90module
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f90module</span><span class="o">.</span><span class="n">farray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f90module</span><span class="o">.</span><span class="n">farray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <span class="n">f90module</span><span class="o">.</span><span class="n">test_array</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -981,9 +980,9 @@ end module f90module
 <h2>f2py + OpenMP<a class="headerlink" href="#f2py-openmp" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
 
-<span class="o">%</span><span class="n">env</span> <span class="n">OMP_NUM_THREADS</span><span class="o">=</span><span class="mi">4</span>
+<span class="o">%</span><span class="k">env</span> OMP_NUM_THREADS=4
 <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gcc-10&quot;</span>
     <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gfortran&quot;</span>
@@ -998,34 +997,34 @@ end module f90module
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">fortran</span> 
-<span class="n">subroutine</span> <span class="n">hello</span><span class="p">(</span> <span class="p">)</span>
-  <span class="n">integer</span> <span class="p">::</span> <span class="n">i</span>
-  <span class="n">do</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span>
-    <span class="n">call</span> <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-  <span class="n">end</span> <span class="n">do</span>
-<span class="n">end</span> <span class="n">subroutine</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span> 
+subroutine hello( )
+  integer :: i
+  do i = 1, 4
+    call sleep(1)
+  end do
+end subroutine
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">hello</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.8 ms, sys: 9.95 ms, total: 13.7 ms
-Wall time: 4.25 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.61 ms, sys: 11.6 ms, total: 17.2 ms
+Wall time: 4.02 s
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran --f90flags=&#39;-fopenmp&#39; --extra=&#39;-lgomp&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span> --f90flags=&#39;-fopenmp&#39; --extra=&#39;-lgomp&#39;
 subroutine hello_omp( )
   use omp_lib
   integer :: i
@@ -1044,14 +1043,14 @@ end subroutine hello_omp
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">hello_omp</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.39 ms, sys: 3.24 ms, total: 4.63 ms
-Wall time: 1 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1 ms, sys: 1.99 ms, total: 2.99 ms
+Wall time: 1.03 s
 </pre></div>
 </div>
 </div>
@@ -1101,7 +1100,7 @@ Wall time: 1 s
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 <span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1149,7 +1148,7 @@ Wall time: 1 s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span>
 subroutine laplace_fortran( T, n, residual )
 
   real(8), intent(inout) :: T(0:n-1,0:n-1) ! Python indexing
@@ -1175,7 +1174,7 @@ end subroutine laplace_fortran
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 <span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>

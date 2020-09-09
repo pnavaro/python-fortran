@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
@@ -26,10 +25,10 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -285,10 +284,10 @@ we obtain the desired value of \)</span>f^{n+1}(x_i)<span class="math notranslat
 <p><em><a class="reference external" href="http://www-m16.ma.tum.de/foswiki/pub/M16/Allgemeines/NumMethVlasov/Num-Meth-Vlasov-Notes.pdf">Eric Sonnendrücker - Numerical methods for the Vlasov equations</a></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
-    <span class="o">%</span><span class="n">env</span> <span class="n">CC</span><span class="o">=</span><span class="s1">&#39;gcc-10&#39;</span>
+    <span class="o">%</span><span class="k">env</span> CC=&#39;gcc-10&#39;
 </pre></div>
 </div>
 </div>
@@ -307,7 +306,7 @@ Implemented recursively using the de Boor’s recursion formula</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/De_Boor%27s_algorithm">De Boor’s Algorithm - Wikipedia</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span> 
 
 <span class="k">def</span> <span class="nf">bspline_python</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -331,7 +330,7 @@ Implemented recursively using the de Boor’s recursion formula</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Advection</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Advection</span><span class="p">:</span>
     
     <span class="sd">&quot;&quot;&quot; Class to compute BSL advection of 1d function &quot;&quot;&quot;</span>
     
@@ -370,7 +369,7 @@ Implemented recursively using the de Boor’s recursion formula</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interpolation_test</span><span class="p">(</span><span class="n">bspline</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interpolation_test</span><span class="p">(</span><span class="n">bspline</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Test to check interpolation&quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">64</span>
     <span class="n">cs</span> <span class="o">=</span> <span class="n">Advection</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span> <span class="n">bspline</span><span class="p">)</span>
@@ -396,7 +395,7 @@ Implemented recursively using the de Boor’s recursion formula</p>
 <h2>Accelerate with Fortran<a class="headerlink" href="#accelerate-with-fortran" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">fortranmagic</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> fortranmagic
 </pre></div>
 </div>
 </div>
@@ -413,36 +412,36 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">fortran</span>
-<span class="n">recursive</span> <span class="n">function</span> <span class="n">bspline_fortran</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">result</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-    <span class="n">integer</span> <span class="p">::</span> <span class="n">p</span><span class="p">,</span> <span class="n">j</span>
-    <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="p">::</span> <span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">w1</span>
-    <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="p">::</span> <span class="n">res</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span>
+recursive function bspline_fortran(p, j, x) result(res)
+    integer :: p, j
+    real(8) :: x, w, w1
+    real(8) :: res
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">then</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">then</span>
-            <span class="n">res</span> <span class="o">=</span> <span class="mf">1.0</span>
-            <span class="k">return</span>
-        <span class="k">else</span>
-            <span class="n">res</span> <span class="o">=</span> <span class="mf">0.0</span>
-            <span class="k">return</span>
-        <span class="n">end</span> <span class="k">if</span>
-    <span class="k">else</span>
-        <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
-        <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
-    <span class="n">end</span> <span class="k">if</span>
+    if (p == 0) then
+        if (j == 0) then
+            res = 1.0
+            return
+        else
+            res = 0.0
+            return
+        end if
+    else
+        w = (x - j) / p
+        w1 = (x - j - 1) / p
+    end if
     
-    <span class="n">res</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_fortran</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w1</span><span class="p">)</span><span class="o">*</span><span class="n">bspline_fortran</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    res = w * bspline_fortran(p-1,j,x) &amp;
+    +(1-w1)*bspline_fortran(p-1,j+1,x)
 
-<span class="n">end</span> <span class="n">function</span> <span class="n">bspline_fortran</span>
+end function bspline_fortran
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_fortran</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_fortran</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -458,7 +457,7 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 <p>Create a optimized function of bspline python function with Numba. Call it bspline_numba.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span>  <span class="n">int32</span><span class="p">,</span> <span class="n">float64</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span>  <span class="n">int32</span><span class="p">,</span> <span class="n">float64</span>
 <span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span>
 
 <span class="nd">@jit</span><span class="p">(</span><span class="s2">&quot;float64(int32,int32,float64)&quot;</span><span class="p">,</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -484,7 +483,7 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_numba</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_numba</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -499,37 +498,37 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 <h2>Pythran<a class="headerlink" href="#pythran" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pythran</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pythran</span>
 
-<span class="o">%</span><span class="n">load_ext</span> <span class="n">pythran</span><span class="o">.</span><span class="n">magic</span>
+<span class="o">%</span><span class="k">load_ext</span> pythran.magic
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pythran</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">pythran</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+import numpy as np
 
-<span class="c1">#pythran export bspline_pythran(int,int,float64)</span>
-<span class="k">def</span> <span class="nf">bspline_pythran</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mf">1.0</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mf">0.0</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="n">p</span>
-        <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">p</span>
-    <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_pythran</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w1</span><span class="p">)</span><span class="o">*</span><span class="n">bspline_pythran</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+#pythran export bspline_pythran(int,int,float64)
+def bspline_pythran(p, j, x):
+    if p == 0:
+        if j == 0:
+            return 1.0
+        else:
+            return 0.0
+    else:
+        w = (x-j)/p
+        w1 = (x-j-1)/p
+    return w * bspline_pythran(p-1,j,x)+(1-w1)*bspline_pythran(p-1,j+1,x)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_pythran</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_pythran</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -544,29 +543,29 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
 <h2>Cython<a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">cython</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> cython
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">cython</span> <span class="o">-</span><span class="n">a</span>
-<span class="k">def</span> <span class="nf">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with </span>
-<span class="sd">        integer nodes of degree p with support starting at j.</span>
-<span class="sd">        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="mf">1.0</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="mf">0.0</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
-            <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
-        <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">w1</span><span class="p">)</span> <span class="o">*</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span> -a
+def bspline_cython(p, j, x):
+        &quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with 
+        integer nodes of degree p with support starting at j.
+        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;
+        assert (x &gt;= 0.0) &amp; (x &lt;= 1.0)
+        assert (type(p) == int) &amp; (type(j) == int)
+        if p == 0:
+            if j == 0:
+                return 1.0
+            else:
+                return 0.0
+        else:
+            w = (x - j) / p
+            w1 = (x - j - 1) / p
+        return w * bspline_cython(p - 1, j, x) + (1 - w1) * bspline_cython(p - 1, j + 1, x)
 </pre></div>
 </div>
 </div>
@@ -1271,31 +1270,31 @@ static PyObject *__pyx_pf_46_cython_magic_1baa0214366c7113efe817dece26564d_bspli
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">cython</span>
-<span class="kn">import</span> <span class="nn">cython</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+import cython
 
-<span class="nd">@cython</span><span class="o">.</span><span class="n">cdivision</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">cpdef</span> <span class="n">double</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="nb">int</span> <span class="n">p</span><span class="p">,</span> <span class="nb">int</span> <span class="n">j</span><span class="p">,</span> <span class="n">double</span> <span class="n">x</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with </span>
-<span class="sd">        integer nodes of degree p with support starting at j.</span>
-<span class="sd">        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;</span>
-        <span class="n">cdef</span> <span class="n">double</span> <span class="n">w</span><span class="p">,</span> <span class="n">w1</span>
-        <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="mf">1.0</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="mf">0.0</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
-            <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
-        <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w1</span><span class="p">)</span><span class="o">*</span><span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+@cython.cdivision(True)
+cpdef double bspline_cython(int p, int j, double x):
+        &quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with 
+        integer nodes of degree p with support starting at j.
+        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;
+        cdef double w, w1
+        if p == 0:
+            if j == 0:
+                return 1.0
+            else:
+                return 0.0
+        else:
+            w = (x - j) / p
+            w1 = (x - j - 1) / p
+        return w * bspline_cython(p-1,j,x)+(1-w1)*bspline_cython(p-1,j+1,x)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_cython</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interpolation_test</span><span class="p">(</span><span class="n">bspline_cython</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1307,8 +1306,8 @@ static PyObject *__pyx_pf_46_cython_magic_1baa0214366c7113efe817dece26564d_bspli
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -1319,7 +1318,7 @@ static PyObject *__pyx_pf_46_cython_magic_1baa0214366c7113efe817dece26564d_bspli
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
 <span class="n">Mrange</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -1333,14 +1332,14 @@ static PyObject *__pyx_pf_46_cython_magic_1baa0214366c7113efe817dece26564d_bspli
         <span class="n">cs</span> <span class="o">=</span> <span class="n">Advection</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">opt</span><span class="p">)</span>
     
         <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
-        <span class="n">ts</span> <span class="o">=</span> <span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">oq</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100</span> <span class="n">cs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="o">%</span><span class="k">timeit</span> -oq -n 100 cs(f, alpha)
         <span class="n">times</span><span class="p">[</span><span class="n">opt</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">best</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "007943dfb2074bf7b5fba374000bd2b2"}
+{"version_major": 2, "version_minor": 0, "model_id": "ccb5226d1f2a4001b9341823b64cefdc"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
@@ -1348,7 +1347,7 @@ static PyObject *__pyx_pf_46_cython_magic_1baa0214366c7113efe817dece26564d_bspli
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">o</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">o</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">Mrange</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">o</span><span class="p">)</span>
     
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
@@ -1363,83 +1362,81 @@ static PyObject *__pyx_pf_46_cython_magic_1baa0214366c7113efe817dece26564d_bspli
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">cython</span>
-<span class="kn">import</span> <span class="nn">cython</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">cimport</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+import cython
+import numpy as np
+cimport numpy as np
+from scipy.fftpack import fft, ifft
 
-<span class="nd">@cython</span><span class="o">.</span><span class="n">cdivision</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">cdef</span> <span class="n">double</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="nb">int</span> <span class="n">p</span><span class="p">,</span> <span class="nb">int</span> <span class="n">j</span><span class="p">,</span> <span class="n">double</span> <span class="n">x</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with </span>
-<span class="sd">        integer nodes of degree p with support starting at j.</span>
-<span class="sd">        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;</span>
-        <span class="n">cdef</span> <span class="n">double</span> <span class="n">w</span><span class="p">,</span> <span class="n">w1</span>
-        <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="mf">1.0</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="mf">0.0</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
-            <span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
-        <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w1</span><span class="p">)</span><span class="o">*</span><span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+@cython.cdivision(True)
+cdef double bspline_cython(int p, int j, double x):
+        &quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with 
+        integer nodes of degree p with support starting at j.
+        Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;
+        cdef double w, w1
+        if p == 0:
+            if j == 0:
+                return 1.0
+            else:
+                return 0.0
+        else:
+            w = (x - j) / p
+            w1 = (x - j - 1) / p
+        return w * bspline_cython(p-1,j,x)+(1-w1)*bspline_cython(p-1,j+1,x)
 
-<span class="k">class</span> <span class="nc">BSplineCython</span><span class="p">:</span>
+class BSplineCython:
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ncells</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ncells</span> <span class="o">=</span> <span class="n">ncells</span>
-        <span class="c1"># compute eigenvalues of degree p b-spline matrix</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ncells</span><span class="p">)</span> <span class="o">/</span> <span class="n">ncells</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">deltax</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">ncells</span>
+    def __init__(self, p, xmin, xmax, ncells):
+        self.p = p
+        self.ncells = ncells
+        # compute eigenvalues of degree p b-spline matrix
+        self.modes = 2 * np.pi * np.arange(ncells) / ncells
+        self.deltax = (xmax - xmin) / ncells
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">eig_bspl</span> <span class="o">=</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">eig_bspl</span> <span class="o">+=</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">)</span>
+        self.eig_bspl = bspline_cython(p,-(p+1)//2, 0.0)
+        for j in range(1, (p + 1) // 2):
+            self.eig_bspl += bspline_cython(p,j-(p+1)//2,0.0)*2*np.cos(j*self.modes)
             
-        <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+        self.eigalpha = np.zeros(ncells, dtype=complex)
     
-    <span class="nd">@cython</span><span class="o">.</span><span class="n">boundscheck</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-    <span class="nd">@cython</span><span class="o">.</span><span class="n">wraparound</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="n">f</span><span class="p">,</span>  <span class="n">alpha</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;compute the interpolating spline of degree p of odd degree </span>
-<span class="sd">        of a function f on a periodic uniform mesh, at</span>
-<span class="sd">        all points xi-alpha&quot;&quot;&quot;</span>
-        <span class="n">cdef</span> <span class="n">Py_ssize_t</span> <span class="n">j</span>
-        <span class="n">cdef</span> <span class="nb">int</span> <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span>
-        <span class="c1"># compute eigenvalues of cubic splines evaluated at displaced points</span>
-        <span class="n">cdef</span> <span class="nb">int</span> <span class="n">ishift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="o">-</span><span class="n">alpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">deltax</span><span class="p">)</span>
-        <span class="n">cdef</span> <span class="n">double</span> <span class="n">beta</span> <span class="o">=</span> <span class="o">-</span><span class="n">ishift</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">deltax</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span> <span class="o">+=</span> <span class="n">bspline_cython</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">ishift</span><span class="o">+</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="p">)</span>
+    @cython.boundscheck(False)
+    @cython.wraparound(False)
+    def __call__(self,  f,  alpha):
+        &quot;&quot;&quot;compute the interpolating spline of degree p of odd degree 
+        of a function f on a periodic uniform mesh, at
+        all points xi-alpha&quot;&quot;&quot;
+        cdef Py_ssize_t j
+        cdef int p = self.p
+        # compute eigenvalues of cubic splines evaluated at displaced points
+        cdef int ishift = np.floor(-alpha / self.deltax)
+        cdef double beta = -ishift - alpha / self.deltax
+        self.eigalpha.fill(0)
+        for j in range(-(p-1)//2, (p+1)//2+1):
+            self.eigalpha += bspline_cython(p,j-(p+1)//2,beta)*np.exp((ishift+j)*1j*self.modes)
             
-        <span class="c1"># compute interpolating spline using fft and properties of circulant matrices</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">eigalpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">eig_bspl</span><span class="p">))</span>
-
-
+        # compute interpolating spline using fft and properties of circulant matrices
+        return np.real(ifft(fft(f) * self.eigalpha / self.eig_bspl))
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">times</span><span class="p">[</span><span class="s2">&quot;cython&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times</span><span class="p">[</span><span class="s2">&quot;cython&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">M</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">Mrange</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
     <span class="n">cs</span> <span class="o">=</span> <span class="n">BSplineCython</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span> <span class="p">)</span>
     
     <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
-    <span class="n">ts</span> <span class="o">=</span> <span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">oq</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100</span> <span class="n">cs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="o">%</span><span class="k">timeit</span> -oq -n 100 cs(f, alpha)
     <span class="n">times</span><span class="p">[</span><span class="s2">&quot;cython&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">best</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8d117bce42f14051aa7626588b8df450"}
+{"version_major": 2, "version_minor": 0, "model_id": "94e14667a5a248a985038085df68f0af"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
@@ -1447,7 +1444,7 @@ static PyObject *__pyx_pf_46_cython_magic_1baa0214366c7113efe817dece26564d_bspli
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">o</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">o</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">Mrange</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">o</span><span class="p">)</span>
     
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
@@ -1476,7 +1473,7 @@ with a neutralizing background.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VlasovPoisson</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VlasovPoisson</span><span class="p">:</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">nv</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         
@@ -1548,7 +1545,7 @@ f(x, v, t=0) = \frac{1}{\sqrt{2\pi}} (1 + \epsilon  \cdot cos(k_x \cdot x))  e^{
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 
 <span class="n">elapsed_time</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1587,27 +1584,27 @@ f(x, v, t=0) = \frac{1}{\sqrt{2\pi}} (1 + \epsilon  \cdot cos(k_x \cdot x))  e^{
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "dc5c67b1543f4e77a3fa9cc71a1e58a3"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_fortran : 10.1310 
+{"version_major": 2, "version_minor": 0, "model_id": "aa8393e78ed2439090fec68c30f30c5e"}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_fortran : 9.7215 
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c0fa20ba35ce4d08bfc39d2f2714c348"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_pythran : 10.4293 
+{"version_major": 2, "version_minor": 0, "model_id": "801992f48b484b53b3061da80be311ba"}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_pythran : 9.5800 
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "271bfec3158641dd84ee31ba099d5689"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_cython : 11.5383 
+{"version_major": 2, "version_minor": 0, "model_id": "1825f11aa9444de1920b5fb5bf59faf2"}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_cython : 9.5483 
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "f08ea64ee566417bb7e4566af2822633"}
+{"version_major": 2, "version_minor": 0, "model_id": "9c64a21424b84d8ca7ee91d0139fd1d4"}
 </script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%fortran --f90flags &quot;-fopenmp&quot; --extra &quot;-lgomp&quot; --link fftw3
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">fortran</span> --f90flags &quot;-fopenmp&quot; --extra &quot;-lgomp&quot; --link fftw3
 
 module bsl_fftw
 
@@ -1736,14 +1733,14 @@ end module bsl_fftw
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">OMP_NUM_THREADS</span><span class="o">=</span><span class="mi">4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">env</span> OMP_NUM_THREADS=4
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span>
 
 <span class="k">class</span> <span class="nc">VlasovPoissonThreaded</span><span class="p">(</span><span class="n">VlasovPoisson</span><span class="p">):</span>
@@ -1762,7 +1759,7 @@ end module bsl_fftw
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 
 <span class="n">elapsed_time</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>

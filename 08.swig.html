@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
@@ -26,10 +25,10 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -326,12 +325,10 @@ time ./a.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="stderr docutils container">
-<div class="stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real	0m0.042s
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real	0m0.039s
 user	0m0.001s
 sys	0m0.001s
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -361,8 +358,8 @@ sys	0m0.001s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 26.6 s, sys: 290 ms, total: 26.9 s
-Wall time: 27.5 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 23.8 s, sys: 202 ms, total: 24 s
+Wall time: 24.5 s
 </pre></div>
 </div>
 </div>
@@ -430,8 +427,8 @@ gcc -fPIC -shared -O3 \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 533 ms, sys: 9.23 ms, total: 542 ms
-Wall time: 620 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 588 ms, sys: 10.7 ms, total: 599 ms
+Wall time: 704 ms
 </pre></div>
 </div>
 </div>
@@ -514,8 +511,8 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 700 ms, sys: 12 ms, total: 712 ms
-Wall time: 765 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 764 ms, sys: 14.2 ms, total: 778 ms
+Wall time: 790 ms
 </pre></div>
 </div>
 </div>
@@ -606,9 +603,7 @@ gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -f
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running build_ext
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running build_src
+running build_src
 build_src
 building extension &quot;_syracuseC&quot; sources
 build_src: building npy-pkg config files
@@ -619,8 +614,10 @@ compiling C sources
 C compiler: gcc-10 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers
 
 compile options: &#39;-I/usr/local/lib/python3.8/site-packages/numpy/core/include -I/usr/local/include -I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/sqlite/include -I/usr/local/Cellar/python@3.8/3.8.5/Frameworks/Python.framework/Versions/3.8/include/python3.8 -c&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gcc-10: syrac.c
 gcc-10: syrac_wrap.c
-gcc-10: syrac.c
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gcc-10 -bundle -undefined dynamic_lookup -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk build/temp.macosx-10.15-x86_64-3.8/syrac_wrap.o build/temp.macosx-10.15-x86_64-3.8/syrac.o -L/usr/local/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/sqlite/lib -o _syracuseC.cpython-38-darwin.so
@@ -653,8 +650,8 @@ gcc-10: syrac.c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 387 ms, sys: 11.7 ms, total: 399 ms
-Wall time: 405 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 373 ms, sys: 12.6 ms, total: 386 ms
+Wall time: 418 ms
 </pre></div>
 </div>
 </div>
