@@ -31,11 +31,12 @@
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pnavaro.github.io/python-fortran/08.swig.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Maxwell solver in two dimensions with FDTD scheme" href="07.maxwell-fdtd-2d.html" />
@@ -43,6 +44,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
 
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://pnavaro.github.io/python-fortran/08.swig.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="SWIG and Ctypes" />
+<meta property="og:description" content="SWIG and Ctypes  Interfacing Fortran code through C interface  I found this reference with good examples.  Problem: Collatz conjecture  Choose u_0  If u_k even," />
+<meta property="og:image"       content="https://pnavaro.github.io/python-fortran/_static/logo.png" />
+
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -71,14 +81,7 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="quickstart.html">
-   Python-Fortran bindings examples
-  </a>
- </li>
-</ul>
-<p class="caption">
+  <p class="caption">
  <span class="caption-text">
   Call Fortran from Python with f2py
  </span>
@@ -144,10 +147,6 @@
 
  <!-- To handle the deprecated key -->
 
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
 </div>
 
 
@@ -191,6 +190,24 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pnavaro/python-fortran"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pnavaro/python-fortran/issues/new?title=Issue%20on%20page%20%2F08.swig.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/pnavaro/python-fortran/edit/master/notebooks/08.swig.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -198,6 +215,31 @@
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/python-fortran/master?urlpath=tree/notebooks/08.swig.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/python-fortran/blob/master/notebooks/08.swig.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
 
     </div>
 
@@ -325,7 +367,7 @@ time ./a.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real	0m0.039s
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real	0m0.040s
 user	0m0.001s
 sys	0m0.001s
 </pre></div>
@@ -358,8 +400,8 @@ sys	0m0.001s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 23.8 s, sys: 202 ms, total: 24 s
-Wall time: 24.5 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 23.9 s, sys: 184 ms, total: 24.1 s
+Wall time: 24.6 s
 </pre></div>
 </div>
 </div>
@@ -427,8 +469,8 @@ gcc -fPIC -shared -O3 \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 588 ms, sys: 10.7 ms, total: 599 ms
-Wall time: 704 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 559 ms, sys: 10.2 ms, total: 569 ms
+Wall time: 648 ms
 </pre></div>
 </div>
 </div>
@@ -511,8 +553,8 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 764 ms, sys: 14.2 ms, total: 778 ms
-Wall time: 790 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 619 ms, sys: 9.28 ms, total: 628 ms
+Wall time: 639 ms
 </pre></div>
 </div>
 </div>
@@ -616,8 +658,8 @@ C compiler: gcc-10 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-com
 compile options: &#39;-I/usr/local/lib/python3.8/site-packages/numpy/core/include -I/usr/local/include -I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/sqlite/include -I/usr/local/Cellar/python@3.8/3.8.5/Frameworks/Python.framework/Versions/3.8/include/python3.8 -c&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gcc-10: syrac.c
-gcc-10: syrac_wrap.c
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gcc-10: syrac_wrap.c
+gcc-10: syrac.c
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gcc-10 -bundle -undefined dynamic_lookup -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk build/temp.macosx-10.15-x86_64-3.8/syrac_wrap.o build/temp.macosx-10.15-x86_64-3.8/syrac.o -L/usr/local/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/sqlite/lib -o _syracuseC.cpython-38-darwin.so
@@ -650,8 +692,8 @@ gcc-10: syrac_wrap.c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 373 ms, sys: 12.6 ms, total: 386 ms
-Wall time: 418 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 322 ms, sys: 7.78 ms, total: 330 ms
+Wall time: 333 ms
 </pre></div>
 </div>
 </div>
@@ -672,7 +714,7 @@ Wall time: 418 ms
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "pnavaro/python-fortran",
             ref: "master",
         },
         codeMirrorConfig: {

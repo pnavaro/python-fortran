@@ -31,11 +31,12 @@
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pnavaro.github.io/python-fortran/04.vlasov-poisson.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Co-rotating vortices" href="05.co-rotating-vortex.html" />
@@ -44,6 +45,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
 
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://pnavaro.github.io/python-fortran/04.vlasov-poisson.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Vlasov-Poisson" />
+<meta property="og:description" content="Vlasov-Poisson  In this notebook we present a multithreaded version of the Vlasov-Poisson system in 1D1D phase space. Equations are solved numerically using sem" />
+<meta property="og:image"       content="https://pnavaro.github.io/python-fortran/_static/logo.png" />
+
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -72,14 +82,7 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="quickstart.html">
-   Python-Fortran bindings examples
-  </a>
- </li>
-</ul>
-<p class="caption">
+  <p class="caption">
  <span class="caption-text">
   Call Fortran from Python with f2py
  </span>
@@ -145,10 +148,6 @@
 
  <!-- To handle the deprecated key -->
 
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
 </div>
 
 
@@ -192,6 +191,24 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pnavaro/python-fortran"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pnavaro/python-fortran/issues/new?title=Issue%20on%20page%20%2F04.vlasov-poisson.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/pnavaro/python-fortran/edit/master/notebooks/04.vlasov-poisson.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -199,6 +216,31 @@
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/python-fortran/master?urlpath=tree/notebooks/04.vlasov-poisson.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/python-fortran/blob/master/notebooks/04.vlasov-poisson.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
 
     </div>
 
@@ -1339,7 +1381,7 @@ cpdef double bspline_cython(int p, int j, double x):
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ccb5226d1f2a4001b9341823b64cefdc"}
+{"version_major": 2, "version_minor": 0, "model_id": "df117bb66f4b40d68eecd903f00a6792"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
@@ -1436,7 +1478,7 @@ class BSplineCython:
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "94e14667a5a248a985038085df68f0af"}
+{"version_major": 2, "version_minor": 0, "model_id": "75c03e6f90224698a220f837dba2abff"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
@@ -1584,22 +1626,22 @@ f(x, v, t=0) = \frac{1}{\sqrt{2\pi}} (1 + \epsilon  \cdot cos(k_x \cdot x))  e^{
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "aa8393e78ed2439090fec68c30f30c5e"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_fortran : 9.7215 
+{"version_major": 2, "version_minor": 0, "model_id": "56bf651ed95c467ca83ca9afb8e88ed8"}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_fortran : 10.2259 
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "801992f48b484b53b3061da80be311ba"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_pythran : 9.5800 
+{"version_major": 2, "version_minor": 0, "model_id": "b25b4bbea94745f4b9535a8e89a29ce9"}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_pythran : 10.3293 
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "1825f11aa9444de1920b5fb5bf59faf2"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_cython : 9.5483 
+{"version_major": 2, "version_minor": 0, "model_id": "c1eec951abdf4ac0a32f20cc4a23389c"}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> bspline_cython : 10.4180 
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9c64a21424b84d8ca7ee91d0139fd1d4"}
+{"version_major": 2, "version_minor": 0, "model_id": "de6d01ad991b4cab98738123c0517f0b"}
 </script></div>
 </div>
 <div class="cell docutils container">
@@ -1800,7 +1842,7 @@ end module bsl_fftw
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "pnavaro/python-fortran",
             ref: "master",
         },
         codeMirrorConfig: {
