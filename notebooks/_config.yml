@@ -1,3 +1,24 @@
 title: Python-Fortran notebooks
 author: Pierre Navaro
 logo: logo.png
+
+html:
+  home_page_in_navbar: false
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: https://pnavaro.github.io/python-fortran
+
+repository:
+  url: https://github.com/pnavaro/python-fortran
+  branch: master
+  path_to_book: notebooks
+
+launch_buttons:
+  notebook_interface: "classic" 
+  binderhub_url: "https://mybinder.org"
+  colab_url: "https://colab.research.google.com"
+  thebe: true
+
+execute:
+  timeout: 300
