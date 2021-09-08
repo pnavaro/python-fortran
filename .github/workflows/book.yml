@@ -27,7 +27,7 @@ jobs:
 
     - name: Build the book
       run: |
-          python -m venv jb
+          python3 -m venv jb
           source jb/bin/activate
           python -m pip install jupyter-book
           jupyter-book build notebooks
