@@ -1,18 +1,17 @@
-- file: quickstart
-
-- part: Call Fortran from Python with f2py
+format: jb-book
+root: quickstart
+parts:
+- caption: Call Fortran from Python with f2py
   chapters:
   - file: 01.f2py.ipynb
   - file: 02.f2py.ipynb
-
-- part: Examples
+- caption: Examples
   chapters:
   - file: 03.julia-set.ipynb
   - file: 04.vlasov-poisson.ipynb
   - file: 05.co-rotating-vortex.ipynb
   - file: 06.gray-scott-model.ipynb
   - file: 07.maxwell-fdtd-2d.ipynb
-
-- part: Swig and ctypes
+- caption: Swig and ctypes
   chapters:
   - file: 08.swig.ipynb
