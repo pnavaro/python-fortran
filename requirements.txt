@@ -5,8 +5,6 @@ imageio
 ipykernel
 ipywidgets
 julia
-jupyter
-jupyter-book
 llvmlite
 matplotlib
 numba
