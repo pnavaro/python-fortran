@@ -17,7 +17,6 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-%matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 import matplotlib.pyplot as plt
 import scipy.fftpack as sf
@@ -27,54 +26,12 @@ import numpy as np
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_17509/2517491995.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'matplotlib'[0m[0;34m,[0m [0;34m'inline'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'config'[0m[0;34m,[0m [0;34m"InlineBackend.figure_format = 'retina'"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0;32mimport[0m [0mscipy[0m[0;34m.[0m[0mfftpack[0m [0;32mas[0m [0msf[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0;32mimport[0m [0mscipy[0m[0;34m.[0m[0mlinalg[0m [0;32mas[0m [0msl[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/IPython/core/interactiveshell.py[0m in [0;36mrun_line_magic[0;34m(self, magic_name, line, _stack_depth)[0m
-[1;32m   2346[0m                 [0mkwargs[0m[0;34m[[0m[0;34m'local_ns'[0m[0;34m][0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mget_local_scope[0m[0;34m([0m[0mstack_depth[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   2347[0m             [0;32mwith[0m [0mself[0m[0;34m.[0m[0mbuiltin_trap[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 2348[0;31m                 [0mresult[0m [0;34m=[0m [0mfn[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   2349[0m             [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   2350[0m [0;34m[0m[0m
-
-[0;32m~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/decorator.py[0m in [0;36mfun[0;34m(*args, **kw)[0m
-[1;32m    230[0m             [0;32mif[0m [0;32mnot[0m [0mkwsyntax[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    231[0m                 [0margs[0m[0;34m,[0m [0mkw[0m [0;34m=[0m [0mfix[0m[0;34m([0m[0margs[0m[0;34m,[0m [0mkw[0m[0;34m,[0m [0msig[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 232[0;31m             [0;32mreturn[0m [0mcaller[0m[0;34m([0m[0mfunc[0m[0;34m,[0m [0;34m*[0m[0;34m([0m[0mextras[0m [0;34m+[0m [0margs[0m[0;34m)[0m[0;34m,[0m [0;34m**[0m[0mkw[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    233[0m     [0mfun[0m[0;34m.[0m[0m__name__[0m [0;34m=[0m [0mfunc[0m[0;34m.[0m[0m__name__[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    234[0m     [0mfun[0m[0;34m.[0m[0m__doc__[0m [0;34m=[0m [0mfunc[0m[0;34m.[0m[0m__doc__[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/IPython/core/magic.py[0m in [0;36m<lambda>[0;34m(f, *a, **k)[0m
-[1;32m    185[0m     [0;31m# but it's overkill for just that one bit of state.[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    186[0m     [0;32mdef[0m [0mmagic_deco[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 187[0;31m         [0mcall[0m [0;34m=[0m [0;32mlambda[0m [0mf[0m[0;34m,[0m [0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m:[0m [0mf[0m[0;34m([0m[0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    188[0m [0;34m[0m[0m
-[1;32m    189[0m         [0;32mif[0m [0mcallable[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/IPython/core/magics/pylab.py[0m in [0;36mmatplotlib[0;34m(self, line)[0m
-[1;32m     97[0m             [0mprint[0m[0;34m([0m[0;34m"Available matplotlib backends: %s"[0m [0;34m%[0m [0mbackends_list[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     98[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 99[0;31m             [0mgui[0m[0;34m,[0m [0mbackend[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mshell[0m[0;34m.[0m[0menable_matplotlib[0m[0;34m([0m[0margs[0m[0;34m.[0m[0mgui[0m[0;34m.[0m[0mlower[0m[0;34m([0m[0;34m)[0m [0;32mif[0m [0misinstance[0m[0;34m([0m[0margs[0m[0;34m.[0m[0mgui[0m[0;34m,[0m [0mstr[0m[0;34m)[0m [0;32melse[0m [0margs[0m[0;34m.[0m[0mgui[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    100[0m             [0mself[0m[0;34m.[0m[0m_show_matplotlib_backend[0m[0;34m([0m[0margs[0m[0;34m.[0m[0mgui[0m[0;34m,[0m [0mbackend[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    101[0m [0;34m[0m[0m
-
-[0;32m~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/IPython/core/interactiveshell.py[0m in [0;36menable_matplotlib[0;34m(self, gui)[0m
-[1;32m   3515[0m         """
-[1;32m   3516[0m         [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mcore[0m [0;32mimport[0m [0mpylabtools[0m [0;32mas[0m [0mpt[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 3517[0;31m         [0;32mfrom[0m [0mmatplotlib_inline[0m[0;34m.[0m[0mbackend_inline[0m [0;32mimport[0m [0mconfigure_inline_support[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   3518[0m         [0mgui[0m[0;34m,[0m [0mbackend[0m [0;34m=[0m [0mpt[0m[0;34m.[0m[0mfind_gui_and_backend[0m[0;34m([0m[0mgui[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mpylab_gui_select[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   3519[0m [0;34m[0m[0m
-
-[0;32m~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/matplotlib_inline/backend_inline.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      4[0m [0;31m# Distributed under the terms of the BSD 3-Clause License.[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0;34m[0m[0m
-[0;32m----> 6[0;31m [0;32mimport[0m [0mmatplotlib[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      7[0m from matplotlib.backends.backend_agg import (  # noqa
-[1;32m      8[0m     [0mnew_figure_manager[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_18174/242736148.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'config'[0m[0;34m,[0m [0;34m"InlineBackend.figure_format = 'retina'"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;32mimport[0m [0mscipy[0m[0;34m.[0m[0mfftpack[0m [0;32mas[0m [0msf[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mimport[0m [0mscipy[0m[0;34m.[0m[0mlinalg[0m [0;32mas[0m [0msl[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
 
 [0;31mModuleNotFoundError[0m: No module named 'matplotlib'
 ModuleNotFoundError: No module named 'matplotlib'
