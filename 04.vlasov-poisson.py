@@ -7,7 +7,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.5.2
+#       jupytext_version: 1.11.5
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -44,7 +44,7 @@
 import sys
 
 if sys.platform == "darwin":
-    %env CC='gcc-10'
+    # %env CC='gcc-10'
 # -
 
 # ## Bspline
@@ -222,54 +222,50 @@ def bspline_pythran(p, j, x):
 
 interpolation_test(bspline_pythran)
 
-
 # ## Cython
 
 # %load_ext cython
 
-# %%cython -a
-def bspline_cython(p, j, x):
-        """Return the value at x in [0,1[ of the B-spline with 
-        integer nodes of degree p with support starting at j.
-        Implemented recursively using the de Boor's recursion formula"""
-        assert (x >= 0.0) & (x <= 1.0)
-        assert (type(p) == int) & (type(j) == int)
-        if p == 0:
-            if j == 0:
-                return 1.0
-            else:
-                return 0.0
-        else:
-            w = (x - j) / p
-            w1 = (x - j - 1) / p
-        return w * bspline_cython(p - 1, j, x) + (1 - w1) * bspline_cython(p - 1, j + 1, x)
+# + magic_args="-a" language="cython"
+# def bspline_cython(p, j, x):
+#         """Return the value at x in [0,1[ of the B-spline with 
+#         integer nodes of degree p with support starting at j.
+#         Implemented recursively using the de Boor's recursion formula"""
+#         assert (x >= 0.0) & (x <= 1.0)
+#         assert (type(p) == int) & (type(j) == int)
+#         if p == 0:
+#             if j == 0:
+#                 return 1.0
+#             else:
+#                 return 0.0
+#         else:
+#             w = (x - j) / p
+#             w1 = (x - j - 1) / p
+#         return w * bspline_cython(p - 1, j, x) + (1 - w1) * bspline_cython(p - 1, j + 1, x)
 
-
-# +
-# %%cython
-import cython
-
-@cython.cdivision(True)
-cpdef double bspline_cython(int p, int j, double x):
-        """Return the value at x in [0,1[ of the B-spline with 
-        integer nodes of degree p with support starting at j.
-        Implemented recursively using the de Boor's recursion formula"""
-        cdef double w, w1
-        if p == 0:
-            if j == 0:
-                return 1.0
-            else:
-                return 0.0
-        else:
-            w = (x - j) / p
-            w1 = (x - j - 1) / p
-        return w * bspline_cython(p-1,j,x)+(1-w1)*bspline_cython(p-1,j+1,x)
+# + language="cython"
+# import cython
+#
+# @cython.cdivision(True)
+# cpdef double bspline_cython(int p, int j, double x):
+#         """Return the value at x in [0,1[ of the B-spline with 
+#         integer nodes of degree p with support starting at j.
+#         Implemented recursively using the de Boor's recursion formula"""
+#         cdef double w, w1
+#         if p == 0:
+#             if j == 0:
+#                 return 1.0
+#             else:
+#                 return 0.0
+#         else:
+#             w = (x - j) / p
+#             w1 = (x - j - 1) / p
+#         return w * bspline_cython(p-1,j,x)+(1-w1)*bspline_cython(p-1,j+1,x)
 # -
 
 interpolation_test(bspline_cython)
 
 # +
-# %matplotlib inline
 # %config InlineBackend.figure_format = 'retina'
 import matplotlib.pyplot as plt
 import numpy as np
@@ -291,7 +287,7 @@ for M in tqdm(Mrange):
         cs = Advection(5, 0, 1, M, opt)
     
         alpha = 0.1
-        ts = %timeit -oq -n 100 cs(f, alpha)
+        # ts = %timeit -oq -n 100 cs(f, alpha)
         times[opt.__name__].append(ts.best)
 
 # +
@@ -302,64 +298,63 @@ plt.legend(loc='lower right')
 plt.xlabel('Number of points')
 plt.ylabel('Execution Time (s)');
 
-# +
-# %%cython
-import cython
-import numpy as np
-cimport numpy as np
-from scipy.fftpack import fft, ifft
-
-@cython.cdivision(True)
-cdef double bspline_cython(int p, int j, double x):
-        """Return the value at x in [0,1[ of the B-spline with 
-        integer nodes of degree p with support starting at j.
-        Implemented recursively using the de Boor's recursion formula"""
-        cdef double w, w1
-        if p == 0:
-            if j == 0:
-                return 1.0
-            else:
-                return 0.0
-        else:
-            w = (x - j) / p
-            w1 = (x - j - 1) / p
-        return w * bspline_cython(p-1,j,x)+(1-w1)*bspline_cython(p-1,j+1,x)
-
-class BSplineCython:
-    
-    def __init__(self, p, xmin, xmax, ncells):
-        self.p = p
-        self.ncells = ncells
-        # compute eigenvalues of degree p b-spline matrix
-        self.modes = 2 * np.pi * np.arange(ncells) / ncells
-        self.deltax = (xmax - xmin) / ncells
-        
-        self.eig_bspl = bspline_cython(p,-(p+1)//2, 0.0)
-        for j in range(1, (p + 1) // 2):
-            self.eig_bspl += bspline_cython(p,j-(p+1)//2,0.0)*2*np.cos(j*self.modes)
-            
-        self.eigalpha = np.zeros(ncells, dtype=complex)
-    
-    @cython.boundscheck(False)
-    @cython.wraparound(False)
-    def __call__(self,  f,  alpha):
-        """compute the interpolating spline of degree p of odd degree 
-        of a function f on a periodic uniform mesh, at
-        all points xi-alpha"""
-        cdef Py_ssize_t j
-        cdef int p = self.p
-        # compute eigenvalues of cubic splines evaluated at displaced points
-        cdef int ishift = np.floor(-alpha / self.deltax)
-        cdef double beta = -ishift - alpha / self.deltax
-        self.eigalpha.fill(0)
-        for j in range(-(p-1)//2, (p+1)//2+1):
-            self.eigalpha += bspline_cython(p,j-(p+1)//2,beta)*np.exp((ishift+j)*1j*self.modes)
-            
-        # compute interpolating spline using fft and properties of circulant matrices
-        return np.real(ifft(fft(f) * self.eigalpha / self.eig_bspl))
-
-
-
+# + language="cython"
+# import cython
+# import numpy as np
+# cimport numpy as np
+# from scipy.fftpack import fft, ifft
+#
+# @cython.cdivision(True)
+# cdef double bspline_cython(int p, int j, double x):
+#         """Return the value at x in [0,1[ of the B-spline with 
+#         integer nodes of degree p with support starting at j.
+#         Implemented recursively using the de Boor's recursion formula"""
+#         cdef double w, w1
+#         if p == 0:
+#             if j == 0:
+#                 return 1.0
+#             else:
+#                 return 0.0
+#         else:
+#             w = (x - j) / p
+#             w1 = (x - j - 1) / p
+#         return w * bspline_cython(p-1,j,x)+(1-w1)*bspline_cython(p-1,j+1,x)
+#
+# class BSplineCython:
+#     
+#     def __init__(self, p, xmin, xmax, ncells):
+#         self.p = p
+#         self.ncells = ncells
+#         # compute eigenvalues of degree p b-spline matrix
+#         self.modes = 2 * np.pi * np.arange(ncells) / ncells
+#         self.deltax = (xmax - xmin) / ncells
+#         
+#         self.eig_bspl = bspline_cython(p,-(p+1)//2, 0.0)
+#         for j in range(1, (p + 1) // 2):
+#             self.eig_bspl += bspline_cython(p,j-(p+1)//2,0.0)*2*np.cos(j*self.modes)
+#             
+#         self.eigalpha = np.zeros(ncells, dtype=complex)
+#     
+#     @cython.boundscheck(False)
+#     @cython.wraparound(False)
+#     def __call__(self,  f,  alpha):
+#         """compute the interpolating spline of degree p of odd degree 
+#         of a function f on a periodic uniform mesh, at
+#         all points xi-alpha"""
+#         cdef Py_ssize_t j
+#         cdef int p = self.p
+#         # compute eigenvalues of cubic splines evaluated at displaced points
+#         cdef int ishift = np.floor(-alpha / self.deltax)
+#         cdef double beta = -ishift - alpha / self.deltax
+#         self.eigalpha.fill(0)
+#         for j in range(-(p-1)//2, (p+1)//2+1):
+#             self.eigalpha += bspline_cython(p,j-(p+1)//2,beta)*np.exp((ishift+j)*1j*self.modes)
+#             
+#         # compute interpolating spline using fft and properties of circulant matrices
+#         return np.real(ifft(fft(f) * self.eigalpha / self.eig_bspl))
+#
+#
+#
 # -
 
 times["cython"] = []
@@ -369,7 +364,7 @@ for M in tqdm(Mrange):
     cs = BSplineCython(5, 0, 1, M )
     
     alpha = 0.1
-    ts = %timeit -oq -n 100 cs(f, alpha)
+    # ts = %timeit -oq -n 100 cs(f, alpha)
     times["cython"].append(ts.best)
 
 # +
@@ -581,7 +576,7 @@ module bsl_fftw
      
         eig_bspl = eig_bspl + bspline(p, -(p+1)/2, 0.0_8)
       
-        !$OMP PARALLEL DO DEFAULT(FIRSTPRIVATE), SHARED(df,fwd,bwd)
+        # !$OMP PARALLEL DO DEFAULT(FIRSTPRIVATE), SHARED(df,fwd,bwd)
         do i = 0, n-1
      
             ishift = floor(-alpha(i) / delta)
@@ -609,7 +604,7 @@ module bsl_fftw
             end if
   
         end do
-        !$OMP END PARALLEL DO     
+        # !$OMP END PARALLEL DO     
         
         call dfftw_destroy_plan(fwd)
         call dfftw_destroy_plan(bwd)

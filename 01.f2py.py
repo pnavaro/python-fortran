@@ -9,7 +9,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.5.2
+#       jupytext_version: 1.11.5
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -29,7 +29,6 @@ import os, sys
 
 
 # + {"slideshow": {"slide_type": "slide"}}
-%matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 import matplotlib.pyplot as plt
 import scipy.fftpack as sf
@@ -465,7 +464,6 @@ hello_omp()
 
 # +
 %%time
-%matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 import numpy as np
 import matplotlib.pyplot as plt
@@ -531,7 +529,6 @@ end subroutine laplace_fortran
 
 # +
 %%time
-%matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 import numpy as np
 import matplotlib.pyplot as plt

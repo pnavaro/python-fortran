@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.5.2
+#       jupytext_version: 1.11.5
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -21,7 +21,6 @@ import matplotlib.pyplot as plt
 from matplotlib import animation
 plt.rcParams['figure.figsize'] = (10,6)
 
-# %matplotlib inline
 # %config InlineBackend.figure_format = 'retina'
 
 
@@ -29,7 +28,7 @@ plt.rcParams['figure.figsize'] = (10,6)
 import sys
 
 if sys.platform == "darwin":
-    %env CC=gcc-10
+    # %env CC=gcc-10
 # -
 
 # %load_ext fortranmagic
@@ -53,7 +52,7 @@ subroutine biot ( n, xp, yp, op, up, vp )
   a12   = a1*a1
   a122  = a12*a12
     
-  !$OMP PARALLEL DO DEFAULT(FIRSTPRIVATE) SHARED(up, vp)
+  # !$OMP PARALLEL DO DEFAULT(FIRSTPRIVATE) SHARED(up, vp)
   do  k = 1, n
 
     usum = 0
@@ -76,7 +75,7 @@ subroutine biot ( n, xp, yp, op, up, vp )
     vp(k) = vsum / dpi 
             
    end do
-   !$OMP END PARALLEL DO
+   # !$OMP END PARALLEL DO
 
 end subroutine biot
 

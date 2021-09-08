@@ -8,7 +8,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.5.2
+#       jupytext_version: 1.11.5
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -36,7 +36,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # + {"internals": {"slide_helper": "subslide_end", "slide_type": "subslide"}, "slide_helper": "slide_end", "slideshow": {"slide_type": "skip"}}
-%matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
 # + {"internals": {"slide_helper": "subslide_end", "slide_type": "subslide"}, "slide_helper": "slide_end", "slideshow": {"slide_type": "skip"}}
@@ -380,71 +379,65 @@ plot_julia_set(juliaset_numpy(x, y, c, lim, maxit))
 # + {"internals": {}, "slideshow": {"slide_type": "-"}}
 %load_ext cython
 
-# + {"internals": {"slide_helper": "subslide_end", "slide_type": "subslide"}, "slide_helper": "subslide_end", "slideshow": {"slide_type": "subslide"}}
-%%cython
-import numpy as np
-import cython
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-def juliaset_cython(double [:] x, double [:] y, double complex c, double lim, int maxit):
-    cdef:
-        int [:, ::1] julia = np.zeros((x.size, y.size), dtype = np.int32)
-        double tmp, zr, zi, lim2 = lim*lim
-        double cr = c.real, ci = c.imag
-        int ite, i, j, nx=x.size, ny=y.size
-
-    for i in range(nx):
-        for j in range(ny):
-            zr = x[i] 
-            zi = y[j]
-            ite = 0
-            while (zr*zr + zi*zi) < lim2 and ite < maxit:
-                zr, zi = zr*zr - zi*zi + cr, 2*zr*zi + ci
-                ite += 1
-            julia[j, i] = ite
-
-    return julia
-
-
+# + {"internals": {"slide_helper": "subslide_end", "slide_type": "subslide"}, "slide_helper": "subslide_end", "slideshow": {"slide_type": "subslide"}, "language": "cython"}
+# import numpy as np
+# import cython
+#
+# @cython.boundscheck(False)
+# @cython.wraparound(False)
+# def juliaset_cython(double [:] x, double [:] y, double complex c, double lim, int maxit):
+#     cdef:
+#         int [:, ::1] julia = np.zeros((x.size, y.size), dtype = np.int32)
+#         double tmp, zr, zi, lim2 = lim*lim
+#         double cr = c.real, ci = c.imag
+#         int ite, i, j, nx=x.size, ny=y.size
+#
+#     for i in range(nx):
+#         for j in range(ny):
+#             zr = x[i] 
+#             zi = y[j]
+#             ite = 0
+#             while (zr*zr + zi*zi) < lim2 and ite < maxit:
+#                 zr, zi = zr*zr - zi*zi + cr, 2*zr*zi + ci
+#                 ite += 1
+#             julia[j, i] = ite
+#
+#     return julia
 # -
 
 plot_julia_set(juliaset_cython(x, y, c, lim, maxit))
 
 # As f2py we can use openmp with the Cython `prange` function
 
-# + {"internals": {"slide_helper": "subslide_end"}, "slide_helper": "subslide_end", "slideshow": {"slide_type": "-"}}
-%%cython -f -c-fopenmp --link-args=-fopenmp
-import numpy as np
-import cython
-from cython.parallel import prange
-from libc.stdlib cimport malloc, free 
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-def juliaset_cython_omp(double [:] x, double [:] y, double complex c, double lim, int maxit):
-    cdef:
-        int [:, ::1] julia = np.zeros((x.size, y.size), dtype = np.int32)
-        double tmp, zr, zi, lim2 = lim*lim
-        double cr = c.real, ci = c.imag
-        int  i, j, nx=x.size, ny=y.size
-        int *ite
-
-    for j in prange(ny, nogil=True, schedule='dynamic'):
-        ite = <int *> malloc(sizeof(int))
-        for i in range(nx):
-            zr = x[i] 
-            zi = y[j]
-            ite[0] = 0
-            while (zr*zr + zi*zi) < lim2 and ite[0] < maxit:
-                zr, zi = zr*zr - zi*zi + cr, 2*zr*zi + ci
-                ite[0] += 1
-            julia[j, i] = ite[0]
-        free(ite)
-        
-    return julia
-
-
+# + {"internals": {"slide_helper": "subslide_end"}, "slide_helper": "subslide_end", "slideshow": {"slide_type": "-"}, "magic_args": "-f -c-fopenmp --link-args=-fopenmp", "language": "cython"}
+# import numpy as np
+# import cython
+# from cython.parallel import prange
+# from libc.stdlib cimport malloc, free 
+#
+# @cython.boundscheck(False)
+# @cython.wraparound(False)
+# def juliaset_cython_omp(double [:] x, double [:] y, double complex c, double lim, int maxit):
+#     cdef:
+#         int [:, ::1] julia = np.zeros((x.size, y.size), dtype = np.int32)
+#         double tmp, zr, zi, lim2 = lim*lim
+#         double cr = c.real, ci = c.imag
+#         int  i, j, nx=x.size, ny=y.size
+#         int *ite
+#
+#     for j in prange(ny, nogil=True, schedule='dynamic'):
+#         ite = <int *> malloc(sizeof(int))
+#         for i in range(nx):
+#             zr = x[i] 
+#             zi = y[j]
+#             ite[0] = 0
+#             while (zr*zr + zi*zi) < lim2 and ite[0] < maxit:
+#                 zr, zi = zr*zr - zi*zi + cr, 2*zr*zi + ci
+#                 ite[0] += 1
+#             julia[j, i] = ite[0]
+#         free(ite)
+#         
+#     return julia
 # -
 
 plot_julia_set(juliaset_cython_omp(x, y, c, lim, maxit))

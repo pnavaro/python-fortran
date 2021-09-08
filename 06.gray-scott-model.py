@@ -8,7 +8,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.5.2
+#       jupytext_version: 1.11.5
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -166,48 +166,47 @@ imageio.mimsave('movie.gif', frames_scaled, format='gif', fps=60)
 
 %load_ext cython
 
-# +
-%%cython
-
-cimport cython
-import numpy as np
-cimport numpy as np
-
-cpdef cython_grayscott(np.ndarray[double, ndim=2] U, np.ndarray[double, ndim=2] V, double Du, double Dv, double F, double k):
-   
-    cdef np.ndarray u = U[1:-1,1:-1]
-    cdef np.ndarray v = V[1:-1,1:-1]
-
-    cdef np.ndarray Lu = np.zeros_like(u)
-    cdef np.ndarray Lv = np.zeros_like(v)
-    cdef Py_ssize_t i, c, r, r1, c1, r2, c2
-    cdef double uvv
-
-    cdef double[:, ::1] bU = U
-    cdef double[:, ::1] bV = V
-    cdef double[:, ::1] bLu = Lu
-    cdef double[:, ::1] bLv = Lv
-    
-    n = np.shape(U)[0]-2
-
-    for r in range(n):
-        r1 = r + 1
-        r2 = r + 2
-        for c in range(n):
-            c1 = c + 1
-            c2 = c + 2
-            bLu[r,c] = bU[r1,c2] + bU[r1,c] + bU[r2,c1] + bU[r,c1] - 4*bU[r1,c1]
-            bLv[r,c] = bV[r1,c2] + bV[r1,c] + bV[r2,c1] + bV[r,c1] - 4*bV[r1,c1]
-
-    for r in range(n):
-        r1 = r + 1
-        for c in range(n):
-            c1 = c + 1
-            uvv = bU[r1,c1]*bV[r1,c1]*bV[r1,c1]
-            bU[r1,c1] += Du*bLu[r,c] - uvv + F*(1 - bU[r1,c1])
-            bV[r1,c1] += Dv*bLv[r,c] + uvv - (F + k)*bV[r1,c1]
-
-    return U, V
+# + language="cython"
+#
+# cimport cython
+# import numpy as np
+# cimport numpy as np
+#
+# cpdef cython_grayscott(np.ndarray[double, ndim=2] U, np.ndarray[double, ndim=2] V, double Du, double Dv, double F, double k):
+#    
+#     cdef np.ndarray u = U[1:-1,1:-1]
+#     cdef np.ndarray v = V[1:-1,1:-1]
+#
+#     cdef np.ndarray Lu = np.zeros_like(u)
+#     cdef np.ndarray Lv = np.zeros_like(v)
+#     cdef Py_ssize_t i, c, r, r1, c1, r2, c2
+#     cdef double uvv
+#
+#     cdef double[:, ::1] bU = U
+#     cdef double[:, ::1] bV = V
+#     cdef double[:, ::1] bLu = Lu
+#     cdef double[:, ::1] bLv = Lv
+#     
+#     n = np.shape(U)[0]-2
+#
+#     for r in range(n):
+#         r1 = r + 1
+#         r2 = r + 2
+#         for c in range(n):
+#             c1 = c + 1
+#             c2 = c + 2
+#             bLu[r,c] = bU[r1,c2] + bU[r1,c] + bU[r2,c1] + bU[r,c1] - 4*bU[r1,c1]
+#             bLv[r,c] = bV[r1,c2] + bV[r1,c] + bV[r2,c1] + bV[r,c1] - 4*bV[r1,c1]
+#
+#     for r in range(n):
+#         r1 = r + 1
+#         for c in range(n):
+#             c1 = c + 1
+#             uvv = bU[r1,c1]*bV[r1,c1]*bV[r1,c1]
+#             bU[r1,c1] += Du*bLu[r,c] - uvv + F*(1 - bU[r1,c1])
+#             bV[r1,c1] += Dv*bLv[r,c] + uvv - (F + k)*bV[r1,c1]
+#
+#     return U, V
 # -
 
 U, V = init(300)
