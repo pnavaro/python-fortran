@@ -22,7 +22,7 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_13226/2874922500.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_14400/2874922500.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'load_ext'[0m[0;34m,[0m [0;34m'fortranmagic'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/IPython/core/interactiveshell.py[0m in [0;36mrun_line_magic[0;34m(self, magic_name, line, _stack_depth)[0m

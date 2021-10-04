@@ -22,7 +22,7 @@ import numpy as np
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_13562/3593848235.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_14803/3593848235.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;31mModuleNotFoundError[0m: No module named 'numpy'

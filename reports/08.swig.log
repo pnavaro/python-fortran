@@ -24,7 +24,7 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mCalledProcessError[0m                        Traceback (most recent call last)
-[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_13812/4175552032.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_14889/4175552032.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_cell_magic[0m[0;34m([0m[0;34m'bash'[0m[0;34m,[0m [0;34m''[0m[0;34m,[0m [0;34m'rm -f *.o *.so *.dylib\ngfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90\n'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/IPython/core/interactiveshell.py[0m in [0;36mrun_cell_magic[0;34m(self, magic_name, line, cell)[0m
