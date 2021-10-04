@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -72,6 +72,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/logo.png" class="logo" alt="logo">
       
@@ -376,7 +380,7 @@ time ./a.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real	0m0.106s
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real	0m0.101s
 user	0m0.001s
 sys	0m0.002s
 </pre></div>
@@ -409,8 +413,8 @@ sys	0m0.002s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 17.8 s, sys: 150 ms, total: 17.9 s
-Wall time: 23.5 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 16.9 s, sys: 87.1 ms, total: 16.9 s
+Wall time: 21.1 s
 </pre></div>
 </div>
 </div>
@@ -478,8 +482,8 @@ gcc -fPIC -shared -O3 \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 503 ms, sys: 13.5 ms, total: 517 ms
-Wall time: 832 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 472 ms, sys: 5.18 ms, total: 477 ms
+Wall time: 543 ms
 </pre></div>
 </div>
 </div>
@@ -540,15 +544,15 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">24</span><span class="o">/</span><span class="mi">8</span><span class="n">k48jl6d249_n_qfxwsl6xvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_18559</span><span class="o">/</span><span class="mf">4175552032.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">24</span><span class="o">/</span><span class="mi">8</span><span class="n">k48jl6d249_n_qfxwsl6xvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13812</span><span class="o">/</span><span class="mf">4175552032.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;rm -f *.o *.so *.dylib</span><span class="se">\n</span><span class="s1">gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="nn">~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2401</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2402</span>                 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2403</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2404</span>             <span class="k">return</span> <span class="n">result</span>
-<span class="g g-Whitespace">   </span><span class="mi">2405</span> 
+<span class="g g-Whitespace">   </span><span class="mi">2404</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2405</span>                 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2406</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2407</span>             <span class="k">return</span> <span class="n">result</span>
+<span class="g g-Whitespace">   </span><span class="mi">2408</span> 
 
 <span class="nn">~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/IPython/core/magics/script.py</span> in <span class="ni">named_script_magic</span><span class="nt">(line, cell)</span>
 <span class="g g-Whitespace">    </span><span class="mi">140</span>             <span class="k">else</span><span class="p">:</span>
@@ -755,7 +759,7 @@ gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -f
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

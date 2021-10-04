@@ -22,15 +22,15 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_18197/2874922500.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_13226/2874922500.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'load_ext'[0m[0;34m,[0m [0;34m'fortranmagic'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/IPython/core/interactiveshell.py[0m in [0;36mrun_line_magic[0;34m(self, magic_name, line, _stack_depth)[0m
-[1;32m   2346[0m                 [0mkwargs[0m[0;34m[[0m[0;34m'local_ns'[0m[0;34m][0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mget_local_scope[0m[0;34m([0m[0mstack_depth[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   2347[0m             [0;32mwith[0m [0mself[0m[0;34m.[0m[0mbuiltin_trap[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 2348[0;31m                 [0mresult[0m [0;34m=[0m [0mfn[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   2349[0m             [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   2350[0m [0;34m[0m[0m
+[1;32m   2349[0m                 [0mkwargs[0m[0;34m[[0m[0;34m'local_ns'[0m[0;34m][0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mget_local_scope[0m[0;34m([0m[0mstack_depth[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2350[0m             [0;32mwith[0m [0mself[0m[0;34m.[0m[0mbuiltin_trap[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2351[0;31m                 [0mresult[0m [0;34m=[0m [0mfn[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2352[0m             [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2353[0m [0;34m[0m[0m
 
 [0;32m~/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/decorator.py[0m in [0;36mfun[0;34m(*args, **kw)[0m
 [1;32m    230[0m             [0;32mif[0m [0;32mnot[0m [0mkwsyntax[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
