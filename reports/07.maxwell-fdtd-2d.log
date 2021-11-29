@@ -1,42 +1,81 @@
 Traceback (most recent call last):
-  File "/Users/runner/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+  File "/usr/local/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
-  File "/Users/runner/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/nbclient/client.py", line 1117, in execute
+  File "/usr/local/lib/python3.8/site-packages/nbclient/client.py", line 1093, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/runner/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/nbclient/util.py", line 78, in wrapped
+  File "/usr/local/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/Users/runner/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/nbclient/util.py", line 57, in just_run
+  File "/usr/local/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
-  File "/usr/local/Cellar/python@3.9/3.9.7/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+  File "/usr/local/Cellar/python@3.8/3.8.12_1/Frameworks/Python.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
     return future.result()
-  File "/Users/runner/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/nbclient/client.py", line 558, in async_execute
+  File "/usr/local/lib/python3.8/site-packages/nbclient/client.py", line 559, in async_execute
     await self.async_execute_cell(
-  File "/Users/runner/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/nbclient/client.py", line 862, in async_execute_cell
+  File "/usr/local/lib/python3.8/site-packages/nbclient/client.py", line 854, in async_execute_cell
     self._check_raise_for_error(cell, exec_reply)
-  File "/Users/runner/work/python-fortran/python-fortran/jb/lib/python3.9/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+  File "/usr/local/lib/python3.8/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-%config InlineBackend.figure_format = 'retina'
+%%fortran 
 
-import matplotlib.pyplot as plt
-import numpy as np
-from mpl_toolkits.mplot3d import axes3d
-import matplotlib.animation as animation
-from IPython.display import HTML
+subroutine faraday_fortran( ex, ey, bz, dx, dy, dt, nx, ny)
+implicit none
 
-plt.rcParams['figure.figsize'] = (10,6)
+real(8), intent(in) :: ex(nx-1,ny)
+real(8), intent(in) :: ey(nx,ny-1)
+real(8), intent(inout) :: bz(nx-1,ny-1)
+integer, intent(in) :: nx, ny
+real(8), intent(in) :: dx, dy, dt
+
+integer :: i, j
+real(8) :: dex_dx, dey_dy
+real(8) :: dex_dy, dey_dx
+        
+do j=1,ny-1
+do i=1,nx-1
+   dex_dy  = (ex(i,j+1)-ex(i,j)) / dy
+   dey_dx  = (ey(i+1,j)-ey(i,j)) / dx
+   bz(i,j) = bz(i,j) +  dt * (dex_dy - dey_dx)
+end do
+end do
+
+end subroutine faraday_fortran
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_14849/2121602541.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      1[0m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'config'[0m[0;34m,[0m [0;34m"InlineBackend.figure_format = 'retina'"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      2[0m [0;34m[0m[0m
-[0;32m----> 3[0;31m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      4[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0;32mfrom[0m [0mmpl_toolkits[0m[0;34m.[0m[0mmplot3d[0m [0;32mimport[0m [0maxes3d[0m[0;34m[0m[0;34m[0m[0m
+[0;31mRuntimeError[0m                              Traceback (most recent call last)
+[0;32m/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/ipykernel_27776/744418150.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_cell_magic[0m[0;34m([0m[0;34m'fortran'[0m[0;34m,[0m [0;34m''[0m[0;34m,[0m [0;34m'\nsubroutine faraday_fortran( ex, ey, bz, dx, dy, dt, nx, ny)\nimplicit none\n\nreal(8), intent(in) :: ex(nx-1,ny)\nreal(8), intent(in) :: ey(nx,ny-1)\nreal(8), intent(inout) :: bz(nx-1,ny-1)\ninteger, intent(in) :: nx, ny\nreal(8), intent(in) :: dx, dy, dt\n\ninteger :: i, j\nreal(8) :: dex_dx, dey_dy\nreal(8) :: dex_dy, dey_dx\n        \ndo j=1,ny-1\ndo i=1,nx-1\n   dex_dy  = (ex(i,j+1)-ex(i,j)) / dy\n   dey_dx  = (ey(i+1,j)-ey(i,j)) / dx\n   bz(i,j) = bz(i,j) +  dt * (dex_dy - dey_dx)\nend do\nend do\n\nend subroutine faraday_fortran\n'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/usr/local/lib/python3.8/site-packages/IPython/core/interactiveshell.py[0m in [0;36mrun_cell_magic[0;34m(self, magic_name, line, cell)[0m
+[1;32m   2417[0m             [0;32mwith[0m [0mself[0m[0;34m.[0m[0mbuiltin_trap[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2418[0m                 [0margs[0m [0;34m=[0m [0;34m([0m[0mmagic_arg_s[0m[0;34m,[0m [0mcell[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2419[0;31m                 [0mresult[0m [0;34m=[0m [0mfn[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2420[0m             [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2421[0m [0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'matplotlib'
-ModuleNotFoundError: No module named 'matplotlib'
+[0;32m/usr/local/lib/python3.8/site-packages/decorator.py[0m in [0;36mfun[0;34m(*args, **kw)[0m
+[1;32m    230[0m             [0;32mif[0m [0;32mnot[0m [0mkwsyntax[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    231[0m                 [0margs[0m[0;34m,[0m [0mkw[0m [0;34m=[0m [0mfix[0m[0;34m([0m[0margs[0m[0;34m,[0m [0mkw[0m[0;34m,[0m [0msig[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 232[0;31m             [0;32mreturn[0m [0mcaller[0m[0;34m([0m[0mfunc[0m[0;34m,[0m [0;34m*[0m[0;34m([0m[0mextras[0m [0;34m+[0m [0margs[0m[0;34m)[0m[0;34m,[0m [0;34m**[0m[0mkw[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    233[0m     [0mfun[0m[0;34m.[0m[0m__name__[0m [0;34m=[0m [0mfunc[0m[0;34m.[0m[0m__name__[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    234[0m     [0mfun[0m[0;34m.[0m[0m__doc__[0m [0;34m=[0m [0mfunc[0m[0;34m.[0m[0m__doc__[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.8/site-packages/IPython/core/magic.py[0m in [0;36m<lambda>[0;34m(f, *a, **k)[0m
+[1;32m    185[0m     [0;31m# but it's overkill for just that one bit of state.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    186[0m     [0;32mdef[0m [0mmagic_deco[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 187[0;31m         [0mcall[0m [0;34m=[0m [0;32mlambda[0m [0mf[0m[0;34m,[0m [0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m:[0m [0mf[0m[0;34m([0m[0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    188[0m [0;34m[0m[0m
+[1;32m    189[0m         [0;32mif[0m [0mcallable[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.8/site-packages/fortranmagic.py[0m in [0;36mfortran[0;34m(self, line, cell)[0m
+[1;32m    377[0m                              verbosity=args.verbosity)
+[1;32m    378[0m         [0;32mif[0m [0mres[0m [0;34m!=[0m [0;36m0[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 379[0;31m            [0;32mraise[0m [0mRuntimeError[0m[0;34m([0m[0;34m"f2py failed, see output"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    380[0m [0;34m[0m[0m
+[1;32m    381[0m         [0mself[0m[0;34m.[0m[0m_code_cache[0m[0;34m[[0m[0mkey[0m[0;34m][0m [0;34m=[0m [0mmodule_name[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mRuntimeError[0m: f2py failed, see output
+RuntimeError: f2py failed, see output
 

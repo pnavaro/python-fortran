@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gray-Scott Model &#8212; Python-Fortran notebooks</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -31,21 +31,21 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -57,7 +57,10 @@
     <link rel="next" title="Maxwell solver in two dimensions with FDTD scheme" href="07.maxwell-fdtd-2d.html" />
     <link rel="prev" title="Co-rotating vortices" href="05.co-rotating-vortex.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -89,7 +92,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Call Fortran from Python with f2py
  </span>
@@ -106,7 +109,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Examples
  </span>
@@ -138,7 +141,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Swig and ctypes
  </span>
@@ -309,7 +312,7 @@
         
               <div>
                 
-  <div class="section" id="gray-scott-model">
+  <div class="tex2jax_ignore mathjax_ignore section" id="gray-scott-model">
 <h1>Gray-Scott Model<a class="headerlink" href="#gray-scott-model" title="Permalink to this headline">¶</a></h1>
 <p>This notebook is originally an idea of <a class="reference external" href="https://github.com/gouarin">&#64;gouarin</a></p>
 <div class="cell docutils container">
@@ -329,16 +332,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">24</span><span class="o">/</span><span class="mi">8</span><span class="n">k48jl6d249_n_qfxwsl6xvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_14803</span><span class="o">/</span><span class="mf">3593848235.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
 </pre></div>
 </div>
 </div>
@@ -476,6 +469,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "19ccd98bad7742b79e490bbb8187c614"}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 48.6 s, sys: 1.12 s, total: 49.8 s
+Wall time: 50.1 s
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -491,6 +492,13 @@
                           <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                           <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "faa6bcc55ca1405ba28e072da937c7da"}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.display_sequence(iframe)&gt;
 </pre></div>
 </div>
 </div>
@@ -568,6 +576,17 @@ cpdef cython_grayscott(np.ndarray[double, ndim=2] U, np.ndarray[double, ndim=2] 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In file included from /usr/local/lib/python3.8/site-packages/numpy/core/include/numpy/ndarraytypes.h:1944,
+                 from /usr/local/lib/python3.8/site-packages/numpy/core/include/numpy/ndarrayobject.h:12,
+                 from /usr/local/lib/python3.8/site-packages/numpy/core/include/numpy/arrayobject.h:4,
+                 from /Users/runner/.ipython/cython/_cython_magic_ab8a87eb5fe5b2180d1dd96b602fee57.c:643:
+/usr/local/lib/python3.8/site-packages/numpy/core/include/numpy/npy_1_7_deprecated_api.h:17:2: warning: #warning &quot;Using deprecated NumPy API, disable it with &quot; &quot;#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION&quot; [-Wcpp]
+   17 | #warning &quot;Using deprecated NumPy API, disable it with &quot; \
+      |  ^~~~~~~
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -576,6 +595,10 @@ cpdef cython_grayscott(np.ndarray[double, ndim=2] U, np.ndarray[double, ndim=2] 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "0baed7dbfc944c18b47ab261e56ea947"}
+</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -588,6 +611,13 @@ cpdef cython_grayscott(np.ndarray[double, ndim=2] U, np.ndarray[double, ndim=2] 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "8b1405eee86a409989f8593d6853cef5"}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.display_sequence(iframe)&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -595,6 +625,16 @@ cpdef cython_grayscott(np.ndarray[double, ndim=2] U, np.ndarray[double, ndim=2] 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/javascript">new Promise(function(resolve, reject) {
+	var script = document.createElement("script");
+	script.onload = resolve;
+	script.onerror = reject;
+	script.src = "https://raw.github.com/marijnh/CodeMirror/master/mode/fortran/fortran.js";
+	document.head.appendChild(script);
+}).then(() => {
+IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
+});</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -636,6 +676,44 @@ subroutine fortran_grayscott( U, V, Du, Dv, F, k)
     end do
 
 end subroutine fortran_grayscott
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">24</span><span class="o">/</span><span class="mi">8</span><span class="n">k48jl6d249_n_qfxwsl6xvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_25049</span><span class="o">/</span><span class="mf">1506218999.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;fortran&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">subroutine fortran_grayscott( U, V, Du, Dv, F, k)</span><span class="se">\n\n</span><span class="s1">    real(8), intent(in) :: Du, Dv, F, k</span><span class="se">\n</span><span class="s1">    real(8) :: U(:,:)</span><span class="se">\n</span><span class="s1">    real(8) :: V(:,:)</span><span class="se">\n</span><span class="s1">    real(8), allocatable :: Lu(:,:), Lv(:,:)</span><span class="se">\n</span><span class="s1">    integer :: n, c, r, r1, c1, r2, c2</span><span class="se">\n</span><span class="s1">    real(8) :: uvv</span><span class="se">\n\n</span><span class="s1">    n = size(U,1)</span><span class="se">\n</span><span class="s1">   </span><span class="se">\n</span><span class="s1">    Lu = U(2:n-1,2:n-1)</span><span class="se">\n</span><span class="s1">    Lv = V(2:n-1,2:n-1)</span><span class="se">\n\n</span><span class="s1">    do c = 1, n-2</span><span class="se">\n</span><span class="s1">        c1 = c + 1</span><span class="se">\n</span><span class="s1">        c2 = c + 2</span><span class="se">\n</span><span class="s1">        do r = 1, n-2</span><span class="se">\n</span><span class="s1">            r1 = r + 1</span><span class="se">\n</span><span class="s1">            r2 = r + 2 </span><span class="se">\n</span><span class="s1">            Lu(r,c) = U(r1,c2) + U(r1,c) + U(r2,c1) + U(r,c1) - 4*U(r1,c1)</span><span class="se">\n</span><span class="s1">            Lv(r,c) = V(r1,c2) + V(r1,c) + V(r2,c1) + V(r,c1) - 4*V(r1,c1)</span><span class="se">\n</span><span class="s1">        end do</span><span class="se">\n</span><span class="s1">    end do</span><span class="se">\n\n</span><span class="s1">    do c = 1, n-2</span><span class="se">\n</span><span class="s1">        c1 = c + 1</span><span class="se">\n</span><span class="s1">        do r = 1, n-2</span><span class="se">\n</span><span class="s1">            r1 = r + 1     </span><span class="se">\n</span><span class="s1">            uvv = U(r1,c1)*V(r1,c1)*V(r1,c1)</span><span class="se">\n</span><span class="s1">            U(r1,c1) = U(r1, c1) + Du*Lu(r,c) - uvv + F*(1 - U(r1,c1))</span><span class="se">\n</span><span class="s1">            V(r1,c1) = V(r1, c1) + Dv*Lv(r,c) + uvv - (F + k)*V(r1,c1)</span><span class="se">\n</span><span class="s1">        end do</span><span class="se">\n</span><span class="s1">    end do</span><span class="se">\n\n</span><span class="s1">end subroutine fortran_grayscott</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2417</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2418</span>                 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2419</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2420</span>             <span class="k">return</span> <span class="n">result</span>
+<span class="g g-Whitespace">   </span><span class="mi">2421</span> 
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">kwsyntax</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span>                 <span class="n">args</span><span class="p">,</span> <span class="n">kw</span> <span class="o">=</span> <span class="n">fix</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">232</span>             <span class="k">return</span> <span class="n">caller</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">extras</span> <span class="o">+</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span>
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/IPython/core/magic.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(f, *a, **k)</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="c1"># but it&#39;s overkill for just that one bit of state.</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">def</span> <span class="nf">magic_deco</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">187</span>         <span class="n">call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">188</span> 
+<span class="g g-Whitespace">    </span><span class="mi">189</span>         <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/fortranmagic.py</span> in <span class="ni">fortran</span><span class="nt">(self, line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span>                              <span class="n">verbosity</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span>         <span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">379</span>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;f2py failed, see output&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">380</span> 
+<span class="g g-Whitespace">    </span><span class="mi">381</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_code_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">module_name</span>
+
+<span class="ne">RuntimeError</span>: f2py failed, see output
 </pre></div>
 </div>
 </div>
@@ -725,31 +803,22 @@ end subroutine fortran_grayscott
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="05.co-rotating-vortex.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Co-rotating vortices</p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="05.co-rotating-vortex.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Co-rotating vortices</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="07.maxwell-fdtd-2d.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Maxwell solver in two dimensions with FDTD scheme</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="07.maxwell-fdtd-2d.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Maxwell solver in two dimensions with FDTD scheme</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -770,8 +839,7 @@ end subroutine fortran_grayscott
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
