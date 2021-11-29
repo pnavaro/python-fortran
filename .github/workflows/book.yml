@@ -26,11 +26,7 @@ jobs:
           Pkg.build("PyCall")'
 
     - name: Build the book
-      run: |
-          python3 -m venv jb
-          source jb/bin/activate
-          python -m pip install jupyter-book
-          jupyter-book build notebooks
+      run: jupyter-book build notebooks
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3
