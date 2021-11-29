@@ -9,8 +9,8 @@ jobs:
   deploy-book:
     runs-on: ubuntu-latest
     steps:
-    - name: Install brew dependencies
-      run: apt-get install -y libfftw-dev libopenblas-dev ffmpeg python3 python3-swig
+    - name: Install dependencies
+      run: sudo apt-get install -y libfftw-dev libopenblas-dev ffmpeg python3 python3-swig
 
     - uses: actions/checkout@v2
 
