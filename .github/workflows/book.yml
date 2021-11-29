@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
-      run: sudo apt-get install -y libfftw-dev libopenblas-dev ffmpeg python3 python3-swig
+      run: sudo apt-get install -y libfftw3-dev libopenblas-dev ffmpeg swig
 
     - uses: actions/checkout@v2
 
