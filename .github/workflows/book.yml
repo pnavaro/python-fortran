@@ -9,13 +9,12 @@ jobs:
   deploy-book:
     runs-on: ubuntu-latest
     steps:
-    - name: Install dependencies
-      run: sudo apt-get install -y libfftw3-dev libopenblas-dev ffmpeg swig
-
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+    - uses: julia-actions/setup-julia@v2
 
     - name: Install python dependencies
-      run: pip3 install --user -r requirements.txt
+      run: python -m pip install -r requirements.txt
 
     - name: Install Julia packages
       run: julia -e ' using Pkg; Pkg.add(["REPL", "PyCall"]); Pkg.build("PyCall")'
