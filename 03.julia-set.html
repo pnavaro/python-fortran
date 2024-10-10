@@ -1,341 +1,500 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Julia Set &#8212; Python-Fortran notebooks</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
-
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '03.julia-set';</script>
     <link rel="canonical" href="https://pnavaro.github.io/python-fortran/03.julia-set.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Vlasov-Poisson" href="04.vlasov-poisson.html" />
     <link rel="prev" title="Python class linked with fortran module" href="02.f2py.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="quickstart.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Python-Fortran notebooks</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Call Fortran from Python with f2py
- </span>
-</p>
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Python-Fortran notebooks - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Python-Fortran notebooks - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Call Fortran from Python with f2py</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01.f2py.html">
-   F2py
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02.f2py.html">
-   Python class linked with fortran module
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01.f2py.html">F2py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.f2py.html">Python class linked with fortran module</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Examples
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Julia Set
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04.vlasov-poisson.html">
-   Vlasov-Poisson
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="05.co-rotating-vortex.html">
-   Co-rotating vortices
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06.gray-scott-model.html">
-   Gray-Scott Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07.maxwell-fdtd-2d.html">
-   Maxwell solver in two dimensions with FDTD scheme
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Julia Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.vlasov-poisson.html">Vlasov-Poisson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.co-rotating-vortex.html">Co-rotating vortices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06.gray-scott-model.html">Gray-Scott Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07.maxwell-fdtd-2d.html">Maxwell solver in two dimensions with FDTD scheme</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Swig and ctypes
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Swig and ctypes</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="08.swig.html">
-   SWIG and Ctypes
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="08.swig.html">SWIG and Ctypes</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/03.julia-set.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/pnavaro/python-fortran"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/pnavaro/python-fortran/issues/new?title=Issue%20on%20page%20%2F03.julia-set.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/python-fortran/edit/master/notebooks/03.julia-set.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/pnavaro/python-fortran/master?urlpath=tree/notebooks/03.julia-set.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/pnavaro/python-fortran/blob/master/notebooks/03.julia-set.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/python-fortran/master?urlpath=tree/notebooks/03.julia-set.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/python-fortran/blob/master/notebooks/03.julia-set.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pnavaro/python-fortran" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pnavaro/python-fortran/edit/master/notebooks/03.julia-set.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pnavaro/python-fortran/issues/new?title=Issue%20on%20page%20%2F03.julia-set.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/03.julia-set.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Julia Set</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#initialize-mesh">
-   Initialize Mesh
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pure-python">
-   Pure Python
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numba">
-   numba
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pyjulia">
-   PyJulia
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pythran">
-   Pythran
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configuration">
-     Configuration
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fortran">
-   Fortran
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fortran-with-openmp">
-   Fortran with OpenMP
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numpy">
-   Numpy
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cython">
-   Cython
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#set-number-of-threads-used-for-parallel-functions">
-     Set number of threads used for parallel functions
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-mesh">Initialize Mesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-python">Pure Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numba">numba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyjulia">PyJulia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pythran">Pythran</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fortran">Fortran</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fortran-with-openmp">Fortran with OpenMP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">Numpy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cython">Cython</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-number-of-threads-used-for-parallel-functions">Set number of threads used for parallel functions</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="julia-set">
-<h1>Julia Set<a class="headerlink" href="#julia-set" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="julia-set">
+<h1>Julia Set<a class="headerlink" href="#julia-set" title="Link to this heading">#</a></h1>
 <p>In the notebook I present different way to accelerate python code.
 This is a modified version from <a class="reference external" href="https://github.com/gouarin/GTSage2014/">Loic Gouarin</a></p>
 <p>The test case is the computation of the Julia set <a class="reference external" href="https://en.wikipedia.org/wiki/Julia_set">wikipedia</a></p>
@@ -376,8 +535,8 @@ This is a modified version from <a class="reference external" href="https://gith
 </div>
 </div>
 </div>
-<div class="section" id="initialize-mesh">
-<h2>Initialize Mesh<a class="headerlink" href="#initialize-mesh" title="Permalink to this headline">¶</a></h2>
+<section id="initialize-mesh">
+<h2>Initialize Mesh<a class="headerlink" href="#initialize-mesh" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span> <span class="c1"># mesh</span>
@@ -391,13 +550,13 @@ This is a modified version from <a class="reference external" href="https://gith
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="pure-python">
-<h2>Pure Python<a class="headerlink" href="#pure-python" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pure-python">
+<h2>Pure Python<a class="headerlink" href="#pure-python" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">juliaset_python</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">    returns Julia set</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">julia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
@@ -432,12 +591,12 @@ This is a modified version from <a class="reference external" href="https://gith
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03.julia-set_10_0.png" src="_images/03.julia-set_10_0.png" />
+<a class="reference internal image-reference" href="_images/588365dd3bd4069f32fa3fa3465670bf79aec9e22049b10300be6e0a848cbee3.png"><img alt="_images/588365dd3bd4069f32fa3fa3465670bf79aec9e22049b10300be6e0a848cbee3.png" src="_images/588365dd3bd4069f32fa3fa3465670bf79aec9e22049b10300be6e0a848cbee3.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
-</div>
-<div class="section" id="numba">
-<h2>numba<a class="headerlink" href="#numba" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="numba">
+<h2>numba<a class="headerlink" href="#numba" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://numba.pydata.org">Numba</a> will accelerate the pure python function just  with
 the decorator <code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code>. Numba does everything for you.</p>
 <div class="cell docutils container">
@@ -472,13 +631,13 @@ the decorator <code class="docutils literal notranslate"><span class="pre">&#64;
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03.julia-set_13_0.png" src="_images/03.julia-set_13_0.png" />
+<a class="reference internal image-reference" href="_images/588365dd3bd4069f32fa3fa3465670bf79aec9e22049b10300be6e0a848cbee3.png"><img alt="_images/588365dd3bd4069f32fa3fa3465670bf79aec9e22049b10300be6e0a848cbee3.png" src="_images/588365dd3bd4069f32fa3fa3465670bf79aec9e22049b10300be6e0a848cbee3.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
-</div>
-<div class="section" id="pyjulia">
-<h2>PyJulia<a class="headerlink" href="#pyjulia" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://pyjulia.readthedocs.io/en/latest/">PyJulia</a> is a python module to import
+</section>
+<section id="pyjulia">
+<h2>PyJulia<a class="headerlink" href="#pyjulia" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://pyjulia.readthedocs.io/en/latest/#">PyJulia</a> is a python module to import
 Julia function in your Python session. You can also run Julia code in a middle of
 a Jupyter notebook with a Python kernel.</p>
 <p>To use pyjulia you need to install <a class="reference external" href="https://julialang.org/downloads/">Julia</a> and install <a class="reference external" href="https://github.com/JuliaPy/PyCall.jl">PyCall.jl</a> and <strong>REPL</strong></p>
@@ -503,61 +662,74 @@ a Jupyter notebook with a Python kernel.</p>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ Info: Julia version info
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Julia Version 1.6.4
-Commit 35f0c911f4 (2021-11-19 03:54 UTC)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Julia Version 1.11.0
+Commit 501a4f25c2b (2024-10-07 11:40 UTC)
+Build Info:
+  Official https://julialang.org/ release
 Platform Info:
-  OS: macOS (x86_64-apple-darwin19.5.0)
-  uname: Darwin 20.6.0 Darwin Kernel Version 20.6.0: Tue Oct 12 18:33:42 PDT 2021; root:xnu-7195.141.8~1/RELEASE_X86_64 x86_64 i386
-  CPU: Intel(R) Xeon(R) CPU E5-1650 v2 @ 3.50GHz: 
+  OS: Linux (x86_64-linux-gnu)
+      Ubuntu 22.04.5 LTS
+  uname: Linux 6.5.0-1025-azure #26~22.04.1-Ubuntu SMP Thu Jul 11 22:33:04 UTC 2024 x86_64 x86_64
+  CPU: AMD EPYC 7763 64-Core Processor: 
               speed         user         nice          sys         idle          irq
-       #1  3337 MHz       2127 s          0 s       1850 s       4307 s          0 s
-       #2  3337 MHz       2330 s          0 s       1664 s       4283 s          0 s
-       #3  3337 MHz       2052 s          0 s       1424 s       4802 s          0 s
-       
-  Memory: 14.0 GB (4774.51171875 MB free)
-  Uptime: 828.0 sec
-  Load Avg: 
+       #1     0 MHz        361 s          0 s         74 s       2695 s          0 s
+       #2     0 MHz        370 s          0 s         54 s       2705 s          0 s
+       #3     0 MHz        457 s          0 s         69 s       2579 s          0 s
+       #4     0 MHz        449 s          0 s         82 s       2577 s          0 s
+  Memory: 15.606491088867188 GB (14391.140625 MB free)
+  Uptime: 316.62 sec
+  Load Avg:  1.01  0.57  0.25
+  WORD_SIZE: 64
+  LLVM: libLLVM-
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 2.8427734375  3.46484375  3.21826171875
-  WORD_SIZE: 64
-  LIBM: libopenlibm
-  LLVM: libLLVM-11.0.1 (ORCJIT, ivybridge)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.0.6 (ORCJIT, znver3)
+Threads: 1 default, 0 interactive, 1 GC (on 4 virtual cores)
 Environment:
-  GITHUB_EVENT_PATH = /Users/runner/work/_temp/_github_workflow/event.json
-  ANDROID_HOME = /Users/runner/Library/Android/sdk
-  NVM_CD_FLAGS = 
-  JAVA_HOME_8_X64 = /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.312-7/x64/Contents/Home/
-  NUNIT_BASE_PATH = /Library/Developer/nunit
-  NUNIT3_PATH = /Library/Developer/nunit/3.6.0
-  JAVA_HOME_11_X64 = /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.13-8/x64/Contents/Home/
-  ANDROID_NDK_LATEST_HOME = /Users/runner/Library/Android/sdk/ndk/23.1.7779620
-  HOMEBREW_NO_AUTO_UPDATE = 1
-  JAVA_HOME_17_X64 = /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.1-12/x64/Contents/Home/
-  PATH = /usr/local/lib/ruby/gems/2.7.0/bin:/usr/local/opt/ruby@2.7/bin:/usr/local/opt/pipx_bin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Users/runner/Library/Android/sdk/ndk-bundle:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools:/Users/runner/.ghcup/bin:/Users/runner/hostedtoolcache/stack/2.7.3/x64
-  JAVA_HOME = /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.312-7/x64/Contents/Home/
-  XPC_FLAGS = 0x0
-  PIPX_HOME = /usr/local/opt/pipx
-  HOME = /Users/runner
+  SELENIUM_JAR_PATH = /usr/share/java/selenium-server.jar
+  JAVA_HOME_11_X64 = /usr/lib/jvm/temurin-11-jdk-amd64
+  GITHUB_PATH = /home/runner/work/_temp/_runner_file_commands/add_path_bdcea605-2845-4716-b5e0-36cf06ea6bbe
+  JAVA_HOME = /usr/lib/jvm/temurin-11-jdk-amd64
+  GRADLE_HOME = /usr/share/gradle-8.10.2
+  XDG_CONFIG_HOME = /home/runner/.config
+  ANT_HOME = /usr/share/ant
+  JAVA_HOME_8_X64 = /usr/lib/jvm/temurin-8-jdk-amd64
   HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS = 3650
-  HOMEBREW_CASK_OPTS = --no-quarantine
-  ANDROID_NDK_HOME = /Users/runner/Library/Android/sdk/ndk-bundle
-  GITHUB_PATH = /Users/runner/work/_temp/_runner_file_commands/add_path_a6754f69-63af-4471-8bee-05994f198ed7
+  DEPLOYMENT_BASEPATH = /opt/runner
+  ANDROID_NDK_LATEST_HOME = /usr/local/lib/android/sdk/ndk/27.1.12297006
+  HOME = /home/runner
+  JAVA_HOME_21_X64 = /usr/lib/jvm/temurin-21-jdk-amd64
+  GITHUB_EVENT_PATH = /home/runner/work/_temp/_github_workflow/event.json
+  JAVA_HOME_17_X64 = /usr/lib/jvm/temurin-17-jdk-amd64
+  ANDROID_NDK_HOME = /usr/local/lib/android/sdk/ndk/27.1.12297006
+  HOMEBREW_NO_AUTO_UPDATE = 1
+  ANDROID_HOME = /usr/local/lib/android/sdk
+  PIPX_HOME = /opt/pipx
+  LEIN_HOME = /usr/local/lib/lein
+  PATH = /opt/hostedtoolcache/julia/1.11.0/x64/bin:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  SWIFT_PATH = /usr/share/swift/usr/bin
   TERM = xterm-color
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ Info: Julia executable: /Applications/Julia-1.6.app/Contents/Resources/julia/bin/julia
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ Info: Julia executable: /opt/hostedtoolcache/julia/1.11.0/x64/bin/julia
 [ Info: Trying to import PyCall...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Info: PyCall is already installed and compatible with Python executable.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: PyCall is already installed.  However, you may have trouble using
+│ this Python executable because it is statically linked to libpython.
 │ 
-│ PyCall:
-│     python: /usr/local/opt/python@3.8/bin/python3
-│     libpython: /usr/local/Cellar/python@3.8/3.8.12_1/Frameworks/Python.framework/Versions/3.8/Python
-│ Python:
-│     python: /usr/local/opt/python@3.8/bin/python3.8
-└     libpython: /usr/local/Cellar/python@3.8/3.8.12_1/Frameworks/Python.framework/Versions/3.8/Python
+│ For more information, see:
+│     https://pyjulia.readthedocs.io/en/latest/troubleshooting.html
+│ 
+│ Python executable:
+│     /usr/bin/python
+│ Julia executable:
+│     /opt/hostedtoolcache/julia/1.11.0/x64/bin/julia
+└ @ Main ~/.local/lib/python3.10/site-packages/julia/install.jl:90
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: import of MainInclude.eval into Main conflicts with an existing identifier; ignored.
+WARNING: could not import MainInclude.include into Main
 </pre></div>
 </div>
 </div>
@@ -607,6 +779,12 @@ Environment:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: import of MainInclude.eval into Main conflicts with an existing identifier; ignored.
+WARNING: could not import MainInclude.include into Main
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -615,16 +793,16 @@ Environment:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03.julia-set_18_0.png" src="_images/03.julia-set_18_0.png" />
+<a class="reference internal image-reference" href="_images/588365dd3bd4069f32fa3fa3465670bf79aec9e22049b10300be6e0a848cbee3.png"><img alt="_images/588365dd3bd4069f32fa3fa3465670bf79aec9e22049b10300be6e0a848cbee3.png" src="_images/588365dd3bd4069f32fa3fa3465670bf79aec9e22049b10300be6e0a848cbee3.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
-</div>
-<div class="section" id="pythran">
-<h2>Pythran<a class="headerlink" href="#pythran" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pythran">
+<h2>Pythran<a class="headerlink" href="#pythran" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://pythran.readthedocs.io/en/latest/">Pythran</a> is a Python-to-C++ translator</p>
 <p>Add a comment line before your python function and it runs much faster.</p>
-<div class="section" id="configuration">
-<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<section id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">~/.pythranrc</span></code> file on macos (gcc is installed with hombrew and pythran with pip)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">compiler</span><span class="p">]</span>
 <span class="n">include_dirs</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">openblas</span><span class="o">/</span><span class="n">include</span>
@@ -676,13 +854,13 @@ def juliaset_pythran(x, y, c, lim, maxit):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03.julia-set_22_0.png" src="_images/03.julia-set_22_0.png" />
+<a class="reference internal image-reference" href="_images/a3c26353ac1d333971b78374faf7de086cc99a5ac5dd2f23595e18af42a6fe41.png"><img alt="_images/a3c26353ac1d333971b78374faf7de086cc99a5ac5dd2f23595e18af42a6fe41.png" src="_images/a3c26353ac1d333971b78374faf7de086cc99a5ac5dd2f23595e18af42a6fe41.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="fortran">
-<h2>Fortran<a class="headerlink" href="#fortran" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="fortran">
+<h2>Fortran<a class="headerlink" href="#fortran" title="Link to this heading">#</a></h2>
 <p>You need <a class="reference external" href="https://numpy.org">numpy</a> and <a class="reference external" href="https://github.com/mgaitan/fortran_magic">fortran-magic</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -691,15 +869,97 @@ def juliaset_pythran(x, y, c, lim, maxit):
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/javascript">new Promise(function(resolve, reject) {
-	var script = document.createElement("script");
-	script.onload = resolve;
-	script.onerror = reject;
-	script.src = "https://raw.github.com/marijnh/CodeMirror/master/mode/fortran/fortran.js";
-	document.head.appendChild(script);
-}).then(() => {
-IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};
-});</script></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;load_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;fortranmagic&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/interactiveshell.py:2480,</span> in <span class="ni">InteractiveShell.run_line_magic</span><span class="nt">(self, magic_name, line, _stack_depth)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2478</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;local_ns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_scope</span><span class="p">(</span><span class="n">stack_depth</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2479</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2480</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2482</span> <span class="c1"># The code below prevents the output from being displayed</span>
+<span class="g g-Whitespace">   </span><span class="mi">2483</span> <span class="c1"># when using magics with decorator @output_can_be_silenced</span>
+<span class="g g-Whitespace">   </span><span class="mi">2484</span> <span class="c1"># when the last Python token in the expression is a &#39;;&#39;.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2485</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">magic</span><span class="o">.</span><span class="n">MAGIC_OUTPUT_CAN_BE_SILENCED</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/magics/extension.py:33,</span> in <span class="ni">ExtensionMagics.load_ext</span><span class="nt">(self, module_str)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">module_str</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="s1">&#39;Missing module name.&#39;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">33</span> <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">extension_manager</span><span class="o">.</span><span class="n">load_extension</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="k">if</span> <span class="n">res</span> <span class="o">==</span> <span class="s1">&#39;already loaded&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The </span><span class="si">%s</span><span class="s2"> extension is already loaded. To reload it, use:&quot;</span> <span class="o">%</span> <span class="n">module_str</span><span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/extensions.py:62,</span> in <span class="ni">ExtensionManager.load_extension</span><span class="nt">(self, module_str)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Load an IPython extension by its module name.</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span><span class="sd"> Returns the string &quot;already loaded&quot; if the extension is already loaded,</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span><span class="sd"> &quot;no load function&quot; if the module doesn&#39;t have a load_ipython_extension</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span><span class="sd"> function, or None if it succeeded.</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">62</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_extension</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span> <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="k">if</span> <span class="n">module_str</span> <span class="ow">in</span> <span class="n">BUILTINS_EXTS</span><span class="p">:</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/extensions.py:79,</span> in <span class="ni">ExtensionManager._load_extension</span><span class="nt">(self, module_str)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span>     <span class="n">mod</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">module_str</span><span class="p">]</span>
+<span class="ne">---&gt; </span><span class="mi">79</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_load_ipython_extension</span><span class="p">(</span><span class="n">mod</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>     <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/extensions.py:129,</span> in <span class="ni">ExtensionManager._call_load_ipython_extension</span><span class="nt">(self, mod)</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span> <span class="k">def</span> <span class="nf">_call_load_ipython_extension</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="s1">&#39;load_ipython_extension&#39;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">129</span>         <span class="n">mod</span><span class="o">.</span><span class="n">load_ipython_extension</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>         <span class="k">return</span> <span class="kc">True</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/fortranmagic.py:547,</span> in <span class="ni">load_ipython_extension</span><span class="nt">(ip)</span>
+<span class="g g-Whitespace">    </span><span class="mi">545</span> <span class="k">def</span> <span class="nf">load_ipython_extension</span><span class="p">(</span><span class="n">ip</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">546</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Load the extension in IPython.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">547</span>     <span class="n">ip</span><span class="o">.</span><span class="n">register_magics</span><span class="p">(</span><span class="n">FortranMagics</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">549</span>     <span class="c1"># enable fortran highlight</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span>     <span class="n">patch</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span><span class="s2">         if(typeof IPython === &#39;undefined&#39;) {</span>
+<span class="g g-Whitespace">    </span><span class="mi">552</span><span class="s2">             console.log(&#39;fortranmagic.py: TDOO: JupyterLab &#39; +</span>
+<span class="s2">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">557</span><span class="s2">         }</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span><span class="s2">         &quot;&quot;&quot;</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/magic.py:456,</span> in <span class="ni">MagicsManager.register</span><span class="nt">(self, *magic_objects)</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Class of magics </span><span class="si">%r</span><span class="s2"> was constructed without &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span>                      <span class="s2">&quot;the @register_magics class decorator&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span>     <span class="c1"># If we&#39;re given an uninstantiated class</span>
+<span class="ne">--&gt; </span><span class="mi">456</span>     <span class="n">m</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span> <span class="c1"># Now that we have an instance, we can register it and update the</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span> <span class="c1"># table of callables</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/fortranmagic.py:227,</span> in <span class="ni">FortranMagics.__init__</span><span class="nt">(self, shell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">225</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reloads</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code_cache</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="ne">--&gt; </span><span class="mi">227</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_open</span><span class="p">()</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/fortranmagic.py:196,</span> in <span class="ni">FortranMagics._cache_open</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span>     <span class="n">cdir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;fortranmagic_cache&#39;</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">196</span>     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">cdir</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_lib_dir</span> <span class="o">=</span> <span class="n">cdir</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span>         <span class="k">return</span>
+
+<span class="nn">File /usr/lib/python3.10/genericpath.py:42,</span> in <span class="ni">isdir</span><span class="nt">(s)</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Return true if the pathname refers to an existing directory.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">42</span>     <span class="n">st</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="k">except</span> <span class="p">(</span><span class="ne">OSError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>     <span class="k">return</span> <span class="kc">False</span>
+
+<span class="ne">TypeError</span>: stat: path should be string, bytes, os.PathLike or integer, not NoneType
+</pre></div>
+</div>
+</div>
 </div>
 <p>On my mac i need to change compilers install with <a class="reference external" href="https://brew.sh">homebrew</a></p>
 <p>Complex computation inside the loop are avoided on purpose. It takes time even with fortran.</p>
@@ -744,44 +1004,6 @@ end subroutine juliaset_fortran
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">24</span><span class="o">/</span><span class="mi">8</span><span class="n">k48jl6d249_n_qfxwsl6xvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_23346</span><span class="o">/</span><span class="mf">2650996058.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;fortran&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;subroutine juliaset_fortran(x, y, c, lim, maxit, julia)</span><span class="se">\n\n</span><span class="s1">    real(8),    intent(in)  :: x(:)</span><span class="se">\n</span><span class="s1">    real(8),    intent(in)  :: y(:)</span><span class="se">\n</span><span class="s1">    complex(8), intent(in)  :: c</span><span class="se">\n</span><span class="s1">    real(8),    intent(in)  :: lim</span><span class="se">\n</span><span class="s1">    integer,    intent(in)  :: maxit</span><span class="se">\n</span><span class="s1">    integer,    intent(out) :: julia(size(x),size(y))</span><span class="se">\n\n</span><span class="s1">    real(8)    :: zr, zi, limsq, cr, ci, tmp</span><span class="se">\n</span><span class="s1">    integer    :: ite, nx, ny</span><span class="se">\n\n</span><span class="s1">    nx = size(x)</span><span class="se">\n</span><span class="s1">    ny = size(y)</span><span class="se">\n</span><span class="s1">    limsq = lim * lim</span><span class="se">\n</span><span class="s1">    cr = real(c)</span><span class="se">\n</span><span class="s1">    ci = imag(c)</span><span class="se">\n\n</span><span class="s1">    do i = 1, nx</span><span class="se">\n</span><span class="s1">       do j = 1, ny   </span><span class="se">\n</span><span class="s1">            zr = x(i)</span><span class="se">\n</span><span class="s1">            zi = y(j)</span><span class="se">\n</span><span class="s1">            ite = 0</span><span class="se">\n</span><span class="s1">            do while (zr*zr+zi*zi &lt; limsq .and. ite &lt; maxit)</span><span class="se">\n</span><span class="s1">                tmp = zr*zr - zi*zi </span><span class="se">\n</span><span class="s1">                zi = 2*zr*zi + ci</span><span class="se">\n</span><span class="s1">                zr = tmp + cr</span><span class="se">\n</span><span class="s1">                ite = ite + 1</span><span class="se">\n</span><span class="s1">            end do</span><span class="se">\n</span><span class="s1">            julia(j, i) = ite</span><span class="se">\n</span><span class="s1">        end do</span><span class="se">\n</span><span class="s1">    end do</span><span class="se">\n\n\n</span><span class="s1">end subroutine juliaset_fortran</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nn">/usr/local/lib/python3.8/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2417</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2418</span>                 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2419</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2420</span>             <span class="k">return</span> <span class="n">result</span>
-<span class="g g-Whitespace">   </span><span class="mi">2421</span> 
-
-<span class="nn">/usr/local/lib/python3.8/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">kwsyntax</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span>                 <span class="n">args</span><span class="p">,</span> <span class="n">kw</span> <span class="o">=</span> <span class="n">fix</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">232</span>             <span class="k">return</span> <span class="n">caller</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">extras</span> <span class="o">+</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span>
-
-<span class="nn">/usr/local/lib/python3.8/site-packages/IPython/core/magic.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(f, *a, **k)</span>
-<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="c1"># but it&#39;s overkill for just that one bit of state.</span>
-<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">def</span> <span class="nf">magic_deco</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">187</span>         <span class="n">call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">188</span> 
-<span class="g g-Whitespace">    </span><span class="mi">189</span>         <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-
-<span class="nn">/usr/local/lib/python3.8/site-packages/fortranmagic.py</span> in <span class="ni">fortran</span><span class="nt">(self, line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span>                              <span class="n">verbosity</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span>         <span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">379</span>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;f2py failed, see output&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span> 
-<span class="g g-Whitespace">    </span><span class="mi">381</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_code_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">module_name</span>
-
-<span class="ne">RuntimeError</span>: f2py failed, see output
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -790,12 +1012,12 @@ end subroutine juliaset_fortran
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03.julia-set_28_0.png" src="_images/03.julia-set_28_0.png" />
+<a class="reference internal image-reference" href="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png"><img alt="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png" src="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png" style="width: 369px; height: 360px;" /></a>
 </div>
 </div>
-</div>
-<div class="section" id="fortran-with-openmp">
-<h2>Fortran with OpenMP<a class="headerlink" href="#fortran-with-openmp" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="fortran-with-openmp">
+<h2>Fortran with OpenMP<a class="headerlink" href="#fortran-with-openmp" title="Link to this heading">#</a></h2>
 <p>On Linux you don’t need to add <code class="docutils literal notranslate"><span class="pre">-L/usr/local/lib</span></code></p>
 <p>This is the same function from above with some openmp directives</p>
 <div class="cell docutils container">
@@ -853,12 +1075,12 @@ end subroutine juliaset_fortran_omp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03.julia-set_31_0.png" src="_images/03.julia-set_31_0.png" />
+<a class="reference internal image-reference" href="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png"><img alt="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png" src="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png" style="width: 369px; height: 360px;" /></a>
 </div>
 </div>
-</div>
-<div class="section" id="numpy">
-<h2>Numpy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="numpy">
+<h2>Numpy<a class="headerlink" href="#numpy" title="Link to this heading">#</a></h2>
 <p>Vectorize version with numpy. You could get some overflow warnings</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -890,12 +1112,12 @@ end subroutine juliaset_fortran_omp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03.julia-set_34_0.png" src="_images/03.julia-set_34_0.png" />
+<a class="reference internal image-reference" href="_images/155c0891b2c6bbfc5ba1a2ad30169844f59d8d468274c926da84c9bd13a580e4.png"><img alt="_images/155c0891b2c6bbfc5ba1a2ad30169844f59d8d468274c926da84c9bd13a580e4.png" src="_images/155c0891b2c6bbfc5ba1a2ad30169844f59d8d468274c926da84c9bd13a580e4.png" style="width: 369px; height: 360px;" /></a>
 </div>
 </div>
-</div>
-<div class="section" id="cython">
-<h2>Cython<a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="cython">
+<h2>Cython<a class="headerlink" href="#cython" title="Link to this heading">#</a></h2>
 <p>Install <a class="reference external" href="https://cython.readthedocs.io">Cython</a></p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">%%cython</span> <span class="pre">-a</span></code> to highlight the Python-C and C-Python conversions.</p>
 <p>Cython is not Python and not C, it is another language :-)</p>
@@ -943,7 +1165,7 @@ def juliaset_cython(double [:] x, double [:] y, double complex c, double lim, in
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03.julia-set_38_0.png" src="_images/03.julia-set_38_0.png" />
+<a class="reference internal image-reference" href="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png"><img alt="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png" src="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png" style="width: 369px; height: 360px;" /></a>
 </div>
 </div>
 <p>As f2py we can use openmp with the Cython <code class="docutils literal notranslate"><span class="pre">prange</span></code> function</p>
@@ -989,11 +1211,11 @@ def juliaset_cython_omp(double [:] x, double [:] y, double complex c, double lim
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03.julia-set_41_0.png" src="_images/03.julia-set_41_0.png" />
+<a class="reference internal image-reference" href="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png"><img alt="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png" src="_images/4f832f4cea9b05fd42954d9459035419efae6f2ecc7423348dca9b9bf76d9861.png" style="width: 369px; height: 360px;" /></a>
 </div>
 </div>
-<div class="section" id="set-number-of-threads-used-for-parallel-functions">
-<h3>Set number of threads used for parallel functions<a class="headerlink" href="#set-number-of-threads-used-for-parallel-functions" title="Permalink to this headline">¶</a></h3>
+<section id="set-number-of-threads-used-for-parallel-functions">
+<h3>Set number of threads used for parallel functions<a class="headerlink" href="#set-number-of-threads-used-for-parallel-functions" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">env</span> OMP_NUM_THREADS=4
@@ -1041,9 +1263,7 @@ env: JULIA_NUM_THREADS=4
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "791a14a68cdc49339c211f8f2703b5e2", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "791a14a68cdc49339c211f8f2703b5e2", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1113,9 +1333,9 @@ env: JULIA_NUM_THREADS=4
 </table>
 </div></div></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1129,7 +1349,7 @@ env: JULIA_NUM_THREADS=4
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1137,46 +1357,117 @@ env: JULIA_NUM_THREADS=4
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="02.f2py.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Python class linked with fortran module</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02.f2py.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python class linked with fortran module</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="04.vlasov-poisson.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="04.vlasov-poisson.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Vlasov-Poisson</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Pierre Navaro<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-      </div>
-    </div>
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-mesh">Initialize Mesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-python">Pure Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numba">numba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyjulia">PyJulia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pythran">Pythran</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fortran">Fortran</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fortran-with-openmp">Fortran with OpenMP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">Numpy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cython">Cython</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-number-of-threads-used-for-parallel-functions">Set number of threads used for parallel functions</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pierre Navaro
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

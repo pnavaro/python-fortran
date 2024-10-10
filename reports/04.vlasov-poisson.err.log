@@ -1,0 +1,50 @@
+Traceback (most recent call last):
+  File "/home/runner/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/runner/.local/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/runner/.local/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/runner/.local/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/runner/.local/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/.local/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+from scipy.fftpack import fft, ifft 
+
+def bspline_python(p, j, x):
+        """Return the value at x in [0,1[ of the B-spline with 
+        integer nodes of degree p with support starting at j.
+        Implemented recursively using the de Boor's recursion formula"""
+        assert (x >= 0.0) & (x <= 1.0)
+        assert (type(p) == int) & (type(j) == int)
+        if p == 0:
+            if j == 0:
+                return 1.0
+            else:
+                return 0.0
+        else:
+            w = (x - j) / p
+            w1 = (x - j - 1) / p
+        return w * bspline_python(p - 1, j, x) + (1 - w1) * bspline_python(p - 1, j + 1, x)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[2], line 2[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mfftpack[39;00m [38;5;28;01mimport[39;00m fft, ifft 
+[1;32m      4[0m [38;5;28;01mdef[39;00m [38;5;21mbspline_python[39m(p, j, x):
+[1;32m      5[0m [38;5;250m        [39m[38;5;124;03m"""Return the value at x in [0,1[ of the B-spline with [39;00m
+[1;32m      6[0m [38;5;124;03m        integer nodes of degree p with support starting at j.[39;00m
+[1;32m      7[0m [38;5;124;03m        Implemented recursively using the de Boor's recursion formula"""[39;00m
+
+[0;31mModuleNotFoundError[0m: No module named 'scipy'
+

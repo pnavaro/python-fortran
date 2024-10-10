@@ -1,334 +1,501 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>SWIG and Ctypes &#8212; Python-Fortran notebooks</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
-
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '08.swig';</script>
     <link rel="canonical" href="https://pnavaro.github.io/python-fortran/08.swig.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Maxwell solver in two dimensions with FDTD scheme" href="07.maxwell-fdtd-2d.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="quickstart.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Python-Fortran notebooks</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Call Fortran from Python with f2py
- </span>
-</p>
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Python-Fortran notebooks - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Python-Fortran notebooks - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Call Fortran from Python with f2py</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01.f2py.html">
-   F2py
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02.f2py.html">
-   Python class linked with fortran module
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01.f2py.html">F2py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.f2py.html">Python class linked with fortran module</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Examples
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="03.julia-set.html">
-   Julia Set
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04.vlasov-poisson.html">
-   Vlasov-Poisson
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="05.co-rotating-vortex.html">
-   Co-rotating vortices
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06.gray-scott-model.html">
-   Gray-Scott Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07.maxwell-fdtd-2d.html">
-   Maxwell solver in two dimensions with FDTD scheme
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="03.julia-set.html">Julia Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.vlasov-poisson.html">Vlasov-Poisson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.co-rotating-vortex.html">Co-rotating vortices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06.gray-scott-model.html">Gray-Scott Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07.maxwell-fdtd-2d.html">Maxwell solver in two dimensions with FDTD scheme</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Swig and ctypes
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Swig and ctypes</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   SWIG and Ctypes
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">SWIG and Ctypes</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/08.swig.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/pnavaro/python-fortran"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/pnavaro/python-fortran/issues/new?title=Issue%20on%20page%20%2F08.swig.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/python-fortran/edit/master/notebooks/08.swig.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
-</div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
+<div class="article-header-buttons">
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/python-fortran/master?urlpath=tree/notebooks/08.swig.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/python-fortran/blob/master/notebooks/08.swig.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
 
-        </div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-collatz-conjecture">
-   Problem: Collatz conjecture
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#c-program">
-   C program
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python-program">
-   Python program
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#performances">
-   Performances
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ctypes">
-   Ctypes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ctypes-with-fortran-module">
-   Ctypes with Fortran module
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#swig">
-   SWIG
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-the-python-module">
-     Build the python module
-    </a>
-   </li>
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/pnavaro/python-fortran/master?urlpath=tree/notebooks/08.swig.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/pnavaro/python-fortran/blob/master/notebooks/08.swig.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
+</div>
 
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pnavaro/python-fortran" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pnavaro/python-fortran/edit/master/notebooks/08.swig.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pnavaro/python-fortran/issues/new?title=Issue%20on%20page%20%2F08.swig.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/08.swig.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SWIG and Ctypes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-collatz-conjecture">Problem: Collatz conjecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-program">C program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-program">Python program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performances">Performances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ctypes">Ctypes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ctypes-with-fortran-module">Ctypes with Fortran module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#swig">SWIG</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-python-module">Build the python module</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="swig-and-ctypes">
-<h1>SWIG and Ctypes<a class="headerlink" href="#swig-and-ctypes" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="swig-and-ctypes">
+<h1>SWIG and Ctypes<a class="headerlink" href="#swig-and-ctypes" title="Link to this heading">#</a></h1>
 <p>Interfacing Fortran code through C interface</p>
 <p>I found <a class="reference external" href="https://www.fortran90.org/src/best-practices.html#interfacing-with-python">this reference</a> with good examples.</p>
-<div class="section" id="problem-collatz-conjecture">
-<h2>Problem: Collatz conjecture<a class="headerlink" href="#problem-collatz-conjecture" title="Permalink to this headline">¶</a></h2>
+<section id="problem-collatz-conjecture">
+<h2>Problem: Collatz conjecture<a class="headerlink" href="#problem-collatz-conjecture" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Choose <span class="math notranslate nohighlight">\(u_0\)</span></p></li>
 <li><p>If <span class="math notranslate nohighlight">\(u_k\)</span> even, <span class="math notranslate nohighlight">\(u_{k+1} \rightarrow \frac{u_k}{2}\)</span> ;</p></li>
@@ -337,9 +504,9 @@
 <li><p>The programs below compute number of steps (named flight) to reach <span class="math notranslate nohighlight">\(f(u_0)\)</span> for <span class="math notranslate nohighlight">\(1\leq u_0 \leq N\)</span>, <span class="math notranslate nohighlight">\(N\)</span> given.</p></li>
 </ul>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Collatz_conjecture">The Collatz conjecture on Wikipedia</a></p>
-</div>
-<div class="section" id="c-program">
-<h2>C program<a class="headerlink" href="#c-program" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="c-program">
+<h2>C program<a class="headerlink" href="#c-program" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> syracuse.c
@@ -383,16 +550,23 @@ time ./a.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real	0m0.102s
-user	0m0.001s
-sys	0m0.002s
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real	0m0.001s
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>user	0m0.001s
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sys	0m0.000s
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="python-program">
-<h2>Python program<a class="headerlink" href="#python-program" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="python-program">
+<h2>Python program<a class="headerlink" href="#python-program" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -416,23 +590,23 @@ sys	0m0.002s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 21.1 s, sys: 262 ms, total: 21.4 s
-Wall time: 21.5 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10.1 s, sys: 11 ms, total: 10.2 s
+Wall time: 10.1 s
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="performances">
-<h2>Performances<a class="headerlink" href="#performances" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="performances">
+<h2>Performances<a class="headerlink" href="#performances" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The python syntax is simpler.</p></li>
 <li><p>100 times slower</p></li>
 <li><p>Solution : call the C function from python.</p></li>
 </ul>
-</div>
-<div class="section" id="ctypes">
-<h2>Ctypes<a class="headerlink" href="#ctypes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ctypes">
+<h2>Ctypes<a class="headerlink" href="#ctypes" title="Link to this heading">#</a></h2>
 <p>This is the C function we will call from python</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -485,15 +659,15 @@ gcc -fPIC -shared -O3 \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 532 ms, sys: 8.51 ms, total: 540 ms
-Wall time: 652 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 347 ms, sys: 4 ms, total: 351 ms
+Wall time: 351 ms
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ctypes-with-fortran-module">
-<h2>Ctypes with Fortran module<a class="headerlink" href="#ctypes-with-fortran-module" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ctypes-with-fortran-module">
+<h2>Ctypes with Fortran module<a class="headerlink" href="#ctypes-with-fortran-module" title="Link to this heading">#</a></h2>
 <p>If you change the fortran file you have to restart the kernel</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -541,54 +715,6 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bash: line 2: gfortran: command not found
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">24</span><span class="o">/</span><span class="mi">8</span><span class="n">k48jl6d249_n_qfxwsl6xvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_28719</span><span class="o">/</span><span class="mf">4175552032.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;rm -f *.o *.so *.dylib</span><span class="se">\n</span><span class="s1">gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nn">/usr/local/lib/python3.8/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2417</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2418</span>                 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2419</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2420</span>             <span class="k">return</span> <span class="n">result</span>
-<span class="g g-Whitespace">   </span><span class="mi">2421</span> 
-
-<span class="nn">/usr/local/lib/python3.8/site-packages/IPython/core/magics/script.py</span> in <span class="ni">named_script_magic</span><span class="nt">(line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span>             <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>                 <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
-<span class="ne">--&gt; </span><span class="mi">142</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span> 
-<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="c1"># write a basic docstring:</span>
-
-<span class="nn">/usr/local/lib/python3.8/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">kwsyntax</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span>                 <span class="n">args</span><span class="p">,</span> <span class="n">kw</span> <span class="o">=</span> <span class="n">fix</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">232</span>             <span class="k">return</span> <span class="n">caller</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">extras</span> <span class="o">+</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span>
-
-<span class="nn">/usr/local/lib/python3.8/site-packages/IPython/core/magic.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(f, *a, **k)</span>
-<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="c1"># but it&#39;s overkill for just that one bit of state.</span>
-<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">def</span> <span class="nf">magic_deco</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">187</span>         <span class="n">call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">188</span> 
-<span class="g g-Whitespace">    </span><span class="mi">189</span>         <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-
-<span class="nn">/usr/local/lib/python3.8/site-packages/IPython/core/magics/script.py</span> in <span class="ni">shebang</span><span class="nt">(self, line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span>             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">244</span>         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">245</span>             <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">err</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">246</span> 
-<span class="g g-Whitespace">    </span><span class="mi">247</span>     <span class="k">def</span> <span class="nf">_run_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">to_close</span><span class="p">):</span>
-
-<span class="ne">CalledProcessError</span>: Command &#39;b&#39;rm -f *.o *.so *.dylib\ngfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90\n&#39;&#39; returned non-zero exit status 127.
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -602,12 +728,23 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">1000000</span>
 <span class="n">flights</span> <span class="o">=</span> <span class="p">[</span><span class="n">syrac_f90</span><span class="o">.</span><span class="n">c_syrac</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 391 ms, sys: 14 μs, total: 391 ms
+Wall time: 391 ms
 </pre></div>
 </div>
 </div>
@@ -618,9 +755,9 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 <li><p>Unfortunately you need to adapt the syntax to the operating system.</p></li>
 </ul>
 <p><a class="reference external" href="http://docs.python.org/library/ctypes.html">http://docs.python.org/library/ctypes.html</a>}</p>
-</div>
-<div class="section" id="swig">
-<h2>SWIG<a class="headerlink" href="#swig" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="swig">
+<h2>SWIG<a class="headerlink" href="#swig" title="Link to this heading">#</a></h2>
 <p>Interface file syrac.i for C function in syrac.c</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -634,6 +771,11 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing syrac.i
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -643,15 +785,15 @@ swig -python syrac.i
 </div>
 </div>
 </div>
-<div class="section" id="build-the-python-module">
-<h3>Build the python module<a class="headerlink" href="#build-the-python-module" title="Permalink to this headline">¶</a></h3>
+<section id="build-the-python-module">
+<h3>Build the python module<a class="headerlink" href="#build-the-python-module" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Using command line</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>swig -python syrac.i
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>swig<span class="w"> </span>-python<span class="w"> </span>syrac.i
 
-gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -fPIC <span class="se">\</span>
-  -shared -O3 -o _syracuseC.so syrac_wrap.c syrac.c <span class="sb">`</span>python3-config --ldflags<span class="sb">`</span>
+gcc<span class="w"> </span><span class="sb">`</span>python3-config<span class="w"> </span>--cflags<span class="sb">`</span><span class="w"> </span>-fPIC<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-shared<span class="w"> </span>-O3<span class="w"> </span>-o<span class="w"> </span>_syracuseC.so<span class="w"> </span>syrac_wrap.c<span class="w"> </span>syrac.c<span class="w"> </span><span class="sb">`</span>python3-config<span class="w"> </span>--ldflags<span class="sb">`</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -674,6 +816,11 @@ gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -f
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing setup.py
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -682,7 +829,385 @@ gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -f
 <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gcc-10&quot;</span>
     
-<span class="o">!{</span>sys.executable<span class="o">}</span> setup.py build_ext --inplace --quiet
+<span class="o">!{</span>sys.executable<span class="o">}</span><span class="w"> </span>setup.py<span class="w"> </span>build_ext<span class="w"> </span>--inplace<span class="w"> </span>--quiet
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/python-fortran/python-fortran/notebooks/setup.py:1: DeprecationWarning: 
+
+  `numpy.distutils` is deprecated since NumPy 1.23.0, as a result
+  of the deprecation of `distutils` itself. It will be removed for
+  Python &gt;= 3.12. For older Python versions it will remain present.
+  It is recommended to use `setuptools &lt; 60.0` for those Python versions.
+  For more details, see:
+    https://numpy.org/devdocs/reference/distutils_status_migration.html 
+
+
+  from numpy.distutils.core import Extension, setup
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running build_ext
+running build_src
+INFO: build_src
+INFO: building extension &quot;_syracuseC&quot; sources
+INFO: build_src: building npy-pkg config files
+INFO: customize UnixCCompiler
+INFO: customize UnixCCompiler using build_ext
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-march=native)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+creating /tmp/tmp0l3sfwkz/home
+creating /tmp/tmp0l3sfwkz/home/runner
+creating /tmp/tmp0l3sfwkz/home/runner/.local
+creating /tmp/tmp0l3sfwkz/home/runner/.local/lib
+creating /tmp/tmp0l3sfwkz/home/runner/.local/lib/python3.10
+creating /tmp/tmp0l3sfwkz/home/runner/.local/lib/python3.10/site-packages
+creating /tmp/tmp0l3sfwkz/home/runner/.local/lib/python3.10/site-packages/numpy
+creating /tmp/tmp0l3sfwkz/home/runner/.local/lib/python3.10/site-packages/numpy/distutils
+creating /tmp/tmp0l3sfwkz/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-march=native&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-O3)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-O3&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-Werror)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.__init__[1795] : check requested baseline
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse2)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse2&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE&#39; with flags (-msse -msse2)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE2&#39; with flags (-msse -msse2)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -Werror&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse3)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse3&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE3&#39; with flags (-msse -msse2 -msse3)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.__init__[1804] : check requested dispatch-able features
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mssse3)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mssse3&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse4.1)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse4.1&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mpopcnt)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mpopcnt&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse4.2)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse4.2&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE41&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -Werror&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;POPCNT&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSSE3&#39; with flags (-msse -msse2 -msse3 -mssse3)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -Werror&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE42&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mf16c)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mf16c&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;F16C&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx2)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx2&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX2&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mavx2)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mavx2 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mfma)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mfma&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512f -mno-mmx)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx512f -mno-mmx&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512cd)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx512cd&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512CD&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512vl -mavx512bw -mavx512dq)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx512vl -mavx512bw -mavx512dq&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_SKX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512F&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;FMA3&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512ifma -mavx512vbmi)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx512ifma -mavx512vbmi&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_CNL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma -mavx512vbmi)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma -mavx512vbmi -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512vnni)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx512vnni&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_CLX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_ICL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512fp16)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx512fp16&#39;
+<span class=" -Color -Color-Red">WARN: CCompilerOpt.dist_test[637] : CCompilerOpt._dist_test_spawn[771] : Command (x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -I/usr/include/python3.10 -c /home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/test_flags.c -o /tmp/tmp0l3sfwkz/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/test_flags.o -MMD -MF /tmp/tmp0l3sfwkz/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/test_flags.o.d -mavx512fp16) failed with exit status 1 output -&gt; </span>
+<span class=" -Color -Color-Red">x86_64-linux-gnu-gcc: error: unrecognized command-line option ‘-mavx512fp16’; did you mean ‘-mavx512bf16’?</span>
+
+<span class=" -Color -Color-Red">WARN: CCompilerOpt.cc_test_flags[1090] : testing failed</span>
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_SPR&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">WARN: CCompilerOpt.dist_test[637] : CCompilerOpt._dist_test_spawn[771] : Command (x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -I/usr/include/python3.10 -c /home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/cpu_avx512_spr.c -o /tmp/tmp0l3sfwkz/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/cpu_avx512_spr.o -MMD -MF /tmp/tmp0l3sfwkz/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/cpu_avx512_spr.o.d -msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq -Werror) failed with exit status 1 output -&gt; </span>
+<span class=" -Color -Color-Red">/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/cpu_avx512_spr.c: In function ‘main’:</span>
+<span class=" -Color -Color-Red">/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/cpu_avx512_spr.c:22:5: error: unknown type name ‘__m512h’; did you mean ‘__m512bh’?</span>
+<span class=" -Color -Color-Red">   22 |     __m512h a = _mm512_loadu_ph((void*)argv[argc-1]);</span>
+<span class=" -Color -Color-Red">      |     ^~~~~~~</span>
+<span class=" -Color -Color-Red">      |     __m512bh</span>
+<span class=" -Color -Color-Red">/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/cpu_avx512_spr.c:22:17: error: implicit declaration of function ‘_mm512_loadu_ph’; did you mean ‘_mm512_loadu_ps’? [-Werror=implicit-function-declaration]</span>
+<span class=" -Color -Color-Red">   22 |     __m512h a = _mm512_loadu_ph((void*)argv[argc-1]);</span>
+<span class=" -Color -Color-Red">      |                 ^~~~~~~~~~~~~~~</span>
+<span class=" -Color -Color-Red">      |                 _mm512_loadu_ps</span>
+<span class=" -Color -Color-Red">/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/cpu_avx512_spr.c:23:5: error: unknown type name ‘__m512h’; did you mean ‘__m512bh’?</span>
+<span class=" -Color -Color-Red">   23 |     __m512h temp = _mm512_fmadd_ph(a, a, a);</span>
+<span class=" -Color -Color-Red">      |     ^~~~~~~</span>
+<span class=" -Color -Color-Red">      |     __m512bh</span>
+<span class=" -Color -Color-Red">/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/cpu_avx512_spr.c:23:20: error: implicit declaration of function ‘_mm512_fmadd_ph’; did you mean ‘_mm512_fmadd_ps’? [-Werror=implicit-function-declaration]</span>
+<span class=" -Color -Color-Red">   23 |     __m512h temp = _mm512_fmadd_ph(a, a, a);</span>
+<span class=" -Color -Color-Red">      |                    ^~~~~~~~~~~~~~~</span>
+<span class=" -Color -Color-Red">      |                    _mm512_fmadd_ps</span>
+<span class=" -Color -Color-Red">/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks/cpu_avx512_spr.c:24:5: error: implicit declaration of function ‘_mm512_storeu_ph’; did you mean ‘_mm512_storeu_ps’? [-Werror=implicit-function-declaration]</span>
+<span class=" -Color -Color-Red">   24 |     _mm512_storeu_ph((void*)(argv[argc-1]), temp);</span>
+<span class=" -Color -Color-Red">      |     ^~~~~~~~~~~~~~~~</span>
+<span class=" -Color -Color-Red">      |     _mm512_storeu_ps</span>
+<span class=" -Color -Color-Red">cc1: all warnings being treated as errors</span>
+
+<span class=" -Color -Color-Red">WARN: CCompilerOpt.feature_test[1576] : testing failed</span>
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512er -mavx512pf)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx512er -mavx512pf&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_KNL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_KNM&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.__init__[1816] : skip features (SSE3 SSE SSE2) since its part of baseline
+INFO: CCompilerOpt.__init__[1820] : initialize targets groups
+INFO: CCompilerOpt.__init__[1822] : parse target group simd_test
+INFO: CCompilerOpt._parse_target_tokens[2033] : skip targets (VSX3 ASIMD NEON FMA4 VXE2 VSX2 VXE VX VSX VSX4 XOP) not part of baseline or dispatch-able features
+INFO: CCompilerOpt._parse_policy_not_keepbase[2145] : skip baseline features (SSE2)
+INFO: CCompilerOpt.generate_dispatch_header[2366] : generate CPU dispatch header: (build/src.linux-x86_64-3.10/numpy/distutils/include/npy_cpu_dispatch_config.h)
+<span class=" -Color -Color-Red">WARN: CCompilerOpt.generate_dispatch_header[2375] : dispatch header dir build/src.linux-x86_64-3.10/numpy/distutils/include does not exist, creating it</span>
+INFO: CCompilerOpt.feature_extra_checks[1640] : Testing extra checks for feature &#39;AVX512F&#39; (AVX512F_REDUCE)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_extra_checks[1640] : Testing extra checks for feature &#39;AVX512_SKX&#39; (AVX512BW_MASK AVX512DQ_MASK)
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: building &#39;_syracuseC&#39; extension
+INFO: compiling C sources
+INFO: C compiler: x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+
+INFO: compile options: &#39;-I/home/runner/.local/lib/python3.10/site-packages/numpy/_core/include -Ibuild/src.linux-x86_64-3.10/numpy/distutils/include -I/usr/include/python3.10 -c&#39;
+extra options: &#39;-msse -msse2 -msse3&#39;
+INFO: x86_64-linux-gnu-gcc: syrac_wrap.c
+INFO: x86_64-linux-gnu-gcc: syrac.c
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: x86_64-linux-gnu-gcc -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsymbolic-functions -g -fwrapv -O2 -Wl,-Bsymbolic-functions -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 build/temp.linux-x86_64-3.10/syrac_wrap.o build/temp.linux-x86_64-3.10/syrac.o -o _syracuseC.cpython-310-x86_64-linux-gnu.so
+INFO: 
+########### EXT COMPILER OPTIMIZATION ###########
+INFO: Platform      : 
+  Architecture: x64
+  Compiler    : gcc
+
+CPU baseline  : 
+  Requested   : &#39;min&#39;
+  Enabled     : SSE SSE2 SSE3
+  Flags       : -msse -msse2 -msse3
+  Extra checks: none
+
+CPU dispatch  : 
+  Requested   : &#39;max -xop -fma4&#39;
+  Enabled     : SSSE3 SSE41 POPCNT SSE42 AVX F16C FMA3 AVX2 AVX512F AVX512CD AVX512_KNL AVX512_KNM AVX512_SKX AVX512_CLX AVX512_CNL AVX512_ICL
+  Generated   : none
+INFO: CCompilerOpt.cache_flush[864] : write cache to path -&gt; /home/runner/work/python-fortran/python-fortran/notebooks/build/temp.linux-x86_64-3.10/ccompiler_opt_cache_ext.py
 </pre></div>
 </div>
 </div>
@@ -696,6 +1221,11 @@ gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -f
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -706,18 +1236,24 @@ gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -f
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 236 ms, sys: 3 μs, total: 236 ms
+Wall time: 236 ms
+</pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://calcul.math.cnrs.fr/Documents/Ecoles/2010/InterfacagePython.pdf">Interfacage C-Python par Xavier Juvigny</a></p></li>
 <li><p><a class="reference external" href="http://calcul.math.cnrs.fr/Documents/Ecoles/2010/cours_cython.pdf">Optimizing and interfacing with Cython par Konrad Hinsen</a></p></li>
 <li><p>Python Scripting for Computational Science de Hans Petter Langtangen chez Springer</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -731,7 +1267,7 @@ gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -f
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -739,39 +1275,104 @@ gcc <span class="sb">`</span>python3-config --cflags<span class="sb">`</span> -f
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="07.maxwell-fdtd-2d.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Maxwell solver in two dimensions with FDTD scheme</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07.maxwell-fdtd-2d.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Maxwell solver in two dimensions with FDTD scheme</p>
+      </div>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Pierre Navaro<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-      </div>
-    </div>
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-collatz-conjecture">Problem: Collatz conjecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-program">C program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-program">Python program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performances">Performances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ctypes">Ctypes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ctypes-with-fortran-module">Ctypes with Fortran module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#swig">SWIG</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-python-module">Build the python module</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pierre Navaro
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
