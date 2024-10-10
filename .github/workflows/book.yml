@@ -23,7 +23,7 @@ jobs:
       run: jupyter-book build notebooks
 
     - name: GitHub Pages action
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
-        deploy_key: ${{ secrets.SITE_PRIV }}
+        deploy_key: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./notebooks/_build/html
