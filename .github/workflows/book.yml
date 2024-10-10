@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - uses: fortran-lang/setup-fortran@v1
+      with:
+          compiler: gcc
+          version: 12
     - uses: actions/setup-python@v5
     - uses: julia-actions/setup-julia@v2
 
