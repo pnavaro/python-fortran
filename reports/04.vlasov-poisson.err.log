@@ -141,8 +141,13 @@ end module bsl_fftw
 ------------------
 
 ----- stderr -----
-/home/runner/.cache/ipython/fortranmagic/c7a0ea26/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b.f90:6: Error: Can't open included file 'fftw3.f03'
-error: Command "/usr/bin/gfortran -fopenmp -fPIC -O3 -funroll-loops -I/tmp/tmpc3g2kbix/src.linux-x86_64-3.8 -I/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/core/include -I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c -c /home/runner/.cache/ipython/fortranmagic/c7a0ea26/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b.f90 -o /tmp/tmpc3g2kbix/home/runner/.cache/ipython/fortranmagic/c7a0ea26/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b.o -J/tmp/tmpc3g2kbix/ -I/tmp/tmpc3g2kbix/" failed with exit status 1
+/home/runner/.cache/ipython/fortranmagic/291d5dc2/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0.f90:6:0:
+
+    6 |     include 'fftw3.f03'
+      | 
+Fatal Error: Cannot open included file ‘fftw3.f03’
+compilation terminated.
+error: Command "/usr/bin/gfortran -fopenmp -fPIC -O3 -funroll-loops -I/tmp/tmptnoj8y4n/src.linux-x86_64-3.8 -I/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/core/include -I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c -c /home/runner/.cache/ipython/fortranmagic/291d5dc2/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0.f90 -o /tmp/tmptnoj8y4n/home/runner/.cache/ipython/fortranmagic/291d5dc2/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0.o -J/tmp/tmptnoj8y4n/ -I/tmp/tmptnoj8y4n/" failed with exit status 1
 ----- stdout -----
 No 'fftw3' resources found in system (try `f2py --help-link`)
 running build
@@ -152,49 +157,49 @@ running config_fc
 INFO: unifing config_fc, config, build_clib, build_ext, build commands --fcompiler options
 running build_src
 INFO: build_src
-INFO: building extension "_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b" sources
+INFO: building extension "_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0" sources
 INFO: f2py options: []
-INFO: f2py:> /tmp/tmpc3g2kbix/src.linux-x86_64-3.8/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16bmodule.c
-creating /tmp/tmpc3g2kbix/src.linux-x86_64-3.8
+INFO: f2py:> /tmp/tmptnoj8y4n/src.linux-x86_64-3.8/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0module.c
+creating /tmp/tmptnoj8y4n/src.linux-x86_64-3.8
 Reading fortran codes...
-	Reading file '/home/runner/.cache/ipython/fortranmagic/c7a0ea26/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b.f90' (format:free)
+	Reading file '/home/runner/.cache/ipython/fortranmagic/291d5dc2/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0.f90' (format:free)
 {'before': '', 'this': 'use', 'after': ', intrinsic :: iso_c_binding '}
-Line #4 in /home/runner/.cache/ipython/fortranmagic/c7a0ea26/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b.f90:"    use, intrinsic :: iso_c_binding "
+Line #4 in /home/runner/.cache/ipython/fortranmagic/291d5dc2/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0.f90:"    use, intrinsic :: iso_c_binding "
 	analyzeline: Could not crack the use statement.
-Line #7 in /home/runner/.cache/ipython/fortranmagic/c7a0ea26/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b.f90:"    include 'fftw3.f03' "
-	readfortrancode: could not find include file 'fftw3.f03' in /home/runner/.cache/ipython/fortranmagic/c7a0ea26. Ignoring.
-Line #44 in /home/runner/.cache/ipython/fortranmagic/c7a0ea26/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b.f90:"              optional , depend(in) :: n=shape(df,0)"
+Line #7 in /home/runner/.cache/ipython/fortranmagic/291d5dc2/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0.f90:"    include 'fftw3.f03' "
+	readfortrancode: could not find include file 'fftw3.f03' in /home/runner/.cache/ipython/fortranmagic/291d5dc2. Ignoring.
+Line #44 in /home/runner/.cache/ipython/fortranmagic/291d5dc2/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0.f90:"              optional , depend(in) :: n=shape(df,0)"
 	analyzeline: cannot handle multiple attributes without type specification. Ignoring ' depend(in)'.
 Post-processing...
-	Block: _fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b
+	Block: _fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0
 			Block: bsl_fftw
 				Block: bspline
-In: :_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b:/home/runner/.cache/ipython/fortranmagic/c7a0ea26/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b.f90:bsl_fftw:bspline
+In: :_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0:/home/runner/.cache/ipython/fortranmagic/291d5dc2/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0.f90:bsl_fftw:bspline
 analyzevars: prefix ('recursive') were not used
 				Block: advection
 Applying post-processing hooks...
   character_backward_compatibility_hook
 Post-processing (stage 2)...
-	Block: _fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b
+	Block: _fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0
 		Block: unknown_interface
 			Block: bsl_fftw
 				Block: bspline
 				Block: advection
 Building modules...
-    Building module "_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b"...
+    Building module "_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0"...
 		Constructing F90 module support for "bsl_fftw"...
 		Creating wrapper for Fortran function "bspline"("bspline")...
             Constructing wrapper function "bsl_fftw.bspline"...
               res = bspline(p,j,x)
             Constructing wrapper function "bsl_fftw.advection"...
               advection(p,delta,alpha,axis,df,[n])
-    Wrote C/API module "_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b" to file "/tmp/tmpc3g2kbix/src.linux-x86_64-3.8/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16bmodule.c"
-    Fortran 90 wrappers are saved to "/tmp/tmpc3g2kbix/src.linux-x86_64-3.8/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b-f2pywrappers2.f90"
-INFO:   adding '/tmp/tmpc3g2kbix/src.linux-x86_64-3.8/fortranobject.c' to sources.
-INFO:   adding '/tmp/tmpc3g2kbix/src.linux-x86_64-3.8' to include_dirs.
-copying /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/f2py/src/fortranobject.c -> /tmp/tmpc3g2kbix/src.linux-x86_64-3.8
-copying /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/f2py/src/fortranobject.h -> /tmp/tmpc3g2kbix/src.linux-x86_64-3.8
-INFO:   adding '/tmp/tmpc3g2kbix/src.linux-x86_64-3.8/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b-f2pywrappers2.f90' to sources.
+    Wrote C/API module "_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0" to file "/tmp/tmptnoj8y4n/src.linux-x86_64-3.8/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0module.c"
+    Fortran 90 wrappers are saved to "/tmp/tmptnoj8y4n/src.linux-x86_64-3.8/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0-f2pywrappers2.f90"
+INFO:   adding '/tmp/tmptnoj8y4n/src.linux-x86_64-3.8/fortranobject.c' to sources.
+INFO:   adding '/tmp/tmptnoj8y4n/src.linux-x86_64-3.8' to include_dirs.
+copying /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/f2py/src/fortranobject.c -> /tmp/tmptnoj8y4n/src.linux-x86_64-3.8
+copying /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/f2py/src/fortranobject.h -> /tmp/tmptnoj8y4n/src.linux-x86_64-3.8
+INFO:   adding '/tmp/tmptnoj8y4n/src.linux-x86_64-3.8/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0-f2pywrappers2.f90' to sources.
 INFO: build_src: building npy-pkg config files
 running build_ext
 INFO: customize UnixCCompiler
@@ -206,29 +211,29 @@ INFO: customize Gnu95FCompiler
 INFO: Found executable /usr/bin/gfortran
 INFO: customize Gnu95FCompiler
 INFO: customize Gnu95FCompiler using build_ext
-INFO: building '_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b' extension
+INFO: building '_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0' extension
 INFO: compiling C sources
 INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-creating /tmp/tmpc3g2kbix/tmp
-creating /tmp/tmpc3g2kbix/tmp/tmpc3g2kbix
-creating /tmp/tmpc3g2kbix/tmp/tmpc3g2kbix/src.linux-x86_64-3.8
-INFO: compile options: '-DNPY_DISABLE_OPTIMIZATION=1 -I/tmp/tmpc3g2kbix/src.linux-x86_64-3.8 -I/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/core/include -I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c'
-INFO: gcc: /tmp/tmpc3g2kbix/src.linux-x86_64-3.8/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16bmodule.c
-INFO: gcc: /tmp/tmpc3g2kbix/src.linux-x86_64-3.8/fortranobject.c
+creating /tmp/tmptnoj8y4n/tmp
+creating /tmp/tmptnoj8y4n/tmp/tmptnoj8y4n
+creating /tmp/tmptnoj8y4n/tmp/tmptnoj8y4n/src.linux-x86_64-3.8
+INFO: compile options: '-DNPY_DISABLE_OPTIMIZATION=1 -I/tmp/tmptnoj8y4n/src.linux-x86_64-3.8 -I/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/core/include -I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c'
+INFO: gcc: /tmp/tmptnoj8y4n/src.linux-x86_64-3.8/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0module.c
+INFO: gcc: /tmp/tmptnoj8y4n/src.linux-x86_64-3.8/fortranobject.c
 INFO: compiling Fortran 90 module sources
 INFO: Fortran f77 compiler: /usr/bin/gfortran -Wall -g -ffixed-form -fno-second-underscore -fPIC -O3 -funroll-loops
 Fortran f90 compiler: /usr/bin/gfortran -fopenmp -fPIC -O3 -funroll-loops
 Fortran fix compiler: /usr/bin/gfortran -Wall -g -ffixed-form -fno-second-underscore -fopenmp -fPIC -O3 -funroll-loops
-creating /tmp/tmpc3g2kbix/home
-creating /tmp/tmpc3g2kbix/home/runner
-creating /tmp/tmpc3g2kbix/home/runner/.cache
-creating /tmp/tmpc3g2kbix/home/runner/.cache/ipython
-creating /tmp/tmpc3g2kbix/home/runner/.cache/ipython/fortranmagic
-creating /tmp/tmpc3g2kbix/home/runner/.cache/ipython/fortranmagic/c7a0ea26
-INFO: compile options: '-I/tmp/tmpc3g2kbix/src.linux-x86_64-3.8 -I/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/core/include -I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c'
-extra options: '-J/tmp/tmpc3g2kbix/ -I/tmp/tmpc3g2kbix/'
-INFO: gfortran:f90: /home/runner/.cache/ipython/fortranmagic/c7a0ea26/_fortran_magic_6f68e1bb7cc3336a4a1a84ab7df8b16b.f90
+creating /tmp/tmptnoj8y4n/home
+creating /tmp/tmptnoj8y4n/home/runner
+creating /tmp/tmptnoj8y4n/home/runner/.cache
+creating /tmp/tmptnoj8y4n/home/runner/.cache/ipython
+creating /tmp/tmptnoj8y4n/home/runner/.cache/ipython/fortranmagic
+creating /tmp/tmptnoj8y4n/home/runner/.cache/ipython/fortranmagic/291d5dc2
+INFO: compile options: '-I/tmp/tmptnoj8y4n/src.linux-x86_64-3.8 -I/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/core/include -I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c'
+extra options: '-J/tmp/tmptnoj8y4n/ -I/tmp/tmptnoj8y4n/'
+INFO: gfortran:f90: /home/runner/.cache/ipython/fortranmagic/291d5dc2/_fortran_magic_c0d01056cb64a14ac20a6389ae6b14e0.f90
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
