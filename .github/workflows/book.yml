@@ -10,12 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: fortran-lang/setup-fortran@v1
-      with:
-          compiler: gcc
-    - name: Install LaPack and FFTW
+    - name: Install Fortran, Lapack and FFTW
       run:
-        sudo apt-get install libblas-dev liblapack-dev libfftw3-dev
+        sudo apt-get install gfortran libblas-dev liblapack-dev libfftw3-dev
       shell: bash
     - uses: actions/setup-python@v5
       with:
