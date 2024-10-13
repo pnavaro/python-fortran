@@ -13,7 +13,11 @@ jobs:
     - uses: fortran-lang/setup-fortran@v1
       with:
           compiler: gcc
-          version: 10
+          - name: Install fortran
+    - name: Install LaPack
+      run:
+        sudo apt-get install libblas-dev liblapack-dev
+      shell: bash
     - uses: actions/setup-python@v5
       with:
         python-version: '3.8'
