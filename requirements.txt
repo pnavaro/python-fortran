@@ -16,4 +16,4 @@ pythran
 scipy
 seaborn
 tqdm
-setuptools==59.8.0
+setuptools==70.0.0
