@@ -1039,7 +1039,7 @@ distutils has been deprecated since NumPy 1.26.x
 Use the Meson backend instead, or generate wrappers without -c and use a custom build script
   builder = build_backend(
 <span class=" -Color -Color-Red">WARN: Could not locate executable armflang</span>
-Removing build directory /tmp/tmppyvrpqqp
+Removing build directory /tmp/tmpsv7r5y41
 </pre></div>
 </div>
 </div>
@@ -1078,7 +1078,7 @@ Removing build directory /tmp/tmppyvrpqqp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>760 μs ± 1.79 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>756 μs ± 2.17 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1086,6 +1086,11 @@ Removing build directory /tmp/tmppyvrpqqp
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> c = a @ b
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.51 ms ± 210 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1111,6 +1116,11 @@ end module f90module
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f90module</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">f90module</span><span class="o">.</span><span class="n">farray</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
 </pre></div>
 </div>
 </div>
@@ -1141,6 +1151,11 @@ end module f90module
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 10)
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="f2py-openmp">
@@ -1153,6 +1168,11 @@ end module f90module
 <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gcc-10&quot;</span>
     <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gfortran&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>env: OMP_NUM_THREADS=4
 </pre></div>
 </div>
 </div>
@@ -1174,6 +1194,12 @@ end subroutine
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">hello</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 24.1 ms, sys: 44.5 ms, total: 68.6 ms
+Wall time: 4 s
 </pre></div>
 </div>
 </div>
@@ -1201,6 +1227,12 @@ end subroutine hello_omp
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">hello_omp</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.49 ms, sys: 8.8 ms, total: 17.3 ms
+Wall time: 1 s
 </pre></div>
 </div>
 </div>
@@ -1294,6 +1326,17 @@ end subroutine hello_omp
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iterations =  2457
+CPU times: user 12.6 s, sys: 9.01 ms, total: 12.6 s
+Wall time: 12.6 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f51793a7d90&gt;
+</pre></div>
+</div>
+<img alt="_images/39ffd1cd772429645e2b95593689195bcaa4d0bdb91705e948b49b4663cadd13.png" src="_images/39ffd1cd772429645e2b95593689195bcaa4d0bdb91705e948b49b4663cadd13.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1356,6 +1399,17 @@ end subroutine laplace_fortran
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iterations =  2457
+CPU times: user 59.8 ms, sys: 0 ns, total: 59.8 ms
+Wall time: 58.5 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f512936db50&gt;
+</pre></div>
+</div>
+<img alt="_images/39ffd1cd772429645e2b95593689195bcaa4d0bdb91705e948b49b4663cadd13.png" src="_images/39ffd1cd772429645e2b95593689195bcaa4d0bdb91705e948b49b4663cadd13.png" />
 </div>
 </div>
 </section>
