@@ -10,8 +10,10 @@ llvmlite
 matplotlib
 numba
 numpy
+pandas
 Pillow
 pythran
 scipy
 seaborn
 tqdm
+setuptools==59.8.0

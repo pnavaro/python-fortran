@@ -13,8 +13,10 @@ jobs:
     - uses: fortran-lang/setup-fortran@v1
       with:
           compiler: gcc
-          version: 12
+          version: 10
     - uses: actions/setup-python@v5
+      with:
+        python-version: '3.8'
     - uses: julia-actions/setup-julia@v2
 
     - name: Install python dependencies

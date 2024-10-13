@@ -1,5 +1,5 @@
 format: jb-book
-root: quickstart
+root: index
 parts:
 - caption: Call Fortran from Python with f2py
   chapters:
