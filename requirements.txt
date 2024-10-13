@@ -12,5 +12,6 @@ numba
 numpy
 Pillow
 pythran
+scipy
 seaborn
 tqdm
