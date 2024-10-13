@@ -551,21 +551,6 @@ Implemented recursively using the de Boor’s recursion formula</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">def</span> <span class="nf">bspline_python</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span><span class="w">         </span><span class="sd">&quot;&quot;&quot;Return the value at x in [0,1[ of the B-spline with </span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span><span class="sd">         integer nodes of degree p with support starting at j.</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span><span class="sd">         Implemented recursively using the de Boor&#39;s recursion formula&quot;&quot;&quot;</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;scipy&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -622,6 +607,11 @@ Implemented recursively using the de Boor’s recursion formula</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
 </div>
 <p>If we profile the code we can see that a lot of time is spent in <code class="docutils literal notranslate"><span class="pre">bspline</span></code> calls</p>
 </section>
@@ -629,7 +619,7 @@ Implemented recursively using the de Boor’s recursion formula</p>
 <h2>Accelerate with Fortran<a class="headerlink" href="#accelerate-with-fortran" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> fortranmagic
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fortranmagic</span>
 </pre></div>
 </div>
 </div>
@@ -659,6 +649,11 @@ recursive function bspline_fortran(p, j, x) result(res)
     +(1-w1)*bspline_fortran(p-1,j+1,x)
 
 end function bspline_fortran
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UsageError: Cell magic `%%fortran` not found.
 </pre></div>
 </div>
 </div>

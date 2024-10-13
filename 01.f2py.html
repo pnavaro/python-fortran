@@ -531,20 +531,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s2">&quot;InlineBackend.figure_format = &#39;retina&#39;&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">scipy.fftpack</span> <span class="k">as</span> <span class="nn">sf</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">sl</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;scipy&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <section id="simple-fortran-subroutine-to-compute-norm">
 <h2>Simple Fortran subroutine to compute norm<a class="headerlink" href="#simple-fortran-subroutine-to-compute-norm" title="Link to this heading">#</a></h2>
@@ -558,6 +544,11 @@ document.write(`
   <span class="n">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="p">::</span> <span class="n">c</span> 
   <span class="n">c</span> <span class="o">=</span>	<span class="n">sqrt</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> 
 <span class="n">end</span> <span class="n">subroutine</span> <span class="n">euclidian_norm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing euclidian_norm.f90
 </pre></div>
 </div>
 </div>
@@ -576,6 +567,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing euclidian_norm.f
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -584,6 +580,18 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!{</span>sys.executable<span class="o">}</span><span class="w"> </span>-m<span class="w"> </span>numpy.f2py<span class="w"> </span>--quiet<span class="w"> </span>-c<span class="w"> </span>euclidian_norm.f90<span class="w"> </span>-m<span class="w"> </span>vect
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/numpy/f2py/f2py2e.py:723: VisibleDeprecationWarning: 
+distutils has been deprecated since NumPy 1.26.x
+Use the Meson backend instead, or generate wrappers without -c and use a custom build script
+  builder = build_backend(
+<span class=" -Color -Color-Red">WARN: Could not locate executable armflang</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Removing build directory /tmp/tmppck_4xae
 </pre></div>
 </div>
 </div>
@@ -599,10 +607,31 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">vect</span><span class="o">.</span><span class="n">euclidian_norm</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span> <span class="c1"># Docstring is automatically generate</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c = euclidian_norm(a,b)
+
+Wrapper for ``euclidian_norm``.
+
+Parameters
+----------
+a : input float
+b : input float
+
+Returns
+-------
+c : float
 </pre></div>
 </div>
 </div>
@@ -619,6 +648,102 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> fortranmagic
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/fortranmagic.py:195: UserWarning: This is now an optional IPython functionality, using fortranmagic_cache requires you to install the `pickleshare` library.
+  cdir = self.shell.db[&#39;fortranmagic_cache&#39;]
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;load_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;fortranmagic&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/interactiveshell.py:2480,</span> in <span class="ni">InteractiveShell.run_line_magic</span><span class="nt">(self, magic_name, line, _stack_depth)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2478</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;local_ns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_scope</span><span class="p">(</span><span class="n">stack_depth</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2479</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2480</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2482</span> <span class="c1"># The code below prevents the output from being displayed</span>
+<span class="g g-Whitespace">   </span><span class="mi">2483</span> <span class="c1"># when using magics with decorator @output_can_be_silenced</span>
+<span class="g g-Whitespace">   </span><span class="mi">2484</span> <span class="c1"># when the last Python token in the expression is a &#39;;&#39;.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2485</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">magic</span><span class="o">.</span><span class="n">MAGIC_OUTPUT_CAN_BE_SILENCED</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/magics/extension.py:33,</span> in <span class="ni">ExtensionMagics.load_ext</span><span class="nt">(self, module_str)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">module_str</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="s1">&#39;Missing module name.&#39;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">33</span> <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">extension_manager</span><span class="o">.</span><span class="n">load_extension</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="k">if</span> <span class="n">res</span> <span class="o">==</span> <span class="s1">&#39;already loaded&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The </span><span class="si">%s</span><span class="s2"> extension is already loaded. To reload it, use:&quot;</span> <span class="o">%</span> <span class="n">module_str</span><span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/extensions.py:62,</span> in <span class="ni">ExtensionManager.load_extension</span><span class="nt">(self, module_str)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Load an IPython extension by its module name.</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span><span class="sd"> Returns the string &quot;already loaded&quot; if the extension is already loaded,</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span><span class="sd"> &quot;no load function&quot; if the module doesn&#39;t have a load_ipython_extension</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span><span class="sd"> function, or None if it succeeded.</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">62</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_extension</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span> <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="k">if</span> <span class="n">module_str</span> <span class="ow">in</span> <span class="n">BUILTINS_EXTS</span><span class="p">:</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/extensions.py:79,</span> in <span class="ni">ExtensionManager._load_extension</span><span class="nt">(self, module_str)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span>     <span class="n">mod</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">module_str</span><span class="p">]</span>
+<span class="ne">---&gt; </span><span class="mi">79</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_load_ipython_extension</span><span class="p">(</span><span class="n">mod</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>     <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/extensions.py:129,</span> in <span class="ni">ExtensionManager._call_load_ipython_extension</span><span class="nt">(self, mod)</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span> <span class="k">def</span> <span class="nf">_call_load_ipython_extension</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="s1">&#39;load_ipython_extension&#39;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">129</span>         <span class="n">mod</span><span class="o">.</span><span class="n">load_ipython_extension</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>         <span class="k">return</span> <span class="kc">True</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/fortranmagic.py:547,</span> in <span class="ni">load_ipython_extension</span><span class="nt">(ip)</span>
+<span class="g g-Whitespace">    </span><span class="mi">545</span> <span class="k">def</span> <span class="nf">load_ipython_extension</span><span class="p">(</span><span class="n">ip</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">546</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Load the extension in IPython.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">547</span>     <span class="n">ip</span><span class="o">.</span><span class="n">register_magics</span><span class="p">(</span><span class="n">FortranMagics</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">549</span>     <span class="c1"># enable fortran highlight</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span>     <span class="n">patch</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span><span class="s2">         if(typeof IPython === &#39;undefined&#39;) {</span>
+<span class="g g-Whitespace">    </span><span class="mi">552</span><span class="s2">             console.log(&#39;fortranmagic.py: TDOO: JupyterLab &#39; +</span>
+<span class="s2">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">557</span><span class="s2">         }</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span><span class="s2">         &quot;&quot;&quot;</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/IPython/core/magic.py:456,</span> in <span class="ni">MagicsManager.register</span><span class="nt">(self, *magic_objects)</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Class of magics </span><span class="si">%r</span><span class="s2"> was constructed without &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span>                      <span class="s2">&quot;the @register_magics class decorator&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span>     <span class="c1"># If we&#39;re given an uninstantiated class</span>
+<span class="ne">--&gt; </span><span class="mi">456</span>     <span class="n">m</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span> <span class="c1"># Now that we have an instance, we can register it and update the</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span> <span class="c1"># table of callables</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/fortranmagic.py:227,</span> in <span class="ni">FortranMagics.__init__</span><span class="nt">(self, shell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">225</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reloads</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code_cache</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="ne">--&gt; </span><span class="mi">227</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_open</span><span class="p">()</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/fortranmagic.py:196,</span> in <span class="ni">FortranMagics._cache_open</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span>     <span class="n">cdir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;fortranmagic_cache&#39;</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">196</span>     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">cdir</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_lib_dir</span> <span class="o">=</span> <span class="n">cdir</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span>         <span class="k">return</span>
+
+<span class="nn">File /usr/lib/python3.10/genericpath.py:42,</span> in <span class="ni">isdir</span><span class="nt">(s)</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Return true if the pathname refers to an existing directory.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">42</span>     <span class="n">st</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="k">except</span> <span class="p">(</span><span class="ne">OSError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>     <span class="k">return</span> <span class="kc">False</span>
+
+<span class="ne">TypeError</span>: stat: path should be string, bytes, os.PathLike or integer, not NoneType
 </pre></div>
 </div>
 </div>
