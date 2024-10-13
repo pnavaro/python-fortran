@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="./" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>SWIG and Ctypes &#8212; Python-Fortran notebooks</title>
   
@@ -14,49 +15,53 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
-    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '08.swig';</script>
@@ -73,23 +78,28 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
+
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -111,20 +121,12 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,10 +143,8 @@
         <div class="sidebar-primary-item">
 
   
-    
-  
 
-<a class="navbar-brand logo" href="quickstart.html">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -160,18 +160,7 @@
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Call Fortran from Python with f2py</span></p>
 <ul class="nav bd-sidenav">
@@ -204,7 +193,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -213,14 +202,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -245,14 +234,14 @@
       
       <li><a href="https://mybinder.org/v2/gh/pnavaro/python-fortran/master?urlpath=tree/notebooks/08.swig.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch on Binder"
+   title="Launch onBinder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+    <img src="_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -263,14 +252,14 @@
       
       <li><a href="https://colab.research.google.com/github/pnavaro/python-fortran/blob/master/notebooks/08.swig.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
+   title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img alt="Colab logo" src="_static/images/logo_colab.png">
+    <img src="_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -429,10 +418,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -440,14 +429,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -488,14 +477,14 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="swig-and-ctypes">
-<h1>SWIG and Ctypes<a class="headerlink" href="#swig-and-ctypes" title="Link to this heading">#</a></h1>
+<h1>SWIG and Ctypes<a class="headerlink" href="#swig-and-ctypes" title="Permalink to this heading">#</a></h1>
 <p>Interfacing Fortran code through C interface</p>
 <p>I found <a class="reference external" href="https://www.fortran90.org/src/best-practices.html#interfacing-with-python">this reference</a> with good examples.</p>
 <section id="problem-collatz-conjecture">
-<h2>Problem: Collatz conjecture<a class="headerlink" href="#problem-collatz-conjecture" title="Link to this heading">#</a></h2>
+<h2>Problem: Collatz conjecture<a class="headerlink" href="#problem-collatz-conjecture" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Choose <span class="math notranslate nohighlight">\(u_0\)</span></p></li>
 <li><p>If <span class="math notranslate nohighlight">\(u_k\)</span> even, <span class="math notranslate nohighlight">\(u_{k+1} \rightarrow \frac{u_k}{2}\)</span> ;</p></li>
@@ -506,7 +495,7 @@ document.write(`
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Collatz_conjecture">The Collatz conjecture on Wikipedia</a></p>
 </section>
 <section id="c-program">
-<h2>C program<a class="headerlink" href="#c-program" title="Link to this heading">#</a></h2>
+<h2>C program<a class="headerlink" href="#c-program" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> syracuse.c
@@ -566,7 +555,7 @@ time ./a.out
 </div>
 </section>
 <section id="python-program">
-<h2>Python program<a class="headerlink" href="#python-program" title="Link to this heading">#</a></h2>
+<h2>Python program<a class="headerlink" href="#python-program" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -590,15 +579,15 @@ time ./a.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10.4 s, sys: 0 ns, total: 10.4 s
-Wall time: 10.4 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 12 s, sys: 291 ms, total: 12.3 s
+Wall time: 12.3 s
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="performances">
-<h2>Performances<a class="headerlink" href="#performances" title="Link to this heading">#</a></h2>
+<h2>Performances<a class="headerlink" href="#performances" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The python syntax is simpler.</p></li>
 <li><p>100 times slower</p></li>
@@ -606,7 +595,7 @@ Wall time: 10.4 s
 </ul>
 </section>
 <section id="ctypes">
-<h2>Ctypes<a class="headerlink" href="#ctypes" title="Link to this heading">#</a></h2>
+<h2>Ctypes<a class="headerlink" href="#ctypes" title="Permalink to this heading">#</a></h2>
 <p>This is the C function we will call from python</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -659,15 +648,15 @@ gcc -fPIC -shared -O3 \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 349 ms, sys: 4.01 ms, total: 353 ms
-Wall time: 353 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 374 ms, sys: 12.1 ms, total: 386 ms
+Wall time: 386 ms
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="ctypes-with-fortran-module">
-<h2>Ctypes with Fortran module<a class="headerlink" href="#ctypes-with-fortran-module" title="Link to this heading">#</a></h2>
+<h2>Ctypes with Fortran module<a class="headerlink" href="#ctypes-with-fortran-module" title="Permalink to this heading">#</a></h2>
 <p>If you change the fortran file you have to restart the kernel</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -743,8 +732,8 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 394 ms, sys: 16 μs, total: 395 ms
-Wall time: 394 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 468 ms, sys: 4.01 ms, total: 472 ms
+Wall time: 472 ms
 </pre></div>
 </div>
 </div>
@@ -757,7 +746,7 @@ Wall time: 394 ms
 <p><a class="reference external" href="http://docs.python.org/library/ctypes.html">http://docs.python.org/library/ctypes.html</a>}</p>
 </section>
 <section id="swig">
-<h2>SWIG<a class="headerlink" href="#swig" title="Link to this heading">#</a></h2>
+<h2>SWIG<a class="headerlink" href="#swig" title="Permalink to this heading">#</a></h2>
 <p>Interface file syrac.i for C function in syrac.c</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -786,7 +775,7 @@ swig -python syrac.i
 </div>
 </div>
 <section id="build-the-python-module">
-<h3>Build the python module<a class="headerlink" href="#build-the-python-module" title="Link to this heading">#</a></h3>
+<h3>Build the python module<a class="headerlink" href="#build-the-python-module" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Using command line</p></li>
 </ul>
@@ -834,7 +823,7 @@ gcc<span class="w"> </span><span class="sb">`</span>python3-config<span class="w
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/python-fortran/python-fortran/notebooks/setup.py:1: DeprecationWarning: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>setup.py:1: DeprecationWarning: 
 
   `numpy.distutils` is deprecated since NumPy 1.23.0, as a result
   of the deprecation of `distutils` itself. It will be removed for
@@ -856,320 +845,300 @@ INFO: customize UnixCCompiler
 INFO: customize UnixCCompiler using build_ext
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-march=native)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-march=native)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-creating /tmp/tmphc4viqyd/home
-creating /tmp/tmphc4viqyd/home/runner
-creating /tmp/tmphc4viqyd/home/runner/.local
-creating /tmp/tmphc4viqyd/home/runner/.local/lib
-creating /tmp/tmphc4viqyd/home/runner/.local/lib/python3.10
-creating /tmp/tmphc4viqyd/home/runner/.local/lib/python3.10/site-packages
-creating /tmp/tmphc4viqyd/home/runner/.local/lib/python3.10/site-packages/numpy
-creating /tmp/tmphc4viqyd/home/runner/.local/lib/python3.10/site-packages/numpy/distutils
-creating /tmp/tmphc4viqyd/home/runner/.local/lib/python3.10/site-packages/numpy/distutils/checks
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+creating /tmp/tmphgu32ylu/opt
+creating /tmp/tmphgu32ylu/opt/hostedtoolcache
+creating /tmp/tmphgu32ylu/opt/hostedtoolcache/Python
+creating /tmp/tmphgu32ylu/opt/hostedtoolcache/Python/3.8.18
+creating /tmp/tmphgu32ylu/opt/hostedtoolcache/Python/3.8.18/x64
+creating /tmp/tmphgu32ylu/opt/hostedtoolcache/Python/3.8.18/x64/lib
+creating /tmp/tmphgu32ylu/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8
+creating /tmp/tmphgu32ylu/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages
+creating /tmp/tmphgu32ylu/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy
+creating /tmp/tmphgu32ylu/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/distutils
+creating /tmp/tmphgu32ylu/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/distutils/checks
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-march=native&#39;
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-O3)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-O3)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-O3&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-Werror)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-Werror)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-Werror&#39;
-INFO: CCompilerOpt.__init__[1795] : check requested baseline
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: CCompilerOpt.__init__[1786] : check requested baseline
+INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-msse)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse&#39;
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse2)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-msse2)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse2&#39;
-INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE&#39; with flags (-msse -msse2)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;SSE&#39; with flags (-msse -msse2)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -Werror&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;SSE2&#39; with flags (-msse -msse2)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse -msse2 -Werror&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE2&#39; with flags (-msse -msse2)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-msse3)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse3)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse3&#39;
-INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE3&#39; with flags (-msse -msse2 -msse3)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;SSE3&#39; with flags (-msse -msse2 -msse3)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse -msse2 -msse3 -Werror&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.__init__[1804] : check requested dispatch-able features
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mssse3)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.__init__[1795] : check requested dispatch-able features
+INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mssse3)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-mssse3&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse4.1)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-msse4.1)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse4.1&#39;
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mpopcnt)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mpopcnt)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-mpopcnt&#39;
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse4.2)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-msse4.2)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse4.2&#39;
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mavx)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-mavx&#39;
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mf16c)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mf16c)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-mf16c&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mfma)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;F16C&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mfma&#39;
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx2)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mavx2&#39;
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512f -mno-mmx)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mavx512f -mno-mmx&#39;
-INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512cd)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mavx512cd&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512CD&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;POPCNT&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -Werror&#39;
-INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSSE3&#39; with flags (-msse -msse2 -msse3 -mssse3)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512F&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX2&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mavx2)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mavx2 -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;FMA3&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE41&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;F16C&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -Werror&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE42&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mavx2)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -Werror&#39;
-INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-mavx2&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;AVX2&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mavx2)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -Werror&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mavx2 -Werror&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512er -mavx512pf)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mfma)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mavx512er -mavx512pf&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-mfma&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_KNL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;FMA3&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -Werror&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -Werror&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512vl -mavx512bw -mavx512dq)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mavx512f -mno-mmx)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mavx512vl -mavx512bw -mavx512dq&#39;
-INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_SKX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-mavx512f -mno-mmx&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;AVX512F&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512vnni)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mavx512vnni&#39;
-INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_CLX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512ifma -mavx512vbmi)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mavx512ifma -mavx512vbmi&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_CNL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma -mavx512vbmi)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma -mavx512vbmi -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_ICL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512fp16)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mavx512fp16&#39;
-INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_SPR&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq -mavx512fp16)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq -mavx512fp16 -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq&#39;
-INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_KNM&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
-extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq -Werror&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.__init__[1816] : skip features (SSE3 SSE SSE2) since its part of baseline
-INFO: CCompilerOpt.__init__[1820] : initialize targets groups
-INFO: CCompilerOpt.__init__[1822] : parse target group simd_test
-INFO: CCompilerOpt._parse_target_tokens[2033] : skip targets (VXE2 VSX4 ASIMD NEON XOP VSX VX VXE FMA4 VSX3 VSX2) not part of baseline or dispatch-able features
-INFO: CCompilerOpt._parse_policy_not_keepbase[2145] : skip baseline features (SSE2)
-INFO: CCompilerOpt.generate_dispatch_header[2366] : generate CPU dispatch header: (build/src.linux-x86_64-3.10/numpy/distutils/include/npy_cpu_dispatch_config.h)
-<span class=" -Color -Color-Red">WARN: CCompilerOpt.generate_dispatch_header[2375] : dispatch header dir build/src.linux-x86_64-3.10/numpy/distutils/include does not exist, creating it</span>
-INFO: CCompilerOpt.feature_extra_checks[1640] : Testing extra checks for feature &#39;AVX512F&#39; (AVX512F_REDUCE)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
-
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -Werror&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_extra_checks[1640] : Testing extra checks for feature &#39;AVX512_SKX&#39; (AVX512BW_MASK AVX512DQ_MASK)
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mavx512cd)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-mavx512cd&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;AVX512CD&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;SSSE3&#39; with flags (-msse -msse2 -msse3 -mssse3)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;POPCNT&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -Werror&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;AVX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;SSE42&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -Werror&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;SSE41&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mavx512er -mavx512pf)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-mavx512er -mavx512pf&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;AVX512_KNL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mavx512vl -mavx512bw -mavx512dq)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-mavx512vl -mavx512bw -mavx512dq&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;AVX512_SKX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -Werror&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mavx512vnni)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-mavx512vnni&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;AVX512_CLX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mavx512ifma -mavx512vbmi)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-mavx512ifma -mavx512vbmi&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;AVX512_CNL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma -mavx512vbmi)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma -mavx512vbmi -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;AVX512_ICL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1077] : testing flags (-mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq&#39;
+INFO: CCompilerOpt.feature_test[1551] : testing feature &#39;AVX512_KNM&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.__init__[1807] : skip features (SSE2 SSE3 SSE) since its part of baseline
+INFO: CCompilerOpt.__init__[1811] : initialize targets groups
+INFO: CCompilerOpt.__init__[1813] : parse target group simd_test
+INFO: CCompilerOpt._parse_target_tokens[2024] : skip targets (VSX VXE2 VSX4 ASIMD VX VXE XOP NEON VSX2 FMA4 VSX3) not part of baseline or dispatch-able features
+INFO: CCompilerOpt._parse_policy_not_keepbase[2136] : skip baseline features (SSE2)
+INFO: CCompilerOpt.generate_dispatch_header[2357] : generate CPU dispatch header: (build/src.linux-x86_64-3.8/numpy/distutils/include/npy_cpu_dispatch_config.h)
+<span class=" -Color -Color-Red">WARN: CCompilerOpt.generate_dispatch_header[2366] : dispatch header dir build/src.linux-x86_64-3.8/numpy/distutils/include does not exist, creating it</span>
+INFO: CCompilerOpt.feature_extra_checks[1631] : Testing extra checks for feature &#39;AVX512F&#39; (AVX512F_REDUCE)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_extra_checks[1631] : Testing extra checks for feature &#39;AVX512_SKX&#39; (AVX512BW_MASK AVX512DQ_MASK)
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
+
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -Werror&#39;
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: building &#39;_syracuseC&#39; extension
 INFO: compiling C sources
-INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC
+INFO: C compiler: gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC
 
-INFO: compile options: &#39;-I/home/runner/.local/lib/python3.10/site-packages/numpy/_core/include -Ibuild/src.linux-x86_64-3.10/numpy/distutils/include -I/usr/include/python3.10 -c&#39;
+INFO: compile options: &#39;-I/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/numpy/core/include -Ibuild/src.linux-x86_64-3.8/numpy/distutils/include -I/opt/hostedtoolcache/Python/3.8.18/x64/include/python3.8 -c&#39;
 extra options: &#39;-msse -msse2 -msse3&#39;
 INFO: gcc: syrac_wrap.c
 INFO: gcc: syrac.c
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: x86_64-linux-gnu-gcc -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsymbolic-functions -g -fwrapv -O2 -Wl,-Bsymbolic-functions -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 build/temp.linux-x86_64-3.10/syrac_wrap.o build/temp.linux-x86_64-3.10/syrac.o -o _syracuseC.cpython-310-x86_64-linux-gnu.so
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: gcc -shared -Wl,--rpath=/opt/hostedtoolcache/Python/3.8.18/x64/lib -Wl,--rpath=/opt/hostedtoolcache/Python/3.8.18/x64/lib build/temp.linux-x86_64-3.8/syrac_wrap.o build/temp.linux-x86_64-3.8/syrac.o -L/opt/hostedtoolcache/Python/3.8.18/x64/lib -o _syracuseC.cpython-38-x86_64-linux-gnu.so
 INFO: 
 ########### EXT COMPILER OPTIMIZATION ###########
 INFO: Platform      : 
@@ -1184,9 +1153,9 @@ CPU baseline  :
 
 CPU dispatch  : 
   Requested   : &#39;max -xop -fma4&#39;
-  Enabled     : SSSE3 SSE41 POPCNT SSE42 AVX F16C FMA3 AVX2 AVX512F AVX512CD AVX512_KNL AVX512_KNM AVX512_SKX AVX512_CLX AVX512_CNL AVX512_ICL AVX512_SPR
+  Enabled     : SSSE3 SSE41 POPCNT SSE42 AVX F16C FMA3 AVX2 AVX512F AVX512CD AVX512_KNL AVX512_KNM AVX512_SKX AVX512_CLX AVX512_CNL AVX512_ICL
   Generated   : none
-INFO: CCompilerOpt.cache_flush[864] : write cache to path -&gt; /home/runner/work/python-fortran/python-fortran/notebooks/build/temp.linux-x86_64-3.10/ccompiler_opt_cache_ext.py
+INFO: CCompilerOpt.cache_flush[857] : write cache to path -&gt; /home/runner/work/python-fortran/python-fortran/notebooks/build/temp.linux-x86_64-3.8/ccompiler_opt_cache_ext.py
 </pre></div>
 </div>
 </div>
@@ -1216,8 +1185,8 @@ INFO: CCompilerOpt.cache_flush[864] : write cache to path -&gt; /home/runner/wor
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 251 ms, sys: 3.98 ms, total: 255 ms
-Wall time: 254 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 220 ms, sys: 8.02 ms, total: 229 ms
+Wall time: 228 ms
 </pre></div>
 </div>
 </div>
@@ -1225,7 +1194,7 @@ Wall time: 254 ms
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://calcul.math.cnrs.fr/Documents/Ecoles/2010/InterfacagePython.pdf">Interfacage C-Python par Xavier Juvigny</a></p></li>
 <li><p><a class="reference external" href="http://calcul.math.cnrs.fr/Documents/Ecoles/2010/cours_cython.pdf">Optimizing and interfacing with Cython par Konrad Hinsen</a></p></li>
@@ -1261,7 +1230,7 @@ Wall time: 254 ms
               
               
               
-                <footer class="prev-next-footer d-print-none">
+                <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1281,7 +1250,6 @@ Wall time: 254 ms
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1324,7 +1292,7 @@ By Pierre Navaro
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
@@ -1348,8 +1316,8 @@ By Pierre Navaro
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
