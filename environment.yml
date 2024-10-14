@@ -2,6 +2,7 @@ name: python-fortran
 channels:
   - conda-forge
 dependencies:
+  - python=3.9
   - jupytext
   - cython
   - fortran-magic
