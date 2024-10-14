@@ -23,7 +23,7 @@ jobs:
         auto-activate-base: false
 
     - name: Install PyCall
-      shell: bash -l {0}
+      shell: bash {0}
       env:
           PYTHON: ""
       run: |
