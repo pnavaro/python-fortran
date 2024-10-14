@@ -24,6 +24,8 @@ jobs:
 
     - name: Install PyCall
       shell: bash -l {0}
+      env:
+          PYTHON: ""
       run: |
         julia -e ' using Pkg; Pkg.update() '
         julia -e ' using Pkg; Pkg.add(["REPL", "PyCall"]); Pkg.build("PyCall")'

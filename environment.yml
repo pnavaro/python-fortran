@@ -3,23 +3,22 @@ channels:
   - conda-forge
 dependencies:
   - python=3.9
-  - jupytext
   - cython
   - fortran-magic
+  - fftw
   - gast
   - imageio
   - ipykernel
   - ipywidgets
-  - llvmlite
-  - pyjulia
+  - jupytext
+  - jupyter-book
   - matplotlib
   - meson
   - numba
   - numpy
   - pillow
+  - pyjulia
   - pythran
+  - scipy
   - seaborn
   - tqdm
-  - fftw
-  - scipy
-  - jupyter-book
