@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Julia Set &#8212; Python-Fortran notebooks</title>
   
@@ -15,56 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script type="application/vnd.jupyter.widget-state+json">{"state": {"7fe63bf2630c41df9274cf45ed5e3c19": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "233a4a3df1144661a745c9181fd4aa08": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "184f5dd33f4c4b95b688697ec3d7e000": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_7fe63bf2630c41df9274cf45ed5e3c19", "max": 8.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_233a4a3df1144661a745c9181fd4aa08", "tabbable": null, "tooltip": null, "value": 8.0}}, "e4dfd83aa78c41ed9477496e51534097": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "5c82faf4d0124e328740f83320b1cfaa": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "0d2fa22dea0b4a1aa264a73efbfd7eef": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_e4dfd83aa78c41ed9477496e51534097", "placeholder": "\u200b", "style": "IPY_MODEL_5c82faf4d0124e328740f83320b1cfaa", "tabbable": null, "tooltip": null, "value": "100%"}}, "edc05e38f2874bd293a541e8fca86a30": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d345e60891854900a66665c2c7fc99a3": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "b77ec22c5ac14015a8ad9a7fd143a2da": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_edc05e38f2874bd293a541e8fca86a30", "placeholder": "\u200b", "style": "IPY_MODEL_d345e60891854900a66665c2c7fc99a3", "tabbable": null, "tooltip": null, "value": "\u20078/8\u2007[00:39&lt;00:00,\u2007\u20071.60s/it]"}}, "18f62c70fa2a4f18aa2af08769ada93c": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9918eec4804c4540a95e46cabc71ee5e": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_0d2fa22dea0b4a1aa264a73efbfd7eef", "IPY_MODEL_184f5dd33f4c4b95b688697ec3d7e000", "IPY_MODEL_b77ec22c5ac14015a8ad9a7fd143a2da"], "layout": "IPY_MODEL_18f62c70fa2a4f18aa2af08769ada93c", "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '03.julia-set';</script>
     <link rel="canonical" href="https://pnavaro.github.io/python-fortran/03.julia-set.html" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -80,28 +72,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -123,12 +110,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -144,6 +139,8 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
 
+  
+    
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -162,7 +159,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Call Fortran from Python with f2py</span></p>
 <ul class="nav bd-sidenav">
@@ -195,7 +203,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -204,14 +212,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -236,14 +244,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/pnavaro/python-fortran/master?urlpath=tree/notebooks/03.julia-set.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -254,14 +262,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/pnavaro/python-fortran/blob/master/notebooks/03.julia-set.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_colab.png">
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -420,10 +428,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -431,14 +439,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -483,10 +491,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="julia-set">
-<h1>Julia Set<a class="headerlink" href="#julia-set" title="Permalink to this heading">#</a></h1>
+<h1>Julia Set<a class="headerlink" href="#julia-set" title="Link to this heading">#</a></h1>
 <p>In the notebook I present different way to accelerate python code.
 This is a modified version from <a class="reference external" href="https://github.com/gouarin/GTSage2014/">Loic Gouarin</a></p>
 <p>The test case is the computation of the Julia set <a class="reference external" href="https://en.wikipedia.org/wiki/Julia_set">wikipedia</a></p>
@@ -521,7 +529,7 @@ This is a modified version from <a class="reference external" href="https://gith
 </div>
 </div>
 <section id="initialize-mesh">
-<h2>Initialize Mesh<a class="headerlink" href="#initialize-mesh" title="Permalink to this heading">#</a></h2>
+<h2>Initialize Mesh<a class="headerlink" href="#initialize-mesh" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span> <span class="c1"># mesh</span>
@@ -537,7 +545,7 @@ This is a modified version from <a class="reference external" href="https://gith
 </div>
 </section>
 <section id="pure-python">
-<h2>Pure Python<a class="headerlink" href="#pure-python" title="Permalink to this heading">#</a></h2>
+<h2>Pure Python<a class="headerlink" href="#pure-python" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">juliaset_python</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">maxit</span><span class="p">):</span>
@@ -576,12 +584,12 @@ This is a modified version from <a class="reference external" href="https://gith
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8a9a8da35ba12aac948c3c0df00c7a2a678422496d5c7634430d8e1d26d343d2.png" src="_images/8a9a8da35ba12aac948c3c0df00c7a2a678422496d5c7634430d8e1d26d343d2.png" />
+<img alt="_images/91e8dcb0e011d5c1402d0153f94ea9302f8788b203215263d4faf0d605a7f39c.png" src="_images/91e8dcb0e011d5c1402d0153f94ea9302f8788b203215263d4faf0d605a7f39c.png" />
 </div>
 </div>
 </section>
 <section id="numba">
-<h2>numba<a class="headerlink" href="#numba" title="Permalink to this heading">#</a></h2>
+<h2>numba<a class="headerlink" href="#numba" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://numba.pydata.org">Numba</a> will accelerate the pure python function just  with
 the decorator <code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code>. Numba does everything for you.</p>
 <div class="cell docutils container">
@@ -616,12 +624,12 @@ the decorator <code class="docutils literal notranslate"><span class="pre">&#64;
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8a9a8da35ba12aac948c3c0df00c7a2a678422496d5c7634430d8e1d26d343d2.png" src="_images/8a9a8da35ba12aac948c3c0df00c7a2a678422496d5c7634430d8e1d26d343d2.png" />
+<img alt="_images/91e8dcb0e011d5c1402d0153f94ea9302f8788b203215263d4faf0d605a7f39c.png" src="_images/91e8dcb0e011d5c1402d0153f94ea9302f8788b203215263d4faf0d605a7f39c.png" />
 </div>
 </div>
 </section>
 <section id="pyjulia">
-<h2>PyJulia<a class="headerlink" href="#pyjulia" title="Permalink to this heading">#</a></h2>
+<h2>PyJulia<a class="headerlink" href="#pyjulia" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://pyjulia.readthedocs.io/en/latest/#">PyJulia</a> is a python module to import
 Julia function in your Python session. You can also run Julia code in a middle of
 a Jupyter notebook with a Python kernel.</p>
@@ -647,35 +655,51 @@ a Jupyter notebook with a Python kernel.</p>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ Info: Julia version info
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Julia Version 1.11.0
-Commit 501a4f25c2b (2024-10-07 11:40 UTC)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Julia Version 1.10.4
+Commit 48d4fd4843 (2024-06-04 10:41 UTC)
 Build Info:
-  Official https://julialang.org/ release
+  https://github.com/conda-forge/julia-feedstock
+
+    Note: This is an unofficial build, please report bugs to the project
+    responsible for this build and not to the Julia project unless you can
+    reproduce the issue using official builds available at https://julialang.org/downloads
+
 Platform Info:
-  OS: Linux (x86_64-linux-gnu)
+  OS: Linux (x86_64-conda-linux-gnu)
       Ubuntu 22.04.5 LTS
   uname: Linux 6.5.0-1025-azure #26~22.04.1-Ubuntu SMP Thu Jul 11 22:33:04 UTC 2024 x86_64 x86_64
   CPU: AMD EPYC 7763 64-Core Processor: 
               speed         user         nice          sys         idle          irq
-       #1     0 MHz        394 s          5 s         85 s       5701 s          0 s
-       #2     0 MHz        425 s          3 s         87 s       5691 s          0 s
-       #3     0 MHz        450 s          2 s        111 s       5640 s          0 s
-       #4     0 MHz        479 s          1 s        102 s       5615 s          0 s
-  Memory: 15.606491088867188 GB (14348.10546875 MB free)
-  Uptime: 627.75 sec
-  Load Avg:  1.2  0.53  0.21
+       #1  3244 MHz        328 s          0 s        135 s       2084 s          0 s
+       #2  3242 MHz        469 s          0 s        129 s       1968 s          0 s
+       #3  2445 MHz        559 s          0 s        173 s       1800 s          0 s
+       #4  3225 MHz        550 s          0 s        157 s       1839 s          0 s
+  Memory: 15.606491088867188 GB (14379.61328125 MB free)
+  Uptime: 266.07 sec
+  Load Avg:  1.38  0.86  0.38
   WORD_SIZE: 64
-  LLVM: libLLVM-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.0.6 (ORCJIT, znver3)
+  LIBM: libopenlibm
+  LLVM: libLLVM-15.0.7 (ORCJIT, znver3)
 Threads: 1 default, 0 interactive, 1 GC (on 4 virtual cores)
 Environment:
-  LD_LIBRARY_PATH = /opt/hostedtoolcache/Python/3.8.18/x64/lib
+  JULIA_CONDAPKG_BACKEND_BACKUP = 
+  JULIA_CONDAPKG_BACKEND = System
+  JULIA_LOAD_PATH = @:@python-fortran:@stdlib
+  JULIA_LOAD_PATH_BACKUP = 
+  JULIA_DEPOT_PATH_BACKUP = 
+  JULIA_PROJECT_BACKUP = 
+  JULIA_CONDAPKG_EXE = /usr/share/miniconda/bin/conda
+  JULIA_SSL_CA_ROOTS_PATH = /usr/share/miniconda/envs/python-fortran/ssl/cacert.pem
+  JULIA_DEPOT_PATH = /usr/share/miniconda/envs/python-fortran/share/julia:
+  LD_GOLD = /usr/share/miniconda/envs/python-fortran/bin/x86_64-conda-linux-gnu-ld.gold
+  LD_LIBRARY_PATH = /opt/hostedtoolcache/Python/3.9.20/x64/lib
+  JULIA_PROJECT = @python-fortran
+  JULIA_SSL_CA_ROOTS_PATH_BACKUP = 
+  JULIA_CONDAPKG_EXE_BACKUP = 
   SELENIUM_JAR_PATH = /usr/share/java/selenium-server.jar
   JAVA_HOME_11_X64 = /usr/lib/jvm/temurin-11-jdk-amd64
-  PKG_CONFIG_PATH = /opt/hostedtoolcache/Python/3.8.18/x64/lib/pkgconfig
-  GITHUB_PATH = /home/runner/work/_temp/_runner_file_commands/add_path_02422108-d4a8-43cc-86fd-dff89c85d9c5
+  PKG_CONFIG_PATH = /opt/hostedtoolcache/Python/3.9.20/x64/lib/pkgconfig
+  GITHUB_PATH = /home/runner/work/_temp/_runner_file_commands/add_path_21f6c7c3-b976-49c2-b278-5b7f512995b8
   JAVA_HOME = /usr/lib/jvm/temurin-11-jdk-amd64
   GRADLE_HOME = /usr/share/gradle-8.10.2
   XDG_CONFIG_HOME = /home/runner/.config
@@ -684,36 +708,184 @@ Environment:
   HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS = 3650
   DEPLOYMENT_BASEPATH = /opt/runner
   ANDROID_NDK_LATEST_HOME = /usr/local/lib/android/sdk/ndk/27.1.12297006
+  CXXFLAGS = -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
+  DEBUG_CXXFLAGS = -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
+  LDFLAGS = -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/usr/share/miniconda/envs/python-fortran/lib -Wl,-rpath-link,/usr/share/miniconda/envs/python-fortran/lib -L/usr/share/miniconda/envs/python-fortran/lib
   HOME = /home/runner
+  DEBUG_CFLAGS = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
+  CMAKE_PREFIX_PATH = /usr/share/miniconda/envs/python-fortran:/usr/share/miniconda/envs/python-fortran/x86_64-conda-linux-gnu/sysroot/usr
+  CONDA_JL_HOME = /usr/share/miniconda/envs/python-fortran
+  CPPFLAGS = -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /usr/share/miniconda/envs/python-fortran/include
   JAVA_HOME_21_X64 = /usr/lib/jvm/temurin-21-jdk-amd64
   GITHUB_EVENT_PATH = /home/runner/work/_temp/_github_workflow/event.json
   JAVA_HOME_17_X64 = /usr/lib/jvm/temurin-17-jdk-amd64
   ANDROID_NDK_HOME = /usr/local/lib/android/sdk/ndk/27.1.12297006
+  CONDA_JL_HOME_BACKUP = 
   HOMEBREW_NO_AUTO_UPDATE = 1
   ANDROID_HOME = /usr/local/lib/android/sdk
   PIPX_HOME = /opt/pipx
+  DEBUG_CPPFLAGS = -D_DEBUG -D_FORTIFY_SOURCE=2 -Og -isystem /usr/share/miniconda/envs/python-fortran/include
   LEIN_HOME = /usr/local/lib/lein
-  PATH = /opt/hostedtoolcache/julia/1.11.0/x64/bin:/opt/hostedtoolcache/Python/3.8.18/x64/bin:/opt/hostedtoolcache/Python/3.8.18/x64:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  PATH = /usr/share/miniconda/envs/python-fortran/bin:/usr/share/miniconda/condabin:/usr/share/miniconda/condabin:/opt/hostedtoolcache/Python/3.9.20/x64/bin:/opt/hostedtoolcache/Python/3.9.20/x64:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/runner/.dotnet/tools
+  CFLAGS = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
   SWIFT_PATH = /usr/share/swift/usr/bin
   TERM = xterm-color
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ Info: Julia executable: /opt/hostedtoolcache/julia/1.11.0/x64/bin/julia
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ Info: Julia executable: /usr/share/miniconda/envs/python-fortran/bin/julia
 [ Info: Trying to import PyCall...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Info: PyCall is already installed and compatible with Python executable.
-│ 
-│ PyCall:
-│     python: /opt/hostedtoolcache/Python/3.8.18/x64/bin/python3
-│     libpython: /opt/hostedtoolcache/Python/3.8.18/x64/lib/libpython3.8.so.1.0
-│ Python:
-│     python: /opt/hostedtoolcache/Python/3.8.18/x64/bin/python
-└     libpython: /opt/hostedtoolcache/Python/3.8.18/x64/lib/libpython3.8.so.1.0
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Error: `import PyCall` failed
+│   exception =
+│    ArgumentError: Package PyCall [438e738f-606a-5dbb-bf0a-cddfbfd45ab0] is required but does not seem to be installed:
+│     - Run `Pkg.instantiate()` to install all recorded dependencies.
+│    
+│    Stacktrace:
+│      [1] _require(pkg::Base.PkgId, env::Nothing)
+│        @ Base ./loading.jl:1926
+│      [2] __require_prelocked(uuidkey::Base.PkgId, env::Nothing)
+│        @ Base ./loading.jl:1812
+│      [3] #invoke_in_world#3
+│        @ ./essentials.jl:926 [inlined]
+│      [4] invoke_in_world
+│        @ ./essentials.jl:923 [inlined]
+│      [5] _require_prelocked
+│        @ ./loading.jl:1803 [inlined]
+│      [6] _require_prelocked
+│        @ ./loading.jl:1802 [inlined]
+│      [7] macro expansion
+│        @ ./lock.jl:267 [inlined]
+│      [8] require(uuidkey::Base.PkgId)
+│        @ Base ./loading.jl:1797
+│      [9] top-level scope
+│        @ /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/install.jl:36
+│     [10] include(mod::Module, _path::String)
+│        @ Base ./Base.jl:495
+│     [11] exec_options(opts::Base.JLOptions)
+│        @ Base ./client.jl:318
+│     [12] _start()
+│        @ Base ./client.jl:552
+└ @ Main /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/install.jl:38
+[ Info: Installing PyCall...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: import of MainInclude.eval into Main conflicts with an existing identifier; ignored.
-WARNING: could not import MainInclude.include into Main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Resolving package versions...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Updating `/usr/share/miniconda/envs/python-fortran/share/julia/environments/python-fortran/Project.toml`
+  [438e738f] + PyCall v1.96.4
+    Updating `/usr/share/miniconda/envs/python-fortran/share/julia/environments/python-fortran/Manifest.toml`
+  [8f4d0f93] + Conda v1.10.2
+  [682c06a0] + JSON v0.21.4
+  [1914dd2f] + MacroTools v0.5.13
+  [69de0a69] + Parsers v2.8.1
+  [aea7be01] + PrecompileTools v1.2.1
+  [21216c6a] + Preferences v1.4.3
+  [438e738f] + PyCall v1.96.4
+  [81def892] + VersionParsing v1.3.0
+  [0dad84c5] + ArgTools v1.1.1
+  [56f22d72] + Artifacts
+  [2a0f44e3] + Base64
+  [ade2ca70] + Dates
+  [f43a241f] + Downloads v1.6.0
+  [7b1f6079] + FileWatching
+  [b27032c2] + LibCURL v0.6.4
+  [8f399da3] + Libdl
+  [37e2e46d] + LinearAlgebra
+  [d6f4376e] + Markdown
+  [a63ad114] + Mmap
+  [ca575930] + NetworkOptions v1.2.0
+  [de0858da] + Printf
+  [9a3f8284] + Random
+  [ea8e919c] + SHA v0.7.0
+  [9e88b42a] + Serialization
+  [fa267f1f] + TOML v1.0.3
+  [cf7118a7] + UUIDs
+  [4ec0a83e] + Unicode
+  [e66e0078] + CompilerSupportLibraries_jll v1.1.1+0
+  [deac9b47] + LibCURL_jll v8.4.0+0
+  [29816b5a] + LibSSH2_jll v1.11.0+1
+  [c8ffd9c3] + MbedTLS_jll v2.28.2+1
+  [14a3606d] + MozillaCACerts_jll v2023.1.10
+  [4536629a] + OpenBLAS_jll v0.3.23+4
+  [83775a58] + Zlib_jll v1.2.13+1
+  [8e850b90] + libblastrampoline_jll v5.8.0+1
+  [8e850ede] + nghttp2_jll v1.52.0+1
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precompiling project...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ✓ CompilerSupportLibraries_jll
+  ✓ VersionParsing
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ✓ Preferences
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ✓ PrecompileTools
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ✓ MacroTools
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ✓ Parsers
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ✓ JSON
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ✓ Conda
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Error: curl_multi_assign: 1
+└ @ Downloads.Curl /usr/share/miniconda/envs/python-fortran/share/julia/stdlib/v1.10/Downloads/src/Curl/utils.jl:57
+┌ Error: curl_multi_assign: 1
+└ @ Downloads.Curl /usr/share/miniconda/envs/python-fortran/share/julia/stdlib/v1.10/Downloads/src/Curl/utils.jl:57
+
+[3471] signal (6.-6): Aborted
+in expression starting at /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/install.jl:73
+pthread_kill at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+raise at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+abort at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+uv__io_poll at /workspace/srcdir/libuv/src/unix/epoll.c:166
+uv_run at /workspace/srcdir/libuv/src/unix/core.c:400
+ijl_task_get_next at /usr/local/src/conda/julia-1.10.4/src/partr.c:478
+poptask at ./task.jl:985
+wait at ./task.jl:994
+#wait#645 at ./condition.jl:130
+wait at ./condition.jl:125 [inlined]
+_wait at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/FileWatching/src/FileWatching.jl:562
+wait at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/FileWatching/src/FileWatching.jl:590
+#58 at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/Downloads/src/Curl/Multi.jl:188
+jfptr_YY.58_92826.1 at /usr/share/miniconda/envs/python-fortran/lib/julia/sys.so (unknown line)
+jl_apply at /usr/local/src/conda/julia-1.10.4/src/julia.h:1982 [inlined]
+start_task at /usr/local/src/conda/julia-1.10.4/src/task.c:1238
+Allocations: 5511607 (Pool: 5505735; Big: 5872); GC: 8
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">PyCallInstallError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">julia</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">julia</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">julia.api</span> <span class="kn">import</span> <span class="n">Julia</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">jl</span> <span class="o">=</span> <span class="n">Julia</span><span class="p">(</span><span class="n">compiled_modules</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/tools.py:118,</span> in <span class="ni">install</span><span class="nt">(julia, color, python, quiet)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="k">return</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span> <span class="k">elif</span> <span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">118</span>     <span class="k">raise</span> <span class="n">PyCallInstallError</span><span class="p">(</span><span class="s2">&quot;Installing&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">quiet</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+
+<span class="ne">PyCallInstallError</span>: Installing PyCall failed.
+
+<span class="o">**</span> <span class="n">Important</span> <span class="n">information</span> <span class="kn">from</span> <span class="nn">Julia</span> <span class="n">may</span> <span class="n">be</span> <span class="n">printed</span> <span class="n">before</span> <span class="n">Python</span><span class="s1">&#39;s Traceback **</span>
+
+<span class="n">Some</span> <span class="n">useful</span> <span class="n">information</span> <span class="n">may</span> <span class="n">also</span> <span class="n">be</span> <span class="n">stored</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">build</span> <span class="n">log</span> <span class="n">file</span>
+<span class="err">`</span><span class="o">~/.</span><span class="n">julia</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">PyCall</span><span class="o">/*/</span><span class="n">deps</span><span class="o">/</span><span class="n">build</span><span class="o">.</span><span class="n">log</span><span class="err">`</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
@@ -751,7 +923,7 @@ WARNING: could not import MainInclude.include into Main
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing julia_set.jl
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting julia_set.jl
 </pre></div>
 </div>
 </div>
@@ -763,12 +935,6 @@ WARNING: could not import MainInclude.include into Main
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: import of MainInclude.eval into Main conflicts with an existing identifier; ignored.
-WARNING: could not import MainInclude.include into Main
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -777,16 +943,16 @@ WARNING: could not import MainInclude.include into Main
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8a9a8da35ba12aac948c3c0df00c7a2a678422496d5c7634430d8e1d26d343d2.png" src="_images/8a9a8da35ba12aac948c3c0df00c7a2a678422496d5c7634430d8e1d26d343d2.png" />
+<a class="reference internal image-reference" href="_images/ac9b9ced680e9beebbda0f1f8369a78172e46c51389dd2a517b4cfc7c3361142.png"><img alt="_images/ac9b9ced680e9beebbda0f1f8369a78172e46c51389dd2a517b4cfc7c3361142.png" src="_images/ac9b9ced680e9beebbda0f1f8369a78172e46c51389dd2a517b4cfc7c3361142.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
 </section>
 <section id="pythran">
-<h2>Pythran<a class="headerlink" href="#pythran" title="Permalink to this heading">#</a></h2>
+<h2>Pythran<a class="headerlink" href="#pythran" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://pythran.readthedocs.io/en/latest/">Pythran</a> is a Python-to-C++ translator</p>
 <p>Add a comment line before your python function and it runs much faster.</p>
 <section id="configuration">
-<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h3>
+<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">~/.pythranrc</span></code> file on macos (gcc is installed with hombrew and pythran with pip)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">compiler</span><span class="p">]</span>
 <span class="n">include_dirs</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">openblas</span><span class="o">/</span><span class="n">include</span>
@@ -838,13 +1004,13 @@ def juliaset_pythran(x, y, c, lim, maxit):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/27fc1ed0438ed38aa7b6ae2ff728bab63be4f9d01ad7ca20d252e0663c11ac69.png" src="_images/27fc1ed0438ed38aa7b6ae2ff728bab63be4f9d01ad7ca20d252e0663c11ac69.png" />
+<a class="reference internal image-reference" href="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png"><img alt="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png" src="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
 </section>
 </section>
 <section id="fortran">
-<h2>Fortran<a class="headerlink" href="#fortran" title="Permalink to this heading">#</a></h2>
+<h2>Fortran<a class="headerlink" href="#fortran" title="Link to this heading">#</a></h2>
 <p>You need <a class="reference external" href="https://numpy.org">numpy</a> and <a class="reference external" href="https://github.com/mgaitan/fortran_magic">fortran-magic</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -914,12 +1080,12 @@ end subroutine juliaset_fortran
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/27fc1ed0438ed38aa7b6ae2ff728bab63be4f9d01ad7ca20d252e0663c11ac69.png" src="_images/27fc1ed0438ed38aa7b6ae2ff728bab63be4f9d01ad7ca20d252e0663c11ac69.png" />
+<a class="reference internal image-reference" href="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png"><img alt="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png" src="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
 </section>
 <section id="fortran-with-openmp">
-<h2>Fortran with OpenMP<a class="headerlink" href="#fortran-with-openmp" title="Permalink to this heading">#</a></h2>
+<h2>Fortran with OpenMP<a class="headerlink" href="#fortran-with-openmp" title="Link to this heading">#</a></h2>
 <p>On Linux you don’t need to add <code class="docutils literal notranslate"><span class="pre">-L/usr/local/lib</span></code></p>
 <p>This is the same function from above with some openmp directives</p>
 <div class="cell docutils container">
@@ -977,12 +1143,12 @@ end subroutine juliaset_fortran_omp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/27fc1ed0438ed38aa7b6ae2ff728bab63be4f9d01ad7ca20d252e0663c11ac69.png" src="_images/27fc1ed0438ed38aa7b6ae2ff728bab63be4f9d01ad7ca20d252e0663c11ac69.png" />
+<a class="reference internal image-reference" href="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png"><img alt="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png" src="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
 </section>
 <section id="numpy">
-<h2>Numpy<a class="headerlink" href="#numpy" title="Permalink to this heading">#</a></h2>
+<h2>Numpy<a class="headerlink" href="#numpy" title="Link to this heading">#</a></h2>
 <p>Vectorize version with numpy. You could get some overflow warnings</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1014,12 +1180,12 @@ end subroutine juliaset_fortran_omp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f43e909ca94d6bc0579a8f12943e76d9fb809e89a73436dc3a4de6820f7a388d.png" src="_images/f43e909ca94d6bc0579a8f12943e76d9fb809e89a73436dc3a4de6820f7a388d.png" />
+<a class="reference internal image-reference" href="_images/be36766d94b6c4df630cb757a301585b87fb8bab49f3e76b5f0b25a9ed69daf9.png"><img alt="_images/be36766d94b6c4df630cb757a301585b87fb8bab49f3e76b5f0b25a9ed69daf9.png" src="_images/be36766d94b6c4df630cb757a301585b87fb8bab49f3e76b5f0b25a9ed69daf9.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
 </section>
 <section id="cython">
-<h2>Cython<a class="headerlink" href="#cython" title="Permalink to this heading">#</a></h2>
+<h2>Cython<a class="headerlink" href="#cython" title="Link to this heading">#</a></h2>
 <p>Install <a class="reference external" href="https://cython.readthedocs.io">Cython</a></p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">%%cython</span> <span class="pre">-a</span></code> to highlight the Python-C and C-Python conversions.</p>
 <p>Cython is not Python and not C, it is another language :-)</p>
@@ -1067,7 +1233,7 @@ def juliaset_cython(double [:] x, double [:] y, double complex c, double lim, in
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/27fc1ed0438ed38aa7b6ae2ff728bab63be4f9d01ad7ca20d252e0663c11ac69.png" src="_images/27fc1ed0438ed38aa7b6ae2ff728bab63be4f9d01ad7ca20d252e0663c11ac69.png" />
+<a class="reference internal image-reference" href="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png"><img alt="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png" src="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
 <p>As f2py we can use openmp with the Cython <code class="docutils literal notranslate"><span class="pre">prange</span></code> function</p>
@@ -1113,11 +1279,11 @@ def juliaset_cython_omp(double [:] x, double [:] y, double complex c, double lim
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/27fc1ed0438ed38aa7b6ae2ff728bab63be4f9d01ad7ca20d252e0663c11ac69.png" src="_images/27fc1ed0438ed38aa7b6ae2ff728bab63be4f9d01ad7ca20d252e0663c11ac69.png" />
+<a class="reference internal image-reference" href="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png"><img alt="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png" src="_images/dd89cff7cfe1c0c7d999d77222ebe6a75709bfe546da7fe06f78ff4afa4d8b76.png" style="width: 521px; height: 510px;" /></a>
 </div>
 </div>
 <section id="set-number-of-threads-used-for-parallel-functions">
-<h3>Set number of threads used for parallel functions<a class="headerlink" href="#set-number-of-threads-used-for-parallel-functions" title="Permalink to this heading">#</a></h3>
+<h3>Set number of threads used for parallel functions<a class="headerlink" href="#set-number-of-threads-used-for-parallel-functions" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">env</span> OMP_NUM_THREADS=4
@@ -1164,7 +1330,7 @@ env: JULIA_NUM_THREADS=4
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "9918eec4804c4540a95e46cabc71ee5e"}</script><div class="output text_html"><div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "78548bbabe144ec480dd97dafb26e8dd", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1189,43 +1355,43 @@ env: JULIA_NUM_THREADS=4
   <tbody>
     <tr>
       <th>numpy</th>
-      <td>5.113129</td>
+      <td>3.744096</td>
       <td>1.000000</td>
     </tr>
     <tr>
-      <th>julia</th>
-      <td>0.153906</td>
-      <td>33.222520</td>
-    </tr>
-    <tr>
       <th>pythran</th>
-      <td>0.096576</td>
-      <td>52.944112</td>
+      <td>0.059130</td>
+      <td>63.320112</td>
     </tr>
     <tr>
       <th>numba</th>
-      <td>0.052969</td>
-      <td>96.531256</td>
-    </tr>
-    <tr>
-      <th>cython</th>
-      <td>0.049667</td>
-      <td>102.947302</td>
+      <td>0.056067</td>
+      <td>66.778523</td>
     </tr>
     <tr>
       <th>fortran</th>
-      <td>0.049267</td>
-      <td>103.783964</td>
+      <td>0.052708</td>
+      <td>71.035016</td>
+    </tr>
+    <tr>
+      <th>cython</th>
+      <td>0.052008</td>
+      <td>71.990972</td>
+    </tr>
+    <tr>
+      <th>julia</th>
+      <td>0.025038</td>
+      <td>149.536701</td>
     </tr>
     <tr>
       <th>cython_omp</th>
-      <td>0.021633</td>
-      <td>236.360864</td>
+      <td>0.009314</td>
+      <td>401.970603</td>
     </tr>
     <tr>
       <th>fortran_omp</th>
-      <td>0.014288</td>
-      <td>357.867932</td>
+      <td>0.007442</td>
+      <td>503.092445</td>
     </tr>
   </tbody>
 </table>
@@ -1262,7 +1428,7 @@ env: JULIA_NUM_THREADS=4
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1291,6 +1457,7 @@ env: JULIA_NUM_THREADS=4
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1337,7 +1504,7 @@ By Pierre Navaro
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1361,8 +1528,8 @@ By Pierre Navaro
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

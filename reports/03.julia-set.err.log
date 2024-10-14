@@ -1,0 +1,246 @@
+Traceback (most recent call last):
+  File "/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/share/miniconda/envs/python-fortran/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import julia
+julia.install()
+from julia.api import Julia
+jl = Julia(compiled_modules=False)
+------------------
+
+----- stderr -----
+[ Info: Julia version info
+----- stdout -----
+Julia Version 1.10.4
+Commit 48d4fd4843 (2024-06-04 10:41 UTC)
+Build Info:
+  https://github.com/conda-forge/julia-feedstock
+
+    Note: This is an unofficial build, please report bugs to the project
+    responsible for this build and not to the Julia project unless you can
+    reproduce the issue using official builds available at https://julialang.org/downloads
+
+Platform Info:
+  OS: Linux (x86_64-conda-linux-gnu)
+      Ubuntu 22.04.5 LTS
+  uname: Linux 6.5.0-1025-azure #26~22.04.1-Ubuntu SMP Thu Jul 11 22:33:04 UTC 2024 x86_64 x86_64
+  CPU: AMD EPYC 7763 64-Core Processor: 
+              speed         user         nice          sys         idle          irq
+       #1  3244 MHz        328 s          0 s        135 s       2084 s          0 s
+       #2  3242 MHz        469 s          0 s        129 s       1968 s          0 s
+       #3  2445 MHz        559 s          0 s        173 s       1800 s          0 s
+       #4  3225 MHz        550 s          0 s        157 s       1839 s          0 s
+  Memory: 15.606491088867188 GB (14379.61328125 MB free)
+  Uptime: 266.07 sec
+  Load Avg:  1.38  0.86  0.38
+  WORD_SIZE: 64
+  LIBM: libopenlibm
+  LLVM: libLLVM-15.0.7 (ORCJIT, znver3)
+Threads: 1 default, 0 interactive, 1 GC (on 4 virtual cores)
+Environment:
+  JULIA_CONDAPKG_BACKEND_BACKUP = 
+  JULIA_CONDAPKG_BACKEND = System
+  JULIA_LOAD_PATH = @:@python-fortran:@stdlib
+  JULIA_LOAD_PATH_BACKUP = 
+  JULIA_DEPOT_PATH_BACKUP = 
+  JULIA_PROJECT_BACKUP = 
+  JULIA_CONDAPKG_EXE = /usr/share/miniconda/bin/conda
+  JULIA_SSL_CA_ROOTS_PATH = /usr/share/miniconda/envs/python-fortran/ssl/cacert.pem
+  JULIA_DEPOT_PATH = /usr/share/miniconda/envs/python-fortran/share/julia:
+  LD_GOLD = /usr/share/miniconda/envs/python-fortran/bin/x86_64-conda-linux-gnu-ld.gold
+  LD_LIBRARY_PATH = /opt/hostedtoolcache/Python/3.9.20/x64/lib
+  JULIA_PROJECT = @python-fortran
+  JULIA_SSL_CA_ROOTS_PATH_BACKUP = 
+  JULIA_CONDAPKG_EXE_BACKUP = 
+  SELENIUM_JAR_PATH = /usr/share/java/selenium-server.jar
+  JAVA_HOME_11_X64 = /usr/lib/jvm/temurin-11-jdk-amd64
+  PKG_CONFIG_PATH = /opt/hostedtoolcache/Python/3.9.20/x64/lib/pkgconfig
+  GITHUB_PATH = /home/runner/work/_temp/_runner_file_commands/add_path_21f6c7c3-b976-49c2-b278-5b7f512995b8
+  JAVA_HOME = /usr/lib/jvm/temurin-11-jdk-amd64
+  GRADLE_HOME = /usr/share/gradle-8.10.2
+  XDG_CONFIG_HOME = /home/runner/.config
+  ANT_HOME = /usr/share/ant
+  JAVA_HOME_8_X64 = /usr/lib/jvm/temurin-8-jdk-amd64
+  HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS = 3650
+  DEPLOYMENT_BASEPATH = /opt/runner
+  ANDROID_NDK_LATEST_HOME = /usr/local/lib/android/sdk/ndk/27.1.12297006
+  CXXFLAGS = -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
+  DEBUG_CXXFLAGS = -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
+  LDFLAGS = -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/usr/share/miniconda/envs/python-fortran/lib -Wl,-rpath-link,/usr/share/miniconda/envs/python-fortran/lib -L/usr/share/miniconda/envs/python-fortran/lib
+  HOME = /home/runner
+  DEBUG_CFLAGS = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
+  CMAKE_PREFIX_PATH = /usr/share/miniconda/envs/python-fortran:/usr/share/miniconda/envs/python-fortran/x86_64-conda-linux-gnu/sysroot/usr
+  CONDA_JL_HOME = /usr/share/miniconda/envs/python-fortran
+  CPPFLAGS = -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /usr/share/miniconda/envs/python-fortran/include
+  JAVA_HOME_21_X64 = /usr/lib/jvm/temurin-21-jdk-amd64
+  GITHUB_EVENT_PATH = /home/runner/work/_temp/_github_workflow/event.json
+  JAVA_HOME_17_X64 = /usr/lib/jvm/temurin-17-jdk-amd64
+  ANDROID_NDK_HOME = /usr/local/lib/android/sdk/ndk/27.1.12297006
+  CONDA_JL_HOME_BACKUP = 
+  HOMEBREW_NO_AUTO_UPDATE = 1
+  ANDROID_HOME = /usr/local/lib/android/sdk
+  PIPX_HOME = /opt/pipx
+  DEBUG_CPPFLAGS = -D_DEBUG -D_FORTIFY_SOURCE=2 -Og -isystem /usr/share/miniconda/envs/python-fortran/include
+  LEIN_HOME = /usr/local/lib/lein
+  PATH = /usr/share/miniconda/envs/python-fortran/bin:/usr/share/miniconda/condabin:/usr/share/miniconda/condabin:/opt/hostedtoolcache/Python/3.9.20/x64/bin:/opt/hostedtoolcache/Python/3.9.20/x64:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/runner/.dotnet/tools
+  CFLAGS = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
+  SWIFT_PATH = /usr/share/swift/usr/bin
+  TERM = xterm-color
+----- stderr -----
+[ Info: Julia executable: /usr/share/miniconda/envs/python-fortran/bin/julia
+[ Info: Trying to import PyCall...
+----- stderr -----
+┌ Error: `import PyCall` failed
+│   exception =
+│    ArgumentError: Package PyCall [438e738f-606a-5dbb-bf0a-cddfbfd45ab0] is required but does not seem to be installed:
+│     - Run `Pkg.instantiate()` to install all recorded dependencies.
+│    
+│    Stacktrace:
+│      [1] _require(pkg::Base.PkgId, env::Nothing)
+│        @ Base ./loading.jl:1926
+│      [2] __require_prelocked(uuidkey::Base.PkgId, env::Nothing)
+│        @ Base ./loading.jl:1812
+│      [3] #invoke_in_world#3
+│        @ ./essentials.jl:926 [inlined]
+│      [4] invoke_in_world
+│        @ ./essentials.jl:923 [inlined]
+│      [5] _require_prelocked
+│        @ ./loading.jl:1803 [inlined]
+│      [6] _require_prelocked
+│        @ ./loading.jl:1802 [inlined]
+│      [7] macro expansion
+│        @ ./lock.jl:267 [inlined]
+│      [8] require(uuidkey::Base.PkgId)
+│        @ Base ./loading.jl:1797
+│      [9] top-level scope
+│        @ /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/install.jl:36
+│     [10] include(mod::Module, _path::String)
+│        @ Base ./Base.jl:495
+│     [11] exec_options(opts::Base.JLOptions)
+│        @ Base ./client.jl:318
+│     [12] _start()
+│        @ Base ./client.jl:552
+└ @ Main /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/install.jl:38
+[ Info: Installing PyCall...
+----- stderr -----
+   Resolving package versions...
+----- stderr -----
+    Updating `/usr/share/miniconda/envs/python-fortran/share/julia/environments/python-fortran/Project.toml`
+  [438e738f] + PyCall v1.96.4
+    Updating `/usr/share/miniconda/envs/python-fortran/share/julia/environments/python-fortran/Manifest.toml`
+  [8f4d0f93] + Conda v1.10.2
+  [682c06a0] + JSON v0.21.4
+  [1914dd2f] + MacroTools v0.5.13
+  [69de0a69] + Parsers v2.8.1
+  [aea7be01] + PrecompileTools v1.2.1
+  [21216c6a] + Preferences v1.4.3
+  [438e738f] + PyCall v1.96.4
+  [81def892] + VersionParsing v1.3.0
+  [0dad84c5] + ArgTools v1.1.1
+  [56f22d72] + Artifacts
+  [2a0f44e3] + Base64
+  [ade2ca70] + Dates
+  [f43a241f] + Downloads v1.6.0
+  [7b1f6079] + FileWatching
+  [b27032c2] + LibCURL v0.6.4
+  [8f399da3] + Libdl
+  [37e2e46d] + LinearAlgebra
+  [d6f4376e] + Markdown
+  [a63ad114] + Mmap
+  [ca575930] + NetworkOptions v1.2.0
+  [de0858da] + Printf
+  [9a3f8284] + Random
+  [ea8e919c] + SHA v0.7.0
+  [9e88b42a] + Serialization
+  [fa267f1f] + TOML v1.0.3
+  [cf7118a7] + UUIDs
+  [4ec0a83e] + Unicode
+  [e66e0078] + CompilerSupportLibraries_jll v1.1.1+0
+  [deac9b47] + LibCURL_jll v8.4.0+0
+  [29816b5a] + LibSSH2_jll v1.11.0+1
+  [c8ffd9c3] + MbedTLS_jll v2.28.2+1
+  [14a3606d] + MozillaCACerts_jll v2023.1.10
+  [4536629a] + OpenBLAS_jll v0.3.23+4
+  [83775a58] + Zlib_jll v1.2.13+1
+  [8e850b90] + libblastrampoline_jll v5.8.0+1
+  [8e850ede] + nghttp2_jll v1.52.0+1
+----- stderr -----
+Precompiling project...
+----- stderr -----
+  ✓ CompilerSupportLibraries_jll
+  ✓ VersionParsing
+----- stderr -----
+  ✓ Preferences
+----- stderr -----
+  ✓ PrecompileTools
+----- stderr -----
+  ✓ MacroTools
+----- stderr -----
+  ✓ Parsers
+----- stderr -----
+  ✓ JSON
+----- stderr -----
+  ✓ Conda
+----- stderr -----
+┌ Error: curl_multi_assign: 1
+└ @ Downloads.Curl /usr/share/miniconda/envs/python-fortran/share/julia/stdlib/v1.10/Downloads/src/Curl/utils.jl:57
+┌ Error: curl_multi_assign: 1
+└ @ Downloads.Curl /usr/share/miniconda/envs/python-fortran/share/julia/stdlib/v1.10/Downloads/src/Curl/utils.jl:57
+
+[3471] signal (6.-6): Aborted
+in expression starting at /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/install.jl:73
+pthread_kill at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+raise at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+abort at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+uv__io_poll at /workspace/srcdir/libuv/src/unix/epoll.c:166
+uv_run at /workspace/srcdir/libuv/src/unix/core.c:400
+ijl_task_get_next at /usr/local/src/conda/julia-1.10.4/src/partr.c:478
+poptask at ./task.jl:985
+wait at ./task.jl:994
+#wait#645 at ./condition.jl:130
+wait at ./condition.jl:125 [inlined]
+_wait at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/FileWatching/src/FileWatching.jl:562
+wait at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/FileWatching/src/FileWatching.jl:590
+#58 at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/Downloads/src/Curl/Multi.jl:188
+jfptr_YY.58_92826.1 at /usr/share/miniconda/envs/python-fortran/lib/julia/sys.so (unknown line)
+jl_apply at /usr/local/src/conda/julia-1.10.4/src/julia.h:1982 [inlined]
+start_task at /usr/local/src/conda/julia-1.10.4/src/task.c:1238
+Allocations: 5511607 (Pool: 5505735; Big: 5872); GC: 8
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mPyCallInstallError[0m                        Traceback (most recent call last)
+Cell [0;32mIn[10], line 2[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mjulia[39;00m
+[0;32m----> 2[0m [43mjulia[49m[38;5;241;43m.[39;49m[43minstall[49m[43m([49m[43m)[49m
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mjulia[39;00m[38;5;21;01m.[39;00m[38;5;21;01mapi[39;00m [38;5;28;01mimport[39;00m Julia
+[1;32m      4[0m jl [38;5;241m=[39m Julia(compiled_modules[38;5;241m=[39m[38;5;28;01mFalse[39;00m)
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/tools.py:118[0m, in [0;36minstall[0;34m(julia, color, python, quiet)[0m
+[1;32m    116[0m     [38;5;28;01mreturn[39;00m
+[1;32m    117[0m [38;5;28;01melif[39;00m returncode [38;5;241m!=[39m [38;5;241m0[39m:
+[0;32m--> 118[0m     [38;5;28;01mraise[39;00m PyCallInstallError([38;5;124m"[39m[38;5;124mInstalling[39m[38;5;124m"[39m, output)
+[1;32m    120[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m quiet:
+[1;32m    121[0m     [38;5;28mprint[39m(file[38;5;241m=[39msys[38;5;241m.[39mstderr)
+
+[0;31mPyCallInstallError[0m: Installing PyCall failed.
+
+** Important information from Julia may be printed before Python's Traceback **
+
+Some useful information may also be stored in the build log file
+`~/.julia/packages/PyCall/*/deps/build.log`.
+
+
