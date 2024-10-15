@@ -15,232 +15,242 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import julia
-julia.install()
-from julia.api import Julia
-jl = Julia(compiled_modules=False)
+%%pythran -fopenmp
+
+import numpy as np
+
+#pythran export juliaset_pythran(float64[], float64[],complex, int, int)
+def juliaset_pythran(x, y, c, lim, maxit):
+    """ 
+    returns Julia set
+    """
+    juliap = np.zeros((x.size, y.size), dtype=np.int32)
+
+    #omp parallel for private(z, ite)
+    for j in range(y.size):
+        for i in range(x.size):
+            z = x[i] + 1j*y[j]
+            ite = 0
+            while abs(z) < lim and ite < maxit:
+                z = z**2 + c
+                ite += 1
+            juliap[j, i] = ite
+
+    return juliap
 ------------------
 
------ stderr -----
-[ Info: Julia version info
------ stdout -----
-Julia Version 1.10.4
-Commit 48d4fd4843 (2024-06-04 10:41 UTC)
-Build Info:
-  https://github.com/conda-forge/julia-feedstock
-
-    Note: This is an unofficial build, please report bugs to the project
-    responsible for this build and not to the Julia project unless you can
-    reproduce the issue using official builds available at https://julialang.org/downloads
-
-Platform Info:
-  OS: Linux (x86_64-conda-linux-gnu)
-      Ubuntu 22.04.5 LTS
-  uname: Linux 6.5.0-1025-azure #26~22.04.1-Ubuntu SMP Thu Jul 11 22:33:04 UTC 2024 x86_64 x86_64
-  CPU: AMD EPYC 7763 64-Core Processor: 
-              speed         user         nice          sys         idle          irq
-       #1  3244 MHz        328 s          0 s        135 s       2084 s          0 s
-       #2  3242 MHz        469 s          0 s        129 s       1968 s          0 s
-       #3  2445 MHz        559 s          0 s        173 s       1800 s          0 s
-       #4  3225 MHz        550 s          0 s        157 s       1839 s          0 s
-  Memory: 15.606491088867188 GB (14379.61328125 MB free)
-  Uptime: 266.07 sec
-  Load Avg:  1.38  0.86  0.38
-  WORD_SIZE: 64
-  LIBM: libopenlibm
-  LLVM: libLLVM-15.0.7 (ORCJIT, znver3)
-Threads: 1 default, 0 interactive, 1 GC (on 4 virtual cores)
-Environment:
-  JULIA_CONDAPKG_BACKEND_BACKUP = 
-  JULIA_CONDAPKG_BACKEND = System
-  JULIA_LOAD_PATH = @:@python-fortran:@stdlib
-  JULIA_LOAD_PATH_BACKUP = 
-  JULIA_DEPOT_PATH_BACKUP = 
-  JULIA_PROJECT_BACKUP = 
-  JULIA_CONDAPKG_EXE = /usr/share/miniconda/bin/conda
-  JULIA_SSL_CA_ROOTS_PATH = /usr/share/miniconda/envs/python-fortran/ssl/cacert.pem
-  JULIA_DEPOT_PATH = /usr/share/miniconda/envs/python-fortran/share/julia:
-  LD_GOLD = /usr/share/miniconda/envs/python-fortran/bin/x86_64-conda-linux-gnu-ld.gold
-  LD_LIBRARY_PATH = /opt/hostedtoolcache/Python/3.9.20/x64/lib
-  JULIA_PROJECT = @python-fortran
-  JULIA_SSL_CA_ROOTS_PATH_BACKUP = 
-  JULIA_CONDAPKG_EXE_BACKUP = 
-  SELENIUM_JAR_PATH = /usr/share/java/selenium-server.jar
-  JAVA_HOME_11_X64 = /usr/lib/jvm/temurin-11-jdk-amd64
-  PKG_CONFIG_PATH = /opt/hostedtoolcache/Python/3.9.20/x64/lib/pkgconfig
-  GITHUB_PATH = /home/runner/work/_temp/_runner_file_commands/add_path_21f6c7c3-b976-49c2-b278-5b7f512995b8
-  JAVA_HOME = /usr/lib/jvm/temurin-11-jdk-amd64
-  GRADLE_HOME = /usr/share/gradle-8.10.2
-  XDG_CONFIG_HOME = /home/runner/.config
-  ANT_HOME = /usr/share/ant
-  JAVA_HOME_8_X64 = /usr/lib/jvm/temurin-8-jdk-amd64
-  HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS = 3650
-  DEPLOYMENT_BASEPATH = /opt/runner
-  ANDROID_NDK_LATEST_HOME = /usr/local/lib/android/sdk/ndk/27.1.12297006
-  CXXFLAGS = -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
-  DEBUG_CXXFLAGS = -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
-  LDFLAGS = -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/usr/share/miniconda/envs/python-fortran/lib -Wl,-rpath-link,/usr/share/miniconda/envs/python-fortran/lib -L/usr/share/miniconda/envs/python-fortran/lib
-  HOME = /home/runner
-  DEBUG_CFLAGS = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
-  CMAKE_PREFIX_PATH = /usr/share/miniconda/envs/python-fortran:/usr/share/miniconda/envs/python-fortran/x86_64-conda-linux-gnu/sysroot/usr
-  CONDA_JL_HOME = /usr/share/miniconda/envs/python-fortran
-  CPPFLAGS = -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /usr/share/miniconda/envs/python-fortran/include
-  JAVA_HOME_21_X64 = /usr/lib/jvm/temurin-21-jdk-amd64
-  GITHUB_EVENT_PATH = /home/runner/work/_temp/_github_workflow/event.json
-  JAVA_HOME_17_X64 = /usr/lib/jvm/temurin-17-jdk-amd64
-  ANDROID_NDK_HOME = /usr/local/lib/android/sdk/ndk/27.1.12297006
-  CONDA_JL_HOME_BACKUP = 
-  HOMEBREW_NO_AUTO_UPDATE = 1
-  ANDROID_HOME = /usr/local/lib/android/sdk
-  PIPX_HOME = /opt/pipx
-  DEBUG_CPPFLAGS = -D_DEBUG -D_FORTIFY_SOURCE=2 -Og -isystem /usr/share/miniconda/envs/python-fortran/include
-  LEIN_HOME = /usr/local/lib/lein
-  PATH = /usr/share/miniconda/envs/python-fortran/bin:/usr/share/miniconda/condabin:/usr/share/miniconda/condabin:/opt/hostedtoolcache/Python/3.9.20/x64/bin:/opt/hostedtoolcache/Python/3.9.20/x64:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/runner/.dotnet/tools
-  CFLAGS = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /usr/share/miniconda/envs/python-fortran/include
-  SWIFT_PATH = /usr/share/swift/usr/bin
-  TERM = xterm-color
------ stderr -----
-[ Info: Julia executable: /usr/share/miniconda/envs/python-fortran/bin/julia
-[ Info: Trying to import PyCall...
------ stderr -----
-┌ Error: `import PyCall` failed
-│   exception =
-│    ArgumentError: Package PyCall [438e738f-606a-5dbb-bf0a-cddfbfd45ab0] is required but does not seem to be installed:
-│     - Run `Pkg.instantiate()` to install all recorded dependencies.
-│    
-│    Stacktrace:
-│      [1] _require(pkg::Base.PkgId, env::Nothing)
-│        @ Base ./loading.jl:1926
-│      [2] __require_prelocked(uuidkey::Base.PkgId, env::Nothing)
-│        @ Base ./loading.jl:1812
-│      [3] #invoke_in_world#3
-│        @ ./essentials.jl:926 [inlined]
-│      [4] invoke_in_world
-│        @ ./essentials.jl:923 [inlined]
-│      [5] _require_prelocked
-│        @ ./loading.jl:1803 [inlined]
-│      [6] _require_prelocked
-│        @ ./loading.jl:1802 [inlined]
-│      [7] macro expansion
-│        @ ./lock.jl:267 [inlined]
-│      [8] require(uuidkey::Base.PkgId)
-│        @ Base ./loading.jl:1797
-│      [9] top-level scope
-│        @ /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/install.jl:36
-│     [10] include(mod::Module, _path::String)
-│        @ Base ./Base.jl:495
-│     [11] exec_options(opts::Base.JLOptions)
-│        @ Base ./client.jl:318
-│     [12] _start()
-│        @ Base ./client.jl:552
-└ @ Main /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/install.jl:38
-[ Info: Installing PyCall...
------ stderr -----
-   Resolving package versions...
------ stderr -----
-    Updating `/usr/share/miniconda/envs/python-fortran/share/julia/environments/python-fortran/Project.toml`
-  [438e738f] + PyCall v1.96.4
-    Updating `/usr/share/miniconda/envs/python-fortran/share/julia/environments/python-fortran/Manifest.toml`
-  [8f4d0f93] + Conda v1.10.2
-  [682c06a0] + JSON v0.21.4
-  [1914dd2f] + MacroTools v0.5.13
-  [69de0a69] + Parsers v2.8.1
-  [aea7be01] + PrecompileTools v1.2.1
-  [21216c6a] + Preferences v1.4.3
-  [438e738f] + PyCall v1.96.4
-  [81def892] + VersionParsing v1.3.0
-  [0dad84c5] + ArgTools v1.1.1
-  [56f22d72] + Artifacts
-  [2a0f44e3] + Base64
-  [ade2ca70] + Dates
-  [f43a241f] + Downloads v1.6.0
-  [7b1f6079] + FileWatching
-  [b27032c2] + LibCURL v0.6.4
-  [8f399da3] + Libdl
-  [37e2e46d] + LinearAlgebra
-  [d6f4376e] + Markdown
-  [a63ad114] + Mmap
-  [ca575930] + NetworkOptions v1.2.0
-  [de0858da] + Printf
-  [9a3f8284] + Random
-  [ea8e919c] + SHA v0.7.0
-  [9e88b42a] + Serialization
-  [fa267f1f] + TOML v1.0.3
-  [cf7118a7] + UUIDs
-  [4ec0a83e] + Unicode
-  [e66e0078] + CompilerSupportLibraries_jll v1.1.1+0
-  [deac9b47] + LibCURL_jll v8.4.0+0
-  [29816b5a] + LibSSH2_jll v1.11.0+1
-  [c8ffd9c3] + MbedTLS_jll v2.28.2+1
-  [14a3606d] + MozillaCACerts_jll v2023.1.10
-  [4536629a] + OpenBLAS_jll v0.3.23+4
-  [83775a58] + Zlib_jll v1.2.13+1
-  [8e850b90] + libblastrampoline_jll v5.8.0+1
-  [8e850ede] + nghttp2_jll v1.52.0+1
------ stderr -----
-Precompiling project...
------ stderr -----
-  ✓ CompilerSupportLibraries_jll
-  ✓ VersionParsing
------ stderr -----
-  ✓ Preferences
------ stderr -----
-  ✓ PrecompileTools
------ stderr -----
-  ✓ MacroTools
------ stderr -----
-  ✓ Parsers
------ stderr -----
-  ✓ JSON
------ stderr -----
-  ✓ Conda
------ stderr -----
-┌ Error: curl_multi_assign: 1
-└ @ Downloads.Curl /usr/share/miniconda/envs/python-fortran/share/julia/stdlib/v1.10/Downloads/src/Curl/utils.jl:57
-┌ Error: curl_multi_assign: 1
-└ @ Downloads.Curl /usr/share/miniconda/envs/python-fortran/share/julia/stdlib/v1.10/Downloads/src/Curl/utils.jl:57
-
-[3471] signal (6.-6): Aborted
-in expression starting at /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/install.jl:73
-pthread_kill at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
-raise at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
-abort at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
-uv__io_poll at /workspace/srcdir/libuv/src/unix/epoll.c:166
-uv_run at /workspace/srcdir/libuv/src/unix/core.c:400
-ijl_task_get_next at /usr/local/src/conda/julia-1.10.4/src/partr.c:478
-poptask at ./task.jl:985
-wait at ./task.jl:994
-#wait#645 at ./condition.jl:130
-wait at ./condition.jl:125 [inlined]
-_wait at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/FileWatching/src/FileWatching.jl:562
-wait at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/FileWatching/src/FileWatching.jl:590
-#58 at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/Downloads/src/Curl/Multi.jl:188
-jfptr_YY.58_92826.1 at /usr/share/miniconda/envs/python-fortran/lib/julia/sys.so (unknown line)
-jl_apply at /usr/local/src/conda/julia-1.10.4/src/julia.h:1982 [inlined]
-start_task at /usr/local/src/conda/julia-1.10.4/src/task.c:1238
-Allocations: 5511607 (Pool: 5505735; Big: 5872); GC: 8
-------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mPyCallInstallError[0m                        Traceback (most recent call last)
-Cell [0;32mIn[10], line 2[0m
-[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mjulia[39;00m
-[0;32m----> 2[0m [43mjulia[49m[38;5;241;43m.[39;49m[43minstall[49m[43m([49m[43m)[49m
-[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mjulia[39;00m[38;5;21;01m.[39;00m[38;5;21;01mapi[39;00m [38;5;28;01mimport[39;00m Julia
-[1;32m      4[0m jl [38;5;241m=[39m Julia(compiled_modules[38;5;241m=[39m[38;5;28;01mFalse[39;00m)
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[15], line 1[0m
+[0;32m----> 1[0m [43mget_ipython[49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mrun_cell_magic[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mpythran[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43m-fopenmp[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43mimport numpy as np[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m#pythran export juliaset_pythran(float64[], float64[],complex, int, int)[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43mdef juliaset_pythran(x, y, c, lim, maxit):[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m    [39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[38;5;124;43m [39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m    returns Julia set[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m    [39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m    juliap = np.zeros((x.size, y.size), dtype=np.int32)[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m    #omp parallel for private(z, ite)[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m    for j in range(y.size):[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m        for i in range(x.size):[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m            z = x[i] + 1j*y[j][39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m            ite = 0[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m            while abs(z) < lim and ite < maxit:[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m                z = z**2 + c[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m                ite += 1[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m            juliap[j, i] = ite[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m    return juliap[39;49m[38;5;130;43;01m\n[39;49;00m[38;5;124;43m'[39;49m[43m)[49m
 
-File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/tools.py:118[0m, in [0;36minstall[0;34m(julia, color, python, quiet)[0m
-[1;32m    116[0m     [38;5;28;01mreturn[39;00m
-[1;32m    117[0m [38;5;28;01melif[39;00m returncode [38;5;241m!=[39m [38;5;241m0[39m:
-[0;32m--> 118[0m     [38;5;28;01mraise[39;00m PyCallInstallError([38;5;124m"[39m[38;5;124mInstalling[39m[38;5;124m"[39m, output)
-[1;32m    120[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m quiet:
-[1;32m    121[0m     [38;5;28mprint[39m(file[38;5;241m=[39msys[38;5;241m.[39mstderr)
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/IPython/core/interactiveshell.py:2517[0m, in [0;36mInteractiveShell.run_cell_magic[0;34m(self, magic_name, line, cell)[0m
+[1;32m   2515[0m [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39mbuiltin_trap:
+[1;32m   2516[0m     args [38;5;241m=[39m (magic_arg_s, cell)
+[0;32m-> 2517[0m     result [38;5;241m=[39m [43mfn[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m   2519[0m [38;5;66;03m# The code below prevents the output from being displayed[39;00m
+[1;32m   2520[0m [38;5;66;03m# when using magics with decorator @output_can_be_silenced[39;00m
+[1;32m   2521[0m [38;5;66;03m# when the last Python token in the expression is a ';'.[39;00m
+[1;32m   2522[0m [38;5;28;01mif[39;00m [38;5;28mgetattr[39m(fn, magic[38;5;241m.[39mMAGIC_OUTPUT_CAN_BE_SILENCED, [38;5;28;01mFalse[39;00m):
 
-[0;31mPyCallInstallError[0m: Installing PyCall failed.
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/pythran/magic.py:67[0m, in [0;36mPythranMagics.pythran[0;34m(self, line, cell)[0m
+[1;32m     65[0m m[38;5;241m.[39mupdate(cell[38;5;241m.[39mencode([38;5;124m'[39m[38;5;124mutf-8[39m[38;5;124m'[39m))
+[1;32m     66[0m module_name [38;5;241m=[39m [38;5;124m"[39m[38;5;124mpythranized_[39m[38;5;124m"[39m [38;5;241m+[39m m[38;5;241m.[39mhexdigest()
+[0;32m---> 67[0m module_path [38;5;241m=[39m [43mpythran[49m[38;5;241;43m.[39;49m[43mcompile_pythrancode[49m[43m([49m[43mmodule_name[49m[43m,[49m[43m [49m[43mcell[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m     68[0m loader [38;5;241m=[39m importlib[38;5;241m.[39mmachinery[38;5;241m.[39mExtensionFileLoader(module_name, module_path)
+[1;32m     69[0m spec [38;5;241m=[39m importlib[38;5;241m.[39mmachinery[38;5;241m.[39mModuleSpec(name[38;5;241m=[39mmodule_name, loader[38;5;241m=[39mloader,
+[1;32m     70[0m                                       origin[38;5;241m=[39mmodule_path)
 
-** Important information from Julia may be printed before Python's Traceback **
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/pythran/toolchain.py:465[0m, in [0;36mcompile_pythrancode[0;34m(module_name, pythrancode, specs, opts, cpponly, pyonly, output_file, module_dir, report_times, **kwargs)[0m
+[1;32m    463[0m [38;5;66;03m# Compile to binary[39;00m
+[1;32m    464[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 465[0m     output_file [38;5;241m=[39m [43mcompile_cxxcode[49m[43m([49m[43mmodule_name[49m[43m,[49m
+[1;32m    466[0m [43m                                  [49m[38;5;28;43mstr[39;49m[43m([49m[43mmodule[49m[43m)[49m[43m,[49m
+[1;32m    467[0m [43m                                  [49m[43moutput_binary[49m[38;5;241;43m=[39;49m[43moutput_file[49m[43m,[49m
+[1;32m    468[0m [43m                                  [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    469[0m [38;5;28;01mexcept[39;00m PythranCompileError:
+[1;32m    470[0m     logger[38;5;241m.[39mwarning([38;5;124m"[39m[38;5;124mCompilation error, [39m[38;5;124m"[39m
+[1;32m    471[0m                    [38;5;124m"[39m[38;5;124mtrying hard to find its origin...[39m[38;5;124m"[39m)
 
-Some useful information may also be stored in the build log file
-`~/.julia/packages/PyCall/*/deps/build.log`.
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/pythran/toolchain.py:402[0m, in [0;36mcompile_cxxcode[0;34m(module_name, cxxcode, output_binary, keep_temp, **kwargs)[0m
+[1;32m    400[0m [38;5;66;03m# Get a temporary C++ file to compile[39;00m
+[1;32m    401[0m fdpath [38;5;241m=[39m _write_temp(cxxcode, [38;5;124m'[39m[38;5;124m.cpp[39m[38;5;124m'[39m)
+[0;32m--> 402[0m output_binary [38;5;241m=[39m [43mcompile_cxxfile[49m[43m([49m[43mmodule_name[49m[43m,[49m[43m [49m[43mfdpath[49m[43m,[49m
+[1;32m    403[0m [43m                                [49m[43moutput_binary[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    404[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m keep_temp:
+[1;32m    405[0m     [38;5;66;03m# remove tempfile[39;00m
+[1;32m    406[0m     os[38;5;241m.[39mremove(fdpath)
 
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/pythran/toolchain.py:347[0m, in [0;36mcompile_cxxfile[0;34m(module_name, cxxfile, output_binary, **kwargs)[0m
+[1;32m    342[0m extension [38;5;241m=[39m PythranExtension(module_name,
+[1;32m    343[0m                              [cxxfile],
+[1;32m    344[0m                              [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[1;32m    346[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 347[0m     [43msetup[49m[43m([49m[43mname[49m[38;5;241;43m=[39;49m[43mmodule_name[49m[43m,[49m
+[1;32m    348[0m [43m          [49m[43mext_modules[49m[38;5;241;43m=[39;49m[43m[[49m[43mextension[49m[43m][49m[43m,[49m
+[1;32m    349[0m [43m          [49m[43mcmdclass[49m[38;5;241;43m=[39;49m[43m{[49m[38;5;124;43m"[39;49m[38;5;124;43mbuild_ext[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[43mPythranBuildExt[49m[43m}[49m[43m,[49m
+[1;32m    350[0m [43m          [49m[38;5;66;43;03m# fake CLI call[39;49;00m
+[1;32m    351[0m [43m          [49m[43mscript_name[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43msetup.py[39;49m[38;5;124;43m'[39;49m[43m,[49m
+[1;32m    352[0m [43m          [49m[43mscript_args[49m[38;5;241;43m=[39;49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43m--verbose[39;49m[38;5;124;43m'[39;49m
+[1;32m    353[0m [43m                       [49m[38;5;28;43;01mif[39;49;00m[43m [49m[43mlogger[49m[38;5;241;43m.[39;49m[43misEnabledFor[49m[43m([49m[43mlogging[49m[38;5;241;43m.[39;49m[43mINFO[49m[43m)[49m
+[1;32m    354[0m [43m                       [49m[38;5;28;43;01melse[39;49;00m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43m--quiet[39;49m[38;5;124;43m'[39;49m[43m,[49m
+[1;32m    355[0m [43m                       [49m[38;5;124;43m'[39;49m[38;5;124;43mbuild_ext[39;49m[38;5;124;43m'[39;49m[43m,[49m
+[1;32m    356[0m [43m                       [49m[38;5;124;43m'[39;49m[38;5;124;43m--build-lib[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mbuilddir[49m[43m,[49m
+[1;32m    357[0m [43m                       [49m[38;5;124;43m'[39;49m[38;5;124;43m--build-temp[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mbuildtmp[49m[43m][49m
+[1;32m    358[0m [43m          [49m[43m)[49m
+[1;32m    359[0m [38;5;28;01mexcept[39;00m [38;5;167;01mSystemExit[39;00m [38;5;28;01mas[39;00m e:
+[1;32m    360[0m     [38;5;28;01mraise[39;00m PythranCompileError([38;5;28mstr[39m(e))
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/__init__.py:117[0m, in [0;36msetup[0;34m(**attrs)[0m
+[1;32m    115[0m [38;5;66;03m# Make sure we have any requirements needed to interpret 'attrs'.[39;00m
+[1;32m    116[0m _install_setup_requires(attrs)
+[0;32m--> 117[0m [38;5;28;01mreturn[39;00m [43mdistutils[49m[38;5;241;43m.[39;49m[43mcore[49m[38;5;241;43m.[39;49m[43msetup[49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mattrs[49m[43m)[49m
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/core.py:183[0m, in [0;36msetup[0;34m(**attrs)[0m
+[1;32m    181[0m [38;5;66;03m# And finally, run all the commands found on the command line.[39;00m
+[1;32m    182[0m [38;5;28;01mif[39;00m ok:
+[0;32m--> 183[0m     [38;5;28;01mreturn[39;00m [43mrun_commands[49m[43m([49m[43mdist[49m[43m)[49m
+[1;32m    185[0m [38;5;28;01mreturn[39;00m dist
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/core.py:199[0m, in [0;36mrun_commands[0;34m(dist)[0m
+[1;32m    192[0m [38;5;250m[39m[38;5;124;03m"""Given a Distribution object run all the commands,[39;00m
+[1;32m    193[0m [38;5;124;03mraising ``SystemExit`` errors in the case of failure.[39;00m
+[1;32m    194[0m 
+[1;32m    195[0m [38;5;124;03mThis function assumes that either ``sys.argv`` or ``dist.script_args``[39;00m
+[1;32m    196[0m [38;5;124;03mis already set accordingly.[39;00m
+[1;32m    197[0m [38;5;124;03m"""[39;00m
+[1;32m    198[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 199[0m     [43mdist[49m[38;5;241;43m.[39;49m[43mrun_commands[49m[43m([49m[43m)[49m
+[1;32m    200[0m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyboardInterrupt[39;00m:
+[1;32m    201[0m     [38;5;28;01mraise[39;00m [38;5;167;01mSystemExit[39;00m([38;5;124m"[39m[38;5;124minterrupted[39m[38;5;124m"[39m)
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/dist.py:954[0m, in [0;36mDistribution.run_commands[0;34m(self)[0m
+[1;32m    949[0m [38;5;250m[39m[38;5;124;03m"""Run each command that was seen on the setup script command line.[39;00m
+[1;32m    950[0m [38;5;124;03mUses the list of commands found and cache of command objects[39;00m
+[1;32m    951[0m [38;5;124;03mcreated by 'get_command_obj()'.[39;00m
+[1;32m    952[0m [38;5;124;03m"""[39;00m
+[1;32m    953[0m [38;5;28;01mfor[39;00m cmd [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39mcommands:
+[0;32m--> 954[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mrun_command[49m[43m([49m[43mcmd[49m[43m)[49m
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/dist.py:950[0m, in [0;36mDistribution.run_command[0;34m(self, command)[0m
+[1;32m    946[0m [38;5;28mself[39m[38;5;241m.[39mset_defaults()
+[1;32m    947[0m [38;5;66;03m# Postpone defaults until all explicit configuration is considered[39;00m
+[1;32m    948[0m [38;5;66;03m# (setup() args, config files, command line and plugins)[39;00m
+[0;32m--> 950[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mrun_command[49m[43m([49m[43mcommand[49m[43m)[49m
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/dist.py:973[0m, in [0;36mDistribution.run_command[0;34m(self, command)[0m
+[1;32m    971[0m cmd_obj [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mget_command_obj(command)
+[1;32m    972[0m cmd_obj[38;5;241m.[39mensure_finalized()
+[0;32m--> 973[0m [43mcmd_obj[49m[38;5;241;43m.[39;49m[43mrun[49m[43m([49m[43m)[49m
+[1;32m    974[0m [38;5;28mself[39m[38;5;241m.[39mhave_run[command] [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/command/build_ext.py:359[0m, in [0;36mbuild_ext.run[0;34m(self)[0m
+[1;32m    356[0m     [38;5;28mself[39m[38;5;241m.[39mcompiler[38;5;241m.[39mset_link_objects([38;5;28mself[39m[38;5;241m.[39mlink_objects)
+[1;32m    358[0m [38;5;66;03m# Now actually compile and link everything.[39;00m
+[0;32m--> 359[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mbuild_extensions[49m[43m([49m[43m)[49m
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/command/build_ext.py:476[0m, in [0;36mbuild_ext.build_extensions[0;34m(self)[0m
+[1;32m    474[0m     [38;5;28mself[39m[38;5;241m.[39m_build_extensions_parallel()
+[1;32m    475[0m [38;5;28;01melse[39;00m:
+[0;32m--> 476[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_build_extensions_serial[49m[43m([49m[43m)[49m
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/command/build_ext.py:502[0m, in [0;36mbuild_ext._build_extensions_serial[0;34m(self)[0m
+[1;32m    500[0m [38;5;28;01mfor[39;00m ext [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39mextensions:
+[1;32m    501[0m     [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39m_filter_build_errors(ext):
+[0;32m--> 502[0m         [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mbuild_extension[49m[43m([49m[43mext[49m[43m)[49m
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/pythran/dist.py:121[0m, in [0;36mPythranBuildExtMixIn.build_extension[0;34m(self, ext)[0m
+[1;32m    118[0m             [38;5;28mself[39m[38;5;241m.[39mcompiler[38;5;241m.[39mcompiler_so[i] [38;5;241m=[39m [38;5;124m'[39m[38;5;124mx86_64[39m[38;5;124m'[39m
+[1;32m    120[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 121[0m     [38;5;28;01mreturn[39;00m [38;5;28;43msuper[39;49m[43m([49m[43mPythranBuildExtMixIn[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m)[49m[38;5;241;43m.[39;49m[43mbuild_extension[49m[43m([49m[43mext[49m[43m)[49m
+[1;32m    122[0m [38;5;28;01mfinally[39;00m:
+[1;32m    123[0m     [38;5;66;03m# Revert compiler settings[39;00m
+[1;32m    124[0m     [38;5;28;01mfor[39;00m key [38;5;129;01min[39;00m prev[38;5;241m.[39mkeys():
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/command/build_ext.py:557[0m, in [0;36mbuild_ext.build_extension[0;34m(self, ext)[0m
+[1;32m    554[0m [38;5;28;01mfor[39;00m undef [38;5;129;01min[39;00m ext[38;5;241m.[39mundef_macros:
+[1;32m    555[0m     macros[38;5;241m.[39mappend((undef,))
+[0;32m--> 557[0m objects [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcompiler[49m[38;5;241;43m.[39;49m[43mcompile[49m[43m([49m
+[1;32m    558[0m [43m    [49m[43msources[49m[43m,[49m
+[1;32m    559[0m [43m    [49m[43moutput_dir[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mbuild_temp[49m[43m,[49m
+[1;32m    560[0m [43m    [49m[43mmacros[49m[38;5;241;43m=[39;49m[43mmacros[49m[43m,[49m
+[1;32m    561[0m [43m    [49m[43minclude_dirs[49m[38;5;241;43m=[39;49m[43mext[49m[38;5;241;43m.[39;49m[43minclude_dirs[49m[43m,[49m
+[1;32m    562[0m [43m    [49m[43mdebug[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdebug[49m[43m,[49m
+[1;32m    563[0m [43m    [49m[43mextra_postargs[49m[38;5;241;43m=[39;49m[43mextra_args[49m[43m,[49m
+[1;32m    564[0m [43m    [49m[43mdepends[49m[38;5;241;43m=[39;49m[43mext[49m[38;5;241;43m.[39;49m[43mdepends[49m[43m,[49m
+[1;32m    565[0m [43m[49m[43m)[49m
+[1;32m    567[0m [38;5;66;03m# XXX outdated variable, kept here in case third-part code[39;00m
+[1;32m    568[0m [38;5;66;03m# needs it.[39;00m
+[1;32m    569[0m [38;5;28mself[39m[38;5;241m.[39m_built_objects [38;5;241m=[39m objects[:]
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/ccompiler.py:91[0m, in [0;36mreplace_method.<locals>.<lambda>[0;34m(self, *args, **kw)[0m
+[1;32m     89[0m [38;5;28;01mdef[39;00m [38;5;21mreplace_method[39m(klass, method_name, func):
+[1;32m     90[0m     [38;5;66;03m# Py3k does not have unbound method anymore, MethodType does not work[39;00m
+[0;32m---> 91[0m     m [38;5;241m=[39m [38;5;28;01mlambda[39;00m [38;5;28mself[39m, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkw: [43mfunc[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkw[49m[43m)[49m
+[1;32m     92[0m     [38;5;28msetattr[39m(klass, method_name, m)
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/ccompiler.py:274[0m, in [0;36mCCompiler_compile[0;34m(self, sources, output_dir, macros, include_dirs, debug, extra_preargs, extra_postargs, depends)[0m
+[1;32m    237[0m [38;5;250m[39m[38;5;124;03m"""[39;00m
+[1;32m    238[0m [38;5;124;03mCompile one or more source files.[39;00m
+[1;32m    239[0m 
+[0;32m   (...)[0m
+[1;32m    270[0m 
+[1;32m    271[0m [38;5;124;03m"""[39;00m
+[1;32m    272[0m [38;5;28;01mglobal[39;00m _job_semaphore
+[0;32m--> 274[0m jobs [38;5;241m=[39m [43mget_num_build_jobs[49m[43m([49m[43m)[49m
+[1;32m    276[0m [38;5;66;03m# setup semaphore to not exceed number of compile jobs when parallelized at[39;00m
+[1;32m    277[0m [38;5;66;03m# extension level (python >= 3.5)[39;00m
+[1;32m    278[0m [38;5;28;01mwith[39;00m _global_lock:
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/misc_util.py:91[0m, in [0;36mget_num_build_jobs[0;34m()[0m
+[1;32m     76[0m [38;5;28;01mdef[39;00m [38;5;21mget_num_build_jobs[39m():
+[1;32m     77[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[1;32m     78[0m [38;5;124;03m    Get number of parallel build jobs set by the --parallel command line[39;00m
+[1;32m     79[0m [38;5;124;03m    argument of setup.py[39;00m
+[0;32m   (...)[0m
+[1;32m     89[0m 
+[1;32m     90[0m [38;5;124;03m    """[39;00m
+[0;32m---> 91[0m     [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcore[39;00m [38;5;28;01mimport[39;00m get_distribution
+[1;32m     92[0m     [38;5;28;01mtry[39;00m:
+[1;32m     93[0m         cpu_count [38;5;241m=[39m [38;5;28mlen[39m(os[38;5;241m.[39msched_getaffinity([38;5;241m0[39m))
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/core.py:24[0m
+[1;32m     22[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mextension[39;00m [38;5;28;01mimport[39;00m Extension  [38;5;66;03m# noqa: F401[39;00m
+[1;32m     23[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mnumpy_distribution[39;00m [38;5;28;01mimport[39;00m NumpyDistribution
+[0;32m---> 24[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcommand[39;00m [38;5;28;01mimport[39;00m config, config_compiler, \
+[1;32m     25[0m      build, build_py, build_ext, build_clib, build_src, build_scripts, \
+[1;32m     26[0m      sdist, install_data, install_headers, install, bdist_rpm, \
+[1;32m     27[0m      install_clib
+[1;32m     28[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmisc_util[39;00m [38;5;28;01mimport[39;00m is_sequence, is_string
+[1;32m     30[0m numpy_cmdclass [38;5;241m=[39m {[38;5;124m'[39m[38;5;124mbuild[39m[38;5;124m'[39m:            build[38;5;241m.[39mbuild,
+[1;32m     31[0m                   [38;5;124m'[39m[38;5;124mbuild_src[39m[38;5;124m'[39m:        build_src[38;5;241m.[39mbuild_src,
+[1;32m     32[0m                   [38;5;124m'[39m[38;5;124mbuild_scripts[39m[38;5;124m'[39m:    build_scripts[38;5;241m.[39mbuild_scripts,
+[0;32m   (...)[0m
+[1;32m     44[0m                   [38;5;124m'[39m[38;5;124mbdist_rpm[39m[38;5;124m'[39m:        bdist_rpm[38;5;241m.[39mbdist_rpm,
+[1;32m     45[0m                   }
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/command/config.py:19[0m
+[1;32m     17[0m [38;5;28;01mimport[39;00m [38;5;21;01mdistutils[39;00m
+[1;32m     18[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mexec_command[39;00m [38;5;28;01mimport[39;00m filepath_from_subprocess_output
+[0;32m---> 19[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmingw32ccompiler[39;00m [38;5;28;01mimport[39;00m generate_manifest
+[1;32m     20[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcommand[39;00m[38;5;21;01m.[39;00m[38;5;21;01mautodist[39;00m [38;5;28;01mimport[39;00m (check_gcc_function_attribute,
+[1;32m     21[0m                                               check_gcc_function_attribute_with_intrinsics,
+[1;32m     22[0m                                               check_gcc_variable_attribute,
+[0;32m   (...)[0m
+[1;32m     25[0m                                               check_restrict,
+[1;32m     26[0m                                               check_compiler_gcc)
+[1;32m     28[0m LANG_EXT[[38;5;124m'[39m[38;5;124mf77[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;124m'[39m[38;5;124m.f[39m[38;5;124m'[39m
+
+File [0;32m/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/mingw32ccompiler.py:27[0m
+[1;32m     25[0m [38;5;28;01mimport[39;00m [38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcygwinccompiler[39;00m
+[1;32m     26[0m [38;5;28;01mfrom[39;00m [38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01munixccompiler[39;00m [38;5;28;01mimport[39;00m UnixCCompiler
+[0;32m---> 27[0m [38;5;28;01mfrom[39;00m [38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmsvccompiler[39;00m [38;5;28;01mimport[39;00m get_build_version [38;5;28;01mas[39;00m get_build_msvc_version
+[1;32m     28[0m [38;5;28;01mfrom[39;00m [38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01merrors[39;00m [38;5;28;01mimport[39;00m UnknownFileError
+[1;32m     29[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdistutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmisc_util[39;00m [38;5;28;01mimport[39;00m (msvc_runtime_library,
+[1;32m     30[0m                                        msvc_runtime_version,
+[1;32m     31[0m                                        msvc_runtime_major,
+[1;32m     32[0m                                        get_build_architecture)
+
+[0;31mModuleNotFoundError[0m: No module named 'distutils.msvccompiler'
 

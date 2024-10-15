@@ -670,13 +670,13 @@ Platform Info:
   uname: Linux 6.5.0-1025-azure #26~22.04.1-Ubuntu SMP Thu Jul 11 22:33:04 UTC 2024 x86_64 x86_64
   CPU: AMD EPYC 7763 64-Core Processor: 
               speed         user         nice          sys         idle          irq
-       #1  3244 MHz        328 s          0 s        135 s       2084 s          0 s
-       #2  3242 MHz        469 s          0 s        129 s       1968 s          0 s
-       #3  2445 MHz        559 s          0 s        173 s       1800 s          0 s
-       #4  3225 MHz        550 s          0 s        157 s       1839 s          0 s
-  Memory: 15.606491088867188 GB (14379.61328125 MB free)
-  Uptime: 266.07 sec
-  Load Avg:  1.38  0.86  0.38
+       #1  3242 MHz        460 s          0 s        129 s       4386 s          0 s
+       #2  2901 MHz        306 s          0 s        124 s       4574 s          0 s
+       #3  2998 MHz        503 s          0 s        137 s       4384 s          0 s
+       #4  3228 MHz        496 s          0 s        168 s       4328 s          0 s
+  Memory: 15.606491088867188 GB (14389.94921875 MB free)
+  Uptime: 511.74 sec
+  Load Avg:  1.3  0.67  0.27
   WORD_SIZE: 64
   LIBM: libopenlibm
   LLVM: libLLVM-15.0.7 (ORCJIT, znver3)
@@ -699,7 +699,7 @@ Environment:
   SELENIUM_JAR_PATH = /usr/share/java/selenium-server.jar
   JAVA_HOME_11_X64 = /usr/lib/jvm/temurin-11-jdk-amd64
   PKG_CONFIG_PATH = /opt/hostedtoolcache/Python/3.9.20/x64/lib/pkgconfig
-  GITHUB_PATH = /home/runner/work/_temp/_runner_file_commands/add_path_21f6c7c3-b976-49c2-b278-5b7f512995b8
+  GITHUB_PATH = /home/runner/work/_temp/_runner_file_commands/add_path_1be1423f-756a-4447-bdb8-7312b4d6d55e
   JAVA_HOME = /usr/lib/jvm/temurin-11-jdk-amd64
   GRADLE_HOME = /usr/share/gradle-8.10.2
   XDG_CONFIG_HOME = /home/runner/.config
@@ -839,53 +839,14 @@ Environment:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ✓ Conda
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Error: curl_multi_assign: 1
-└ @ Downloads.Curl /usr/share/miniconda/envs/python-fortran/share/julia/stdlib/v1.10/Downloads/src/Curl/utils.jl:57
-┌ Error: curl_multi_assign: 1
-└ @ Downloads.Curl /usr/share/miniconda/envs/python-fortran/share/julia/stdlib/v1.10/Downloads/src/Curl/utils.jl:57
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ✓ PyCall
+  9 dependencies successfully precompiled in 28 seconds. 1 already precompiled.
 
-[3471] signal (6.-6): Aborted
-in expression starting at /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/install.jl:73
-pthread_kill at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
-raise at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
-abort at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
-uv__io_poll at /workspace/srcdir/libuv/src/unix/epoll.c:166
-uv_run at /workspace/srcdir/libuv/src/unix/core.c:400
-ijl_task_get_next at /usr/local/src/conda/julia-1.10.4/src/partr.c:478
-poptask at ./task.jl:985
-wait at ./task.jl:994
-#wait#645 at ./condition.jl:130
-wait at ./condition.jl:125 [inlined]
-_wait at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/FileWatching/src/FileWatching.jl:562
-wait at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/FileWatching/src/FileWatching.jl:590
-#58 at /home/conda/feedstock_root/build_artifacts/julia_1718579682237/work/usr/share/julia/stdlib/v1.10/Downloads/src/Curl/Multi.jl:188
-jfptr_YY.58_92826.1 at /usr/share/miniconda/envs/python-fortran/lib/julia/sys.so (unknown line)
-jl_apply at /usr/local/src/conda/julia-1.10.4/src/julia.h:1982 [inlined]
-start_task at /usr/local/src/conda/julia-1.10.4/src/task.c:1238
-Allocations: 5511607 (Pool: 5505735; Big: 5872); GC: 8
+Precompiling PyCall...
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">PyCallInstallError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">julia</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">julia</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">julia.api</span> <span class="kn">import</span> <span class="n">Julia</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">jl</span> <span class="o">=</span> <span class="n">Julia</span><span class="p">(</span><span class="n">compiled_modules</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/julia/tools.py:118,</span> in <span class="ni">install</span><span class="nt">(julia, color, python, quiet)</span>
-<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="k">return</span>
-<span class="g g-Whitespace">    </span><span class="mi">117</span> <span class="k">elif</span> <span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">118</span>     <span class="k">raise</span> <span class="n">PyCallInstallError</span><span class="p">(</span><span class="s2">&quot;Installing&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">quiet</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-
-<span class="ne">PyCallInstallError</span>: Installing PyCall failed.
-
-<span class="o">**</span> <span class="n">Important</span> <span class="n">information</span> <span class="kn">from</span> <span class="nn">Julia</span> <span class="n">may</span> <span class="n">be</span> <span class="n">printed</span> <span class="n">before</span> <span class="n">Python</span><span class="s1">&#39;s Traceback **</span>
-
-<span class="n">Some</span> <span class="n">useful</span> <span class="n">information</span> <span class="n">may</span> <span class="n">also</span> <span class="n">be</span> <span class="n">stored</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">build</span> <span class="n">log</span> <span class="n">file</span>
-<span class="err">`</span><span class="o">~/.</span><span class="n">julia</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">PyCall</span><span class="o">/*/</span><span class="n">deps</span><span class="o">/</span><span class="n">build</span><span class="o">.</span><span class="n">log</span><span class="err">`</span><span class="o">.</span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precompiling PyCall... DONE
+PyCall is installed and built successfully.
 </pre></div>
 </div>
 </div>
@@ -923,7 +884,7 @@ Allocations: 5511607 (Pool: 5505735; Big: 5872); GC: 8
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting julia_set.jl
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing julia_set.jl
 </pre></div>
 </div>
 </div>
@@ -943,7 +904,7 @@ Allocations: 5511607 (Pool: 5505735; Big: 5872); GC: 8
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ac9b9ced680e9beebbda0f1f8369a78172e46c51389dd2a517b4cfc7c3361142.png"><img alt="_images/ac9b9ced680e9beebbda0f1f8369a78172e46c51389dd2a517b4cfc7c3361142.png" src="_images/ac9b9ced680e9beebbda0f1f8369a78172e46c51389dd2a517b4cfc7c3361142.png" style="width: 521px; height: 510px;" /></a>
+<img alt="_images/91e8dcb0e011d5c1402d0153f94ea9302f8788b203215263d4faf0d605a7f39c.png" src="_images/91e8dcb0e011d5c1402d0153f94ea9302f8788b203215263d4faf0d605a7f39c.png" />
 </div>
 </div>
 </section>
@@ -993,6 +954,223 @@ def juliaset_pythran(x, y, c, lim, maxit):
             juliap[j, i] = ite
 
     return juliap
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="nn">----&gt; 1 get_ipython().run_cell_magic(&#39;pythran&#39;, &#39;-fopenmp&#39;, &#39;\nimport numpy as np\n\n#pythran export juliaset_pythran(float64[], float64[],complex, int, int)\ndef juliaset_pythran(x, y, c, lim, maxit):\n    &quot;&quot;&quot; \n    returns Julia set\n    &quot;&quot;&quot;\n    juliap = np.zeros((x.size, y.size), dtype=np.int32)\n\n    #omp parallel for private(z, ite)\n    for j in range(y.size):\n        for i</span> in <span class="ni">range(x.size):\n            z = x[i] + 1j*y[j]\n            ite = 0\n            while abs</span><span class="nt">(z) &lt; lim and ite &lt; maxit:\n                z = z**2 + c\n                ite += 1\n            juliap[j, i] = ite\n\n    return juliap\n&#39;)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/IPython/core/interactiveshell.py:2517,</span> in <span class="ni">InteractiveShell.run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2515</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2516</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2517</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2519</span> <span class="c1"># The code below prevents the output from being displayed</span>
+<span class="g g-Whitespace">   </span><span class="mi">2520</span> <span class="c1"># when using magics with decorator @output_can_be_silenced</span>
+<span class="g g-Whitespace">   </span><span class="mi">2521</span> <span class="c1"># when the last Python token in the expression is a &#39;;&#39;.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2522</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">magic</span><span class="o">.</span><span class="n">MAGIC_OUTPUT_CAN_BE_SILENCED</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/pythran/magic.py:67,</span> in <span class="ni">PythranMagics.pythran</span><span class="nt">(self, line, cell)</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="n">m</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="n">module_name</span> <span class="o">=</span> <span class="s2">&quot;pythranized_&quot;</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">67</span> <span class="n">module_path</span> <span class="o">=</span> <span class="n">pythran</span><span class="o">.</span><span class="n">compile_pythrancode</span><span class="p">(</span><span class="n">module_name</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">machinery</span><span class="o">.</span><span class="n">ExtensionFileLoader</span><span class="p">(</span><span class="n">module_name</span><span class="p">,</span> <span class="n">module_path</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">machinery</span><span class="o">.</span><span class="n">ModuleSpec</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">module_name</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="n">loader</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span>                                       <span class="n">origin</span><span class="o">=</span><span class="n">module_path</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/pythran/toolchain.py:465,</span> in <span class="ni">compile_pythrancode</span><span class="nt">(module_name, pythrancode, specs, opts, cpponly, pyonly, output_file, module_dir, report_times, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span> <span class="c1"># Compile to binary</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">465</span>     <span class="n">output_file</span> <span class="o">=</span> <span class="n">compile_cxxcode</span><span class="p">(</span><span class="n">module_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">466</span>                                   <span class="nb">str</span><span class="p">(</span><span class="n">module</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">467</span>                                   <span class="n">output_binary</span><span class="o">=</span><span class="n">output_file</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">468</span>                                   <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">469</span> <span class="k">except</span> <span class="n">PythranCompileError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">470</span>     <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Compilation error, &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">471</span>                    <span class="s2">&quot;trying hard to find its origin...&quot;</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/pythran/toolchain.py:402,</span> in <span class="ni">compile_cxxcode</span><span class="nt">(module_name, cxxcode, output_binary, keep_temp, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span> <span class="c1"># Get a temporary C++ file to compile</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span> <span class="n">fdpath</span> <span class="o">=</span> <span class="n">_write_temp</span><span class="p">(</span><span class="n">cxxcode</span><span class="p">,</span> <span class="s1">&#39;.cpp&#39;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">402</span> <span class="n">output_binary</span> <span class="o">=</span> <span class="n">compile_cxxfile</span><span class="p">(</span><span class="n">module_name</span><span class="p">,</span> <span class="n">fdpath</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>                                 <span class="n">output_binary</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">keep_temp</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="c1"># remove tempfile</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fdpath</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/pythran/toolchain.py:347,</span> in <span class="ni">compile_cxxfile</span><span class="nt">(module_name, cxxfile, output_binary, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span> <span class="n">extension</span> <span class="o">=</span> <span class="n">PythranExtension</span><span class="p">(</span><span class="n">module_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>                              <span class="p">[</span><span class="n">cxxfile</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>                              <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">347</span>     <span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">module_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">348</span>           <span class="n">ext_modules</span><span class="o">=</span><span class="p">[</span><span class="n">extension</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">349</span>           <span class="n">cmdclass</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;build_ext&quot;</span><span class="p">:</span> <span class="n">PythranBuildExt</span><span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">350</span>           <span class="c1"># fake CLI call</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span>           <span class="n">script_name</span><span class="o">=</span><span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span>           <span class="n">script_args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;--verbose&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span>                        <span class="k">if</span> <span class="n">logger</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">354</span>                        <span class="k">else</span> <span class="s1">&#39;--quiet&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span>                        <span class="s1">&#39;build_ext&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">356</span>                        <span class="s1">&#39;--build-lib&#39;</span><span class="p">,</span> <span class="n">builddir</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">357</span>                        <span class="s1">&#39;--build-temp&#39;</span><span class="p">,</span> <span class="n">buildtmp</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span>           <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span> <span class="k">except</span> <span class="ne">SystemExit</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span>     <span class="k">raise</span> <span class="n">PythranCompileError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/__init__.py:117,</span> in <span class="ni">setup</span><span class="nt">(**attrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="c1"># Make sure we have any requirements needed to interpret &#39;attrs&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span> <span class="n">_install_setup_requires</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">117</span> <span class="k">return</span> <span class="n">distutils</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="o">**</span><span class="n">attrs</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/core.py:183,</span> in <span class="ni">setup</span><span class="nt">(**attrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">181</span> <span class="c1"># And finally, run all the commands found on the command line.</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span> <span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">183</span>     <span class="k">return</span> <span class="n">run_commands</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span> <span class="k">return</span> <span class="n">dist</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/core.py:199,</span> in <span class="ni">run_commands</span><span class="nt">(dist)</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Given a Distribution object run all the commands,</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span><span class="sd"> raising ``SystemExit`` errors in the case of failure.</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span><span class="sd"> This function assumes that either ``sys.argv`` or ``dist.script_args``</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span><span class="sd"> is already set accordingly.</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">199</span>     <span class="n">dist</span><span class="o">.</span><span class="n">run_commands</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span>     <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s2">&quot;interrupted&quot;</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/dist.py:954,</span> in <span class="ni">Distribution.run_commands</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">949</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Run each command that was seen on the setup script command line.</span>
+<span class="g g-Whitespace">    </span><span class="mi">950</span><span class="sd"> Uses the list of commands found and cache of command objects</span>
+<span class="g g-Whitespace">    </span><span class="mi">951</span><span class="sd"> created by &#39;get_command_obj()&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">952</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">953</span> <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">954</span>     <span class="bp">self</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/dist.py:950,</span> in <span class="ni">Distribution.run_command</span><span class="nt">(self, command)</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_defaults</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">947</span> <span class="c1"># Postpone defaults until all explicit configuration is considered</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span> <span class="c1"># (setup() args, config files, command line and plugins)</span>
+<span class="ne">--&gt; </span><span class="mi">950</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/dist.py:973,</span> in <span class="ni">Distribution.run_command</span><span class="nt">(self, command)</span>
+<span class="g g-Whitespace">    </span><span class="mi">971</span> <span class="n">cmd_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_command_obj</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">972</span> <span class="n">cmd_obj</span><span class="o">.</span><span class="n">ensure_finalized</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">973</span> <span class="n">cmd_obj</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">974</span> <span class="bp">self</span><span class="o">.</span><span class="n">have_run</span><span class="p">[</span><span class="n">command</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/command/build_ext.py:359,</span> in <span class="ni">build_ext.run</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">356</span>     <span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">set_link_objects</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">link_objects</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span> <span class="c1"># Now actually compile and link everything.</span>
+<span class="ne">--&gt; </span><span class="mi">359</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_extensions</span><span class="p">()</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/command/build_ext.py:476,</span> in <span class="ni">build_ext.build_extensions</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_build_extensions_parallel</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">476</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_build_extensions_serial</span><span class="p">()</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/command/build_ext.py:502,</span> in <span class="ni">build_ext._build_extensions_serial</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span> <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">extensions</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_build_errors</span><span class="p">(</span><span class="n">ext</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">502</span>         <span class="bp">self</span><span class="o">.</span><span class="n">build_extension</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/pythran/dist.py:121,</span> in <span class="ni">PythranBuildExtMixIn.build_extension</span><span class="nt">(self, ext)</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>             <span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">compiler_so</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;x86_64&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">121</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">PythranBuildExtMixIn</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build_extension</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span>     <span class="c1"># Revert compiler settings</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">prev</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/command/build_ext.py:557,</span> in <span class="ni">build_ext.build_extension</span><span class="nt">(self, ext)</span>
+<span class="g g-Whitespace">    </span><span class="mi">554</span> <span class="k">for</span> <span class="n">undef</span> <span class="ow">in</span> <span class="n">ext</span><span class="o">.</span><span class="n">undef_macros</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">555</span>     <span class="n">macros</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">undef</span><span class="p">,))</span>
+<span class="ne">--&gt; </span><span class="mi">557</span> <span class="n">objects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span>     <span class="n">sources</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span>     <span class="n">output_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">build_temp</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">560</span>     <span class="n">macros</span><span class="o">=</span><span class="n">macros</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span>     <span class="n">include_dirs</span><span class="o">=</span><span class="n">ext</span><span class="o">.</span><span class="n">include_dirs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span>     <span class="n">debug</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">563</span>     <span class="n">extra_postargs</span><span class="o">=</span><span class="n">extra_args</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">564</span>     <span class="n">depends</span><span class="o">=</span><span class="n">ext</span><span class="o">.</span><span class="n">depends</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">565</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span> <span class="c1"># XXX outdated variable, kept here in case third-part code</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span> <span class="c1"># needs it.</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="bp">self</span><span class="o">.</span><span class="n">_built_objects</span> <span class="o">=</span> <span class="n">objects</span><span class="p">[:]</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/ccompiler.py:91,</span> in <span class="ni">replace_method.&lt;locals&gt;.&lt;lambda&gt;</span><span class="nt">(self, *args, **kw)</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span> <span class="k">def</span> <span class="nf">replace_method</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span>     <span class="c1"># Py3k does not have unbound method anymore, MethodType does not work</span>
+<span class="ne">---&gt; </span><span class="mi">91</span>     <span class="n">m</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="nb">setattr</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/ccompiler.py:274,</span> in <span class="ni">CCompiler_compile</span><span class="nt">(self, sources, output_dir, macros, include_dirs, debug, extra_preargs, extra_postargs, depends)</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span><span class="sd"> Compile one or more source files.</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">270</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">271</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span> <span class="k">global</span> <span class="n">_job_semaphore</span>
+<span class="ne">--&gt; </span><span class="mi">274</span> <span class="n">jobs</span> <span class="o">=</span> <span class="n">get_num_build_jobs</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span> <span class="c1"># setup semaphore to not exceed number of compile jobs when parallelized at</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span> <span class="c1"># extension level (python &gt;= 3.5)</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span> <span class="k">with</span> <span class="n">_global_lock</span><span class="p">:</span>
+
+<span class="nn">File /usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/misc_util.py:91,</span> in <span class="ni">get_num_build_jobs</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span> <span class="k">def</span> <span class="nf">get_num_build_jobs</span><span class="p">():</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span><span class="sd">     Get number of parallel build jobs set by the --parallel command line</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span><span class="sd">     argument of setup.py</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">91</span>     <span class="kn">from</span> <span class="nn">numpy.distutils.core</span> <span class="kn">import</span> <span class="n">get_distribution</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span>         <span class="n">cpu_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sched_getaffinity</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">File</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">fortran</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.9</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">numpy</span><span class="o">/</span><span class="n">distutils</span><span class="o">/</span><span class="n">core</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">24</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="kn">from</span> <span class="nn">numpy.distutils.extension</span> <span class="kn">import</span> <span class="n">Extension</span>  <span class="c1"># noqa: F401</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="kn">from</span> <span class="nn">numpy.distutils.numpy_distribution</span> <span class="kn">import</span> <span class="n">NumpyDistribution</span>
+<span class="ne">---&gt; </span><span class="mi">24</span> <span class="kn">from</span> <span class="nn">numpy.distutils.command</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">config_compiler</span><span class="p">,</span> \
+<span class="g g-Whitespace">     </span><span class="mi">25</span>      <span class="n">build</span><span class="p">,</span> <span class="n">build_py</span><span class="p">,</span> <span class="n">build_ext</span><span class="p">,</span> <span class="n">build_clib</span><span class="p">,</span> <span class="n">build_src</span><span class="p">,</span> <span class="n">build_scripts</span><span class="p">,</span> \
+<span class="g g-Whitespace">     </span><span class="mi">26</span>      <span class="n">sdist</span><span class="p">,</span> <span class="n">install_data</span><span class="p">,</span> <span class="n">install_headers</span><span class="p">,</span> <span class="n">install</span><span class="p">,</span> <span class="n">bdist_rpm</span><span class="p">,</span> \
+<span class="g g-Whitespace">     </span><span class="mi">27</span>      <span class="n">install_clib</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="kn">from</span> <span class="nn">numpy.distutils.misc_util</span> <span class="kn">import</span> <span class="n">is_sequence</span><span class="p">,</span> <span class="n">is_string</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="n">numpy_cmdclass</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;build&#39;</span><span class="p">:</span>            <span class="n">build</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span>                   <span class="s1">&#39;build_src&#39;</span><span class="p">:</span>        <span class="n">build_src</span><span class="o">.</span><span class="n">build_src</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>                   <span class="s1">&#39;build_scripts&#39;</span><span class="p">:</span>    <span class="n">build_scripts</span><span class="o">.</span><span class="n">build_scripts</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>                   <span class="s1">&#39;bdist_rpm&#39;</span><span class="p">:</span>        <span class="n">bdist_rpm</span><span class="o">.</span><span class="n">bdist_rpm</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span>                   <span class="p">}</span>
+
+<span class="n">File</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">fortran</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.9</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">numpy</span><span class="o">/</span><span class="n">distutils</span><span class="o">/</span><span class="n">command</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">import</span> <span class="nn">distutils</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span> <span class="nn">numpy.distutils.exec_command</span> <span class="kn">import</span> <span class="n">filepath_from_subprocess_output</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">from</span> <span class="nn">numpy.distutils.mingw32ccompiler</span> <span class="kn">import</span> <span class="n">generate_manifest</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span> <span class="nn">numpy.distutils.command.autodist</span> <span class="kn">import</span> <span class="p">(</span><span class="n">check_gcc_function_attribute</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>                                               <span class="n">check_gcc_function_attribute_with_intrinsics</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span>                                               <span class="n">check_gcc_variable_attribute</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span>                                               <span class="n">check_restrict</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span>                                               <span class="n">check_compiler_gcc</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="n">LANG_EXT</span><span class="p">[</span><span class="s1">&#39;f77&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;.f&#39;</span>
+
+<span class="n">File</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">fortran</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.9</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">numpy</span><span class="o">/</span><span class="n">distutils</span><span class="o">/</span><span class="n">mingw32ccompiler</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">27</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="kn">import</span> <span class="nn">distutils.cygwinccompiler</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="kn">from</span> <span class="nn">distutils.unixccompiler</span> <span class="kn">import</span> <span class="n">UnixCCompiler</span>
+<span class="ne">---&gt; </span><span class="mi">27</span> <span class="kn">from</span> <span class="nn">distutils.msvccompiler</span> <span class="kn">import</span> <span class="n">get_build_version</span> <span class="k">as</span> <span class="n">get_build_msvc_version</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="kn">from</span> <span class="nn">distutils.errors</span> <span class="kn">import</span> <span class="n">UnknownFileError</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="kn">from</span> <span class="nn">numpy.distutils.misc_util</span> <span class="kn">import</span> <span class="p">(</span><span class="n">msvc_runtime_library</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span>                                        <span class="n">msvc_runtime_version</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span>                                        <span class="n">msvc_runtime_major</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>                                        <span class="n">get_build_architecture</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;distutils.msvccompiler&#39;
 </pre></div>
 </div>
 </div>
