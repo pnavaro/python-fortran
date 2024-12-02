@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="Maxwell solver in two dimensions with FDTD scheme" href="07.maxwell-fdtd-2d.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +149,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Python-Fortran notebooks - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Python-Fortran notebooks - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Python-Fortran notebooks - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Call Fortran from Python with f2py</span></p>
@@ -427,24 +416,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -590,8 +571,8 @@ time ./a.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.55 s, sys: 743 µs, total: 9.55 s
-Wall time: 9.55 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.44 s, sys: 6.5 ms, total: 9.45 s
+Wall time: 9.45 s
 </pre></div>
 </div>
 </div>
@@ -659,8 +640,8 @@ gcc -fPIC -shared -O3 \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 346 ms, sys: 12 ms, total: 358 ms
-Wall time: 358 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 364 ms, sys: 1 µs, total: 364 ms
+Wall time: 364 ms
 </pre></div>
 </div>
 </div>
@@ -743,8 +724,8 @@ gfortran -fPIC -shared -O3 -o syrac.dylib syrac.F90
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 408 ms, sys: 4 ms, total: 412 ms
-Wall time: 411 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 397 ms, sys: 0 ns, total: 397 ms
+Wall time: 397 ms
 </pre></div>
 </div>
 </div>
@@ -845,16 +826,351 @@ gcc<span class="w"> </span><span class="sb">`</span>python3-config<span class="w
 
 
   from numpy.distutils.core import Extension, setup
-Traceback (most recent call last):
-  File &quot;/home/runner/work/python-fortran/python-fortran/notebooks/setup.py&quot;, line 1, in &lt;module&gt;
-    from numpy.distutils.core import Extension, setup
-  File &quot;/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/core.py&quot;, line 24, in &lt;module&gt;
-    from numpy.distutils.command import config, config_compiler, \
-  File &quot;/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/command/config.py&quot;, line 19, in &lt;module&gt;
-    from numpy.distutils.mingw32ccompiler import generate_manifest
-  File &quot;/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/mingw32ccompiler.py&quot;, line 27, in &lt;module&gt;
-    from distutils.msvccompiler import get_build_version as get_build_msvc_version
-ModuleNotFoundError: No module named &#39;distutils.msvccompiler&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running build_ext
+running build_src
+INFO: build_src
+INFO: building extension &quot;_syracuseC&quot; sources
+INFO: build_src: building npy-pkg config files
+/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` directly.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+INFO: customize UnixCCompiler
+INFO: customize UnixCCompiler using build_ext
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-march=native)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+creating /tmp/tmp8i1jwcjd/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/distutils/checks
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-march=native&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-O3)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-O3&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-Werror)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-Werror&#39;
+INFO: CCompilerOpt.__init__[1795] : check requested baseline
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse2)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse2&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE&#39; with flags (-msse -msse2)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE2&#39; with flags (-msse -msse2)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse3)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse3&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE3&#39; with flags (-msse -msse2 -msse3)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.__init__[1804] : check requested dispatch-able features
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mssse3)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mssse3&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse4.1)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse4.1&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE41&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mpopcnt)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mpopcnt&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;POPCNT&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-msse4.2)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse4.2&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSE42&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;SSSE3&#39; with flags (-msse -msse2 -msse3 -mssse3)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -Werror&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mf16c)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mf16c&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;F16C&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx2)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx2&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX2&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mavx2)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mavx2 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mfma)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mfma&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512f -mno-mmx)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx512f -mno-mmx&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512cd)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx512cd&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512vl -mavx512bw -mavx512dq)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx512vl -mavx512bw -mavx512dq&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512vnni)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx512vnni&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_CLX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512F&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512ifma -mavx512vbmi)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx512ifma -mavx512vbmi&#39;
+INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_ICL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_CNL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma -mavx512vbmi)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma -mavx512vbmi -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;FMA3&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_SKX&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512CD&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512fp16)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx512fp16&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_SPR&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq -mavx512fp16)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512vnni -mavx512ifma -mavx512vbmi -mavx512vbmi2 -mavx512bitalg -mavx512vpopcntdq -mavx512fp16 -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx512er -mavx512pf)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx512er -mavx512pf&#39;
+INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_KNL&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.cc_test_flags[1086] : testing flags (-mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_test[1560] : testing feature &#39;AVX512_KNM&#39; with flags (-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512er -mavx512pf -mavx5124fmaps -mavx5124vnniw -mavx512vpopcntdq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.__init__[1816] : skip features (SSE2 SSE SSE3) since its part of baseline
+INFO: CCompilerOpt.__init__[1820] : initialize targets groups
+INFO: CCompilerOpt.__init__[1822] : parse target group simd_test
+INFO: CCompilerOpt._parse_target_tokens[2033] : skip targets (VXE2 XOP NEON VXE VX VSX3 FMA4 VSX VSX4 VSX2 ASIMD) not part of baseline or dispatch-able features
+INFO: CCompilerOpt._parse_policy_not_keepbase[2145] : skip baseline features (SSE2)
+INFO: CCompilerOpt.generate_dispatch_header[2366] : generate CPU dispatch header: (build/src.linux-x86_64-3.9/numpy/distutils/include/npy_cpu_dispatch_config.h)
+<span class=" -Color -Color-Red">WARN: CCompilerOpt.generate_dispatch_header[2375] : dispatch header dir build/src.linux-x86_64-3.9/numpy/distutils/include does not exist, creating it</span>
+INFO: CCompilerOpt.feature_extra_checks[1640] : Testing extra checks for feature &#39;AVX512F&#39; (AVX512F_REDUCE)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: CCompilerOpt.feature_extra_checks[1640] : Testing extra checks for feature &#39;AVX512_SKX&#39; (AVX512BW_MASK AVX512DQ_MASK)
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3 -mssse3 -msse4.1 -mpopcnt -msse4.2 -mavx -mf16c -mfma -mavx2 -mavx512f -mno-mmx -mavx512cd -mavx512vl -mavx512bw -mavx512dq -Werror&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: building &#39;_syracuseC&#39; extension
+INFO: compiling C sources
+INFO: C compiler: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC -O2 -isystem /usr/share/miniconda/envs/python-fortran/include -fPIC
+
+INFO: compile options: &#39;-I/usr/share/miniconda/envs/python-fortran/lib/python3.9/site-packages/numpy/_core/include -Ibuild/src.linux-x86_64-3.9/numpy/distutils/include -I/usr/share/miniconda/envs/python-fortran/include/python3.9 -c&#39;
+extra options: &#39;-msse -msse2 -msse3&#39;
+INFO: gcc: syrac_wrap.c
+INFO: gcc: syrac.c
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: gcc -pthread -B /usr/share/miniconda/envs/python-fortran/compiler_compat -shared -Wl,--allow-shlib-undefined -Wl,-rpath,/usr/share/miniconda/envs/python-fortran/lib -Wl,-rpath-link,/usr/share/miniconda/envs/python-fortran/lib -L/usr/share/miniconda/envs/python-fortran/lib -Wl,--allow-shlib-undefined -Wl,-rpath,/usr/share/miniconda/envs/python-fortran/lib -Wl,-rpath-link,/usr/share/miniconda/envs/python-fortran/lib -L/usr/share/miniconda/envs/python-fortran/lib build/temp.linux-x86_64-cpython-39/syrac_wrap.o build/temp.linux-x86_64-cpython-39/syrac.o -o _syracuseC.cpython-39-x86_64-linux-gnu.so
+INFO: 
+########### EXT COMPILER OPTIMIZATION ###########
+INFO: Platform      : 
+  Architecture: x64
+  Compiler    : gcc
+
+CPU baseline  : 
+  Requested   : &#39;min&#39;
+  Enabled     : SSE SSE2 SSE3
+  Flags       : -msse -msse2 -msse3
+  Extra checks: none
+
+CPU dispatch  : 
+  Requested   : &#39;max -xop -fma4&#39;
+  Enabled     : SSSE3 SSE41 POPCNT SSE42 AVX F16C FMA3 AVX2 AVX512F AVX512CD AVX512_KNL AVX512_KNM AVX512_SKX AVX512_CLX AVX512_CNL AVX512_ICL AVX512_SPR
+  Generated   : none
+INFO: CCompilerOpt.cache_flush[864] : write cache to path -&gt; /home/runner/work/python-fortran/python-fortran/notebooks/build/temp.linux-x86_64-cpython-39/ccompiler_opt_cache_ext.py
 </pre></div>
 </div>
 </div>
@@ -869,14 +1185,7 @@ ModuleNotFoundError: No module named &#39;distutils.msvccompiler&#39;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">_syracuseC</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">syracuse</span> <span class="o">=</span> <span class="n">_syracuseC</span><span class="o">.</span><span class="n">syracuse</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">syracuse</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;_syracuseC&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
 </pre></div>
 </div>
 </div>
@@ -891,8 +1200,8 @@ ModuleNotFoundError: No module named &#39;distutils.msvccompiler&#39;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 260 ms, sys: 4 ms, total: 264 ms
-Wall time: 263 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 206 ms, sys: 17 µs, total: 206 ms
+Wall time: 206 ms
 </pre></div>
 </div>
 </div>
@@ -955,7 +1264,8 @@ Wall time: 263 ms
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1023,8 +1333,8 @@ By Pierre Navaro
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
